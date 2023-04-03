@@ -1,7 +1,7 @@
 ---
 home: true
 icon: home
-title: 项目主页
+title: 项目主页codermast
 heroImage: /logo.svg
 heroText: 项目名称
 tagline: 你可以在这里放置或是整个项目的描述。
