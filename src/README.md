@@ -4,7 +4,7 @@ icon: home
 title: Codermast
 heroImage: /logo.svg
 heroText: Project name
-tagline: You can place the description of the project here.
+tagline: 你可以在这里查看你想看到的教程。
 actions:
   - text: How to Use 💡
     link: /demo/
