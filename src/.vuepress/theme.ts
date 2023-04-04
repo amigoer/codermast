@@ -3,16 +3,18 @@ import { zhNavbar } from "./navbar/index.js";
 import { zhSidebar } from "./sidebar/index.js";
 
 export default hopeTheme({
+  // ico图标
+  favicon: "/favicon.ico",
   // 顶部导航栏
   navbar: zhNavbar,
   // 侧边栏
   sidebar: zhSidebar,
   // 页脚
-  footer: "CoderMast页脚",
+  footer: '<a href="https://beian.miit.gov.cn/" rel="nofollow">陕ICP备20010345号-5</a>',
 
   displayFooter: true,
   metaLocales: {
-    editLink: "在 GitHub 上编辑此页",
+    editLink: "编辑此页",
   },
 
   // 发布站点链接
