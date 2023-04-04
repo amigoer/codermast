@@ -5,6 +5,7 @@ import { git, hopeTheme } from "vuepress-theme-hope";
 
 export default defineUserConfig({
   base: "/",
+  lang: "zh-CN",
   theme,
 
 });

@@ -8,6 +8,7 @@ export default hopeTheme({
   author: {
     name: "CoderMast",
     url: "https://www.codermast.com",
+    email: "codermast@qq.com",
   },
 
   iconAssets: "iconfont",
