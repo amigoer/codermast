@@ -1,13 +1,13 @@
 ---
-title: Bar feature
+title: Bar 功能
 icon: creative
 ---
 
-## Introduction
+## 介绍
 
-We support bar feature, ...
+我们支持 bar 功能，...
 
-## Details
+## 详情
 
 - [baz](baz.md)
 - ...

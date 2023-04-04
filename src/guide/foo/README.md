@@ -1,13 +1,13 @@
 ---
-title: Foo feature
+title: Foo 功能
 icon: config
 ---
 
-## Introduction
+## 介绍
 
-We support foo feature, ...
+我们支持 foo 功能，...
 
-## Details
+## 详情
 
 - [ray](ray.md)
 - ...

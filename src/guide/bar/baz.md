@@ -3,4 +3,4 @@ title: Baz
 icon: info
 ---
 
-Feature details here.
+功能详情...
