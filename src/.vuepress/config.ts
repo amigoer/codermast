@@ -5,7 +5,7 @@ import { searchProPlugin } from "vuepress-plugin-search-pro";
 export default defineUserConfig({
   base: "/",
   lang: "zh-CN",
-  title: "CoderMast编程学习笔记",
+  title: "CoderMast编程学习笔记 ",
   theme,
 
   plugins: [
