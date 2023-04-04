@@ -18,9 +18,9 @@ export default hopeTheme({
   // 文档仓库地址
   repo: "https://github.com/codermast/codermast-notes",
   // 文档在仓库中的目录
-  docsDir: "",
+  docsDir: "src",
   // 文档存放的分值
-  docsBranch: "gh-pages",
+  docsBranch: "main",
 
   locales: {
 
