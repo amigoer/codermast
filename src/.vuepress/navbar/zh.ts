@@ -15,16 +15,16 @@ export const zhNavbar = navbar([
   },
   {
     text: "数据库",
-    icon: "creative",
+    icon: "mysql",
     prefix: "/database/",
     children: [
       {
         text: "SQL数据库",
-        children: [{ text: "MySQL", icon: "mysql", link: "mysql/" }],
+        children: [{ text: "MySQL", link: "mysql/" }],
       },
       {
         text: "NoSQL数据库",
-        children: [{ text: "Redis", icon: "redis", link: "redis/" }],
+        children: [{ text: "Redis", link: "redis/" }],
       },
     ],
   },
