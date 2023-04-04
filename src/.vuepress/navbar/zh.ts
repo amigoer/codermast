@@ -7,40 +7,24 @@ export const zhNavbar = navbar([
     icon: "java",
     prefix: "/java/",
     children: [
-      {
-        text: "Java基础",
-        link: "base/",
-      },
-      {
-        text: "Java集合",
-        link: "collection/",
-      },
-      {
-        text: "Java并发",
-        link: "thread/",
-      },
-      {
-        text: "JVM",
-        link: "jvm/",
-      },
+      { text: "Java基础", link: "base/", },
+      { text: "Java集合", link: "collection/", },
+      { text: "Java并发", link: "thread/", },
+      { text: "JVM", link: "jvm/", },
     ]
   },
   {
-    text: "指南",
+    text: "数据库",
     icon: "creative",
-    prefix: "/guide/",
+    prefix: "/database/",
     children: [
       {
-        text: "Bar",
-        icon: "creative",
-        prefix: "bar/",
-        children: ["baz", { text: "...", icon: "more", link: "" }],
+        text: "SQL数据库",
+        children: [{ text: "MySQL", icon: "mysql", link: "mysql/" }],
       },
       {
-        text: "Foo",
-        icon: "config",
-        prefix: "foo/",
-        children: ["ray", { text: "...", icon: "more", link: "" }],
+        text: "NoSQL数据库",
+        children: [{ text: "Redis", icon: "redis", link: "redis/" }],
       },
     ],
   },
