@@ -1,7 +1,7 @@
 {
-  "name": "codermast",
+  "name": "vuepress-theme-hope-template",
   "version": "2.0.0",
-  "description": "A coder docs site.",
+  "description": "A project of vuepress-theme-hope",
   "license": "MIT",
   "type": "module",
   "scripts": {
@@ -14,8 +14,6 @@
     "@vuepress/client": "2.0.0-beta.61",
     "vue": "^3.2.47",
     "vuepress": "2.0.0-beta.61",
-    "vuepress-plugin-comment2": "^2.0.0-beta.200",
-    "vuepress-plugin-search-pro": "^2.0.0-beta.200",
     "vuepress-theme-hope": "2.0.0-beta.200"
   }
 }

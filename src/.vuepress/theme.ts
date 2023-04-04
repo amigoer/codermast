@@ -1,33 +1,44 @@
 import { hopeTheme } from "vuepress-theme-hope";
-import { zhNavbar } from "./navbar/index.js";
-import { zhSidebar } from "./sidebar/index.js";
+import { enNavbar, zhNavbar } from "./navbar/index.js";
+import { enSidebar, zhSidebar } from "./sidebar/index.js";
 
 export default hopeTheme({
-  hostname: "https://www.codermast.com",
+  hostname: "https://vuepress-theme-hope-docs-demo.netlify.app",
 
   author: {
-    name: "CoderMast",
-    url: "https://www.codermast.com",
-    email: "codermast@qq.com",
+    name: "Mr.Hope",
+    url: "https://mrhope.site",
   },
 
   iconAssets: "iconfont",
 
   logo: "/logo.svg",
 
-  // 文档仓库地址
-  repo: "https://github.com/codermast/codermast-notes",
-  // 文档在仓库中的目录
-  docsDir: "src",
-  // 文档存放的分值
-  docsBranch: "main",
+  repo: "vuepress-theme-hope/vuepress-theme-hope",
+
+  docsDir: "demo/theme-docs/src",
 
   locales: {
+    "/": {
+      // navbar
+      navbar: enNavbar,
+
+      // sidebar
+      sidebar: enSidebar,
+
+      footer: "Default footer",
+
+      displayFooter: true,
+
+      metaLocales: {
+        editLink: "Edit this page on GitHub",
+      },
+    },
 
     /**
      * Chinese locale config
      */
-    "/": {
+    "/zh/": {
       // navbar
       navbar: zhNavbar,
 
@@ -53,13 +64,9 @@ export default hopeTheme({
   },
 
   plugins: {
-    // 配置评论框
     comment: {
-      provider: "Giscus",
-      repo: "codermast/codermast-notes",
-      repoId: "R_kgDOIetRIw",
-      category: "Announcements",
-      categoryId: "DIC_kwDOIetRI84CVg1f",
+      // @ts-expect-error: You should generate and use your own comment service
+      provider: "Waline",
     },
 
     // all features are enabled for demo, only preserve features you need here
