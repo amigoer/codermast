@@ -1,10 +1,24 @@
 import { hopeTheme } from "vuepress-theme-hope";
-import { enNavbar, zhNavbar } from "./navbar/index.js";
-import { enSidebar, zhSidebar } from "./sidebar/index.js";
+import { zhNavbar } from "./navbar/index.js";
+import { zhSidebar } from "./sidebar/index.js";
 
 export default hopeTheme({
+  // 顶部导航栏
+  navbar: zhNavbar,
+  // 侧边栏
+  sidebar: zhSidebar,
+  // 页脚
+  footer: "CoderMast页脚",
+
+  displayFooter: true,
+  metaLocales: {
+    editLink: "在 GitHub 上编辑此页",
+  },
+
+  // 发布站点链接
   hostname: "https://www.codermast.com",
 
+  // 作者信息
   author: {
     name: "CoderMast",
     url: "https://www.codermast.com",
@@ -21,28 +35,6 @@ export default hopeTheme({
   docsDir: "src",
   // 文档存放的分值
   docsBranch: "main",
-
-  locales: {
-    /**
-     * Chinese locale config
-     */
-    "/": {
-      // navbar
-      navbar: zhNavbar,
-
-      // sidebar
-      sidebar: zhSidebar,
-
-      footer: "默认页脚",
-
-      displayFooter: true,
-
-      // page meta
-      metaLocales: {
-        editLink: "在 GitHub 上编辑此页",
-      },
-    },
-  },
 
   encrypt: {
     config: {
