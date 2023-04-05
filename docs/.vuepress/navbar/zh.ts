@@ -12,10 +12,11 @@ export const zhNavbar = navbar([
     icon: "java",
     prefix: "/java/",
     children: [
-      { text: "Java基础", link: "base/", },
-      { text: "Java集合", link: "collection/", },
-      { text: "Java并发", link: "thread/", },
-      { text: "JVM", link: "jvm/", },
+      { text: "基础知识", link: "base/", },
+      { text: "集合框架", link: "collection/", },
+      { text: "面向对象", link: "oop/" },
+      { text: "线程并发", link: "thread/", },
+      { text: "JVM虚拟机", link: "jvm/", },
     ]
   },
   {
@@ -55,6 +56,11 @@ export const zhNavbar = navbar([
         link: "cn/",
       },
     ],
+  },
+  {
+    text: "算法",
+    icon: "like",
+    link: "/algorithm/"
   },
   {
     text: "V2 文档",
