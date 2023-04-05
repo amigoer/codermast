@@ -1,8 +1,8 @@
 ---
 title: Java面向对象
 index: false
-dir:
-  order: 10
+dir : 
+    order : 3
 category:
   - Java
 ---

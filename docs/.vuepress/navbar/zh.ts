@@ -1,6 +1,7 @@
 import { navbar } from "vuepress-theme-hope";
 
 export const zhNavbar = navbar([
+
   {
     text: "首页",
     icon: "home",
@@ -29,6 +30,29 @@ export const zhNavbar = navbar([
       {
         text: "NoSQL数据库",
         children: [{ text: "Redis", link: "redis/" }],
+      },
+    ],
+  },
+  {
+    text: "408",
+    icon: "light",
+    prefix: "/408/",
+    children: [
+      {
+        text: "数据结构",
+        link: "ds/",
+      },
+      {
+        text: "组成原理",
+        link: "co/",
+      },
+      {
+        text: "操作系统",
+        link: "os/",
+      },
+      {
+        text: "计算机网络",
+        link: "cn/",
       },
     ],
   },

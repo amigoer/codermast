@@ -1,0 +1,153 @@
+<template><div><h1 id="static关键字的五种用法详解" tabindex="-1"><a class="header-anchor" href="#static关键字的五种用法详解" aria-hidden="true">#</a> Static关键字的五种用法详解</h1>
+<p>Static的五种用法大致如下：</p>
+<ul>
+<li>修饰成员变量，使其成为类变量，也叫静态变量</li>
+<li>修饰成员方法，使其成为类方法</li>
+<li>修饰内部类，使其成为静态内部类</li>
+<li>静态代码块</li>
+<li>静态导包</li>
+</ul>
+<blockquote>
+<p>直接一点将，static关键字就是把属性和方法变为类相关，而不是实例相关。</p>
+</blockquote>
+<h2 id="修饰成员变量" tabindex="-1"><a class="header-anchor" href="#修饰成员变量" aria-hidden="true">#</a> 修饰成员变量</h2>
+<p>被static关键字修饰的属性叫做静态属性，也叫类属性。顾名思义现在该属性为该类所有，而非该类实例化的对象所有，在类的加载阶段进行初始化。虽然使用类实例化的对象也能够调用该属性，但是该属性是属于类所有，所有该类的实例化对象和该类共享一个值，即操作的是同一个值。</p>
+<div class="language-java line-numbers-mode" data-ext="java"><pre v-pre class="language-java"><code><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Person</span><span class="token punctuation">{</span>
+  	<span class="token keyword">static</span> <span class="token keyword">int</span> age<span class="token punctuation">;</span>
+  	<span class="token keyword">static</span> <span class="token keyword">int</span> high <span class="token operator">=</span> <span class="token number">175</span><span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>age<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>high<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">PersonTest</span><span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token class-name">Person</span><span class="token punctuation">.</span>age<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><blockquote>
+<p>成员变量不给初始值的话，会进行默认初始化。</p>
+</blockquote>
+<p>被static修饰的属性，可以认为是属于类的，只要类进行加载以后，便可以使用<code v-pre>类名.属性名</code>进行调用。</p>
+<h2 id="修饰成员方法" tabindex="-1"><a class="header-anchor" href="#修饰成员方法" aria-hidden="true">#</a> 修饰成员方法</h2>
+<p>被static关键字修饰的方法叫做类方法，修饰后的方法可以直接使<code v-pre>类名.方法名</code>调用，减少了实例化对象进行调用的资源消耗。</p>
+<p>简单的来说被static修饰的方法，可以认为是属于类的，只要类进行加载以后，则就可以进行使用。</p>
+<div class="language-java line-numbers-mode" data-ext="java"><pre v-pre class="language-java"><code><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Person</span><span class="token punctuation">{</span>
+  	<span class="token keyword">static</span> <span class="token keyword">int</span> age<span class="token punctuation">;</span>
+  	<span class="token keyword">static</span> <span class="token keyword">int</span> high <span class="token operator">=</span> <span class="token number">175</span><span class="token punctuation">;</span>
+  	<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">seeMessage</span><span class="token punctuation">(</span><span class="token class-name">String</span> msg<span class="token punctuation">)</span><span class="token punctuation">{</span>
+      	<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>msg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">PersonTest</span><span class="token punctuation">{</span>
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token class-name">Person</span><span class="token punctuation">.</span><span class="token function">seeMessage</span><span class="token punctuation">(</span><span class="token string">"Hello Codermast!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><blockquote>
+<p>这里需要注意的是一个静态方法是不能够直接调用同类下的非静态方法，而同类下的非静态方法则可以调用同类下的静态方法。</p>
+</blockquote>
+<h2 id="修饰内部类" tabindex="-1"><a class="header-anchor" href="#修饰内部类" aria-hidden="true">#</a> 修饰内部类</h2>
+<p>被static修饰的内部类完全独立于其所在的外部类，不属于外部类的对象，可以认为两个类是完全没有关系的两个类。</p>
+<ul>
+<li>静态内部类可以包含静态成员，也可以包含非静态成员，但是在非静态内部类中不可以声明静态成员。</li>
+<li>静态类内部不可以访问外部类的实例成员，只能访问外部类的类成员，即使是静态内部类的实例方法也不能访问外部类的实例成员，只能访问外部类的静态成员</li>
+<li>外部类不可以定义为静态类，Java中静态类只有一种，那就是静态内部类，顶级类不能用static 修饰</li>
+</ul>
+<p>外部类如何调用静态内部类的属性和方法：</p>
+<ol>
+<li>外部类可以通过创建静态内部类实例的方法来调用静态内部类的非静态属性和方法</li>
+<li>外部类可以直接通过“ 外部类.内部类.属性（方法）” 的方式直接调用静态内部类中的静态属性和方法</li>
+</ol>
+<p>创建一个静态内部类实例：</p>
+<ul>
+<li>在外部类中：直接使用类名创建即可，<code v-pre>内部类名 name = new 内部类构造器;</code></li>
+<li>在其他类中：使用<code v-pre>外部类.内部类 name = new 外部类.内部构造器;</code></li>
+</ul>
+<h2 id="静态代码块" tabindex="-1"><a class="header-anchor" href="#静态代码块" aria-hidden="true">#</a> 静态代码块</h2>
+<p>static修饰代码块的作用就是，在类加载以后进行执行这段代码。我们需要着重看一下具体的执行顺序。下面是一个简单的示例。</p>
+<div class="language-java line-numbers-mode" data-ext="java"><pre v-pre class="language-java"><code><span class="token keyword">class</span> <span class="token class-name">Dog</span> <span class="token punctuation">{</span>
+    <span class="token class-name">String</span> name<span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token class-name">Dog</span><span class="token punctuation">(</span><span class="token class-name">String</span> name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name<span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"狗的名字叫："</span> <span class="token operator">+</span> name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Person</span> <span class="token punctuation">{</span>
+    <span class="token class-name">String</span> name<span class="token punctuation">;</span>
+    <span class="token keyword">public</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token class-name">String</span> name<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name<span class="token punctuation">;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"人的名字叫："</span> <span class="token operator">+</span> name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">static</span> <span class="token keyword">int</span> age <span class="token operator">=</span> <span class="token number">18</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">static</span> <span class="token punctuation">{</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"静态代码块1执行..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">static</span> <span class="token class-name">Dog</span> xiaohuang <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Dog</span><span class="token punctuation">(</span><span class="token string">"小黄"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token class-name">Dog</span> xiaohua <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Dog</span><span class="token punctuation">(</span><span class="token string">"小花"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">static</span> <span class="token punctuation">{</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"静态代码块2执行..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">static</span> <span class="token keyword">int</span> high <span class="token operator">=</span> <span class="token number">175</span><span class="token punctuation">;</span>
+
+    <span class="token class-name">Dog</span> xiaohei <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Dog</span><span class="token punctuation">(</span><span class="token string">"小黑"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">static</span> <span class="token class-name">Dog</span> xiaobai <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Dog</span><span class="token punctuation">(</span><span class="token string">"小白"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">Person</span> person <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token string">"codermast"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>该示例执行后的结果如下所示：</p>
+<div class="language-bash line-numbers-mode" data-ext="sh"><pre v-pre class="language-bash"><code>静态代码块1执行<span class="token punctuation">..</span>.
+狗的名字叫：小黄
+静态代码块2执行<span class="token punctuation">..</span>.
+狗的名字叫：小白
+狗的名字叫：小花
+狗的名字叫：小黑
+人的名字叫：codermast
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>则我们可以判断出执行的顺序为：</p>
+<ol>
+<li>静态代码块和静态属性的顺序执行</li>
+<li>非静态属性的执行</li>
+<li>方法的调用</li>
+</ol>
+<blockquote>
+<p>这里主要解释第一点，静态代码块和静态属性属于同一优先级，顺序执行。举个简单的例子即可理解，这里我们就无法调用到age属性</p>
+</blockquote>
+<figure><img src="@source/../assets/java-base-static/2023-04-05-15-55-20.png" alt="非法向前引用" tabindex="0" loading="lazy"><figcaption>非法向前引用</figcaption></figure>
+<h2 id="静态导包" tabindex="-1"><a class="header-anchor" href="#静态导包" aria-hidden="true">#</a> 静态导包</h2>
+<p>静态导包用法，将类的方法直接导入到当前类中，从而直接使用“方法名”即可调用类方法，更加方便。</p>
+<ul>
+<li>PrintMsg类</li>
+</ul>
+<div class="language-java line-numbers-mode" data-ext="java"><pre v-pre class="language-java"><code><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">PrintMsg</span><span class="token punctuation">{</span>
+  	<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">printMsg</span><span class="token punctuation">(</span><span class="token class-name">String</span> msg<span class="token punctuation">)</span><span class="token punctuation">{</span>
+      	<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>msg<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ul>
+<li>Test类</li>
+</ul>
+<div class="language-java line-numbers-mode" data-ext="java"><pre v-pre class="language-java"><code><span class="token keyword">import</span> <span class="token keyword">static</span> <span class="token import static"><span class="token namespace">codermast<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token class-name">PrintMsg</span><span class="token punctuation">.</span><span class="token operator">*</span></span><span class="token punctuation">;</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Test</span><span class="token punctuation">{</span>
+  	<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span><span class="token punctuation">{</span>
+      	<span class="token function">printMsg</span><span class="token punctuation">(</span><span class="token string">"hello codermast!"</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>运行Test类中的main方法后，就能在控制台看到“hello codermast！”的一行输出。</p>
+<blockquote>
+<p>需要注意的是：导入的静态方法所处的类，不能和调用的类在同一个包下。</p>
+</blockquote>
+</div></template>
+
+

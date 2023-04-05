@@ -1,5 +1,7 @@
 ---
-
+index : false
+dir : 
+    order : 1
 ---
 
-# Java - 基础语法
+# Java基础知识
