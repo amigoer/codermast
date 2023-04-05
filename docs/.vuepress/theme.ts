@@ -3,6 +3,7 @@ import { zhNavbar } from "./navbar/index.js";
 import { zhSidebar } from "./sidebar/index.js";
 
 export default hopeTheme({
+
   // ico图标
   favicon: "/favicon.ico",
   // 顶部导航栏
@@ -45,6 +46,10 @@ export default hopeTheme({
   },
 
   plugins: {
+    // 配置博客信息
+    blog: {
+
+    },
     // 配置评论框
     comment: {
       provider: "Giscus",

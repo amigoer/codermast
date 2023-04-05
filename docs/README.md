@@ -2,7 +2,6 @@
 home: true
 icon: home
 title: 首页
-details : 这是CoderMast的编程学习笔记指南
 heroImage: /logo.svg
 heroText: Mast的编程学习笔记
 tagline: 学习笔记 & 工作总结
