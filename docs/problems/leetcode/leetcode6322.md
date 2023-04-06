@@ -1,5 +1,4 @@
 ---
-index : false
 order : 6322
 ---
 # Leetcode 6322. 检查骑士巡视方案
