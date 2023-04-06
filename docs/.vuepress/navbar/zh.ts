@@ -35,9 +35,9 @@ export const zhNavbar = navbar([
     ],
   },
   {
-    text: "408",
+    text: "计算机基础",
     icon: "light",
-    prefix: "/408/",
+    prefix: "/computer/",
     children: [
       {
         text: "数据结构",
