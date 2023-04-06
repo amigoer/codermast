@@ -58,9 +58,19 @@ export const zhNavbar = navbar([
     ],
   },
   {
-    text: "算法",
+    text: "算法题解",
     icon: "like",
-    link: "/algorithm/"
+    prefix: "/",
+    children: [
+      {
+        text: "算法",
+        link: "algorithm/",
+      },
+      {
+        text: "题解",
+        link: "problems/",
+      },
+    ]
   },
   {
     text: "V2 文档",
