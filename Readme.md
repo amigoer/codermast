@@ -15,22 +15,7 @@
 - JVM
 ### MySQL
 
-### Redis
+## Star趋势
+> 虽然项目的 Star 可能非常非常少，但也足以鼓励我继续坚持下去！
 
-
-### Spring
-
-### SpringBoot
-### SpringMVC
-
-### Kafka
-
-### Mybatis
-
-### Mybatis-plus
-
-### Docker
-
-### Linux
-
-### ElasticSearch
+[![Star History Chart](https://api.star-history.com/svg?repos=codermast/codermast-notes&type=Date)](https://star-history.com/#codermast/codermast-notes&Date)
