@@ -35,7 +35,7 @@ features:
     link: /arch/base/arch-basic
 
 copyright: false
-footer:  MIT Licensed | Copyright © 2023-2023 CoderMast
+footer:  <a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral&invite=HkVyvO3mw" rel="nofollow"><img src="/assets/images/upyun-footer.png" style="width:240px;"/></a><hr><a href="https://vuepress-theme-hope.github.io/v2/" target="_blank">VuePress Theme Hope</a> | Copyright © 2023-2023 CoderMast
  <a href="https://beian.miit.gov.cn/" rel="nofollow">陕ICP备20010345号-5</a>
 ---
 

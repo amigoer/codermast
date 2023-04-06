@@ -47,6 +47,8 @@ export const pagesData = {
   "v-5e01a32b": () => import(/* webpackChunkName: "v-5e01a32b" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/tools/stata/stata-commom-instruct.html.js").then(({ data }) => data),
   // path: /problems/leetcode/leetcode15.html
   "v-a94b64b0": () => import(/* webpackChunkName: "v-a94b64b0" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/problems/leetcode/leetcode15.html.js").then(({ data }) => data),
+  // path: /problems/leetcode/leetcode1646.html
+  "v-ebd584f6": () => import(/* webpackChunkName: "v-ebd584f6" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/problems/leetcode/leetcode1646.html.js").then(({ data }) => data),
   // path: /problems/leetcode/leetcode455.html
   "v-004e2d72": () => import(/* webpackChunkName: "v-004e2d72" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/problems/leetcode/leetcode455.html.js").then(({ data }) => data),
   // path: /problems/leetcode/leetcode509.html
@@ -55,6 +57,10 @@ export const pagesData = {
   "v-a28a27e0": () => import(/* webpackChunkName: "v-a28a27e0" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/problems/leetcode/leetcode62.html.js").then(({ data }) => data),
   // path: /problems/leetcode/leetcode6322.html
   "v-71afee22": () => import(/* webpackChunkName: "v-71afee22" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/problems/leetcode/leetcode6322.html.js").then(({ data }) => data),
+  // path: /problems/leetcode/leetcode70.html
+  "v-3f9113da": () => import(/* webpackChunkName: "v-3f9113da" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/problems/leetcode/leetcode70.html.js").then(({ data }) => data),
+  // path: /problems/leetcode/leetcode746.html
+  "v-04c0516d": () => import(/* webpackChunkName: "v-04c0516d" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/problems/leetcode/leetcode746.html.js").then(({ data }) => data),
   // path: /problems/leetcode/
   "v-56c36d18": () => import(/* webpackChunkName: "v-56c36d18" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/problems/leetcode/index.html.js").then(({ data }) => data),
   // path: /404.html
@@ -77,10 +83,4 @@ export const pagesData = {
   "v-01560935": () => import(/* webpackChunkName: "v-01560935" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/timeline/index.html.js").then(({ data }) => data),
   // path: /category/java/
   "v-5831b135": () => import(/* webpackChunkName: "v-5831b135" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/category/java/index.html.js").then(({ data }) => data),
-  // path: /problems/leetcode/leetcode746.html
-  "v-04c0516d": () => import(/* webpackChunkName: "v-04c0516d" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/problems/leetcode/leetcode746.html.js").then(({ data }) => data),
-  // path: /problems/leetcode/leetcode1646.html
-  "v-ebd584f6": () => import(/* webpackChunkName: "v-ebd584f6" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/problems/leetcode/leetcode1646.html.js").then(({ data }) => data),
-  // path: /problems/leetcode/leetcode70.html
-  "v-3f9113da": () => import(/* webpackChunkName: "v-3f9113da" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/problems/leetcode/leetcode70.html.js").then(({ data }) => data),
 }

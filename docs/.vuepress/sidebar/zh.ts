@@ -5,5 +5,5 @@ export const zhSidebar = sidebar({
   "/database/": "structure",
   "/408/": "structure",
   "/algorithm/": "structure",
-  "/problems/": "structure",
+  "/problems/*": "structure",
 });
