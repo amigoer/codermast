@@ -1,4 +1,4 @@
-<template><div><h1 id="leetcode15-三数之和" tabindex="-1"><a class="header-anchor" href="#leetcode15-三数之和" aria-hidden="true">#</a> Leetcode15. 三数之和</h1>
+<template><div><h1 id="_15-三数之和" tabindex="-1"><a class="header-anchor" href="#_15-三数之和" aria-hidden="true">#</a> 15.三数之和</h1>
 <h2 id="题目描述" tabindex="-1"><a class="header-anchor" href="#题目描述" aria-hidden="true">#</a> 题目描述</h2>
 <p>给你一个整数数组 nums ，判断是否存在三元组 [nums[i], nums[j], nums[k]] 满足 i != j、i != k 且 j != k ，同时还满足 nums[i] + nums[j] + nums[k] == 0 。请</p>
 <p>你返回所有和为 0 且不重复的三元组。</p>

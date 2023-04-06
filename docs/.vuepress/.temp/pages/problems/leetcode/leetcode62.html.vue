@@ -1,4 +1,4 @@
-<template><div><h1 id="leetcode-62-不同路径" tabindex="-1"><a class="header-anchor" href="#leetcode-62-不同路径" aria-hidden="true">#</a> Leetcode 62. 不同路径</h1>
+<template><div><h1 id="_62-不同路径" tabindex="-1"><a class="header-anchor" href="#_62-不同路径" aria-hidden="true">#</a> 62.不同路径</h1>
 <h2 id="题目描述" tabindex="-1"><a class="header-anchor" href="#题目描述" aria-hidden="true">#</a> 题目描述</h2>
 <p>一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为 “Start” ）。</p>
 <p>机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角（在下图中标记为 “Finish” ）。</p>

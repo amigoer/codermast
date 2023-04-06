@@ -1,4 +1,4 @@
-<template><div><h1 id="leetcode-6322-检查骑士巡视方案" tabindex="-1"><a class="header-anchor" href="#leetcode-6322-检查骑士巡视方案" aria-hidden="true">#</a> Leetcode 6322. 检查骑士巡视方案</h1>
+<template><div><h1 id="_6322-检查骑士巡视方案" tabindex="-1"><a class="header-anchor" href="#_6322-检查骑士巡视方案" aria-hidden="true">#</a> 6322.检查骑士巡视方案</h1>
 <h2 id="题目描述" tabindex="-1"><a class="header-anchor" href="#题目描述" aria-hidden="true">#</a> 题目描述</h2>
 <p>骑士在一张 n x n 的棋盘上巡视。在有效的巡视方案中，骑士会从棋盘的 左上角 出发，并且访问棋盘上的每个格子 恰好一次 。</p>
 <p>给你一个 n x n 的整数矩阵 grid ，由范围 [0, n * n - 1] 内的不同整数组成，其中 grid[row][col] 表示单元格 (row, col) 是骑士访问的第 grid[row][col] 个单元格。骑士的行动是从下标 0 开始的。</p>
