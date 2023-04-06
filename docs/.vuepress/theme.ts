@@ -3,7 +3,7 @@ import { zhNavbar } from "./navbar/index.js";
 import { zhSidebar } from "./sidebar/index.js";
 
 export default hopeTheme({
-
+  headerDepth: 2,
   // ico图标
   favicon: "/favicon.ico",
   // 顶部导航栏
