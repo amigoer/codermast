@@ -1,14 +1,1 @@
-export const data = JSON.parse("{\"key\":\"v-8762bc94\",\"path\":\"/database/mysql/base/\",\"title\":\"MySQL 基础\",\"lang\":\"zh-CN\",\"frontmatter\":{\"index\":false,\"description\":\"MySQL 基础\"},\"headers\":[],\"readingTime\":{\"minutes\":0.02,\"words\":5},\"filePathRelative\":\"database/mysql/base/readme.md\",\"excerpt\":\"<h1> MySQL 基础</h1>\\n\",\"autoDesc\":true}")
-
-if (import.meta.webpackHot) {
-  import.meta.webpackHot.accept()
-  if (__VUE_HMR_RUNTIME__.updatePageData) {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  }
-}
-
-if (import.meta.hot) {
-  import.meta.hot.accept(({ data }) => {
-    __VUE_HMR_RUNTIME__.updatePageData(data)
-  })
-}
+export const data = JSON.parse("{\"key\":\"v-8762bc94\",\"path\":\"/database/mysql/base/\",\"title\":\"MySQL 基础\",\"lang\":\"zh-CN\",\"frontmatter\":{\"index\":false,\"description\":\"MySQL 基础\",\"head\":[[\"meta\",{\"property\":\"og:url\",\"content\":\"https://www.codermast.com/database/mysql/base/\"}],[\"meta\",{\"property\":\"og:site_name\",\"content\":\"CoderMast编程学习笔记\"}],[\"meta\",{\"property\":\"og:title\",\"content\":\"MySQL 基础\"}],[\"meta\",{\"property\":\"og:description\",\"content\":\"MySQL 基础\"}],[\"meta\",{\"property\":\"og:type\",\"content\":\"article\"}],[\"meta\",{\"property\":\"og:locale\",\"content\":\"zh-CN\"}],[\"meta\",{\"property\":\"og:updated_time\",\"content\":\"2023-04-08T16:19:32.000Z\"}],[\"meta\",{\"property\":\"article:author\",\"content\":\"CoderMast\"}],[\"meta\",{\"property\":\"article:modified_time\",\"content\":\"2023-04-08T16:19:32.000Z\"}],[\"script\",{\"type\":\"application/ld+json\"},\"{\\\"@context\\\":\\\"https://schema.org\\\",\\\"@type\\\":\\\"Article\\\",\\\"headline\\\":\\\"MySQL 基础\\\",\\\"image\\\":[\\\"\\\"],\\\"dateModified\\\":\\\"2023-04-08T16:19:32.000Z\\\",\\\"author\\\":[{\\\"@type\\\":\\\"Person\\\",\\\"name\\\":\\\"CoderMast\\\",\\\"url\\\":\\\"https://www.codermast.com\\\",\\\"email\\\":\\\"codermast@qq.com\\\"}]}\"]]},\"headers\":[],\"git\":{\"createdTime\":1680970772000,\"updatedTime\":1680970772000,\"contributors\":[{\"name\":\"codermast\",\"email\":\"codermast@qq.com\",\"commits\":1}]},\"readingTime\":{\"minutes\":0.02,\"words\":5},\"filePathRelative\":\"database/mysql/base/readme.md\",\"localizedDate\":\"2023年4月9日\",\"excerpt\":\"<h1> MySQL 基础</h1>\\n\",\"autoDesc\":true}")
