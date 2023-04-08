@@ -1,4 +1,4 @@
-<template><div><h1 id="java基础-6-string、stringbuilder、stringbuffer" tabindex="-1"><a class="header-anchor" href="#java基础-6-string、stringbuilder、stringbuffer" aria-hidden="true">#</a> Java基础 - 6.String、StringBuilder、StringBuffer</h1>
+<template><div><h1 id="string、stringbuilder、stringbuffer" tabindex="-1"><a class="header-anchor" href="#string、stringbuilder、stringbuffer" aria-hidden="true">#</a> String、StringBuilder、StringBuffer</h1>
 <h2 id="💥string" tabindex="-1"><a class="header-anchor" href="#💥string" aria-hidden="true">#</a> 💥String</h2>
 <h3 id="_1️⃣创建字符串" tabindex="-1"><a class="header-anchor" href="#_1️⃣创建字符串" aria-hidden="true">#</a> 1️⃣创建字符串</h3>
 <p>  创建字符串的方式有很多种，这里我们只对部分进行介绍：</p>

@@ -1,4 +1,4 @@
-<template><div><h1 id="java基础-7-数组" tabindex="-1"><a class="header-anchor" href="#java基础-7-数组" aria-hidden="true">#</a> Java基础 - 7.数组</h1>
+<template><div><h1 id="数组" tabindex="-1"><a class="header-anchor" href="#数组" aria-hidden="true">#</a> 数组</h1>
 <p>数组是一种存储相同数据类型支持随机访问的数据集合。</p>
 <ul>
 <li>语法</li>

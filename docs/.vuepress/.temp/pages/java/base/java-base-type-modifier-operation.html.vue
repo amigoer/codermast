@@ -1,4 +1,4 @@
-<template><div><h1 id="java基础-4-变量类型、修饰符、运算符" tabindex="-1"><a class="header-anchor" href="#java基础-4-变量类型、修饰符、运算符" aria-hidden="true">#</a> Java基础 - 4.变量类型、修饰符、运算符</h1>
+<template><div><h1 id="变量类型、修饰符、运算符" tabindex="-1"><a class="header-anchor" href="#变量类型、修饰符、运算符" aria-hidden="true">#</a> 变量类型、修饰符、运算符</h1>
 <p>  在Java中变量分为三种类型：</p>
 <ol>
 <li>类变量：独立于方法之外的变量，用 <code v-pre>static</code>关键字修饰。</li>

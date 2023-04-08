@@ -36,7 +36,7 @@ export const zhNavbar = navbar([
   },
   {
     text: "计算机基础",
-    icon: "light",
+    icon: "computer",
     prefix: "/computer/",
     children: [
       {

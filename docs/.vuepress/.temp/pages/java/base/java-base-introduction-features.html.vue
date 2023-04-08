@@ -1,4 +1,4 @@
-<template><div><h1 id="java基础-1-简介和特性" tabindex="-1"><a class="header-anchor" href="#java基础-1-简介和特性" aria-hidden="true">#</a> Java基础 - 1.简介和特性</h1>
+<template><div><h1 id="简介和特性" tabindex="-1"><a class="header-anchor" href="#简介和特性" aria-hidden="true">#</a> 简介和特性</h1>
 <h2 id="背景介绍" tabindex="-1"><a class="header-anchor" href="#背景介绍" aria-hidden="true">#</a> 背景介绍</h2>
 <p>  Java是美国Sun公司在1995年推出的一款计算机高级编程语言。</p>
 <blockquote>

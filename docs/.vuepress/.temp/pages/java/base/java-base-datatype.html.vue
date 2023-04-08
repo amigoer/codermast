@@ -1,4 +1,4 @@
-<template><div><h1 id="java基础-3-数据类型" tabindex="-1"><a class="header-anchor" href="#java基础-3-数据类型" aria-hidden="true">#</a> Java基础 - 3.数据类型</h1>
+<template><div><h1 id="数据类型" tabindex="-1"><a class="header-anchor" href="#数据类型" aria-hidden="true">#</a> 数据类型</h1>
 <h2 id="💓内置数据类型" tabindex="-1"><a class="header-anchor" href="#💓内置数据类型" aria-hidden="true">#</a> 💓内置数据类型</h2>
 <p>Java语言提供了八种基本类型。六种数字类型（四个整数型，两个浮点型），一种字符类型，还有一种布尔型。</p>
 <blockquote>

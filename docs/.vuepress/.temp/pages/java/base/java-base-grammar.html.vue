@@ -1,4 +1,4 @@
-<template><div><h1 id="java基础-2-基本概念" tabindex="-1"><a class="header-anchor" href="#java基础-2-基本概念" aria-hidden="true">#</a> Java基础 - 2.基本概念</h1>
+<template><div><h1 id="基本概念" tabindex="-1"><a class="header-anchor" href="#基本概念" aria-hidden="true">#</a> 基本概念</h1>
 <div class="hint-container tip">
 <p class="hint-container-title">学习之前</p>
 <p>在正式学习Java之前，我们首先需要了解一些基本的概念，如类和对象，局部变量和全局变量也叫属性，还有一些方法。</p>
