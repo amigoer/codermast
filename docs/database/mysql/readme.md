@@ -1,5 +1,5 @@
 ---
-index : true
+index : false
 ---
 # MySQL 数据库
 

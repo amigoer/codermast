@@ -1,4 +1,5 @@
 ---
 index : false
 ---
-# MySQL - 基础篇
+
+# MySQL - 进阶篇

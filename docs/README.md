@@ -7,12 +7,12 @@ heroText: Mast的编程学习笔记
 tagline: 学习笔记 & 工作总结
 lang : zh-CN
 actions:
-  - text: 使用指南 💡
-    link: /demo/
+  - text: Java 💡
+    link: /java/
     type: primary
 
-  - text: 文档
-    link: /guide/
+  - text: 数据库
+    link: /database/
 
 features:
   - title: Java
