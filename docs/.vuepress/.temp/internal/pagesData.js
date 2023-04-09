@@ -67,6 +67,10 @@ export const pagesData = {
   "v-5e01a32b": () => import(/* webpackChunkName: "v-5e01a32b" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/tools/stata/stata-commom-instruct.html.js").then(({ data }) => data),
   // path: /database/mysql/advance/
   "v-836b6296": () => import(/* webpackChunkName: "v-836b6296" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/database/mysql/advance/index.html.js").then(({ data }) => data),
+  // path: /database/mysql/base/constraint.html
+  "v-b4f56eb4": () => import(/* webpackChunkName: "v-b4f56eb4" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/database/mysql/base/constraint.html.js").then(({ data }) => data),
+  // path: /database/mysql/base/function-base.html
+  "v-83adc5ae": () => import(/* webpackChunkName: "v-83adc5ae" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/database/mysql/base/function-base.html.js").then(({ data }) => data),
   // path: /database/mysql/base/mysql-base.html
   "v-591d90c7": () => import(/* webpackChunkName: "v-591d90c7" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/database/mysql/base/mysql-base.html.js").then(({ data }) => data),
   // path: /database/mysql/base/
