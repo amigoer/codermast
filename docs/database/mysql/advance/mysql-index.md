@@ -172,7 +172,56 @@ select * from user where name = 'Mast';
 
 ## 索引语法
 
+- 创建索引
+
+```sql
+CREATE [UNIQUE | FULLTEXT] INDEX index_name ON table_name(index_col_name,...);
+```
+> 在表 table_name 中创建名为index_name 的索引。
+
+::: note 注意
+[UNIQUE | FULLTEXT]是可选项，分别为创建唯一索引和全文索引，如果都不选的话，则创建的是常规索引。一个索引可以关联多个字段。
+:::
+
+根据索引关联字段的个数，可以讲索引分为两种类型：
+1. 单列索引：索引列表只有一个字段。
+2. 联合索引：又叫组合索引，即索引列表有多个字段。
+
+- 查看索引
+```sql
+SHOW INDEX FROM table_name;
+```
+> 查看指定表的索引。
+
+- 删除索引
+```sql
+DROP INDEX index_name ON table_name;
+```
+> 删除表 table_name 名为 index_name 的索引。
 ## SQL性能分析
+
+- SQL执行频率
+
+MySQL客户端连接成功后，通过 SHOW [session | global] status 命令可以查看服务器状态信息。
+
+通过如下指令，可以查看当前数据库的INSERT、SELECT、UPDATE、DELETE操作的访问频次：
+
+```sql
+SHOW GLOBAL STATUS LIKE "Com_______";
+```
+
+> 需要注意的是，这里一共有7个空格。
+
+这里查询完成以后就能够看到增删改查的执行次数。
+
+- Com_insert：插入
+- Com_update：更新
+- Com_select：查询
+- Com_delete：删除
+
+![性能查询](../../../../assets/mysql-index/2023-04-11-21-41-30.png)
+
+我们可以根据这个数据来判断我们主要对那些操作进行优化。
 
 ## 索引使用
 
