@@ -200,7 +200,7 @@ DROP INDEX index_name ON table_name;
 > 删除表 table_name 名为 index_name 的索引。
 ## SQL性能分析
 
-- SQL执行频率
+### SQL执行频率
 
 MySQL客户端连接成功后，通过 SHOW [session | global] status 命令可以查看服务器状态信息。
 
@@ -223,6 +223,19 @@ SHOW GLOBAL STATUS LIKE "Com_______";
 
 我们可以根据这个数据来判断我们主要对那些操作进行优化。
 
+### 慢查询日志
+慢查询日志记录了所有执行时间超过指定参数(long_query_time，单位：秒，默认10秒)的所有SQL语句的日志。
+
+MySQL中默认不开启慢查询日志，开启的话需要在MySQL的配置文件（/etc/my.cnf）中配置如下信息：
+
+```sql
+# 开启MySQL中的慢查询
+slow_query_log = 1
+# 设置慢查询的	时间为2秒钟，SQL语句执行超过两秒，则会被视为慢查询，记录慢查询日志
+long_query_time = 2
+```
+
+配置完毕以后，通过以下指令重新启动MySQL服务器进行测试，查看慢日志文件中记录的信息`/var/lib/mysql/localhost-slow.log`
 ## 索引使用
 
 ## 索引设计原则
