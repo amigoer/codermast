@@ -42,8 +42,8 @@
 <p>除了参考视频教程外，还阅读了《MySQL必知必会》这本工具书。书的PDF资料在这里下载。</p>
 <div class="hint-container info">
 <p class="hint-container-title">PDF下载</p>
-<p>链接: <a href="https://pan.baidu.com/s/1qThvvyOXlFioEi09GIlM6w?pwd=nrtj" target="_blank" rel="noopener noreferrer">https://pan.baidu.com/s/1qThvvyOXlFioEi09GIlM6w?pwd=nrtj<ExternalLinkIcon/></a>
-提取码: nrtj</p>
+<p>链接: <a href="https://pan.baidu.com/s/1qThvvyOXlFioEi09GIlM6w?pwd=nrtj" target="_blank" rel="noopener noreferrer">https://pan.baidu.com/s/1qThvvyOXlFioEi09GIlM6w?pwd=nrtj<ExternalLinkIcon/></a></p>
+<p>提取码: nrtj</p>
 </div>
 </div></template>
 
