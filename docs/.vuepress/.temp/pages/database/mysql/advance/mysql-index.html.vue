@@ -284,112 +284,6 @@ n * 8 + (n + 1) * 6 = 16 * 1024
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><blockquote>
 <p>删除表 table_name 名为 index_name 的索引。</p>
 </blockquote>
-<h2 id="sql性能分析" tabindex="-1"><a class="header-anchor" href="#sql性能分析" aria-hidden="true">#</a> SQL性能分析</h2>
-<h3 id="sql执行频率" tabindex="-1"><a class="header-anchor" href="#sql执行频率" aria-hidden="true">#</a> SQL执行频率</h3>
-<p>MySQL客户端连接成功后，通过 SHOW [session | global] status 命令可以查看服务器状态信息。</p>
-<p>通过如下指令，可以查看当前数据库的INSERT、SELECT、UPDATE、DELETE操作的访问频次：</p>
-<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">SHOW</span> <span class="token keyword">GLOBAL</span> <span class="token keyword">STATUS</span> <span class="token operator">LIKE</span> <span class="token string">"Com_______"</span><span class="token punctuation">;</span>
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><blockquote>
-<p>需要注意的是，这里一共有7个空格。</p>
-</blockquote>
-<p>这里查询完成以后就能够看到增删改查的执行次数。</p>
-<ul>
-<li>Com_insert：插入</li>
-<li>Com_update：更新</li>
-<li>Com_select：查询</li>
-<li>Com_delete：删除</li>
-</ul>
-<figure><img src="@source/../assets/mysql-index/2023-04-11-21-41-30.png" alt="性能查询" tabindex="0" loading="lazy"><figcaption>性能查询</figcaption></figure>
-<p>我们可以根据这个数据来判断我们主要对那些操作进行优化。</p>
-<h3 id="慢查询日志" tabindex="-1"><a class="header-anchor" href="#慢查询日志" aria-hidden="true">#</a> 慢查询日志</h3>
-<p>慢查询日志记录了所有执行时间超过指定参数(long_query_time，单位：秒，默认10秒)的所有SQL语句的日志。</p>
-<p>MySQL中默认不开启慢查询日志，开启的话需要在MySQL的配置文件（/etc/my.cnf）中配置如下信息：</p>
-<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token comment">-- 开启MySQL中的慢查询</span>
-slow_query_log <span class="token operator">=</span> <span class="token number">1</span>
-<span class="token comment">-- 设置慢查询的	时间为2秒钟，SQL语句执行超过两秒，则会被视为慢查询，记录慢查询日志</span>
-long_query_time <span class="token operator">=</span> <span class="token number">2</span>
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>配置完毕以后，通过以下指令重新启动MySQL服务器进行测试，查看慢日志文件中记录的信息<code v-pre>/var/lib/mysql/localhost-slow.log</code></p>
-<div class="hint-container info">
-<p class="hint-container-title">功能</p>
-<p>慢查询日志主要就是为了记录那些查询时间较长的SQL语句，方便于我们的优化。</p>
-</div>
-<div class="hint-container note">
-<p class="hint-container-title">前景提要</p>
-<p>通过慢查询日志，我们能够找到查询时间较低的SQL，但是有时候我们对于SQL已经优化到了极致，由于数据量的巨大，无法再压缩SQL的执行时间，或者有些SQL本应该很快执行完毕，但是仍耗费了很长时间，而耗费的时间又在我们慢日志统计时间的临界值，而这类SQL是非常需要我们进行优化的。这两种情况时，需要优化的没有被统计，而无法优化的又被统计到，那么此时慢查询就无法满足我们的需求，这时候就需要使用Profile分析。</p>
-</div>
-<h3 id="profile分析" tabindex="-1"><a class="header-anchor" href="#profile分析" aria-hidden="true">#</a> Profile分析</h3>
-<p>show profiles分析能够在做SQL优化时帮助我们了解时间都耗费到哪去了。通过have_profiling参数，能够看到当前MySQL是否支持profile操作：</p>
-<ul>
-<li>查看是否支持profile</li>
-</ul>
-<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">SELECT</span> @<span class="token variable">@have_profiling</span><span class="token punctuation">;</span>
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><p>默认情况下profile是关闭的，可以通过 set 语句在 globle|session 级别开启profiling;</p>
-<ul>
-<li>开启profile</li>
-</ul>
-<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">set</span> <span class="token punctuation">[</span><span class="token keyword">session</span><span class="token operator">|</span>globle<span class="token punctuation">]</span> profile <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><ul>
-<li>查看每一条执行过的SQL语句的耗时情况</li>
-</ul>
-<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">show</span> profiles<span class="token punctuation">;</span>
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><ul>
-<li>查看指定query_id 的SQL语句各个阶段的耗时情况</li>
-</ul>
-<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code>shwo profile <span class="token keyword">for</span> query query_id<span class="token punctuation">;</span>
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><ul>
-<li>查看指定query_id 的SQL语句的CPU的使用情况</li>
-</ul>
-<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">show</span> profile cpu <span class="token keyword">for</span> query query_id<span class="token punctuation">;</span>
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h3 id="explain执行计划" tabindex="-1"><a class="header-anchor" href="#explain执行计划" aria-hidden="true">#</a> explain执行计划</h3>
-<div class="hint-container note">
-<p class="hint-container-title">前景提要</p>
-<p>前面我们了解的几种方法要么通过SQL的执行频率，要么通过SQL的执行时间来判断SQL是否需要优化，而这些方式并不能够真正的评判一条SQL的性能。</p>
-</div>
-<p>explain 或者 desc 命令获取MySQL如何执行SELECT语句的信息，包括SELETC语句执行过程中表如何连接和连接的顺序。</p>
-<ul>
-<li>语法</li>
-</ul>
-<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token comment">-- 直接在SELECT语句之前加上关键字 explain 或者 desc</span>
-<span class="token keyword">EXPLAIN</span> <span class="token keyword">SELECT</span> 字段列表 <span class="token keyword">FROM</span> 表名 <span class="token keyword">WHERE</span> 条件列表<span class="token punctuation">;</span>
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><p>explain执行计划各字段的含义：</p>
-<ul>
-<li>
-<p><strong>id</strong>
-SELECT 查询的序列号，表示查询中执行 SELECT 子句或者是操作表的顺序（id相同，执行顺序从上到下；id不同，值越大，越先执行）。</p>
-</li>
-<li>
-<p>select_type
-表示SELECT的类型，常见的取值有SIMPLE（简单表，即不使用表连接或者子查询）、PRIMARY（主查询，即外层的查询）、UNION（UNION中的第二个或者后面的查询语句）、SUBQUERY（SELECT/WHERE之后包含了子查询）等。</p>
-</li>
-<li>
-<p><strong>type</strong>【重要】
-表示连接类型，性能由好到差的连接类型为：NULL、system、const、eq_ref、ref、range、index、all。</p>
-</li>
-<li>
-<p>possible_key
-显示可能应用到这张表上的索引，一个或者多个。</p>
-</li>
-<li>
-<p>key
-实际使用的索引，如果为NULL，则表示没有使用索引。</p>
-</li>
-<li>
-<p>key_len
-表示索引中使用的字节数，该值为索引字段最大可能长度，并非实际使用长度，再不损失精度的前提下，长度越短越小。</p>
-</li>
-<li>
-<p>rows
-MySQL认为必须要执行查询的行数，在innodb引擎的表中，是一个估计值，可能并不总是准确的。</p>
-</li>
-<li>
-<p>filtered
-表示查询返回结果的行数占需要的读取行数的百分比，filtered的值越大越好。</p>
-</li>
-<li>
-<p>extra
-备注信息，一般为NULL。</p>
-</li>
-</ul>
 <h2 id="索引使用" tabindex="-1"><a class="header-anchor" href="#索引使用" aria-hidden="true">#</a> 索引使用</h2>
 <h3 id="索引失效场景" tabindex="-1"><a class="header-anchor" href="#索引失效场景" aria-hidden="true">#</a> 索引失效场景</h3>
 <ul>
@@ -448,9 +342,45 @@ MySQL认为必须要执行查询的行数，在innodb引擎的表中，是一个
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h3 id="覆盖索引" tabindex="-1"><a class="header-anchor" href="#覆盖索引" aria-hidden="true">#</a> 覆盖索引</h3>
 <p>尽量使用覆盖索引（查询使用了索引，并且需要返回的列，在该索引中已经全部能够找到），减少select *</p>
 <blockquote>
-<p>即尽量保证所需要的数据在使用索引内包含，保证所需要的所有数据都能够通过索引查询到。</p>
+<p>即尽量保证所需要的数据在使用索引内包含，保证所需要的所有数据都能够通过索引查询到。即保证返回的字段，能通过索引直接查到，不回表查询。</p>
 </blockquote>
+<div class="hint-container tip">
+<p class="hint-container-title">小贴士</p>
+<p>using index condition:查找使用了索引，但是需要回表查询数据。</p>
+<p>using where;using index：查找使用了索引，但是需要的数据都在索引列中能找到，所以不需要回表查询数据。</p>
+</div>
+<h3 id="前缀索引" tabindex="-1"><a class="header-anchor" href="#前缀索引" aria-hidden="true">#</a> 前缀索引</h3>
+<p>当字段类型为字符串（varchar，text等）时，有时候需要索引很长的字符串，这会让索引变得很大，查询时，浪费大量的磁盘IO，影响查询效率。此时可以只将字符串的一部分前缀，建立索引，这样可以大大节约索引空间，从而提高索引效率。</p>
+<ul>
+<li>语法</li>
+</ul>
+<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">create</span> <span class="token keyword">index</span> idx_xxxx <span class="token keyword">on</span> table_name<span class="token punctuation">(</span><span class="token keyword">column</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><ul>
+<li>前缀长度
+可以根据索引的选择性来决定，而选择性是指不重复的索引值(基数)和数据表的记录总数的比值，索引选择性越高则查询效率越高，唯一索引的选择性是1，这是最好的索引选择性，性能也是最好的。</li>
+</ul>
+<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">select</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token keyword">distinct</span> email<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">from</span> tb_user<span class="token punctuation">;</span>
+<span class="token keyword">select</span> <span class="token function">count</span><span class="token punctuation">(</span>distanct substring<span class="token punctuation">(</span><span class="token punctuation">(</span>email<span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">from</span> tb_user<span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="单列-联合索引" tabindex="-1"><a class="header-anchor" href="#单列-联合索引" aria-hidden="true">#</a> 单列/联合索引</h3>
+<ul>
+<li>单列索引：即一个索引值包含了单个列</li>
+<li>联合索引：即一个索引值包含了多个列
+在业务场景中，如果存在多个查询条件，考虑针对于查询字段建立索引时，建议建立联合索引，而非单列索引。</li>
+</ul>
+<div class="hint-container info">
+<p class="hint-container-title">小知识</p>
+<p>有时候即便我们创建了联合索引，MySQL也不一定就会使用，在多联合查询时，MySQL优化器会评估哪个字段的索引效率更高，会选择该索引完成本次查询。</p>
+</div>
 <h2 id="索引设计原则" tabindex="-1"><a class="header-anchor" href="#索引设计原则" aria-hidden="true">#</a> 索引设计原则</h2>
+<ol>
+<li>针对于数据量较大，且查询比较频繁的表建立索引。</li>
+<li>针对于常作为查询条件（where）、排序（order by）、分组（group by）操作的字段建立索引。</li>
+<li>尽量选择区分度较高的列作为索引，尽量建立唯一索引，区分度越高，使用索引的效率越高。</li>
+<li>如果是字符串类型和字段，字段的长度较长，可以针对于字段的特点，建立前缀索引。</li>
+<li>尽量使用联合索引，减少单列索引，查询时，联合索引很多时候可以覆盖索引，节省存储空间，避免回表，提高查询效率。</li>
+<li>要控制索引的数量，索引并不是多多益善，索引越多，维护索引结构的代价也就越大，会影响增删改茶的效率。</li>
+<li>如果索引列不能存储NULL值，请在创建表时使用NOT NULL约束它。当优化器知道每列是否包含NULL值时，它可以更好地确定哪个索引更有效地用于查询。</li>
+</ol>
 </div></template>
 
 
