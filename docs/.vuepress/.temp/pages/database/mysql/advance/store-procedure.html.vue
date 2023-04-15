@@ -201,8 +201,42 @@
 <p><code v-pre>leave</code>和<code v-pre>iterate</code>相当于编程语言中的 <code v-pre>break</code>和<code v-pre>continue</code>关键字的用法。</p>
 </div>
 <h2 id="游标" tabindex="-1"><a class="header-anchor" href="#游标" aria-hidden="true">#</a> 游标</h2>
-<h2 id="条件处理程序" tabindex="-1"><a class="header-anchor" href="#条件处理程序" aria-hidden="true">#</a> 条件处理程序</h2>
-<h2 id="存储函数" tabindex="-1"><a class="header-anchor" href="#存储函数" aria-hidden="true">#</a> 存储函数</h2>
+<p>游标CURSOR是用来存储查询结果的数据类型，在存储过程和函数中可以使用游标对结果集进行循环的处理。游标的使用包括游标的声明、OPEN、FETCH和CLOSE，其语法如下：</p>
+<ul>
+<li>声明游标</li>
+</ul>
+<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code>DECLEAR 游标名称 <span class="token keyword">CURSOR</span> <span class="token keyword">FOR</span> 查询语句<span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><ul>
+<li>打开游标</li>
+</ul>
+<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">OPEN</span> 游标名称<span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><ul>
+<li>获取游标记录</li>
+</ul>
+<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">FETCH</span> 游标名称 <span class="token keyword">INTO</span> 变量<span class="token punctuation">[</span><span class="token punctuation">,</span>变量<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><ul>
+<li>关闭游标</li>
+</ul>
+<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">CLOSE</span> 游标名称<span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="条件处理程序" tabindex="-1"><a class="header-anchor" href="#条件处理程序" aria-hidden="true">#</a> 条件处理程序</h2>
+<p>条件处理程序Handler可以用来定义在流程控制结构执行过程中遇到问题时相应的处理步骤。具体语法为：</p>
+<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">DECLARE</span> handler_action <span class="token keyword">HANDLER</span> <span class="token keyword">FOR</span> condition_value <span class="token punctuation">[</span><span class="token punctuation">,</span>condition_value<span class="token punctuation">]</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> statement<span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><ul>
+<li>handler_action
+<ul>
+<li>CONTINUE:继续执行当前程序</li>
+<li>EXIT:终止执行当前程序</li>
+</ul>
+</li>
+<li>condition_value
+<ul>
+<li>SQLSTATE sqlstate_value:状态码，如02000</li>
+<li>SQLWARNING:所有以01开头的SQLSTATE代码的简写</li>
+<li>NOT FOUND:所有以02开头的SQLSTATE代码的简写</li>
+<li>SQLEXCEPTION:所有没有被SQLWARNING或者NOT FOUND捕获的SQLSTATE代码的简写</li>
+</ul>
+</li>
+</ul>
 </div></template>
 
 

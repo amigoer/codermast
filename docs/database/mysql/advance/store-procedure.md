@@ -197,7 +197,61 @@ ITERATE lable;
 :::
 
 ## 游标
+游标CURSOR是用来存储查询结果的数据类型，在存储过程和函数中可以使用游标对结果集进行循环的处理。游标的使用包括游标的声明、OPEN、FETCH和CLOSE，其语法如下：
 
+- 声明游标
+```sql
+DECLEAR 游标名称 CURSOR FOR 查询语句;
+```
+
+- 打开游标
+
+```sql
+OPEN 游标名称;
+```
+
+- 获取游标记录
+```sql
+FETCH 游标名称 INTO 变量[,变量...];
+```
+- 关闭游标
+```sql
+CLOSE 游标名称;
+```
 ## 条件处理程序
+条件处理程序Handler可以用来定义在流程控制结构执行过程中遇到问题时相应的处理步骤。具体语法为：
+
+```sql
+DECLARE handler_action HANDLER FOR condition_value [,condition_value] ... statement;
+```
+
+- handler_action
+    - CONTINUE:继续执行当前程序
+    - EXIT:终止执行当前程序
+- condition_value
+    - SQLSTATE sqlstate_value:状态码，如02000
+    - SQLWARNING:所有以01开头的SQLSTATE代码的简写
+    - NOT FOUND:所有以02开头的SQLSTATE代码的简写
+    - SQLEXCEPTION:所有没有被SQLWARNING或者NOT FOUND捕获的SQLSTATE代码的简写
 
 ## 存储函数
+存储函数就是有返回值的存储过程，存储函数的参数只能是IN类型的，具体语法如下：
+
+```sql
+CREATE FUNCTION 存储函数名称([参数列表])
+RETURNS type [characteristic ...]
+BEGIN
+    -- SQL语句
+    RETURN ...;
+END;
+```
+
+characteristic说明：
+- DETERMINSRIC：相同的输入参数总是产生相同的结果
+- NO SQL：不包含SQL语句
+- READS SQL DATA：包含读取数据的语句，但不包含写入数据的语句、
+::: warning 比较
+存储函数就是必须有返回值的存储过程，存储过程的范围 > 存储函数的范围。
+
+存储函数是通过函数调用，而存储过程是使用`call`调用
+:::
