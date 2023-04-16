@@ -82,15 +82,15 @@
 </div>
 <p>复杂情况下的时间复杂度的衡量：</p>
 <ol>
-<li>加法规则</li>
+<li>
+<p>加法规则 : T(n) = T<sub>1</sub>(n) + T<sub>2</sub>(n) = O(f(n)) + O(g(n)) = O(max(f(n),g(n)))</p>
+</li>
+<li>
+<p>乘法规则 : T(n) = T<sub>1</sub>(n) * T<sub>2</sub>(n) = O(f(n)) * O(g(n)) = O(f(n)*g(n))</p>
+</li>
 </ol>
-<center> T(n) = T~1~(n) + T~2~(n) = O(f(n)) + O(g(n)) = O(max(f(n),g(n))) </center>
-<ol start="2">
-<li>乘法规则</li>
-</ol>
-<center> T(n) = T~1~(n) * T~2~(n) = O(f(n)) * O(g(n)) = O(f(n)*g(n)) </center>
-<p>常见的渐进复杂度为:</p>
-<center> O(1) &lt; O(log~2~n) &lt; O(n) &lt; O(nLog~2~n) &lt; O(n^2^) &lt; O(2^n^) &lt; O(n!) &lt; O(n^n^) </center>
+<p>常见的渐进复杂度为:
+O(1) &lt; O(log<sub>2</sub>n) &lt; O(n) &lt; O(nLog<sub>2</sub>n) &lt; O(n<sup>2</sup>) &lt; O(2<sup>n</sup>) &lt; O(n!) &lt; O(n<sup>n</sup>)</p>
 <h4 id="空间复杂度" tabindex="-1"><a class="header-anchor" href="#空间复杂度" aria-hidden="true">#</a> 空间复杂度</h4>
 <p>算法的空间复杂度S(n)定义为该算法所耗费的存储空间，它是问题规模n的函数。</p>
 <center> S(n) = O(g(n)) </center>

@@ -81,16 +81,12 @@ f(n) = a*n^3^+b*n^2^+c*n的时间复杂度为O(n^3^)
 
 复杂情况下的时间复杂度的衡量：
 
-1. 加法规则
+1. 加法规则 : T(n) = T~1~(n) + T~2~(n) = O(f(n)) + O(g(n)) = O(max(f(n),g(n))) 
 
-<center> T(n) = T~1~(n) + T~2~(n) = O(f(n)) + O(g(n)) = O(max(f(n),g(n))) </center>
-
-2. 乘法规则
-
-<center> T(n) = T~1~(n) * T~2~(n) = O(f(n)) * O(g(n)) = O(f(n)*g(n)) </center>
+2. 乘法规则 : T(n) = T~1~(n) * T~2~(n) = O(f(n)) * O(g(n)) = O(f(n)*g(n)) 
 
 常见的渐进复杂度为:
-<center> O(1) &lt; O(log~2~n) &lt; O(n) &lt; O(nLog~2~n) &lt; O(n^2^) &lt; O(2^n^) &lt; O(n!) &lt; O(n^n^) </center>
+ O(1) &lt; O(log~2~n) &lt; O(n) &lt; O(nLog~2~n) &lt; O(n^2^) &lt; O(2^n^) &lt; O(n!) &lt; O(n^n^) 
 
 #### 空间复杂度
 
