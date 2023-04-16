@@ -237,6 +237,25 @@
 </ul>
 </li>
 </ul>
+<h2 id="存储函数" tabindex="-1"><a class="header-anchor" href="#存储函数" aria-hidden="true">#</a> 存储函数</h2>
+<p>存储函数就是有返回值的存储过程，存储函数的参数只能是IN类型的，具体语法如下：</p>
+<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">CREATE</span> <span class="token keyword">FUNCTION</span> 存储函数名称<span class="token punctuation">(</span><span class="token punctuation">[</span>参数列表<span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">RETURNS</span> <span class="token keyword">type</span> <span class="token punctuation">[</span>characteristic <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">]</span>
+<span class="token keyword">BEGIN</span>
+    <span class="token comment">-- SQL语句</span>
+    <span class="token keyword">RETURN</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">;</span>
+<span class="token keyword">END</span><span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>characteristic说明：</p>
+<ul>
+<li>DETERMINSRIC：相同的输入参数总是产生相同的结果</li>
+<li>NO SQL：不包含SQL语句</li>
+<li>READS SQL DATA：包含读取数据的语句，但不包含写入数据的语句、</li>
+</ul>
+<div class="hint-container warning">
+<p class="hint-container-title">比较</p>
+<p>存储函数就是必须有返回值的存储过程，存储过程的范围 &gt; 存储函数的范围。</p>
+<p>存储函数是通过函数调用，而存储过程是使用<code v-pre>call</code>调用</p>
+</div>
 </div></template>
 
 
