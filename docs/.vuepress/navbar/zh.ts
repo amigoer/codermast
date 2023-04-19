@@ -72,4 +72,9 @@ export const zhNavbar = navbar([
       },
     ]
   },
+  {
+    text: "博客",
+    icon: "blog",
+    link: "https://blog.codermast.com/"
+  }
 ]);

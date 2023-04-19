@@ -1,4 +1,4 @@
-<template><div><h1 id="复杂度问题" tabindex="-1"><a class="header-anchor" href="#复杂度问题" aria-hidden="true">#</a> 复杂度问题</h1>
+<template><div><h1 id="_1-复杂度问题" tabindex="-1"><a class="header-anchor" href="#_1-复杂度问题" aria-hidden="true">#</a> 1.复杂度问题</h1>
 <h2 id="时间复杂度" tabindex="-1"><a class="header-anchor" href="#时间复杂度" aria-hidden="true">#</a> 时间复杂度</h2>
 <p>这里主要总结数据结构中时间复杂度的计算方法，在学习过程中，参考了B站的<a href="https://www.bilibili.com/video/BV13d4y1K74p/" target="_blank" rel="noopener noreferrer">数据结构——时间复杂度计算<ExternalLinkIcon/></a>这个视频，可以在看完视频后，再阅读本文，效果更佳。</p>
 <p>根据循环的层次不同，分为三个类别：</p>
