@@ -24,7 +24,7 @@ flush tables with read lock;
 ```shell
 mysqldump -uroot -p1234 tb_user > tb_user.sql;
 ```
-> 注意：这并不是一条SQL语句！
+> 注意：这并不是一条SQL语句！而是一条Shell脚本！
 3. 解锁
 ```sql
 unlock tables;
@@ -55,7 +55,7 @@ mysaldump --single-transaction -uroot -p1234 tb_user > tb_user.sql
 2. 元数据锁（meta data lock，MDL）
 3. 意向锁
 
-### 表锁
+### 1.表锁
 
 - 分类
 对于表锁，又可以分为两类：
@@ -75,7 +75,7 @@ unlock tables / 客户端断开连接
 ::: tip 注意
 读锁不会阻塞其他客户端的读，但是会阻塞写。写锁既会阻塞其他客户端的读，又会阻塞其他客户端的读。
 :::
-### 元数据锁
+### 2.元数据锁
 
 MDL加锁过程是系统自动控制，无需显示使用，在访问一张表的时候会自动加上。MDL锁主要作用是维护元数据的数据一致性，在表上有活动事务的时候，不可以对元数据进行写入操作。为了避免DML与DDL冲突，保证读写的正确性。
 
@@ -94,7 +94,7 @@ MDL加锁过程是系统自动控制，无需显示使用，在访问一张表�
 select object_type,object_schema,object_name,lock_type,lock_duration from performance_schema.metadate_locks;
 ```
 
-### 意向锁
+### 3.意向锁
 
 为了避免DML在执行时，加的行锁与表锁的冲突，在InnoDB中引入了意向锁，使得表锁不用检查每行数据是否加锁，使用意向锁来减少表锁的检查。
 
@@ -115,3 +115,27 @@ insert、update、delete、select ... for update
 select object_schema,object_name,index_name,lock_type,lock_mode,lock_data from performance_schema.data_locks;
 ```
 ## 行级锁
+
+行级锁，每次操作锁住对应的行数据。锁定粒度最小，发生锁冲突的概率最低，并发程度高。主要应用在InnoDB存储引擎中。
+
+InnoDB的数据是基于索引组织的，行锁是通过对索引上的索引项加锁来实现的，而不是对记录加的锁。对于行级锁，主要分为以下三类：
+1. 行锁（Record Lock）：锁定单个行记录的锁，防止其他事务对此行进行update和delete。在RC、RR隔离级别下都支持。
+
+2. 间隙锁（Gap Lock）：锁定索引记录间隙（不包含该记录值），确保索引记录间隙不变，防止其他事务在这个间隙进行insert，产生幻读。在RR隔离级别下都支持。
+
+3. 临键锁（Next-Key Lock）：行锁和间隙锁组合，同时锁住数据，并锁住数据前面的间隙Gap。在RR隔离级别下支持。
+
+### 行锁
+InnoDB实现了以下两种类型的行锁：
+1. 共享锁（S）：允许一个事务去读一行，阻止其他事务获得相同数据集的排他锁。
+
+2. 排他锁（X）：允许获取排他锁的事务更新数据，阻止其他事务获得相同数据集的共享锁和排他锁。
+
+::: note 兼容和互斥
+只有共享锁和共享锁之间是兼容的，其余全是冲突的。
+
+可以将共享看作是只读。
+:::
+### 间隙锁
+
+### 临键锁

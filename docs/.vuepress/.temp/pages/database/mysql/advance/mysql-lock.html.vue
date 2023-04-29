@@ -15,7 +15,7 @@
 </ol>
 <div class="language-bash line-numbers-mode" data-ext="sh"><pre v-pre class="language-bash"><code>mysqldump <span class="token parameter variable">-uroot</span> <span class="token parameter variable">-p1234</span> tb_user <span class="token operator">></span> tb_user.sql<span class="token punctuation">;</span>
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><blockquote>
-<p>注意：这并不是一条SQL语句！</p>
+<p>注意：这并不是一条SQL语句！而是一条Shell脚本！</p>
 </blockquote>
 <ol start="3">
 <li>解锁</li>
@@ -38,7 +38,7 @@
 <li>元数据锁（meta data lock，MDL）</li>
 <li>意向锁</li>
 </ol>
-<h3 id="表锁" tabindex="-1"><a class="header-anchor" href="#表锁" aria-hidden="true">#</a> 表锁</h3>
+<h3 id="_1-表锁" tabindex="-1"><a class="header-anchor" href="#_1-表锁" aria-hidden="true">#</a> 1.表锁</h3>
 <ul>
 <li>分类
 对于表锁，又可以分为两类：</li>
@@ -62,7 +62,7 @@
 <p class="hint-container-title">注意</p>
 <p>读锁不会阻塞其他客户端的读，但是会阻塞写。写锁既会阻塞其他客户端的读，又会阻塞其他客户端的读。</p>
 </div>
-<h3 id="元数据锁" tabindex="-1"><a class="header-anchor" href="#元数据锁" aria-hidden="true">#</a> 元数据锁</h3>
+<h3 id="_2-元数据锁" tabindex="-1"><a class="header-anchor" href="#_2-元数据锁" aria-hidden="true">#</a> 2.元数据锁</h3>
 <p>MDL加锁过程是系统自动控制，无需显示使用，在访问一张表的时候会自动加上。MDL锁主要作用是维护元数据的数据一致性，在表上有活动事务的时候，不可以对元数据进行写入操作。为了避免DML与DDL冲突，保证读写的正确性。</p>
 <p>在MySQL5.5中引入了MDL，当对一张表进行增删改查的时候，加MDL读锁(共享)；当对表结构进行变更操作的时候，加MDL写锁（排他）。</p>
 <table>
@@ -98,7 +98,7 @@
 </table>
 <p>查看元数据锁：</p>
 <div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">select</span> object_type<span class="token punctuation">,</span>object_schema<span class="token punctuation">,</span>object_name<span class="token punctuation">,</span>lock_type<span class="token punctuation">,</span>lock_duration <span class="token keyword">from</span> performance_schema<span class="token punctuation">.</span>metadate_locks<span class="token punctuation">;</span>
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h3 id="意向锁" tabindex="-1"><a class="header-anchor" href="#意向锁" aria-hidden="true">#</a> 意向锁</h3>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h3 id="_3-意向锁" tabindex="-1"><a class="header-anchor" href="#_3-意向锁" aria-hidden="true">#</a> 3.意向锁</h3>
 <p>为了避免DML在执行时，加的行锁与表锁的冲突，在InnoDB中引入了意向锁，使得表锁不用检查每行数据是否加锁，使用意向锁来减少表锁的检查。</p>
 <ol>
 <li>意向共享锁（IS）：</li>
@@ -113,6 +113,36 @@
 <p>通过以下SQL，查看意向锁及行锁的加锁情况。</p>
 <div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">select</span> object_schema<span class="token punctuation">,</span>object_name<span class="token punctuation">,</span>index_name<span class="token punctuation">,</span>lock_type<span class="token punctuation">,</span>lock_mode<span class="token punctuation">,</span>lock_data <span class="token keyword">from</span> performance_schema<span class="token punctuation">.</span>data_locks<span class="token punctuation">;</span>
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h2 id="行级锁" tabindex="-1"><a class="header-anchor" href="#行级锁" aria-hidden="true">#</a> 行级锁</h2>
+<p>行级锁，每次操作锁住对应的行数据。锁定粒度最小，发生锁冲突的概率最低，并发程度高。主要应用在InnoDB存储引擎中。</p>
+<p>InnoDB的数据是基于索引组织的，行锁是通过对索引上的索引项加锁来实现的，而不是对记录加的锁。对于行级锁，主要分为以下三类：</p>
+<ol>
+<li>
+<p>行锁（Record Lock）：锁定单个行记录的锁，防止其他事务对此行进行update和delete。在RC、RR隔离级别下都支持。</p>
+</li>
+<li>
+<p>间隙锁（Gap Lock）：锁定索引记录间隙（不包含该记录值），确保索引记录间隙不变，防止其他事务在这个间隙进行insert，产生幻读。在RR隔离级别下都支持。</p>
+</li>
+<li>
+<p>临键锁（Next-Key Lock）：行锁和间隙锁组合，同时锁住数据，并锁住数据前面的间隙Gap。在RR隔离级别下支持。</p>
+</li>
+</ol>
+<h3 id="行锁" tabindex="-1"><a class="header-anchor" href="#行锁" aria-hidden="true">#</a> 行锁</h3>
+<p>InnoDB实现了以下两种类型的行锁：</p>
+<ol>
+<li>
+<p>共享锁（S）：允许一个事务去读一行，阻止其他事务获得相同数据集的排他锁。</p>
+</li>
+<li>
+<p>排他锁（X）：允许获取排他锁的事务更新数据，阻止其他事务获得相同数据集的共享锁和排他锁。</p>
+</li>
+</ol>
+<div class="hint-container note">
+<p class="hint-container-title">兼容和互斥</p>
+<p>只有共享锁和共享锁之间是兼容的，其余全是冲突的。</p>
+<p>可以将共享看作是只读。</p>
+</div>
+<h3 id="间隙锁" tabindex="-1"><a class="header-anchor" href="#间隙锁" aria-hidden="true">#</a> 间隙锁</h3>
+<h3 id="临键锁" tabindex="-1"><a class="header-anchor" href="#临键锁" aria-hidden="true">#</a> 临键锁</h3>
 </div></template>
 
 
