@@ -34,13 +34,17 @@
 <ul>
 <li>创建</li>
 </ul>
+<blockquote>
+<p>MySQL目前只支持行级触发器</p>
+</blockquote>
 <div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">CREATE</span> <span class="token keyword">TRIGGER</span> trigger_name
 BEFORE<span class="token operator">/</span><span class="token keyword">AFTER</span> <span class="token keyword">INSERT</span><span class="token operator">/</span><span class="token keyword">UPDATE</span><span class="token operator">/</span><span class="token keyword">DELETE</span>
 <span class="token keyword">ON</span> tbl_name <span class="token keyword">FOR EACH ROW</span> <span class="token comment">-- 行级触发器</span>
 <span class="token keyword">BEGIN</span>
+    <span class="token comment">-- 触发器语句</span>
     trigger_stmt<span class="token punctuation">;</span>
 <span class="token keyword">END</span><span class="token punctuation">;</span>
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ul>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ul>
 <li>查看</li>
 </ul>
 <div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">SHOW</span> TRIGGERS<span class="token punctuation">;</span>
@@ -49,6 +53,35 @@ BEFORE<span class="token operator">/</span><span class="token keyword">AFTER</sp
 </ul>
 <div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token comment">-- 如果没有指定schema_name，默认为当前数据库</span>
 <span class="token keyword">DROP</span> <span class="token keyword">TRIGGER</span> <span class="token punctuation">[</span>schema_name<span class="token punctuation">.</span><span class="token punctuation">]</span>trigger_name<span class="token punctuation">;</span>
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div></div></template>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="案例" tabindex="-1"><a class="header-anchor" href="#案例" aria-hidden="true">#</a> 案例</h2>
+<h3 id="插入触发器" tabindex="-1"><a class="header-anchor" href="#插入触发器" aria-hidden="true">#</a> 插入触发器</h3>
+<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">CREATE</span> <span class="token keyword">TRIGGER</span> user_insert_trigger
+<span class="token keyword">AFTER</span> <span class="token keyword">INSERT</span>
+<span class="token keyword">ON</span> <span class="token keyword">user</span> <span class="token keyword">FOR EACH ROW</span>
+<span class="token keyword">BEGIN</span>
+    <span class="token comment">-- user表中数据插入时，则向日志表中插入一条数据</span>
+    <span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> user_logs<span class="token punctuation">(</span>id<span class="token punctuation">,</span>operate_type<span class="token punctuation">,</span>excute_sql<span class="token punctuation">)</span> <span class="token keyword">VALUE</span> <span class="token punctuation">(</span><span class="token boolean">null</span><span class="token punctuation">,</span><span class="token string">"INSERT"</span><span class="token punctuation">,</span>concat<span class="token punctuation">(</span><span class="token string">"SQL:INSERT INTO user(id,username,password) VALUE ("</span><span class="token punctuation">,</span>new<span class="token punctuation">.</span>id<span class="token punctuation">,</span><span class="token string">","</span><span class="token punctuation">,</span>new<span class="token punctuation">.</span>username<span class="token punctuation">,</span><span class="token string">","</span><span class="token punctuation">,</span>new<span class="token punctuation">.</span>password<span class="token punctuation">,</span><span class="token string">")"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">END</span><span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="更新触发器" tabindex="-1"><a class="header-anchor" href="#更新触发器" aria-hidden="true">#</a> 更新触发器</h3>
+<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">CREATE</span> <span class="token keyword">TRIGGER</span> user_update_trigger
+<span class="token keyword">AFTER</span> <span class="token keyword">UPDATE</span>
+<span class="token keyword">ON</span> <span class="token keyword">user</span> <span class="token keyword">FOR EACH ROW</span>
+<span class="token keyword">BEGIN</span>
+    <span class="token comment">-- user表中数据更新时，则向日志表中插入一条数据</span>
+    <span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> user_logs<span class="token punctuation">(</span>id<span class="token punctuation">,</span>operate_type<span class="token punctuation">,</span>excute_sql<span class="token punctuation">)</span> <span class="token keyword">VALUE</span> <span class="token punctuation">(</span><span class="token boolean">null</span><span class="token punctuation">,</span><span class="token string">"UPDATE"</span><span class="token punctuation">,</span>concat<span class="token punctuation">(</span><span class="token string">"SQL:INSERT INTO user(id,username,password) VALUE ("</span><span class="token punctuation">,</span>new<span class="token punctuation">.</span>id<span class="token punctuation">,</span><span class="token string">","</span><span class="token punctuation">,</span>new<span class="token punctuation">.</span>username<span class="token punctuation">,</span><span class="token string">","</span><span class="token punctuation">,</span>new<span class="token punctuation">.</span>password<span class="token punctuation">,</span><span class="token string">")"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">END</span><span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="删除触发器" tabindex="-1"><a class="header-anchor" href="#删除触发器" aria-hidden="true">#</a> 删除触发器</h3>
+<div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">CREATE</span> <span class="token keyword">TRIGGER</span> user_delete_trigger
+<span class="token keyword">AFTER</span> <span class="token keyword">DELETE</span>
+<span class="token keyword">ON</span> <span class="token keyword">user</span> <span class="token keyword">FOR EACH ROW</span>
+<span class="token keyword">BEGIN</span>
+    <span class="token comment">-- user表中数据删除时，则向日志表中插入一条数据</span>
+    <span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> user_logs<span class="token punctuation">(</span>id<span class="token punctuation">,</span>operate_type<span class="token punctuation">,</span>excute_sql<span class="token punctuation">)</span> <span class="token keyword">VALUE</span> <span class="token punctuation">(</span><span class="token boolean">null</span><span class="token punctuation">,</span><span class="token string">"DELETE"</span><span class="token punctuation">,</span>concat<span class="token punctuation">(</span><span class="token string">"SQL:INSERT INTO user(id,username,password) VALUE ("</span><span class="token punctuation">,</span>new<span class="token punctuation">.</span>id<span class="token punctuation">,</span><span class="token string">","</span><span class="token punctuation">,</span>new<span class="token punctuation">.</span>username<span class="token punctuation">,</span><span class="token string">","</span><span class="token punctuation">,</span>new<span class="token punctuation">.</span>password<span class="token punctuation">,</span><span class="token string">")"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">END</span><span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><div class="hint-container info">
+<p class="hint-container-title">小知识</p>
+<p>在触发器内所执行的SQL中，我们可以使用NEW和OLD两个关键字来调用执行后和执行前的数据。</p>
+</div>
+</div></template>
 
 

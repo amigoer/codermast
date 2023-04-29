@@ -22,11 +22,13 @@ order : 7
 ## 语法
 
 - 创建
+> MySQL目前只支持行级触发器
 ```sql
 CREATE TRIGGER trigger_name
 BEFORE/AFTER INSERT/UPDATE/DELETE
 ON tbl_name FOR EACH ROW -- 行级触发器
 BEGIN
+    -- 触发器语句
     trigger_stmt;
 END;
 ```
@@ -39,3 +41,43 @@ SHOW TRIGGERS;
 -- 如果没有指定schema_name，默认为当前数据库
 DROP TRIGGER [schema_name.]trigger_name;
 ```
+
+## 案例
+
+### 插入触发器
+
+```sql
+CREATE TRIGGER user_insert_trigger
+AFTER INSERT
+ON user FOR EACH ROW
+BEGIN
+    -- user表中数据插入时，则向日志表中插入一条数据
+    INSERT INTO user_logs(id,operate_type,excute_sql) VALUE (null,"INSERT",concat("SQL:INSERT INTO user(id,username,password) VALUE (",new.id,",",new.username,",",new.password,")"));
+END;
+```
+### 更新触发器
+
+```sql
+CREATE TRIGGER user_update_trigger
+AFTER UPDATE
+ON user FOR EACH ROW
+BEGIN
+    -- user表中数据更新时，则向日志表中插入一条数据
+    INSERT INTO user_logs(id,operate_type,excute_sql) VALUE (null,"UPDATE",concat("SQL:INSERT INTO user(id,username,password) VALUE (",new.id,",",new.username,",",new.password,")"));
+END;
+```
+
+### 删除触发器
+```sql
+CREATE TRIGGER user_delete_trigger
+AFTER DELETE
+ON user FOR EACH ROW
+BEGIN
+    -- user表中数据删除时，则向日志表中插入一条数据
+    INSERT INTO user_logs(id,operate_type,excute_sql) VALUE (null,"DELETE",concat("SQL:INSERT INTO user(id,username,password) VALUE (",new.id,",",new.username,",",new.password,")"));
+END;
+```
+
+::: info 小知识
+在触发器内所执行的SQL中，我们可以使用NEW和OLD两个关键字来调用执行后和执行前的数据。
+:::
