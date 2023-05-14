@@ -1,4 +1,4 @@
-<template><div><h1 id="innodb引擎" tabindex="-1"><a class="header-anchor" href="#innodb引擎" aria-hidden="true">#</a> InnoDB引擎</h1>
+<template><div><h1 id="innodb存储引擎" tabindex="-1"><a class="header-anchor" href="#innodb存储引擎" aria-hidden="true">#</a> InnoDB存储引擎</h1>
 <h2 id="逻辑存储结构" tabindex="-1"><a class="header-anchor" href="#逻辑存储结构" aria-hidden="true">#</a> 逻辑存储结构</h2>
 <p><img src="@source/../assets/innodb-engine/2023-05-13-22-00-15.png" alt="InnoDB逻辑存储结构" loading="lazy">
 InnoDB引擎的存储结构主要包含5个部分：</p>
@@ -196,7 +196,6 @@ InnoDB引擎的存储结构主要包含5个部分：</p>
 亦然，当update一条记录时，它记录一条对应相反的update记录。当执行rolback时，就可以从Undo Log中的逻辑记录读取到相应的内容并进行回滚。</p>
 <p>Undo Log销毁：undo Log在事务执行时产生，事务提交时，并不会立即删除undo log，因为这些日志可能还用于MVCC。</p>
 <p>Undo Log存储：undo log采用段的方式进行管理和记录，存放在前面介绍的rollback segment 回滚段中，内部包含 1024 个undo log segment。</p>
-<h2 id="mvcc" tabindex="-1"><a class="header-anchor" href="#mvcc" aria-hidden="true">#</a> MVCC</h2>
 </div></template>
 
 

@@ -1,7 +1,7 @@
 ---
 order : 9
 ---
-# InnoDB引擎
+# InnoDB存储引擎
 
 ## 逻辑存储结构
 ![InnoDB逻辑存储结构](../../../../assets/innodb-engine/2023-05-13-22-00-15.png)
@@ -206,4 +206,5 @@ Undo Log和Redo Log记录物理日志不一样，它是逻辑日志。可以认
 Undo Log销毁：undo Log在事务执行时产生，事务提交时，并不会立即删除undo log，因为这些日志可能还用于MVCC。
 
 Undo Log存储：undo log采用段的方式进行管理和记录，存放在前面介绍的rollback segment 回滚段中，内部包含 1024 个undo log segment。
-## MVCC
+
+
