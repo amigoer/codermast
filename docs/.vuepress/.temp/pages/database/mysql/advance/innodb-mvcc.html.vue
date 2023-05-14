@@ -62,7 +62,7 @@ select ... lock in share mode （共享锁），select ... for update 、insert�
 <tbody>
 <tr>
 <td style="text-align:center">m_ids</td>
-<td style="text-align:center">当前活跃的事务ID集合</td>
+<td style="text-align:center">当前活跃的事务ID集合，即当前还未提交的事务ID集合</td>
 </tr>
 <tr>
 <td style="text-align:center">min_trx_id</td>
@@ -78,6 +78,23 @@ select ... lock in share mode （共享锁），select ... for update 、insert�
 </tr>
 </tbody>
 </table>
+<h3 id="版本链数据访问规则" tabindex="-1"><a class="header-anchor" href="#版本链数据访问规则" aria-hidden="true">#</a> 版本链数据访问规则</h3>
+<p>trx_id 代表的是当前的事务ID：</p>
+<ol>
+<li>trx_id == creator_trx_id : 可以访问该版本</li>
+<li>trx_id &lt; min_trx_id : 可以访问该版本</li>
+<li>trx_id &gt; max_trx_id : 不可以访问该版本</li>
+<li>min_trx_id &lt;= trx_id &lt;= max_trx_id : 如果 trx_id 不在 m_ids 中是可以访问该版本的，即事务已经提交了</li>
+</ol>
+<div class="hint-container warning">
+<p class="hint-container-title">注意</p>
+<p>不同的隔离级别，生成ReadView的时机不同：</p>
+<ul>
+<li>Read Commited : 在事务中每一次执行快照读时生成ReadView</li>
+<li>Repeatable Read : 仅在事务中第一次执行快照读时生成ReadView，后续复用该ReadView</li>
+</ul>
+</div>
+<figure><img src="@source/../assets/innodb-mvcc/2023-05-14-22-22-21.png" alt="MVCC-实现原理" tabindex="0" loading="lazy"><figcaption>MVCC-实现原理</figcaption></figure>
 </div></template>
 
 

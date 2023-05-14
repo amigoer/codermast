@@ -65,7 +65,24 @@ ReadView中包含了4个核心字段：
 
 |字段|含义|
 |:---:|:---:|
-|m_ids|当前活跃的事务ID集合|
+|m_ids|当前活跃的事务ID集合，即当前还未提交的事务ID集合|
 |min_trx_id|最小活跃事务ID|
 |max_trx_id|预分配事务ID，当前最大事务ID+1（因为事务ID是自增的）|
 |creator_trx_id|ReadView创建者的事务ID|
+
+### 版本链数据访问规则
+
+trx_id 代表的是当前的事务ID：
+
+1. trx_id == creator_trx_id : 可以访问该版本
+2. trx_id < min_trx_id : 可以访问该版本
+3. trx_id > max_trx_id : 不可以访问该版本
+4. min_trx_id <= trx_id <= max_trx_id : 如果 trx_id 不在 m_ids 中是可以访问该版本的，即事务已经提交了
+
+::: warning 注意
+不同的隔离级别，生成ReadView的时机不同：
+- Read Commited : 在事务中每一次执行快照读时生成ReadView
+- Repeatable Read : 仅在事务中第一次执行快照读时生成ReadView，后续复用该ReadView
+:::
+
+![MVCC-实现原理](../../../../assets/innodb-mvcc/2023-05-14-22-22-21.png)
