@@ -86,3 +86,10 @@ trx_id 代表的是当前的事务ID：
 :::
 
 ![MVCC-实现原理](../../../../assets/innodb-mvcc/2023-05-14-22-22-21.png)
+
+|特性|实现方式|
+|:---:|:---:|
+|原子性|Undo Log|
+|持久性|Redo Log|
+|一致性|Undo Log + RedoLog|
+|隔离性|MVCC + 锁|
