@@ -1,0 +1,471 @@
+<template><div><h1 id="数据类型及其操作指令" tabindex="-1"><a class="header-anchor" href="#数据类型及其操作指令" aria-hidden="true">#</a> 数据类型及其操作指令</h1>
+<h2 id="通用指令" tabindex="-1"><a class="header-anchor" href="#通用指令" aria-hidden="true">#</a> 通用指令</h2>
+<p>在正式介绍Redis数据结构及其操作指令之前，我们需要先掌握一些最基础的通用指令。</p>
+<p>这些都是Redis操作过程中的一些常见指令</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">指令</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">keys</td>
+<td style="text-align:center">查看符合模板的所有key，不建议在⽣产环境设备上使⽤</td>
+</tr>
+<tr>
+<td style="text-align:center">del</td>
+<td style="text-align:center">删除⼀个指定的key</td>
+</tr>
+<tr>
+<td style="text-align:center">esists</td>
+<td style="text-align:center">判断key是否存在</td>
+</tr>
+<tr>
+<td style="text-align:center">expire</td>
+<td style="text-align:center">给⼀个key设置有效期，有效期到期时该key会被⾃动删除</td>
+</tr>
+<tr>
+<td style="text-align:center">ttl</td>
+<td style="text-align:center">查看⼀个KEY的剩余有效期</td>
+</tr>
+<tr>
+<td style="text-align:center">quit</td>
+<td style="text-align:center">退出</td>
+</tr>
+<tr>
+<td style="text-align:center">shutdown</td>
+<td style="text-align:center">关闭服务器</td>
+</tr>
+<tr>
+<td style="text-align:center">select [0-15]</td>
+<td style="text-align:center">选择指定的数据库</td>
+</tr>
+</tbody>
+</table>
+<div class="hint-container tip">
+<p class="hint-container-title">help指令</p>
+<p>可以通过 help [command]可以查看⼀个命令的具体⽤法！</p>
+<p>例如查看set指令的帮助文档：<code v-pre>help set</code></p>
+</div>
+<h2 id="数据类型" tabindex="-1"><a class="header-anchor" href="#数据类型" aria-hidden="true">#</a> 数据类型</h2>
+<p>Redis支持五种基本数据类型和3种特殊数据类型</p>
+<ul>
+<li>5种基本数据类型</li>
+</ul>
+<ol>
+<li>string（字符串）</li>
+<li>hash（哈希）</li>
+<li>list（列表）</li>
+<li>set（集合）</li>
+<li>zset(sorted set：有序集合)。</li>
+</ol>
+<ul>
+<li>特殊数据类型</li>
+</ul>
+<ol>
+<li>Geo</li>
+<li>Bitmap</li>
+<li>Hyperloglog</li>
+</ol>
+<div class="hint-container tip">
+<p class="hint-container-title">说明</p>
+<p>在我们平常的业务中基本只会使用到Redis的基本数据类型（String、List、Hash、Set、Sorted Set），特殊类型（Geo、Bitmap、Hyperloglog）类型只有在特殊的业务场景下会使用到，通常只需要掌握基本数据类型即可，特殊类型作为了解即可。</p>
+</div>
+<h3 id="string-字符串" tabindex="-1"><a class="header-anchor" href="#string-字符串" aria-hidden="true">#</a> String 字符串</h3>
+<p>String类型，也就是字符串类型，是Redis中最简单的存储类型。String 类型是二进制安全的。意思是 redis 的 String 可以包含任何数据。比如jpg图片或者序列化的对象。</p>
+<p>其value是字符串，不过根据字符串的格式不同，又可以分为3类：</p>
+<ul>
+<li>string：普通字符串</li>
+<li>int：整数类型，可以做自增、自减操作</li>
+<li>float：浮点类型，可以做自增、自减操作</li>
+</ul>
+<p>不管是哪种格式，底层都是字节数组形式存储，只不过是编码方式不同。字符串类型的最大空间不能超过512m.</p>
+<p><strong>String类型的常见操作命令</strong>：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">命令</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">SET</td>
+<td style="text-align:center">添加或者修改已经存在的一个String类型的键值对</td>
+</tr>
+<tr>
+<td style="text-align:center">GET</td>
+<td style="text-align:center">根据key获取String类型的value</td>
+</tr>
+<tr>
+<td style="text-align:center">MSET</td>
+<td style="text-align:center">批量添加多个String类型的键值对</td>
+</tr>
+<tr>
+<td style="text-align:center">MGET</td>
+<td style="text-align:center">根据多个key获取多个String类型的value</td>
+</tr>
+<tr>
+<td style="text-align:center">INCR</td>
+<td style="text-align:center">让一个整型的key自增1</td>
+</tr>
+<tr>
+<td style="text-align:center">INCRBY</td>
+<td style="text-align:center">让一个整型的key自增并指定步长，例如：incrby num 2 让num值自增2</td>
+</tr>
+<tr>
+<td style="text-align:center">INCRBYFLOAT</td>
+<td style="text-align:center">让一个浮点类型的数字自增并指定步长</td>
+</tr>
+<tr>
+<td style="text-align:center">SETNX</td>
+<td style="text-align:center">添加一个String类型的键值对，前提是这个key不存在，否则不执行</td>
+</tr>
+<tr>
+<td style="text-align:center">SETEX</td>
+<td style="text-align:center">添加一个String类型的键值对，并且指定有效期</td>
+</tr>
+</tbody>
+</table>
+<p>Redis的key中虽然没有目录结构，但是允许有多个单词形成层级结构，多个单词之间用” ：“隔开，一般情况下使用的格式为：<code v-pre>项目名:业务名:类型:id</code>。</p>
+<p>这个格式并非固定，也可以根据自己的需求来删除或添加词条。</p>
+<div class="hint-container info">
+<p class="hint-container-title">举例说明</p>
+<p>例如我们的项目名称叫 myblog ，有user和product两种不同类型的数据，我们可以这样定义key：</p>
+<p>user相关的key：myblog:user:1</p>
+<p>product相关的key：myblog:product:1</p>
+<p>如果Value是一个Java对象，例如一个User对象，则可以将对象序列化为JSON字符串后存储</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">KEY</th>
+<th style="text-align:center">VALUE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">myblog:user:1</td>
+<td style="text-align:center">{“id”:1, “name”: “Jack”, “age”: 21}</td>
+</tr>
+<tr>
+<td style="text-align:center">myblog:product:1</td>
+<td style="text-align:center">{“id”:1, “name”: “小米11”, “price”: 4999}</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="hash-哈希" tabindex="-1"><a class="header-anchor" href="#hash-哈希" aria-hidden="true">#</a> Hash 哈希</h3>
+<p>Hash类型，也叫散列，又可以成为哈希类型。其value是一个无序字典，类似于Java中的HashMap结构。</p>
+<p>Hash结构可以将对象中的每个字段独立存储，可以针对单个字段做CRUD</p>
+<figure><img src="@source/../assets/datatype-commond/2023-05-16-17-09-37.png" alt="Hash类型的数据" tabindex="0" loading="lazy"><figcaption>Hash类型的数据</figcaption></figure>
+<p>Hash的常见命令有：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">命令</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">HSET key field value</td>
+<td style="text-align:center">添加或者修改hash类型key的field的值</td>
+</tr>
+<tr>
+<td style="text-align:center">HGET key field</td>
+<td style="text-align:center">获取一个hash类型key的field的值</td>
+</tr>
+<tr>
+<td style="text-align:center">HMSET</td>
+<td style="text-align:center">hmset 和 hset 效果相同 ，4.0之后hmset可以弃用了</td>
+</tr>
+<tr>
+<td style="text-align:center">HMGET</td>
+<td style="text-align:center">批量获取多个hash类型key的field的值</td>
+</tr>
+<tr>
+<td style="text-align:center">HGETALL</td>
+<td style="text-align:center">获取一个hash类型的key中的所有的field和value</td>
+</tr>
+<tr>
+<td style="text-align:center">HKEYS</td>
+<td style="text-align:center">获取一个hash类型的key中的所有的field</td>
+</tr>
+<tr>
+<td style="text-align:center">HVALS</td>
+<td style="text-align:center">获取一个hash类型的key中的所有的value</td>
+</tr>
+<tr>
+<td style="text-align:center">HINCRBY</td>
+<td style="text-align:center">让一个hash类型key的字段值自增并指定步长</td>
+</tr>
+<tr>
+<td style="text-align:center">HSETNX</td>
+<td style="text-align:center">添加一个hash类型的key的field值，前提是这个field不存在，否则不执行</td>
+</tr>
+</tbody>
+</table>
+<h3 id="list-列表" tabindex="-1"><a class="header-anchor" href="#list-列表" aria-hidden="true">#</a> List 列表</h3>
+<p>Redis中的List类型与Java中的LinkedList类似，可以看做是一个双向链表结构。既可以支持正向检索和也可以支持反向检索。</p>
+<p>特征也与LinkedList类似：</p>
+<ul>
+<li>有序</li>
+<li>元素可以重复</li>
+<li>插入和删除快</li>
+<li>查询速度一般</li>
+</ul>
+<p>常用来存储一个有序数据，例如：朋友圈点赞列表，评论列表等.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">命令</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">LPUSH key element …</td>
+<td style="text-align:center">向列表左侧插入一个或多个元素</td>
+</tr>
+<tr>
+<td style="text-align:center">LPOP key</td>
+<td style="text-align:center">移除并返回列表左侧的第一个元素，没有则返回nil</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong>RPUSH key element …</strong></td>
+<td style="text-align:center">向列表右侧插入一个或多个元素</td>
+</tr>
+<tr>
+<td style="text-align:center">RPOP key</td>
+<td style="text-align:center">移除并返回列表右侧的第一个元素</td>
+</tr>
+<tr>
+<td style="text-align:center">LRANGE key star end</td>
+<td style="text-align:center">返回一段角标范围内的所有元素</td>
+</tr>
+<tr>
+<td style="text-align:center">BLPOP和BRPOP</td>
+<td style="text-align:center">与LPOP和RPOP类似，只不过在没有元素时等待指定时间，而不是直接返回nil</td>
+</tr>
+</tbody>
+</table>
+<figure><img src="@source/../assets/datatype-commond/双端队列.gif" alt="双端队列示意图" tabindex="0" loading="lazy"><figcaption>双端队列示意图</figcaption></figure>
+<h3 id="set-集合" tabindex="-1"><a class="header-anchor" href="#set-集合" aria-hidden="true">#</a> Set 集合</h3>
+<p>Redis的Set结构与Java中的HashSet类似，可以看做是一个value为null的HashMap。因为也是一个hash表，因此具备与HashSet类似的特征</p>
+<ul>
+<li>无序</li>
+<li>元素不可重复</li>
+<li>查找快</li>
+<li>支持交集、并集、差集等功能</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">命令</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">SADD key member …</td>
+<td style="text-align:center">向set中添加一个或多个元素</td>
+</tr>
+<tr>
+<td style="text-align:center">SREM key member …</td>
+<td style="text-align:center">移除set中的指定元素</td>
+</tr>
+<tr>
+<td style="text-align:center">SCARD key</td>
+<td style="text-align:center">返回set中元素的个数</td>
+</tr>
+<tr>
+<td style="text-align:center">SISMEMBER key member</td>
+<td style="text-align:center">判断一个元素是否存在于set中</td>
+</tr>
+<tr>
+<td style="text-align:center">SMEMBERS</td>
+<td style="text-align:center">获取set中的所有元素</td>
+</tr>
+<tr>
+<td style="text-align:center">SINTER key1 key2 …</td>
+<td style="text-align:center">求key1与key2的交集</td>
+</tr>
+<tr>
+<td style="text-align:center">SDIFF key1 key2 …</td>
+<td style="text-align:center">求key1与key2的差集</td>
+</tr>
+<tr>
+<td style="text-align:center">SUNION key1 key2 …</td>
+<td style="text-align:center">求key1和key2的并集</td>
+</tr>
+</tbody>
+</table>
+<figure><img src="@source/../assets/datatype-commond/2023-05-16-17-15-01.png" alt="tip 交集、差集、并集图示" tabindex="0" loading="lazy"><figcaption>tip 交集、差集、并集图示</figcaption></figure>
+<h3 id="sortedset-有序集合" tabindex="-1"><a class="header-anchor" href="#sortedset-有序集合" aria-hidden="true">#</a> SortedSet 有序集合</h3>
+<p>Redis的SortedSet又可以成为Zset，是一个可排序的set集合，与Java中的TreeSet有些类似，但底层数据结构却差别很大。</p>
+<p>SortedSet中的每一个元素都带有一个score属性，可以基于score属性对元素排序，底层的实现是一个跳表（SkipList）加 hash表。</p>
+<p><strong>SortedSet具备下列特性：</strong></p>
+<ul>
+<li>可排序</li>
+<li>元素不重复</li>
+<li>查询速度快</li>
+</ul>
+<p>因为SortedSet的可排序特性，经常被用来实现排行榜这样的功能。</p>
+<p><strong>SortedSet的常见命令有</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">命令</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">ZADD key score member</td>
+<td style="text-align:center">添加一个或多个元素到sorted set ，如果已经存在则更新其score值</td>
+</tr>
+<tr>
+<td style="text-align:center">ZREM key member</td>
+<td style="text-align:center">删除sorted set中的一个指定元素</td>
+</tr>
+<tr>
+<td style="text-align:center">ZSCORE key member</td>
+<td style="text-align:center">获取sorted set中的指定元素的score值</td>
+</tr>
+<tr>
+<td style="text-align:center">ZRANK key member</td>
+<td style="text-align:center">获取sorted set 中的指定元素的排名</td>
+</tr>
+<tr>
+<td style="text-align:center">ZCARD key</td>
+<td style="text-align:center">获取sorted set中的元素个数</td>
+</tr>
+<tr>
+<td style="text-align:center">ZCOUNT key min max</td>
+<td style="text-align:center">统计score值在给定范围内的所有元素的个数</td>
+</tr>
+<tr>
+<td style="text-align:center">ZINCRBY key increment member</td>
+<td style="text-align:center">让sorted set中的指定元素自增，步长为指定的increment值</td>
+</tr>
+<tr>
+<td style="text-align:center">ZRANGE key min max</td>
+<td style="text-align:center">按照score排序后，获取指定排名范围内的元素</td>
+</tr>
+<tr>
+<td style="text-align:center">ZRANGEBYSCORE key min max</td>
+<td style="text-align:center">按照score排序后，获取指定score范围内的元素</td>
+</tr>
+<tr>
+<td style="text-align:center">ZDIFF、ZINTER、ZUNION</td>
+<td style="text-align:center">求差集、交集、并集</td>
+</tr>
+</tbody>
+</table>
+<div class="hint-container warning">
+<p class="hint-container-title">注意</p>
+<p>所有的排名默认都是升序，如果要降序则在命令的Z后面添加<code v-pre>REV</code>即可</p>
+</div>
+<h3 id="geo类型" tabindex="-1"><a class="header-anchor" href="#geo类型" aria-hidden="true">#</a> GEO类型</h3>
+<p>GEO，Geographic，地理信息的缩写。该类型，就是元素的2维坐标，在地图上就是经纬度。redis基于该类型，提供了经纬度设置，查询，范围查询，距离查询，经纬度Hash等常⻅操作。</p>
+<ul>
+<li>geoadd：添加地理位置的坐标。</li>
+<li>geopos：获取地理位置的坐标。</li>
+<li>geodist：计算两个位置之间的距离。</li>
+<li>georadius：根据⽤户给定的经纬度坐标来获取指定范围内的地理位置集合。</li>
+<li>georadiusbymember：根据储存在位置集合⾥⾯的某个地点获取指定范围内的地理位置集合。</li>
+<li>geohash：返回⼀个或多个位置对象的 geohash 值。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">命令</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">GEOHASH key member [member ...]</td>
+<td style="text-align:center">返回⼀个或多个位置元素的 Geohash 表示</td>
+</tr>
+<tr>
+<td style="text-align:center">GEOPOS key member [member ...]</td>
+<td style="text-align:center">从key⾥返回所有给定位置元素的位置（经度和纬度）</td>
+</tr>
+<tr>
+<td style="text-align:center">GEODIST key member1 member2 [m|km|ft|mi]</td>
+<td style="text-align:center">返回两个给定位置之间的距离</td>
+</tr>
+<tr>
+<td style="text-align:center">GEORADIUS key longitude latitude radius m|km|ft|mi [WITHCOORD] [WITHDIST] [WITHHASH] [COUNT count] [ASC|DESC] [STORE key] [STOREDIST key]</td>
+<td style="text-align:center">以给定的经纬度为中⼼， 找出某⼀半径内的元素</td>
+</tr>
+<tr>
+<td style="text-align:center">GEOADD key longitude latitude member [longitude latitude member ...]</td>
+<td style="text-align:center">将指定的地理空间位置（纬度、经度、名称）添加到指定的key中</td>
+</tr>
+<tr>
+<td style="text-align:center">GEORADIUSBYMEMBER key member radius m|km|ft|mi [WITHCOORD] [WITHDIST] [WITHHASH] [COUNT count] [ASC|DESC] [STORE key] [STOREDIST key]</td>
+<td style="text-align:center">找出位于指定范围内的 元素，中⼼点是由给定的位置元素决定</td>
+</tr>
+</tbody>
+</table>
+<h3 id="bitmap类型" tabindex="-1"><a class="header-anchor" href="#bitmap类型" aria-hidden="true">#</a> Bitmap类型</h3>
+<p>从本质上来说，bitmap不是⼀种数据类型，本质是字符串key-value，但是其可以对位进⾏操作。也可以将bitmap想象成⼀个只能存储0、1的整型数组，可以随时对任意⼀位进⾏运算。下标在bitmap中成为偏移量。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">命令</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">setbit</td>
+<td style="text-align:center">设置Bitmaps中某个偏移量的值（0或1）(offset:偏移量从0开始)</td>
+</tr>
+<tr>
+<td style="text-align:center">getbit</td>
+<td style="text-align:center">获取Bitmaps中某个偏移量的值（偏移量不存在，也是返回0）</td>
+</tr>
+<tr>
+<td style="text-align:center">bitcount[start end]</td>
+<td style="text-align:center">统计字符串被设置为1的bit数。</td>
+</tr>
+<tr>
+<td style="text-align:center">bitop and(or/not/xor) [key…]</td>
+<td style="text-align:center">bitop是⼀个复合操作， 它可以做多个Bitmaps的and（交集） 、 or（并集） 、 not（⾮） 、 xor（异或） 操作并将结果保存在destkey中。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="hyperloglog类型" tabindex="-1"><a class="header-anchor" href="#hyperloglog类型" aria-hidden="true">#</a> Hyperloglog类型</h3>
+<p>Redis HyperLogLog 是⽤来做基数统计的算法，HyperLogLog 的优点是，在输⼊元素的数量或者体积⾮常⾮常⼤时，计算基数所需的空间总是固定 的、并且是很⼩的。</p>
+<p>在 Redis ⾥⾯，每个 HyperLogLog 键只需要花费 12 KB 内存，就可以计算接近 2^64 个不同元素的基 数。这和计算基数时，元素越多耗费内存就越多的集合形成鲜明对⽐。</p>
+<p>但是，因为 HyperLogLog 只会根据输⼊元素来计算基数，⽽不会储存输⼊元素本身，所以HyperLogLog 不能像集合那样，返回输⼊的各个元素。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">命令</th>
+<th style="text-align:center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">pfadd &lt;element&gt; [element ...]</td>
+<td style="text-align:center">将所有元素添加到指定HyperLogLog数据结构中。如果执⾏命令后HLL估计的近似基数发⽣变化，则返回1，否则返回0。</td>
+</tr>
+<tr>
+<td style="text-align:center">pfcount [key ...]</td>
+<td style="text-align:center">计算HLL的近似基数，可以计算多个HLL，⽐如⽤HLL存储每天的UV，计算⼀周的UV可以使⽤7天的UV合并计算即可</td>
+</tr>
+<tr>
+<td style="text-align:center">pfmerge [sourcekey ...]</td>
+<td style="text-align:center">将⼀个或多个HLL合并后的结果存储在另⼀个HLL中，⽐如每⽉活跃⽤户可以使⽤每天的活跃⽤户来合并计算可得</td>
+</tr>
+</tbody>
+</table>
+</div></template>
+
+

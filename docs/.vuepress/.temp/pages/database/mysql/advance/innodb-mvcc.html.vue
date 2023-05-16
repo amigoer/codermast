@@ -95,6 +95,32 @@ select ... lock in share mode （共享锁），select ... for update 、insert�
 </ul>
 </div>
 <figure><img src="@source/../assets/innodb-mvcc/2023-05-14-22-22-21.png" alt="MVCC-实现原理" tabindex="0" loading="lazy"><figcaption>MVCC-实现原理</figcaption></figure>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">特性</th>
+<th style="text-align:center">实现方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">原子性</td>
+<td style="text-align:center">Undo Log</td>
+</tr>
+<tr>
+<td style="text-align:center">持久性</td>
+<td style="text-align:center">Redo Log</td>
+</tr>
+<tr>
+<td style="text-align:center">一致性</td>
+<td style="text-align:center">Undo Log + RedoLog</td>
+</tr>
+<tr>
+<td style="text-align:center">隔离性</td>
+<td style="text-align:center">MVCC + 锁</td>
+</tr>
+</tbody>
+</table>
 </div></template>
 
 
