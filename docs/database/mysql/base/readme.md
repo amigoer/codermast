@@ -1,6 +1,6 @@
 ---
 index : false
-dir :
+dir : 
     order : 1
 ---
-# 基础篇
+# MySQL基础篇

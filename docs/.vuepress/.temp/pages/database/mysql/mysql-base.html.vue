@@ -1,4 +1,4 @@
-<template><div><h1 id="mysql基础" tabindex="-1"><a class="header-anchor" href="#mysql基础" aria-hidden="true">#</a> MySQL基础</h1>
+<template><div><h1 id="mysql基础-基础概念" tabindex="-1"><a class="header-anchor" href="#mysql基础-基础概念" aria-hidden="true">#</a> MySQL基础 - 基础概念</h1>
 <h2 id="基本概念" tabindex="-1"><a class="header-anchor" href="#基本概念" aria-hidden="true">#</a> 基本概念</h2>
 <div class="hint-container info">
 <p class="hint-container-title">区别</p>
@@ -84,7 +84,7 @@
 <p>主要有：Neo4J， InfoGrid， Infinite Graph</p>
 </div>
 <h2 id="mysql数据模型" tabindex="-1"><a class="header-anchor" href="#mysql数据模型" aria-hidden="true">#</a> MySQL数据模型</h2>
-<figure><img src="@source/../assets/mysql-base/2023-04-08-23-50-11.png" alt="MySQL数据模型" tabindex="0" loading="lazy"><figcaption>MySQL数据模型</figcaption></figure>
+<figure><img src="@source/../../assets/mysql-base/2023-04-08-23-50-11.png" alt="MySQL数据模型" tabindex="0" loading="lazy"><figcaption>MySQL数据模型</figcaption></figure>
 </div></template>
 
 

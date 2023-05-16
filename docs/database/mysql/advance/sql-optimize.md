@@ -1,7 +1,7 @@
 ---
-order : 4
+order : 9
 ---
-# SQL优化
+# MySQL进阶 - SQL优化
 
 ## insert优化
 ### 批量插入

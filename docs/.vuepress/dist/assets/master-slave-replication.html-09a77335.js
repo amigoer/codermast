@@ -1,1 +1,0 @@
-import{_ as a,W as t,X as r,Z as e,$ as s}from"./framework-a0cce298.js";const c={},o=e("h1",{id:"主从复制",tabindex:"-1"},[e("a",{class:"header-anchor",href:"#主从复制","aria-hidden":"true"},"#"),s(" 主从复制")],-1),n=[o];function _(i,l){return t(),r("div",null,n)}const h=a(c,[["render",_],["__file","master-slave-replication.html.vue"]]);export{h as default};

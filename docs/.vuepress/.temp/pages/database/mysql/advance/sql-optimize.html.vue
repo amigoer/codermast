@@ -1,4 +1,4 @@
-<template><div><h1 id="sql优化" tabindex="-1"><a class="header-anchor" href="#sql优化" aria-hidden="true">#</a> SQL优化</h1>
+<template><div><h1 id="mysql进阶-sql优化" tabindex="-1"><a class="header-anchor" href="#mysql进阶-sql优化" aria-hidden="true">#</a> MySQL进阶 - SQL优化</h1>
 <h2 id="insert优化" tabindex="-1"><a class="header-anchor" href="#insert优化" aria-hidden="true">#</a> insert优化</h2>
 <h3 id="批量插入" tabindex="-1"><a class="header-anchor" href="#批量插入" aria-hidden="true">#</a> 批量插入</h3>
 <div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">insert</span> <span class="token keyword">into</span> table_name <span class="token keyword">values</span> <span class="token punctuation">(</span>values_list<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">;</span>

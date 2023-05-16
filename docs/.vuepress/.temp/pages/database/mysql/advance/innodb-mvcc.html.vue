@@ -1,4 +1,4 @@
-<template><div><h1 id="mvcc多版本并发控制" tabindex="-1"><a class="header-anchor" href="#mvcc多版本并发控制" aria-hidden="true">#</a> MVCC多版本并发控制</h1>
+<template><div><h1 id="mysql进阶-mvcc多版本并发控制" tabindex="-1"><a class="header-anchor" href="#mysql进阶-mvcc多版本并发控制" aria-hidden="true">#</a> MySQL进阶 - MVCC多版本并发控制</h1>
 <h2 id="概念介绍" tabindex="-1"><a class="header-anchor" href="#概念介绍" aria-hidden="true">#</a> 概念介绍</h2>
 <h3 id="mvcc" tabindex="-1"><a class="header-anchor" href="#mvcc" aria-hidden="true">#</a> MVCC</h3>
 <p>MVCC全称为Multi-Version Concurrency Control，多版本并发控制。指维护一个数据的多个版本，使得读写操作没有冲突，快照读为MySQL实现MVCC提供了一个非阻塞读功能。MVCC的具体实现，还需要依赖于数据库记录中的三个隐藏字段、undo log 日志、readView。</p>

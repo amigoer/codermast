@@ -1,4 +1,7 @@
 ---
  index : false
+
+ dir : 
+    order : 1
 ---
-# Redis 基础篇
+# Redis 入门

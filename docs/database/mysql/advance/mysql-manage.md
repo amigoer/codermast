@@ -1,4 +1,4 @@
 ---
-order : 11
+order : 17
 ---
-# MySQL管理
+# MySQL进阶 - MySQL管理

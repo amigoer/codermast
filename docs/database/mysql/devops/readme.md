@@ -1,7 +1,6 @@
 ---
 index : false
-dir :
+dir : 
     order : 3
 ---
-
-# 运维篇
+# MySQL运维篇

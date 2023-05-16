@@ -1,7 +1,7 @@
 ---
-order : 3
+order : 8
 ---
-# SQL性能分析
+# MySQL进阶 - SQL性能分析
 
 ## SQL执行频率
 

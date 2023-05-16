@@ -1,4 +1,4 @@
-<template><div><h1 id="初识redis" tabindex="-1"><a class="header-anchor" href="#初识redis" aria-hidden="true">#</a> 初识Redis</h1>
+<template><div><h1 id="redis入门-redis概念和基础" tabindex="-1"><a class="header-anchor" href="#redis入门-redis概念和基础" aria-hidden="true">#</a> Redis入门 - Redis概念和基础</h1>
 <h2 id="什么是nosql" tabindex="-1"><a class="header-anchor" href="#什么是nosql" aria-hidden="true">#</a> 什么是NoSQL</h2>
 <ul>
 <li>NoSQL，泛指非关系型的数据库。</li>

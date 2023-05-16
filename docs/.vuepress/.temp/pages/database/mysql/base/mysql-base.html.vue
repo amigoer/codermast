@@ -1,4 +1,4 @@
-<template><div><h1 id="基础概念" tabindex="-1"><a class="header-anchor" href="#基础概念" aria-hidden="true">#</a> 基础概念</h1>
+<template><div><h1 id="mysql基础-基础概念" tabindex="-1"><a class="header-anchor" href="#mysql基础-基础概念" aria-hidden="true">#</a> MySQL基础 - 基础概念</h1>
 <h2 id="基本概念" tabindex="-1"><a class="header-anchor" href="#基本概念" aria-hidden="true">#</a> 基本概念</h2>
 <div class="hint-container info">
 <p class="hint-container-title">区别</p>

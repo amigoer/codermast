@@ -1,6 +1,6 @@
-<template><div><h1 id="存储引擎" tabindex="-1"><a class="header-anchor" href="#存储引擎" aria-hidden="true">#</a> 存储引擎</h1>
+<template><div><h1 id="mysql进阶-存储引擎" tabindex="-1"><a class="header-anchor" href="#mysql进阶-存储引擎" aria-hidden="true">#</a> MySQL进阶 - 存储引擎</h1>
 <h2 id="mysql的体系结构" tabindex="-1"><a class="header-anchor" href="#mysql的体系结构" aria-hidden="true">#</a> MySQL的体系结构</h2>
-<figure><img src="@source/../assets/storage-engine/2023-04-10-18-34-31.png" alt="MySQL的体系结构示意图" tabindex="0" loading="lazy"><figcaption>MySQL的体系结构示意图</figcaption></figure>
+<figure><img src="@source/assets/storage-engine/2023-04-10-18-34-31.png" alt="MySQL的体系结构示意图" tabindex="0" loading="lazy"><figcaption>MySQL的体系结构示意图</figcaption></figure>
 <ul>
 <li>
 <p>连接层
@@ -26,7 +26,7 @@
 <li>查看支持的存储引擎</li>
 </ul>
 <div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">SHOW</span> ENGINES<span class="token punctuation">;</span>
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><figure><img src="@source/../assets/storage-engine/2023-04-10-18-50-36.png" alt="存储引擎列表" tabindex="0" loading="lazy"><figcaption>存储引擎列表</figcaption></figure>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><figure><img src="@source/assets/storage-engine/2023-04-10-18-50-36.png" alt="存储引擎列表" tabindex="0" loading="lazy"><figcaption>存储引擎列表</figcaption></figure>
 <ul>
 <li>创建一张表并且指定引擎</li>
 </ul>

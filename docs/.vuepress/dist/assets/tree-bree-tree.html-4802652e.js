@@ -1,1 +1,0 @@
-import{_ as t,W as r,X as a,Z as e,$ as c}from"./framework-a0cce298.js";const s={},o=e("h1",{id:"第五章-树与二叉树",tabindex:"-1"},[e("a",{class:"header-anchor",href:"#第五章-树与二叉树","aria-hidden":"true"},"#"),c(" 第五章 树与二叉树")],-1),n=[o];function _(d,i){return r(),a("div",null,n)}const l=t(s,[["render",_],["__file","tree-bree-tree.html.vue"]]);export{l as default};

@@ -1,7 +1,7 @@
 ---
  order : 1
 ---
-# 初识Redis
+# Redis入门 - Redis概念和基础
 
 ## 什么是NoSQL
 

@@ -1,4 +1,4 @@
-<template><div><h1 id="多表查询" tabindex="-1"><a class="header-anchor" href="#多表查询" aria-hidden="true">#</a> 多表查询</h1>
+<template><div><h1 id="mysql基础-多表查询" tabindex="-1"><a class="header-anchor" href="#mysql基础-多表查询" aria-hidden="true">#</a> MySQL基础 - 多表查询</h1>
 <h2 id="多表关系" tabindex="-1"><a class="header-anchor" href="#多表关系" aria-hidden="true">#</a> 多表关系</h2>
 <div class="hint-container tip">
 <p class="hint-container-title">提示</p>
@@ -22,7 +22,7 @@
 <p class="hint-container-title">实现</p>
 <p>这种关系的实现相对来说较为复杂，需要我们建立一张中间表，这张中间表的字段最少包含了两个外键，关联了两方多的主键，从而确保多对多的关系。</p>
 </div>
-<h2 id="多表查询-1" tabindex="-1"><a class="header-anchor" href="#多表查询-1" aria-hidden="true">#</a> 多表查询</h2>
+<h2 id="多表查询" tabindex="-1"><a class="header-anchor" href="#多表查询" aria-hidden="true">#</a> 多表查询</h2>
 <p>多表查询是指从多张数据表中查询数据。然而在多表查询之前，我们首先需要了解一个简单的概念：笛卡尔积。</p>
 <div class="hint-container note">
 <p class="hint-container-title">笛卡尔积</p>

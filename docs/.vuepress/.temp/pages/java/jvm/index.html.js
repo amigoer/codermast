@@ -1,1 +1,14 @@
-export const data = JSON.parse("{\"key\":\"v-6cec0ebc\",\"path\":\"/java/jvm/\",\"title\":\"JVM虚拟机\",\"lang\":\"zh-CN\",\"frontmatter\":{\"index\":false,\"dir\":{\"order\":5},\"description\":\"JVM虚拟机\",\"head\":[[\"meta\",{\"property\":\"og:url\",\"content\":\"https://www.codermast.com/java/jvm/\"}],[\"meta\",{\"property\":\"og:site_name\",\"content\":\"CoderMast编程学习笔记\"}],[\"meta\",{\"property\":\"og:title\",\"content\":\"JVM虚拟机\"}],[\"meta\",{\"property\":\"og:description\",\"content\":\"JVM虚拟机\"}],[\"meta\",{\"property\":\"og:type\",\"content\":\"article\"}],[\"meta\",{\"property\":\"og:locale\",\"content\":\"zh-CN\"}],[\"meta\",{\"property\":\"og:updated_time\",\"content\":\"2023-05-13T13:45:30.000Z\"}],[\"meta\",{\"property\":\"article:author\",\"content\":\"CoderMast\"}],[\"meta\",{\"property\":\"article:modified_time\",\"content\":\"2023-05-13T13:45:30.000Z\"}],[\"script\",{\"type\":\"application/ld+json\"},\"{\\\"@context\\\":\\\"https://schema.org\\\",\\\"@type\\\":\\\"Article\\\",\\\"headline\\\":\\\"JVM虚拟机\\\",\\\"image\\\":[\\\"\\\"],\\\"dateModified\\\":\\\"2023-05-13T13:45:30.000Z\\\",\\\"author\\\":[{\\\"@type\\\":\\\"Person\\\",\\\"name\\\":\\\"CoderMast\\\",\\\"url\\\":\\\"https://www.codermast.com\\\",\\\"email\\\":\\\"codermast@qq.com\\\"}]}\"]]},\"headers\":[],\"git\":{\"createdTime\":1680677790000,\"updatedTime\":1683985530000,\"contributors\":[{\"name\":\"codermast\",\"email\":\"codermast@qq.com\",\"commits\":3}]},\"readingTime\":{\"minutes\":0.03,\"words\":9},\"filePathRelative\":\"java/jvm/readme.md\",\"localizedDate\":\"2023年4月5日\",\"excerpt\":\"<h1> JVM虚拟机</h1>\\n\",\"autoDesc\":true}")
+export const data = JSON.parse("{\"key\":\"v-6cec0ebc\",\"path\":\"/java/jvm/\",\"title\":\"JVM虚拟机\",\"lang\":\"zh-CN\",\"frontmatter\":{\"index\":false,\"dir\":{\"order\":5},\"description\":\"JVM虚拟机\",\"head\":[[\"meta\",{\"property\":\"og:url\",\"content\":\"https://www.codermast.com/java/jvm/\"}],[\"meta\",{\"property\":\"og:site_name\",\"content\":\"CoderMast编程学习笔记\"}],[\"meta\",{\"property\":\"og:title\",\"content\":\"JVM虚拟机\"}],[\"meta\",{\"property\":\"og:description\",\"content\":\"JVM虚拟机\"}],[\"meta\",{\"property\":\"og:type\",\"content\":\"article\"}],[\"meta\",{\"property\":\"og:locale\",\"content\":\"zh-CN\"}],[\"meta\",{\"property\":\"article:author\",\"content\":\"CoderMast\"}],[\"script\",{\"type\":\"application/ld+json\"},\"{\\\"@context\\\":\\\"https://schema.org\\\",\\\"@type\\\":\\\"Article\\\",\\\"headline\\\":\\\"JVM虚拟机\\\",\\\"image\\\":[\\\"\\\"],\\\"dateModified\\\":null,\\\"author\\\":[{\\\"@type\\\":\\\"Person\\\",\\\"name\\\":\\\"CoderMast\\\",\\\"url\\\":\\\"https://www.codermast.com\\\",\\\"email\\\":\\\"codermast@qq.com\\\"}]}\"]]},\"headers\":[],\"readingTime\":{\"minutes\":0.03,\"words\":9},\"filePathRelative\":\"java/jvm/readme.md\",\"excerpt\":\"<h1> JVM虚拟机</h1>\\n\",\"autoDesc\":true}")
+
+if (import.meta.webpackHot) {
+  import.meta.webpackHot.accept()
+  if (__VUE_HMR_RUNTIME__.updatePageData) {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  }
+}
+
+if (import.meta.hot) {
+  import.meta.hot.accept(({ data }) => {
+    __VUE_HMR_RUNTIME__.updatePageData(data)
+  })
+}

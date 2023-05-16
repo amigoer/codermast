@@ -1,4 +1,4 @@
-<template><div><h1 id="sql性能分析" tabindex="-1"><a class="header-anchor" href="#sql性能分析" aria-hidden="true">#</a> SQL性能分析</h1>
+<template><div><h1 id="mysql进阶-sql性能分析" tabindex="-1"><a class="header-anchor" href="#mysql进阶-sql性能分析" aria-hidden="true">#</a> MySQL进阶 - SQL性能分析</h1>
 <h2 id="sql执行频率" tabindex="-1"><a class="header-anchor" href="#sql执行频率" aria-hidden="true">#</a> SQL执行频率</h2>
 <p>MySQL客户端连接成功后，通过 SHOW [session | global] status 命令可以查看服务器状态信息。</p>
 <p>通过如下指令，可以查看当前数据库的INSERT、SELECT、UPDATE、DELETE操作的访问频次：</p>

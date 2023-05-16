@@ -1,4 +1,4 @@
-<template><div><h1 id="sql基础语法" tabindex="-1"><a class="header-anchor" href="#sql基础语法" aria-hidden="true">#</a> SQL基础语法</h1>
+<template><div><h1 id="mysql基础-sql基础语法" tabindex="-1"><a class="header-anchor" href="#mysql基础-sql基础语法" aria-hidden="true">#</a> MySQL基础 - SQL基础语法</h1>
 <h2 id="通用语法" tabindex="-1"><a class="header-anchor" href="#通用语法" aria-hidden="true">#</a> 通用语法</h2>
 <ol>
 <li>SQL语句可以单行或者多行书写，以分号结尾。</li>

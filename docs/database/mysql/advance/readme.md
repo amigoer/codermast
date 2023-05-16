@@ -1,7 +1,6 @@
 ---
 index : false
-dir :
+dir : 
     order : 2
 ---
-
-# 进阶篇
+# MySQL进阶篇
