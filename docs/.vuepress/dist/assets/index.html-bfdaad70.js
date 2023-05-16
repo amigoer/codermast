@@ -1,0 +1,1 @@
+import{_ as t,W as a,X as s,Z as e,$ as c}from"./framework-a0cce298.js";const n={},r=e("h1",{id:"stata-分析工具",tabindex:"-1"},[e("a",{class:"header-anchor",href:"#stata-分析工具","aria-hidden":"true"},"#"),c(" Stata 分析工具")],-1),o=[r];function _(d,i){return a(),s("div",null,o)}const l=t(n,[["render",_],["__file","index.html.vue"]]);export{l as default};

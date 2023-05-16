@@ -1,0 +1,1 @@
+import{_ as a,W as s,X as t,Z as e,$ as c}from"./framework-a0cce298.js";const n={},r=e("h1",{id:"mysql管理",tabindex:"-1"},[e("a",{class:"header-anchor",href:"#mysql管理","aria-hidden":"true"},"#"),c(" MySQL管理")],-1),o=[r];function _(l,d){return s(),t("div",null,o)}const m=a(n,[["render",_],["__file","mysql-manage.html.vue"]]);export{m as default};
