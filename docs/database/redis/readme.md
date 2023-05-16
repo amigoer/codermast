@@ -2,7 +2,9 @@
 index : false
 ---
 # Redis 数据库
+
 ![Redis](../../../assets/readme/2023-05-16-15-28-44.png)
+
 ## 参考资料
 
 - 菜鸟教程
