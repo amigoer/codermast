@@ -53,7 +53,7 @@ yum install redis
 ![Redis安装](../../../../assets/introduce-redis/2023-05-16-15-07-53.png)
 
 ::: note 其他安装
-除了上述安装方式以外还有很多安装方式，这里不再赘述。
+除了上述安装方式以外还有很多安装方式，这里不再赘述。各种环境的安装方式，可以参考Redis官方的安装文档，地址：https://redis.io/docs/getting-started/installation/
 :::
 
 ## Redis启动的三种方式
@@ -175,65 +175,11 @@ Gitee地址：https://gitee.com/qishibo/AnotherRedisDesktopManager/releases/tag/
 :::
 ### 编程语言客户端
 
-编程语言客户端也有很多种，如Java语言的Jedis客户端，Go语言的Go-Redis客户端等，这里以Java语言的Jedis客户端为例进行说明。
+编程语言客户端也有很多种，如Java语言的Jedis客户端，Go语言的Go-Redis客户端等。
 
-1. 新建一个Maven工程并引入以下依赖
+具体的可以参考Redis官方提供的文档，地址：https://redis.io/docs/clients/
 
-```xml
-<!--引入Jedis依赖-->
-<dependency>
-    <groupId>redis.clients</groupId>
-    <artifactId>jedis</artifactId>
-    <version>4.2.0</version>
-</dependency>
+几个Java语言的客户端展示。
 
-<!--引入单元测试依赖-->
-<dependency>
-    <groupId>org.junit.jupiter</groupId>
-    <artifactId>junit-jupiter</artifactId>
-    <version>5.8.2</version>
-    <scope>test</scope>
-</dependency>
-```
+![Java语言的Redis客户端](../../../../assets/introduce-redis/2023-05-17-00-15-17.png)
 
-2. 编写测试类并与Redis建立连接
-```java
-private Jedis jedis;
-
-@BeforeEach //被该注解修饰的方法每次执行其他方法前自动执行
-void setUp(){
-    // 1. 获取连接
-    jedis = new Jedis("192.168.230.88",6379);
-    // 2. 设置密码
-    jedis.auth("132537");
-    // 3. 选择库（默认是下标为0的库）
-    jedis.select(0);
-}
-```
-3. 编写一个操作数据的方法（这里以操作String类型为例）
-
-```java
-@Test
-public void testString(){
-    // 1.往redis中存放一条String类型的数据并获取返回结果
-    String result = jedis.set("url", "https://www.oz6.cn");
-    System.out.println("result = " + result);
-
-    // 2.从redis中获取一条数据
-    String url = jedis.get("url");
-    System.out.println("url = " + url);
-}
-```
-4. 最后不要忘记编写一个释放资源的方法
-
-
-```java
-    @AfterEach //被该注解修饰的方法会在每次执行其他方法后执行
-    void tearDown(){
-        // 1.释放资源
-        if (jedis != null){
-            jedis.close();
-        }
-    }
-```
-5. 执行testString()方法后测试结果。

@@ -50,20 +50,20 @@
 </tbody>
 </table>
 <h3 id="二叉树" tabindex="-1"><a class="header-anchor" href="#二叉树" aria-hidden="true">#</a> 二叉树</h3>
-<figure><img src="@source/assets/mysql-index/2023-04-10-22-50-55.png" alt="二叉树" tabindex="0" loading="lazy"><figcaption>二叉树</figcaption></figure>
+<figure><img src="@source/../assets/mysql-index/2023-04-10-22-50-55.png" alt="二叉树" tabindex="0" loading="lazy"><figcaption>二叉树</figcaption></figure>
 <div class="hint-container warning">
 <p class="hint-container-title">缺点</p>
 <p>使用二叉树做索引结构，顺序插入时，会退化成为一个链表，查询性能大大降低。大量数据的情况下，层级较深，检索速度慢。</p>
 </div>
 <h3 id="红黑树" tabindex="-1"><a class="header-anchor" href="#红黑树" aria-hidden="true">#</a> 红黑树</h3>
-<figure><img src="@source/assets/mysql-index/2023-04-10-22-55-17.png" alt="红黑树" tabindex="0" loading="lazy"><figcaption>红黑树</figcaption></figure>
+<figure><img src="@source/../assets/mysql-index/2023-04-10-22-55-17.png" alt="红黑树" tabindex="0" loading="lazy"><figcaption>红黑树</figcaption></figure>
 <div class="hint-container warning">
 <p class="hint-container-title">缺点</p>
 <p>红黑树虽然解决了退化为单链表的这种现象，但是其本质上仍然是二叉树，在大量数据的情况下，层级较深，检索速度还是很慢。</p>
 </div>
 <h3 id="b树" tabindex="-1"><a class="header-anchor" href="#b树" aria-hidden="true">#</a> B树</h3>
 <p>B树(B-Tree)又称为多路平衡查找树，一般是以阶树来衡量B树，以其最大度数作为B树的阶数，一棵n阶B树的节点最多能存储n-1个数据，n个指针。</p>
-<figure><img src="@source/assets/mysql-index/2023-04-10-23-09-07.png" alt="B树" tabindex="0" loading="lazy"><figcaption>B树</figcaption></figure>
+<figure><img src="@source/../assets/mysql-index/2023-04-10-23-09-07.png" alt="B树" tabindex="0" loading="lazy"><figcaption>B树</figcaption></figure>
 <div class="hint-container tip">
 <p class="hint-container-title">小知识</p>
 <p>树的度数指的是一个节点的子节点个数。</p>
@@ -76,10 +76,10 @@
 </div>
 <h3 id="b-树" tabindex="-1"><a class="header-anchor" href="#b-树" aria-hidden="true">#</a> B+树</h3>
 <p>B+树是B树的一个变种，基本的结构和节点的变化规律不变，仅在非叶子结点中存储索引，在叶子结点中存储数据。并且在叶子结点中，相邻的叶子结点会有一个单向的指针连接，形成一个单向链表。</p>
-<figure><img src="@source/assets/mysql-index/2023-04-10-23-16-28.png" alt="B+树" tabindex="0" loading="lazy"><figcaption>B+树</figcaption></figure>
+<figure><img src="@source/../assets/mysql-index/2023-04-10-23-16-28.png" alt="B+树" tabindex="0" loading="lazy"><figcaption>B+树</figcaption></figure>
 <h3 id="优化的b-树" tabindex="-1"><a class="header-anchor" href="#优化的b-树" aria-hidden="true">#</a> 优化的B+树</h3>
 <p>MySQL索引数据结构对经典的B+Tree进行了优化。在原B+Tree的基础上增加了一个指向相邻叶子结点的链表指针，就形成了带有顺序指针的B+Tree，提高区间访问的性能。</p>
-<figure><img src="@source/assets/mysql-index/2023-04-10-23-21-08.png" alt="MySQL优化的B+树" tabindex="0" loading="lazy"><figcaption>MySQL优化的B+树</figcaption></figure>
+<figure><img src="@source/../assets/mysql-index/2023-04-10-23-21-08.png" alt="MySQL优化的B+树" tabindex="0" loading="lazy"><figcaption>MySQL优化的B+树</figcaption></figure>
 <h3 id="hash" tabindex="-1"><a class="header-anchor" href="#hash" aria-hidden="true">#</a> Hash</h3>
 <p>哈希索引就是采用一定的Hash算法，将键值换算成新的hash值，映射到对应的槽位上，然后存储在hash表中。</p>
 <p>是哈希结构，那么就不可避免的会出现哈希碰撞（哈希冲突），即多个键值对映射到了同一个槽位上，此时就产生了哈希碰撞，可以通过构建链表来解决。</p>
@@ -212,7 +212,7 @@
 <li>如果没有主键，也没有合适的唯一索引，那么InnoDB引擎就会生成一个rowid作为隐藏的聚集索引。</li>
 </ol>
 <h3 id="回表查询" tabindex="-1"><a class="header-anchor" href="#回表查询" aria-hidden="true">#</a> 回表查询</h3>
-<figure><img src="@source/assets/mysql-index/2023-04-11-00-05-50.png" alt="回表查询" tabindex="0" loading="lazy"><figcaption>回表查询</figcaption></figure>
+<figure><img src="@source/../assets/mysql-index/2023-04-11-00-05-50.png" alt="回表查询" tabindex="0" loading="lazy"><figcaption>回表查询</figcaption></figure>
 <p>我们在对数据的查询时，通常会给定查询条件，而当我们的查询条件并不是聚集索引中的值，而是二级索引中的值，这时候的查询过程为：</p>
 <ol>
 <li>先通过筛选条件在二级索引中查找对应的记录值，找到记录值的id；</li>

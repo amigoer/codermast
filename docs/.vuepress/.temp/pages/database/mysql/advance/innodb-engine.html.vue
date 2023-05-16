@@ -1,6 +1,6 @@
 <template><div><h1 id="mysql进阶-innodb存储引擎" tabindex="-1"><a class="header-anchor" href="#mysql进阶-innodb存储引擎" aria-hidden="true">#</a> MySQL进阶 - InnoDB存储引擎</h1>
 <h2 id="逻辑存储结构" tabindex="-1"><a class="header-anchor" href="#逻辑存储结构" aria-hidden="true">#</a> 逻辑存储结构</h2>
-<p><img src="@source/assets/innodb-engine/2023-05-13-22-00-15.png" alt="InnoDB逻辑存储结构" loading="lazy">
+<p><img src="@source/../assets/innodb-engine/2023-05-13-22-00-15.png" alt="InnoDB逻辑存储结构" loading="lazy">
 InnoDB引擎的存储结构主要包含5个部分：</p>
 <ol>
 <li>表空间Tablespace</li>
@@ -32,9 +32,9 @@ InnoDB引擎的存储结构主要包含5个部分：</p>
 </div>
 <h2 id="架构" tabindex="-1"><a class="header-anchor" href="#架构" aria-hidden="true">#</a> 架构</h2>
 <p>MySQL5.5版本开始，默认使用InnoDB存储引擎，它擅长事务处理，具有崩溃恢复特征，在日常开发中使用非常广泛。下面是InnoDB架构图。</p>
-<figure><img src="@source/assets/innodb-engine/2023-05-13-22-17-39.png" alt="InnoDB架构" tabindex="0" loading="lazy"><figcaption>InnoDB架构</figcaption></figure>
+<figure><img src="@source/../assets/innodb-engine/2023-05-13-22-17-39.png" alt="InnoDB架构" tabindex="0" loading="lazy"><figcaption>InnoDB架构</figcaption></figure>
 <h3 id="内存结构" tabindex="-1"><a class="header-anchor" href="#内存结构" aria-hidden="true">#</a> 内存结构</h3>
-<figure><img src="@source/assets/innodb-engine/2023-05-13-22-18-38.png" alt="内存结构" tabindex="0" loading="lazy"><figcaption>内存结构</figcaption></figure>
+<figure><img src="@source/../assets/innodb-engine/2023-05-13-22-18-38.png" alt="内存结构" tabindex="0" loading="lazy"><figcaption>内存结构</figcaption></figure>
 <p>上图为InnoDB的内存架构，由图可知，主要分为三个部分</p>
 <h4 id="buffer-pool-缓冲池" tabindex="-1"><a class="header-anchor" href="#buffer-pool-缓冲池" aria-hidden="true">#</a> Buffer Pool 缓冲池</h4>
 <p>缓冲池是主内存中的一个区域，里面可以缓存磁盘上经常操作的真实数据，在执行增删改查操作时，先操作缓冲池中的数据（若缓冲池中没有所需数据，再从磁盘加载并且缓存），然后再以一定的频率刷新到磁盘，从而减少磁盘IO，加快处理速度。</p>
@@ -84,7 +84,7 @@ InnoDB引擎的存储结构主要包含5个部分：</p>
 </ul>
 </div>
 <h3 id="磁盘结构" tabindex="-1"><a class="header-anchor" href="#磁盘结构" aria-hidden="true">#</a> 磁盘结构</h3>
-<figure><img src="@source/assets/innodb-engine/2023-05-13-23-18-50.png" alt="磁盘结构" tabindex="0" loading="lazy"><figcaption>磁盘结构</figcaption></figure>
+<figure><img src="@source/../assets/innodb-engine/2023-05-13-23-18-50.png" alt="磁盘结构" tabindex="0" loading="lazy"><figcaption>磁盘结构</figcaption></figure>
 <h4 id="system-tablespace-系统表空间" tabindex="-1"><a class="header-anchor" href="#system-tablespace-系统表空间" aria-hidden="true">#</a> System Tablespace 系统表空间</h4>
 <p>系统表空间是更改缓冲区的存储区域。如果表是在系统表空间而不是每个表文件或通用表空间中创建的，它也可能包含表和索引数据。（在MySQL5.x版本中还包含InnoDB数据字典、undo log等）</p>
 <div class="hint-container tip">
@@ -189,7 +189,7 @@ InnoDB引擎的存储结构主要包含5个部分：</p>
 <p>重做日志，记录的是事务提交时数据页的物理修改，是用来实现事务的持久性。</p>
 <p>该日志文件由两部分组成：重做日志缓冲（redo log buffer）以及重做日志文件（redo logo file），前者是在内存中，后者是在磁盘中。</p>
 <p>当事务提交之后会把所有的修改信息都存到该日志文件中，用于在刷新脏页到磁盘，发生错误时，进行数据恢复使用。</p>
-<figure><img src="@source/assets/innodb-engine/2023-05-14-00-12-25.png" alt="数据操作流程" tabindex="0" loading="lazy"><figcaption>数据操作流程</figcaption></figure>
+<figure><img src="@source/../assets/innodb-engine/2023-05-14-00-12-25.png" alt="数据操作流程" tabindex="0" loading="lazy"><figcaption>数据操作流程</figcaption></figure>
 <h3 id="undo-log" tabindex="-1"><a class="header-anchor" href="#undo-log" aria-hidden="true">#</a> Undo Log</h3>
 <p>回滚日志，用于记录数据被修改前的信息，作用包含两个：提供回滚 和 MVCC（多版本并发控制），是用来实现事务的原子性。</p>
 <p>Undo Log和Redo Log记录物理日志不一样，它是逻辑日志。可以认为当delete一条记录时，Undo Log中会记录一条对应的insert记录，反之
