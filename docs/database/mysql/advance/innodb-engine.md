@@ -4,7 +4,7 @@ order : 13
 # MySQL进阶 - InnoDB存储引擎
 
 ## 逻辑存储结构
-![InnoDB逻辑存储结构](../../../assets/innodb-engine/2023-05-13-22-00-15.png)
+![InnoDB逻辑存储结构](../../../../assets/innodb-engine/2023-05-13-22-00-15.png)
 InnoDB引擎的存储结构主要包含5个部分：
 1. 表空间Tablespace
 
@@ -36,11 +36,11 @@ Roll_pointer：每次对某条引记录进行改动时，都会把旧的版本�
 ## 架构
 MySQL5.5版本开始，默认使用InnoDB存储引擎，它擅长事务处理，具有崩溃恢复特征，在日常开发中使用非常广泛。下面是InnoDB架构图。
 
-![InnoDB架构](../../../assets/innodb-engine/2023-05-13-22-17-39.png)
+![InnoDB架构](../../../../assets/innodb-engine/2023-05-13-22-17-39.png)
 
 ### 内存结构
 
-![内存结构](../../../assets/innodb-engine/2023-05-13-22-18-38.png)
+![内存结构](../../../../assets/innodb-engine/2023-05-13-22-18-38.png)
 
 上图为InnoDB的内存架构，由图可知，主要分为三个部分
 
@@ -91,7 +91,7 @@ MySQL5.5版本开始，默认使用InnoDB存储引擎，它擅长事务处理，
 :::
 ### 磁盘结构
 
-![磁盘结构](../../../assets/innodb-engine/2023-05-13-23-18-50.png)
+![磁盘结构](../../../../assets/innodb-engine/2023-05-13-23-18-50.png)
 
 #### System Tablespace 系统表空间
 
@@ -194,7 +194,7 @@ InnoDB使用会话临时表和全局临时表空间。存储用户创建的临�
 
 当事务提交之后会把所有的修改信息都存到该日志文件中，用于在刷新脏页到磁盘，发生错误时，进行数据恢复使用。
 
-![数据操作流程](../../../assets/innodb-engine/2023-05-14-00-12-25.png)
+![数据操作流程](../../../../assets/innodb-engine/2023-05-14-00-12-25.png)
 
 ### Undo Log 
 
