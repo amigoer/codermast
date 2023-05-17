@@ -1,7 +1,7 @@
 ---
  order : 9
 ---
-# Redis入门 - Jdies快速入门
+# Redis客户端 - Jdies快速入门
 
 ## 简介
 

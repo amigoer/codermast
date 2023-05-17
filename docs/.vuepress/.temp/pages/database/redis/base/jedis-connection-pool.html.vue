@@ -1,4 +1,4 @@
-<template><div><h1 id="redis入门-jedis连接池" tabindex="-1"><a class="header-anchor" href="#redis入门-jedis连接池" aria-hidden="true">#</a> Redis入门 - Jedis连接池</h1>
+<template><div><h1 id="redis客户端-jedis连接池" tabindex="-1"><a class="header-anchor" href="#redis客户端-jedis连接池" aria-hidden="true">#</a> Redis客户端 - Jedis连接池</h1>
 <p>Jedis本身是线程不安全的，并且频繁的创建和销毁连接会有性能损耗，因此我们使用Jedis连接池代替Jedis的直接连接方式。</p>
 <ul>
 <li>配置Jedis连接池</li>
@@ -26,6 +26,10 @@
         <span class="token keyword">return</span> jedisPool<span class="token punctuation">.</span><span class="token function">getResource</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></div></template>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><div class="hint-container warning">
+<p class="hint-container-title">注意</p>
+<p>在单线程环境中可以不使用Jedis连接池，但是多线程环境下必须使用Jedis连接池，并且使用Jedis连接池较为可靠，我们不必关注与资源的获取和释放等问题，可以将注意力集中于业务逻辑上。</p>
+</div>
+</div></template>
 
 
