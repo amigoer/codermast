@@ -16,7 +16,11 @@ order : 1
 ## 基于 Session 实现
 基于 Session 的实现我们主要是实现这三个部分：
 
+![](../../../../assets/message-login/2023-05-20-15-54-56.png)
+
+
 - 发送短信验证码
+
 ::: tip 接口信息
 
 |请求方式|`POST`|
@@ -74,7 +78,8 @@ public Result login(@RequestBody LoginFormDTO loginForm, HttpSession session){
 ```
 - 校验登录状态
 
-![](../../../../assets/message-login/2023-05-20-15-54-56.png)
+
+
 
 
 
