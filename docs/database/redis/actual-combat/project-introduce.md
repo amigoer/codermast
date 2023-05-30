@@ -1,5 +1,5 @@
 ---
-order : 0
+order : 1
 ---
 # Redis实战 - 项目介绍
 
