@@ -83,7 +83,7 @@
 <p>先操作数据库，在删除缓存。</p>
 <h2 id="缓存穿透" tabindex="-1"><a class="header-anchor" href="#缓存穿透" aria-hidden="true">#</a> 缓存穿透</h2>
 <p>缓存穿透是指客户端请求的数据在缓存中和数据库中都不存在，这样缓存永远不会生效，这些请求都会打到数据库。如请求不存在的数据，则 Redis 缓存中不存在，数据库中也不存在，频繁请求，造成资源的浪费。</p>
-<p>解决这种问题的方法有两种：</p>
+<p>解决这种问题的方法有如下几种：</p>
 <ul>
 <li>缓存空对象
 <ul>
@@ -97,7 +97,52 @@
 <li>缺点：1. 实现复杂 2. 存在误判可能</li>
 </ul>
 </li>
+<li>增强ID的复杂度，避免被猜测ID规律</li>
+<li>做好数据的基础格式校验</li>
 </ul>
+<h2 id="缓存雪崩" tabindex="-1"><a class="header-anchor" href="#缓存雪崩" aria-hidden="true">#</a> 缓存雪崩</h2>
+<p>缓存雪崩是指在同一时间段内，大量的缓存 Key 同时失效或者 Redis 服务宕机，导致瞬间大量请求到达数据库，带来巨大压力。</p>
+<p><strong>解决方案</strong></p>
+<ul>
+<li>给不同的 Key 的TTL添加随机值</li>
+<li>利用 Redis 集群提高服务的可用性</li>
+<li>给缓存业务添加降级限流操作</li>
+<li>给业务添加多级缓存</li>
+</ul>
+<h2 id="缓存击穿" tabindex="-1"><a class="header-anchor" href="#缓存击穿" aria-hidden="true">#</a> 缓存击穿</h2>
+<p>缓存击穿问题也叫热点 key 问题，就是一个被高并发访问并且缓存重建业务较复杂的 key 突然失效，无数的请求访问会在瞬间给数据库带来巨大的冲击。</p>
+<p><strong>解决方案</strong></p>
+<ul>
+<li>互斥锁
+<ol>
+<li>查询缓存，未命中</li>
+<li>获取锁，再更新缓存</li>
+<li>更新完以后，释放锁</li>
+</ol>
+</li>
+<li>逻辑过期</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">解决方案</th>
+<th style="text-align:center">优点</th>
+<th style="text-align:center">缺点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">互斥锁</td>
+<td style="text-align:center">1. 没有额外的内存消耗<br> 2. 保证一致性<br> 3. 实现简单</td>
+<td style="text-align:center">1. 线程需要等待，性能受影响<br> 2. 可能有死锁风险</td>
+</tr>
+<tr>
+<td style="text-align:center">逻辑过期</td>
+<td style="text-align:center">线程无需等待，性能较好</td>
+<td style="text-align:center">1. 不保证一致性 <br> 2. 有额外内存消耗<br> 3. 实现复杂</td>
+</tr>
+</tbody>
+</table>
 <h2 id="实现api" tabindex="-1"><a class="header-anchor" href="#实现api" aria-hidden="true">#</a> 实现API</h2>
 <figure><img src="@source/../assets/merchant-query-cache/2023-05-30-21-08-29.png" alt="缓存作用模型" tabindex="0" loading="lazy"><figcaption>缓存作用模型</figcaption></figure>
 <figure><img src="@source/../assets/merchant-query-cache/2023-05-30-21-09-21.png" alt="根据ID查询商铺缓存流程" tabindex="0" loading="lazy"><figcaption>根据ID查询商铺缓存流程</figcaption></figure>

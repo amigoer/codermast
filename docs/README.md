@@ -3,7 +3,7 @@ home: true
 icon: home
 title: 首页
 heroImage: /logo.svg
-heroText: Mast的编程学习笔记
+heroText: CoderMast编程桅杆
 tagline: 学习笔记 & 工作总结
 lang : zh-CN
 actions:
@@ -36,8 +36,8 @@ features:
     link: /arch/base/arch-basic
 
 copyright: false
-footer:  <a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral&invite=HkVyvO3mw" rel="nofollow"><img src="/assets/images/upyun-footer.png" style="width:240px;"/></a><hr><a href="https://vuepress-theme-hope.github.io/v2/" target="_blank">VuePress Theme Hope</a> | Copyright © 2023-2023 CoderMast
- <a href="https://beian.miit.gov.cn/" rel="nofollow">陕ICP备20010345号-5</a>｜
+footer:  <a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral&invite=HkVyvO3mw" rel="nofollow"><img src="/assets/images/upyun-footer.png" style="width:240px;"/></a><hr><a href="https://vuepress-theme-hope.github.io/v2/" target="_blank">VuePress Theme Hope</a> &#124 Copyright © 2023-2023 CoderMast
+ &#124 <a href="https://beian.miit.gov.cn/" rel="nofollow">陕ICP备20010345号-5</a>
 ---
 
 
