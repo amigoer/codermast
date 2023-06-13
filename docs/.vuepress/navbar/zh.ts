@@ -30,7 +30,10 @@ export const zhNavbar = navbar([
       },
       {
         text: "NoSQL数据库",
-        children: [{ text: "Redis", link: "redis/" }],
+        children: [
+          { text: "Redis", link: "redis/" },
+          { text: "MongoDB", link: "mongodb/" },
+          { text: "ElaticSearch", link: "elaticsearch/" }],
       },
     ],
   },
