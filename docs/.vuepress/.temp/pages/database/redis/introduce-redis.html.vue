@@ -82,7 +82,7 @@
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><figure><img src="@source/../../assets/introduce-redis/2023-05-16-15-07-53.png" alt="Redis安装" tabindex="0" loading="lazy"><figcaption>Redis安装</figcaption></figure>
 <div class="hint-container note">
 <p class="hint-container-title">其他安装</p>
-<p>除了上述安装方式以外还有很多安装方式，这里不再赘述。</p>
+<p>除了上述安装方式以外还有很多安装方式，这里不再赘述。各种环境的安装方式，可以参考Redis官方的安装文档，地址：<a href="https://redis.io/docs/getting-started/installation/" target="_blank" rel="noopener noreferrer">https://redis.io/docs/getting-started/installation/<ExternalLinkIcon/></a></p>
 </div>
 <h2 id="redis启动的三种方式" tabindex="-1"><a class="header-anchor" href="#redis启动的三种方式" aria-hidden="true">#</a> Redis启动的三种方式</h2>
 <h3 id="前台启动" tabindex="-1"><a class="header-anchor" href="#前台启动" aria-hidden="true">#</a> 前台启动</h3>
@@ -176,64 +176,10 @@ WantedBy=multi-user.target
 <p>对于Github访问慢的⽤户，可以直接在国内的Gitee中下载安装，⼀般来说两者都没有什么差别，唯⼀的区别就在于Github上的更新⽐较及时。</p>
 </div>
 <h3 id="编程语言客户端" tabindex="-1"><a class="header-anchor" href="#编程语言客户端" aria-hidden="true">#</a> 编程语言客户端</h3>
-<p>编程语言客户端也有很多种，如Java语言的Jedis客户端，Go语言的Go-Redis客户端等，这里以Java语言的Jedis客户端为例进行说明。</p>
-<ol>
-<li>新建一个Maven工程并引入以下依赖</li>
-</ol>
-<div class="language-xml line-numbers-mode" data-ext="xml"><pre v-pre class="language-xml"><code><span class="token comment">&lt;!--引入Jedis依赖--></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>redis.clients<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>jedis<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>4.2.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
-
-<span class="token comment">&lt;!--引入单元测试依赖--></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.junit.jupiter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>junit-jupiter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>5.8.2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>scope</span><span class="token punctuation">></span></span>test<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>scope</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ol start="2">
-<li>编写测试类并与Redis建立连接</li>
-</ol>
-<div class="language-java line-numbers-mode" data-ext="java"><pre v-pre class="language-java"><code><span class="token keyword">private</span> <span class="token class-name">Jedis</span> jedis<span class="token punctuation">;</span>
-
-<span class="token annotation punctuation">@BeforeEach</span> <span class="token comment">//被该注解修饰的方法每次执行其他方法前自动执行</span>
-<span class="token keyword">void</span> <span class="token function">setUp</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-    <span class="token comment">// 1. 获取连接</span>
-    jedis <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Jedis</span><span class="token punctuation">(</span><span class="token string">"192.168.230.88"</span><span class="token punctuation">,</span><span class="token number">6379</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment">// 2. 设置密码</span>
-    jedis<span class="token punctuation">.</span><span class="token function">auth</span><span class="token punctuation">(</span><span class="token string">"132537"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token comment">// 3. 选择库（默认是下标为0的库）</span>
-    jedis<span class="token punctuation">.</span><span class="token function">select</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ol start="3">
-<li>编写一个操作数据的方法（这里以操作String类型为例）</li>
-</ol>
-<div class="language-java line-numbers-mode" data-ext="java"><pre v-pre class="language-java"><code><span class="token annotation punctuation">@Test</span>
-<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-    <span class="token comment">// 1.往redis中存放一条String类型的数据并获取返回结果</span>
-    <span class="token class-name">String</span> result <span class="token operator">=</span> jedis<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">"url"</span><span class="token punctuation">,</span> <span class="token string">"https://www.oz6.cn"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"result = "</span> <span class="token operator">+</span> result<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token comment">// 2.从redis中获取一条数据</span>
-    <span class="token class-name">String</span> url <span class="token operator">=</span> jedis<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"url"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"url = "</span> <span class="token operator">+</span> url<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ol start="4">
-<li>最后不要忘记编写一个释放资源的方法</li>
-</ol>
-<div class="language-java line-numbers-mode" data-ext="java"><pre v-pre class="language-java"><code>    <span class="token annotation punctuation">@AfterEach</span> <span class="token comment">//被该注解修饰的方法会在每次执行其他方法后执行</span>
-    <span class="token keyword">void</span> <span class="token function">tearDown</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token comment">// 1.释放资源</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>jedis <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-            jedis<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span>
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ol start="5">
-<li>执行testString()方法后测试结果。</li>
-</ol>
+<p>编程语言客户端也有很多种，如Java语言的Jedis客户端，Go语言的Go-Redis客户端等。</p>
+<p>具体的可以参考Redis官方提供的文档，地址：<a href="https://redis.io/docs/clients/" target="_blank" rel="noopener noreferrer">https://redis.io/docs/clients/<ExternalLinkIcon/></a></p>
+<p>几个Java语言的客户端展示。</p>
+<figure><img src="@source/../../assets/introduce-redis/2023-05-17-00-15-17.png" alt="Java语言的Redis客户端" tabindex="0" loading="lazy"><figcaption>Java语言的Redis客户端</figcaption></figure>
 </div></template>
 
 
