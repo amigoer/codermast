@@ -13,7 +13,7 @@
 <li>Com_select：查询</li>
 <li>Com_delete：删除</li>
 </ul>
-<figure><img src="@source/../../assets/mysql-index/2023-04-11-21-41-30.png" alt="性能查询" tabindex="0" loading="lazy"><figcaption>性能查询</figcaption></figure>
+<figure><img src="@source/../assets/mysql-index/2023-04-11-21-41-30.png" alt="性能查询" tabindex="0" loading="lazy"><figcaption>性能查询</figcaption></figure>
 <p>我们可以根据这个数据来判断我们主要对那些操作进行优化。</p>
 <h2 id="慢查询日志" tabindex="-1"><a class="header-anchor" href="#慢查询日志" aria-hidden="true">#</a> 慢查询日志</h2>
 <p>慢查询日志记录了所有执行时间超过指定参数(long_query_time，单位：秒，默认10秒)的所有SQL语句的日志。</p>

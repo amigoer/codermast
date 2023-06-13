@@ -94,7 +94,7 @@ select ... lock in share mode （共享锁），select ... for update 、insert�
 <li>Repeatable Read : 仅在事务中第一次执行快照读时生成ReadView，后续复用该ReadView</li>
 </ul>
 </div>
-<figure><img src="@source/../../assets/innodb-mvcc/2023-05-14-22-22-21.png" alt="MVCC-实现原理" tabindex="0" loading="lazy"><figcaption>MVCC-实现原理</figcaption></figure>
+<figure><img src="@source/../assets/innodb-mvcc/2023-05-14-22-22-21.png" alt="MVCC-实现原理" tabindex="0" loading="lazy"><figcaption>MVCC-实现原理</figcaption></figure>
 <table>
 <thead>
 <tr>

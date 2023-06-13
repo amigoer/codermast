@@ -4,7 +4,7 @@
 <p>简单来说发布订阅 (pub/sub) 可以分发消息，但无法记录历史消息。</p>
 <p>而 Redis Stream 提供了消息的持久化和主备复制功能，可以让任何客户端访问任何时刻的数据，并且能记住每一个客户端的访问位置，还能保证消息不丢失。</p>
 <p>Redis Stream 的结构如下所示，它有一个消息链表，将所有加入的消息都串起来，每个消息都有一个唯一的 ID 和对应的内容：</p>
-<figure><img src="@source/../../assets/redis-stream/2023-05-17-01-01-53.png" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<figure><img src="@source/../assets/redis-stream/2023-05-17-01-01-53.png" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
 <p>每个 Stream 都有唯一的名称，它就是 Redis 的 key，在我们首次使用 xadd 指令追加消息时自动创建。</p>
 <p>上图解析：</p>
 <ul>

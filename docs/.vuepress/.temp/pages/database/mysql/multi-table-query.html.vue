@@ -31,7 +31,7 @@
 <p>例如，我们在连接查询的时候，不指定条件列表，则查询出来的数据是两张表的笛卡尔积组合。即按行将两张表排列组合，一共有 表a的行数 * 表b的行数 个值。</p>
 <h3 id="内连接" tabindex="-1"><a class="header-anchor" href="#内连接" aria-hidden="true">#</a> 内连接</h3>
 <p>相当于查询数据表A、B之间的交集部分。内连接分为两种类型<Badge text="隐式内连接" type="info" />和<Badge text="显式内连接" type="info" />。</p>
-<figure><img src="@source/../../assets/multi-table-query/2023-04-10-15-22-40.png" alt="内连接" tabindex="0" loading="lazy"><figcaption>内连接</figcaption></figure>
+<figure><img src="@source/../assets/multi-table-query/2023-04-10-15-22-40.png" alt="内连接" tabindex="0" loading="lazy"><figcaption>内连接</figcaption></figure>
 <ul>
 <li>隐式内连接</li>
 </ul>
@@ -45,12 +45,12 @@
 <ul>
 <li>左外连接：查询左表的所有数据，以及两张表交集部分的数据。</li>
 </ul>
-<figure><img src="@source/../../assets/multi-table-query/2023-04-10-15-33-53.png" alt="左外连接" tabindex="0" loading="lazy"><figcaption>左外连接</figcaption></figure>
+<figure><img src="@source/../assets/multi-table-query/2023-04-10-15-33-53.png" alt="左外连接" tabindex="0" loading="lazy"><figcaption>左外连接</figcaption></figure>
 <div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">SELECT</span> 字段列表 <span class="token keyword">FROM</span> 表<span class="token number">1</span> <span class="token keyword">LEFT</span> <span class="token punctuation">[</span><span class="token keyword">OUTER</span><span class="token punctuation">]</span> <span class="token keyword">JOIN</span> 表<span class="token number">2</span> <span class="token keyword">ON</span> 连接条件<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">;</span>
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><ul>
 <li>右外连接：查询右表的所有数据，以及两张表交集部分的数据。</li>
 </ul>
-<figure><img src="@source/../../assets/multi-table-query/2023-04-10-15-34-28.png" alt="右外连接" tabindex="0" loading="lazy"><figcaption>右外连接</figcaption></figure>
+<figure><img src="@source/../assets/multi-table-query/2023-04-10-15-34-28.png" alt="右外连接" tabindex="0" loading="lazy"><figcaption>右外连接</figcaption></figure>
 <div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">SELECT</span> 字段列表 <span class="token keyword">FROM</span> 表<span class="token number">1</span> <span class="token keyword">RIGHT</span> <span class="token punctuation">[</span><span class="token keyword">OUTER</span><span class="token punctuation">]</span> <span class="token keyword">JOIN</span> 表<span class="token number">2</span> <span class="token keyword">ON</span> 连接条件<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">;</span>
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><h3 id="自连接" tabindex="-1"><a class="header-anchor" href="#自连接" aria-hidden="true">#</a> 自连接</h3>
 <p>自连接顾名思义就是自己连接自己，当前表与自身的连接查询，是通过将一张表复制成两张，将这两张表进行连接查询，自连接查询必须使用表别名。</p>

@@ -79,7 +79,7 @@
 <p>由于Redis的作者仅编写了Linux环境下的版本，且在生产环境时大多数使用的Linux系统，故我们在Centos操作系统内进行安装。</p>
 <p>安装Redis</p>
 <div class="language-bash line-numbers-mode" data-ext="sh"><pre v-pre class="language-bash"><code>yum <span class="token function">install</span> redis
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><figure><img src="@source/../../assets/introduce-redis/2023-05-16-15-07-53.png" alt="Redis安装" tabindex="0" loading="lazy"><figcaption>Redis安装</figcaption></figure>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><figure><img src="@source/../assets/introduce-redis/2023-05-16-15-07-53.png" alt="Redis安装" tabindex="0" loading="lazy"><figcaption>Redis安装</figcaption></figure>
 <div class="hint-container note">
 <p class="hint-container-title">其他安装</p>
 <p>除了上述安装方式以外还有很多安装方式，这里不再赘述。各种环境的安装方式，可以参考Redis官方的安装文档，地址：<a href="https://redis.io/docs/getting-started/installation/" target="_blank" rel="noopener noreferrer">https://redis.io/docs/getting-started/installation/<ExternalLinkIcon/></a></p>
@@ -87,7 +87,7 @@
 <h2 id="redis启动的三种方式" tabindex="-1"><a class="header-anchor" href="#redis启动的三种方式" aria-hidden="true">#</a> Redis启动的三种方式</h2>
 <h3 id="前台启动" tabindex="-1"><a class="header-anchor" href="#前台启动" aria-hidden="true">#</a> 前台启动</h3>
 <p>安装完Redis以后，在任意目录下输入<code v-pre>redis-server</code>命令即可启动Redis。</p>
-<figure><img src="@source/../../assets/introduce-redis/2023-05-16-15-13-08.png" alt="前台启动Redis" tabindex="0" loading="lazy"><figcaption>前台启动Redis</figcaption></figure>
+<figure><img src="@source/../assets/introduce-redis/2023-05-16-15-13-08.png" alt="前台启动Redis" tabindex="0" loading="lazy"><figcaption>前台启动Redis</figcaption></figure>
 <p>前台启动Redis后，就是如上界面，此时命令终端会一直响应Redis服务，而无法进行其他操作，要进行其他指令操作时，则必须关闭Redis服务，很不方便，此时我们可以使用后台启动。</p>
 <h3 id="后台启动" tabindex="-1"><a class="header-anchor" href="#后台启动" aria-hidden="true">#</a> 后台启动</h3>
 <p>如果要让Redis以后台方式启动，则必须修改Redis配置文件，配置文件所在目录就是Redis安装目录。</p>
@@ -100,7 +100,7 @@ daemonize <span class="token function">yes</span>
 requirepass codermast
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><p>此时启动Redis时需要加上配置文件，即可后台启动redis。</p>
 <div class="language-bash line-numbers-mode" data-ext="sh"><pre v-pre class="language-bash"><code>redis-server redis.conf
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><figure><img src="@source/../../assets/introduce-redis/2023-05-16-15-30-14.png" alt="Redis后台启动" tabindex="0" loading="lazy"><figcaption>Redis后台启动</figcaption></figure>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><figure><img src="@source/../assets/introduce-redis/2023-05-16-15-30-14.png" alt="Redis后台启动" tabindex="0" loading="lazy"><figcaption>Redis后台启动</figcaption></figure>
 <h3 id="开机启动" tabindex="-1"><a class="header-anchor" href="#开机启动" aria-hidden="true">#</a> 开机启动</h3>
 <ol>
 <li>要实现开机启动，需要配置一个系统服务文件</li>
@@ -145,7 +145,7 @@ WantedBy=multi-user.target
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><blockquote>
 <p>这里options为选项，commonds为命令，加上[]为可选项。这也是一种常见的文档编写规范。</p>
 </blockquote>
-<figure><img src="@source/../../assets/introduce-redis/2023-05-16-15-30-50.png" alt="Redis命令行连接" tabindex="0" loading="lazy"><figcaption>Redis命令行连接</figcaption></figure>
+<figure><img src="@source/../assets/introduce-redis/2023-05-16-15-30-50.png" alt="Redis命令行连接" tabindex="0" loading="lazy"><figcaption>Redis命令行连接</figcaption></figure>
 <div class="hint-container warning">
 <p class="hint-container-title">注意</p>
 <p>这里要注意的是，在使用redis-cli客户端连接redis服务时，需要保证redis服务是开启的，无论是在远程连接或者本地连接，这是新手阶段容易忽视的一点。</p>
@@ -168,7 +168,7 @@ WantedBy=multi-user.target
 <blockquote>
 <p>笔者的电脑系统为macos，故就演示Mac环境下的图形化客户端，windows系统下的客户端种类很多，网络上的资源也很多，这里就不赘述。</p>
 </blockquote>
-<figure><img src="@source/../../assets/introduce-redis/2023-05-16-15-58-50.png" alt="Redis图形化客户端-Another redis desktop manager" tabindex="0" loading="lazy"><figcaption>Redis图形化客户端-Another redis desktop manager</figcaption></figure>
+<figure><img src="@source/../assets/introduce-redis/2023-05-16-15-58-50.png" alt="Redis图形化客户端-Another redis desktop manager" tabindex="0" loading="lazy"><figcaption>Redis图形化客户端-Another redis desktop manager</figcaption></figure>
 <p>Github地址：<a href="https://github.com/qishibo/AnotherRedisDesktopManager/releases/tag/v1.5.9" target="_blank" rel="noopener noreferrer">https://github.com/qishibo/AnotherRedisDesktopManager/releases/tag/v1.5.9<ExternalLinkIcon/></a></p>
 <p>Gitee地址：<a href="https://gitee.com/qishibo/AnotherRedisDesktopManager/releases/tag/v1.5.8" target="_blank" rel="noopener noreferrer">https://gitee.com/qishibo/AnotherRedisDesktopManager/releases/tag/v1.5.8<ExternalLinkIcon/></a></p>
 <div class="hint-container info">
@@ -179,7 +179,7 @@ WantedBy=multi-user.target
 <p>编程语言客户端也有很多种，如Java语言的Jedis客户端，Go语言的Go-Redis客户端等。</p>
 <p>具体的可以参考Redis官方提供的文档，地址：<a href="https://redis.io/docs/clients/" target="_blank" rel="noopener noreferrer">https://redis.io/docs/clients/<ExternalLinkIcon/></a></p>
 <p>几个Java语言的客户端展示。</p>
-<figure><img src="@source/../../assets/introduce-redis/2023-05-17-00-15-17.png" alt="Java语言的Redis客户端" tabindex="0" loading="lazy"><figcaption>Java语言的Redis客户端</figcaption></figure>
+<figure><img src="@source/../assets/introduce-redis/2023-05-17-00-15-17.png" alt="Java语言的Redis客户端" tabindex="0" loading="lazy"><figcaption>Java语言的Redis客户端</figcaption></figure>
 </div></template>
 
 

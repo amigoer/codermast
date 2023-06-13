@@ -40,7 +40,7 @@ mysql <span class="token comment">--local-infile -u root -p</span>
 <h3 id="数据的组织方式" tabindex="-1"><a class="header-anchor" href="#数据的组织方式" aria-hidden="true">#</a> 数据的组织方式</h3>
 <p>在InnoDB存储引擎中，表数据都是根据主键顺序组织存放的，这种存储方式的表称为索引组织表（index organized table IOT）。</p>
 <p>而InnoDB存储引擎中，默认的聚集索引就是主键索引。</p>
-<figure><img src="@source/../../assets/sql-optimize/2023-04-14-10-17-09.png" alt="逻辑存储结构" tabindex="0" loading="lazy"><figcaption>逻辑存储结构</figcaption></figure>
+<figure><img src="@source/../assets/sql-optimize/2023-04-14-10-17-09.png" alt="逻辑存储结构" tabindex="0" loading="lazy"><figcaption>逻辑存储结构</figcaption></figure>
 <div class="hint-container info">
 <p class="hint-container-title">参数说明</p>
 <ul>
@@ -65,16 +65,16 @@ mysql <span class="token comment">--local-infile -u root -p</span>
 同理，数据按主键排序，那么在主键乱序插入一组数据以后，此时页内的数据是有序的，但是如果下一次想要插入的数据主键不为最大值，那么此时需要将数据插入到页中，而不是直接添加到页尾，则此时需要进行数据的移动。</p>
 </li>
 </ul>
-<figure><img src="@source/../../assets/sql-optimize/2023-04-14-10-29-31.png" alt="主键乱序插入" tabindex="0" loading="lazy"><figcaption>主键乱序插入</figcaption></figure>
+<figure><img src="@source/../assets/sql-optimize/2023-04-14-10-29-31.png" alt="主键乱序插入" tabindex="0" loading="lazy"><figcaption>主键乱序插入</figcaption></figure>
 <ol>
 <li>先开启一个新的数据页，page3
-<img src="@source/../../assets/sql-optimize/2023-04-14-10-34-34.png" alt="开辟新的数据页" loading="lazy"></li>
+<img src="@source/../assets/sql-optimize/2023-04-14-10-34-34.png" alt="开辟新的数据页" loading="lazy"></li>
 <li>将page1中50%的位置，将后半段数据移动到page3
-<img src="@source/../../assets/sql-optimize/2023-04-14-10-35-08.png" alt="移动page1中一半的数据" loading="lazy"></li>
+<img src="@source/../assets/sql-optimize/2023-04-14-10-35-08.png" alt="移动page1中一半的数据" loading="lazy"></li>
 <li>将主键为50的这行数据，插入到page3的末尾。
-<img src="@source/../../assets/sql-optimize/2023-04-14-10-32-55.png" alt="将数据插入到page3末尾" loading="lazy"></li>
+<img src="@source/../assets/sql-optimize/2023-04-14-10-32-55.png" alt="将数据插入到page3末尾" loading="lazy"></li>
 <li>由于要保证page之间有序，还需要调整页间指针的方向，调整为 page1 -&gt; page3 -&gt; page2
-<img src="@source/../../assets/sql-optimize/2023-04-14-10-33-44.png" alt="调整页间指针" loading="lazy"></li>
+<img src="@source/../assets/sql-optimize/2023-04-14-10-33-44.png" alt="调整页间指针" loading="lazy"></li>
 <li>此时则完成了数据的插入。</li>
 </ol>
 <div class="hint-container tip">

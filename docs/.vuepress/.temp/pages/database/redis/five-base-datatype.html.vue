@@ -89,7 +89,7 @@
 <h2 id="hash-哈希" tabindex="-1"><a class="header-anchor" href="#hash-哈希" aria-hidden="true">#</a> Hash 哈希</h2>
 <p>Hash类型，也叫散列，又可以成为哈希类型。其value是一个无序字典，类似于Java中的HashMap结构。</p>
 <p>Hash结构可以将对象中的每个字段独立存储，可以针对单个字段做CRUD</p>
-<figure><img src="@source/../../assets/datatype-commond/2023-05-16-17-09-37.png" alt="Hash类型的数据" tabindex="0" loading="lazy"><figcaption>Hash类型的数据</figcaption></figure>
+<figure><img src="@source/../assets/datatype-commond/2023-05-16-17-09-37.png" alt="Hash类型的数据" tabindex="0" loading="lazy"><figcaption>Hash类型的数据</figcaption></figure>
 <p>Hash的常见命令有：</p>
 <table>
 <thead>
@@ -181,7 +181,7 @@
 </tr>
 </tbody>
 </table>
-<figure><img src="@source/../../assets/datatype-commond/双端队列.gif" alt="双端队列示意图" tabindex="0" loading="lazy"><figcaption>双端队列示意图</figcaption></figure>
+<figure><img src="@source/../assets/datatype-commond/双端队列.gif" alt="双端队列示意图" tabindex="0" loading="lazy"><figcaption>双端队列示意图</figcaption></figure>
 <h2 id="set-集合" tabindex="-1"><a class="header-anchor" href="#set-集合" aria-hidden="true">#</a> Set 集合</h2>
 <p>Redis的Set结构与Java中的HashSet类似，可以看做是一个value为null的HashMap。因为也是一个hash表，因此具备与HashSet类似的特征</p>
 <ul>
@@ -232,7 +232,7 @@
 </tr>
 </tbody>
 </table>
-<figure><img src="@source/../../assets/datatype-commond/2023-05-16-17-15-01.png" alt="tip 交集、差集、并集图示" tabindex="0" loading="lazy"><figcaption>tip 交集、差集、并集图示</figcaption></figure>
+<figure><img src="@source/../assets/datatype-commond/2023-05-16-17-15-01.png" alt="tip 交集、差集、并集图示" tabindex="0" loading="lazy"><figcaption>tip 交集、差集、并集图示</figcaption></figure>
 <h2 id="sortedset-有序集合" tabindex="-1"><a class="header-anchor" href="#sortedset-有序集合" aria-hidden="true">#</a> SortedSet 有序集合</h2>
 <p>Redis的SortedSet又可以成为Zset，是一个可排序的set集合，与Java中的TreeSet有些类似，但底层数据结构却差别很大。</p>
 <p>SortedSet中的每一个元素都带有一个score属性，可以基于score属性对元素排序，底层的实现是一个跳表（SkipList）加 hash表。</p>
