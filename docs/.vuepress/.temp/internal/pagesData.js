@@ -5,8 +5,6 @@ export const pagesData = {
   "v-70bc2959": () => import(/* webpackChunkName: "v-70bc2959" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/algorithm/index.html.js").then(({ data }) => data),
   // path: /database/
   "v-2e25198a": () => import(/* webpackChunkName: "v-2e25198a" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/database/index.html.js").then(({ data }) => data),
-  // path: /problems/
-  "v-884a0bbc": () => import(/* webpackChunkName: "v-884a0bbc" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/problems/index.html.js").then(({ data }) => data),
   // path: /java/java-base-basic-grammar.html
   "v-368130d4": () => import(/* webpackChunkName: "v-368130d4" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/java/java-base-basic-grammar.html.js").then(({ data }) => data),
   // path: /java/java-base-final.html
@@ -17,6 +15,8 @@ export const pagesData = {
   "v-609fd806": () => import(/* webpackChunkName: "v-609fd806" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/java/java-base-static.html.js").then(({ data }) => data),
   // path: /java/
   "v-14c69af4": () => import(/* webpackChunkName: "v-14c69af4" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/java/index.html.js").then(({ data }) => data),
+  // path: /problems/
+  "v-884a0bbc": () => import(/* webpackChunkName: "v-884a0bbc" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/problems/index.html.js").then(({ data }) => data),
   // path: /tools/
   "v-d440f426": () => import(/* webpackChunkName: "v-d440f426" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/tools/index.html.js").then(({ data }) => data),
   // path: /computer/cn/
@@ -25,6 +25,8 @@ export const pagesData = {
   "v-1be8c5c4": () => import(/* webpackChunkName: "v-1be8c5c4" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/computer/cn/cn-tcp-3-4.html.js").then(({ data }) => data),
   // path: /computer/co/
   "v-9a72c470": () => import(/* webpackChunkName: "v-9a72c470" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/computer/co/index.html.js").then(({ data }) => data),
+  // path: /computer/ds/
+  "v-9a72bbf6": () => import(/* webpackChunkName: "v-9a72bbf6" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/computer/ds/index.html.js").then(({ data }) => data),
   // path: /computer/os/
   "v-9a726960": () => import(/* webpackChunkName: "v-9a726960" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/computer/os/index.html.js").then(({ data }) => data),
   // path: /database/mysql/constraint.html
@@ -73,6 +75,8 @@ export const pagesData = {
   "v-13f32783": () => import(/* webpackChunkName: "v-13f32783" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/database/mysql/transaction.html.js").then(({ data }) => data),
   // path: /database/redis/base-commind.html
   "v-199a53b3": () => import(/* webpackChunkName: "v-199a53b3" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/database/redis/base-commind.html.js").then(({ data }) => data),
+  // path: /database/redis/cache-issues.html
+  "v-5d458936": () => import(/* webpackChunkName: "v-5d458936" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/database/redis/cache-issues.html.js").then(({ data }) => data),
   // path: /database/redis/five-base-datatype.html
   "v-fd5ee6f6": () => import(/* webpackChunkName: "v-fd5ee6f6" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/database/redis/five-base-datatype.html.js").then(({ data }) => data),
   // path: /database/redis/introduce-redis.html
@@ -115,8 +119,6 @@ export const pagesData = {
   "v-04c0516d": () => import(/* webpackChunkName: "v-04c0516d" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/problems/leetcode/leetcode746.html.js").then(({ data }) => data),
   // path: /problems/leetcode/
   "v-56c36d18": () => import(/* webpackChunkName: "v-56c36d18" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/problems/leetcode/index.html.js").then(({ data }) => data),
-  // path: /computer/ds/
-  "v-9a72bbf6": () => import(/* webpackChunkName: "v-9a72bbf6" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/computer/ds/index.html.js").then(({ data }) => data),
   // path: /tools/stata/
   "v-594b2522": () => import(/* webpackChunkName: "v-594b2522" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/tools/stata/index.html.js").then(({ data }) => data),
   // path: /tools/stata/stata-commom-instruct.html
@@ -157,14 +159,14 @@ export const pagesData = {
   "v-cdc0d128": () => import(/* webpackChunkName: "v-cdc0d128" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/computer/ds/sort/index.html.js").then(({ data }) => data),
   // path: /computer/ds/sort/sort.html
   "v-d1efbfe2": () => import(/* webpackChunkName: "v-d1efbfe2" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/computer/ds/sort/sort.html.js").then(({ data }) => data),
-  // path: /computer/ds/stack-queue-array/
-  "v-d55a61c8": () => import(/* webpackChunkName: "v-d55a61c8" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/computer/ds/stack-queue-array/index.html.js").then(({ data }) => data),
-  // path: /computer/ds/stack-queue-array/stack-queue-array.html
-  "v-d21bf9c6": () => import(/* webpackChunkName: "v-d21bf9c6" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/computer/ds/stack-queue-array/stack-queue-array.html.js").then(({ data }) => data),
   // path: /computer/ds/string/
   "v-4fc8bece": () => import(/* webpackChunkName: "v-4fc8bece" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/computer/ds/string/index.html.js").then(({ data }) => data),
   // path: /computer/ds/string/string.html
   "v-46630da2": () => import(/* webpackChunkName: "v-46630da2" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/computer/ds/string/string.html.js").then(({ data }) => data),
+  // path: /computer/ds/stack-queue-array/
+  "v-d55a61c8": () => import(/* webpackChunkName: "v-d55a61c8" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/computer/ds/stack-queue-array/index.html.js").then(({ data }) => data),
+  // path: /computer/ds/stack-queue-array/stack-queue-array.html
+  "v-d21bf9c6": () => import(/* webpackChunkName: "v-d21bf9c6" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/computer/ds/stack-queue-array/stack-queue-array.html.js").then(({ data }) => data),
   // path: /computer/ds/tree/
   "v-cda24d28": () => import(/* webpackChunkName: "v-cda24d28" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/computer/ds/tree/index.html.js").then(({ data }) => data),
   // path: /computer/ds/tree/tree-bree-tree.html
