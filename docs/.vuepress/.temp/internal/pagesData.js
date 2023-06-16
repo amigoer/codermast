@@ -87,6 +87,8 @@ export const pagesData = {
   "v-02e8cb00": () => import(/* webpackChunkName: "v-02e8cb00" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/database/redis/jedis-quick-start.html.js").then(({ data }) => data),
   // path: /database/redis/
   "v-2921a50f": () => import(/* webpackChunkName: "v-2921a50f" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/database/redis/index.html.js").then(({ data }) => data),
+  // path: /database/redis/redis-datastruct-underlying-implementation.html
+  "v-5feb02c4": () => import(/* webpackChunkName: "v-5feb02c4" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/database/redis/redis-datastruct-underlying-implementation.html.js").then(({ data }) => data),
   // path: /database/redis/redis-object.html
   "v-ff34c30e": () => import(/* webpackChunkName: "v-ff34c30e" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/database/redis/redis-object.html.js").then(({ data }) => data),
   // path: /database/redis/redis-pub-sub.html
@@ -145,14 +147,14 @@ export const pagesData = {
   "v-27c0ebb1": () => import(/* webpackChunkName: "v-27c0ebb1" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/computer/ds/graph/graph.html.js").then(({ data }) => data),
   // path: /computer/ds/graph/
   "v-767bb2e6": () => import(/* webpackChunkName: "v-767bb2e6" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/computer/ds/graph/index.html.js").then(({ data }) => data),
-  // path: /computer/ds/linear-list/linear-list.html
-  "v-b8ba70fe": () => import(/* webpackChunkName: "v-b8ba70fe" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/computer/ds/linear-list/linear-list.html.js").then(({ data }) => data),
-  // path: /computer/ds/linear-list/
-  "v-5186192e": () => import(/* webpackChunkName: "v-5186192e" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/computer/ds/linear-list/index.html.js").then(({ data }) => data),
   // path: /computer/ds/introduction/complexity.html
   "v-62055baa": () => import(/* webpackChunkName: "v-62055baa" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/computer/ds/introduction/complexity.html.js").then(({ data }) => data),
   // path: /computer/ds/introduction/
   "v-5eac3970": () => import(/* webpackChunkName: "v-5eac3970" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/computer/ds/introduction/index.html.js").then(({ data }) => data),
+  // path: /computer/ds/linear-list/linear-list.html
+  "v-b8ba70fe": () => import(/* webpackChunkName: "v-b8ba70fe" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/computer/ds/linear-list/linear-list.html.js").then(({ data }) => data),
+  // path: /computer/ds/linear-list/
+  "v-5186192e": () => import(/* webpackChunkName: "v-5186192e" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/computer/ds/linear-list/index.html.js").then(({ data }) => data),
   // path: /computer/ds/search/
   "v-84d1643c": () => import(/* webpackChunkName: "v-84d1643c" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/computer/ds/search/index.html.js").then(({ data }) => data),
   // path: /computer/ds/search/search.html
