@@ -17,6 +17,13 @@
 <p class="hint-container-title">视频地址</p>
 <p><a href="https://www.bilibili.com/video/BV1cr4y1671t" target="_blank" rel="noopener noreferrer">https://www.bilibili.com/video/BV1cr4y1671t<ExternalLinkIcon/></a></p>
 </div>
+<ul>
+<li>Java全栈知识体系</li>
+</ul>
+<div class="hint-container info">
+<p class="hint-container-title">视频地址</p>
+<p><a href="https://www.pdai.tech/" target="_blank" rel="noopener noreferrer">https://www.pdai.tech/<ExternalLinkIcon/></a></p>
+</div>
 </div></template>
 
 

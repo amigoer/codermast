@@ -124,7 +124,7 @@
 <blockquote>
 <p>这里主要解释第一点，静态代码块和静态属性属于同一优先级，顺序执行。举个简单的例子即可理解，这里我们就无法调用到age属性</p>
 </blockquote>
-<figure><img src="@source/../../assets/java-base-static/2023-04-05-15-55-20.png" alt="非法向前引用" tabindex="0" loading="lazy"><figcaption>非法向前引用</figcaption></figure>
+<figure><img src="@source/../assets/java-base-static/2023-04-05-15-55-20.png" alt="非法向前引用" tabindex="0" loading="lazy"><figcaption>非法向前引用</figcaption></figure>
 <h2 id="静态导包" tabindex="-1"><a class="header-anchor" href="#静态导包" aria-hidden="true">#</a> 静态导包</h2>
 <p>静态导包用法，将类的方法直接导入到当前类中，从而直接使用“方法名”即可调用类方法，更加方便。</p>
 <ul>

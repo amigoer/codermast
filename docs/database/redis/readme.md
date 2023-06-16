@@ -20,3 +20,9 @@ https://www.runoob.com/redis/
 ::: info 视频地址
 https://www.bilibili.com/video/BV1cr4y1671t
 :::
+
+- Java全栈知识体系
+
+::: info 视频地址
+https://www.pdai.tech/
+:::
