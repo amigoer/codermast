@@ -673,6 +673,7 @@ Dict 由三部分组成，分别是：哈希表（DictHashTable）、哈希节�
 <li>中间节点可以压缩，进一步节省了内存</li>
 </ul>
 <h2 id="跳表skiplist" tabindex="-1"><a class="header-anchor" href="#跳表skiplist" aria-hidden="true">#</a> 跳表SkipList</h2>
+<p>对于于一个单链表来讲，即便链表中存储的数据是有序的，如果我们要想在其中查找某个数据，也只能从头到尾遍历链表。这样查找效率就会很低，时间复杂度会很高，是 O(n)。比如查找12，需要7次查找。为了解决这个问题，我们可以给链表增加多级的索引指针，方便我们快速找到想要的节点。</p>
 <h3 id="基本概念-4" tabindex="-1"><a class="header-anchor" href="#基本概念-4" aria-hidden="true">#</a> 基本概念</h3>
 <p>SkipList （跳表）首先是链表，但是与传统的链表相比有些差异：</p>
 <ul>
