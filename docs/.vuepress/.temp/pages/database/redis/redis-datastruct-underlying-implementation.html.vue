@@ -448,8 +448,271 @@ Dict 由三部分组成，分别是：哈希表（DictHashTable）、哈希节�
 <li>rehash时<code v-pre>ht[0]</code>只减不增，新增操作只在<code v-pre>ht[1]</code>执行，其它操作在两个哈希表</li>
 </ul>
 <h2 id="压缩列表ziplist" tabindex="-1"><a class="header-anchor" href="#压缩列表ziplist" aria-hidden="true">#</a> 压缩列表ZipList</h2>
+<p>ZipList 可以看做一种特殊的双端链表，由一系列特殊编码的连续内存块组成。可以在任意一端压入弹出操作，并且该操作的时间复杂度为 O(1)。</p>
+<figure><img src="@source/../assets/redis-datastruct-underlying-implementation/2023-06-17-23-34-25.png" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<ul>
+<li>
+<Badge text="zlbytes" type="tip" vertical="middle" />：uint32_t类型，4字节，记录整个压缩列表所占用的字节数。</li>
+<li>
+<Badge text="zltail" type="info" vertical="middle" />：uint32_t类型，4字节，记录压缩列表表尾节点距离压缩列表的起始地址有多少字节，通过这个偏移量可以确定表尾节点的地址。</li>
+<li>
+<Badge text="zllen" type="warning" vertical="middle" />uint16_t类型，2字节，记录了压缩列表包含的节点数量，最大值为UINT16_MAX(65534)，如果超出这个数，此处会记录为65535，但是节点的真实数量需要进行遍历整个压缩列表才可以得出。</li>
+<li>
+<Badge text="entry" type="danger" vertical="middle" />：列表节点，长度不定，压缩列表的包含的各个节点，节点的长度由节点保存的内容决定。</li>
+<li>
+<Badge text="zlend" type="note" vertical="middle" />：uint8_t类型，1字节，特殊值 0xFF （10进制255），用于标记压缩列表的末端。</li>
+</ul>
+<h3 id="ziplistentry" tabindex="-1"><a class="header-anchor" href="#ziplistentry" aria-hidden="true">#</a> ZipListEntry</h3>
+<p>ZipList 中的Entry 并不像普通链表那样记录前后节点的指针，因为记录两个指针要占用 16 个字节，浪费内存，而是采用了如下的结构：</p>
+<figure><img src="@source/../assets/redis-datastruct-underlying-implementation/2023-06-17-23-49-54.png" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<ul>
+<li>
+<Badge text="previous_entry_length" type="tip" vertical="middle" />：前一节点的长度，占 1 个或者 5 个字节<ul>
+<li>如果前一节点的长度小于 254 字节，则采用 1 个字节来保存和这个长度值</li>
+<li>如果前一节点的长度大于 254 节点，则采用 5 个字节来保存这个长度值，第一个字节位 0xfe ，后四个字节才是真实长度数据。</li>
+</ul>
+</li>
+<li>
+<Badge text="encoding" type="info" vertical="middle" />：编码属性，用来记录 content 的数据类型（字符串还是整数）以及长度，占用 1 个、2 个或者 5 个字节。</li>
+<li>
+<Badge text="contents" type="danger" vertical="middle" />：负责保存节点的数据，可以是字符串或整数</li>
+</ul>
+<div class="hint-container note">
+<p class="hint-container-title">为什么ZipList特别省内存</p>
+<p>理解了 ZipList 的 Entry 结构，就很容易理解 ZipList 为什么节省内存。</p>
+<ul>
+<li>ziplist 节省内存是相对于普通的list来说的，如果是普通的数组，那么它每个元素占用的内存是一样的且取决于最大的那个元素（很明显它是需要预留空间的）</li>
+<li>所以 ziplist 在设计时就很容易想到要尽量让每个元素按照实际的内容大小存储，所以增加 encoding 字段，针对不同的 encoding 来细化存储大小</li>
+<li>这时候还需要解决的一个问题是遍历元素时如何定位下一个元素呢？在普通数组中每个元素定长，所以不需要考虑这个问题；但是 ziplist 中每个 data 占据的内存不一样，所以为了解决遍历，需要增加记录上一个元素的 length，所以增加了 prelen 字段。</li>
+</ul>
+</div>
+<h3 id="encoding编码" tabindex="-1"><a class="header-anchor" href="#encoding编码" aria-hidden="true">#</a> Encoding编码</h3>
+<p>ZipListEntry 中的 Encoding 编码分为字符串和整数两种类型：</p>
+<ul>
+<li>
+<p>字符串：Encoding 是以 &quot;00&quot;、&quot;01&quot;、&quot;10&quot; 开头，则 content 为字符串类型</p>
+<ul>
+<li><code v-pre>|00pppppp|</code> ：此时encoding长度为1个字节，该字节的后六位表示entry中存储的string长度，因为是6位，所以entry中存储的string长度不能超过63；</li>
+<li><code v-pre>|01pppppp|qqqqqqqq|</code> 此时encoding长度为两个字节；此时encoding的后14位用来存储string长度，长度不能超过16383；</li>
+<li><code v-pre>|10000000|qqqqqqqq|rrrrrrrr|ssssssss|ttttttt|</code> 此时encoding长度为5个字节，后面的4个字节用来表示encoding中存储的字符串长度，长度不能超过2^32 - 1;</li>
+</ul>
+</li>
+<li>
+<p>整数：Encoding 是以 &quot;11&quot; 开头，则 content 为整数类型，且 encoding 固定只占用 1 个字节。</p>
+<ul>
+<li><code v-pre>11000000</code>：int16_t （2 bytes）</li>
+<li><code v-pre>11010000</code>：int32_t （4 bytes）</li>
+<li><code v-pre>11100000</code>：int64_t （8 bytes）</li>
+<li><code v-pre>11110000</code>：24位有符号整数 （3 bytes）</li>
+<li><code v-pre>11111110</code>：8 位有符号整数 （1 bytes）</li>
+<li><code v-pre>1111xxxx</code>：直接在 xxxx 位置保存数值，范围从 0001~1101 减 1 后结果为实际值</li>
+</ul>
+</li>
+<li>
+<p><code v-pre>11111111</code> ： zlend</p>
+</li>
+</ul>
+<h3 id="连锁更新问题" tabindex="-1"><a class="header-anchor" href="#连锁更新问题" aria-hidden="true">#</a> 连锁更新问题</h3>
+<p>ZipListEntry 节点中保存前一个节点的大小长度，前一个节点长度小于254字节，则使用一个字节保存这个长度，如果大于等于254字节，则使用 5 个字节来保存这个长度。那么当一个节点数据发生变化时，恰好从 254 字节以下变到 254 字节以上，那么 previous_entry_length 属性从1个字节变为5个字节，由于 ZipList 中 Entry 节点是连续存在的，则需要将后续的所有节点进行移动。如果后续空间不足，还需要申请新的空间等问题。</p>
+<p>ZipList 这种特殊情况下产生的连续多次空间扩展操作称之为 连锁更新 。新增删除都可能导致连锁更新的发生。ZipList 也不预留内存空间, 并且在移除结点后, 也是立即缩容, 这代表每次写操作都会进行内存分配操作.</p>
+<h3 id="ziplist小结" tabindex="-1"><a class="header-anchor" href="#ziplist小结" aria-hidden="true">#</a> ZipList小结</h3>
+<ol>
+<li>压缩列表ZipList 可以看做一种连续内存空间的“双端链表”。</li>
+<li>列表的节点之间并不是通过指针连接的，而是记录上一个节点和本节点长度来寻址，内存占用较低。</li>
+<li>如果列表数据较多，导致链表过长，可能会影响查询效率。查询时只能进行遍历，O(n)</li>
+<li>增或者删较大数据时有可能发生连续更新问题。</li>
+</ol>
+<div class="hint-container warning">
+<p class="hint-container-title">思考</p>
+<ul>
+<li><strong>ZipList 虽然节省内存，但是申请内存必须是连续空间，如果内存占用较多，申请内存的效率很低。怎么办？</strong></li>
+</ul>
+<blockquote>
+<p>为了缓解这个问题，我们必须限制 ZipList 的长度和 Entry 大小。</p>
+</blockquote>
+<ul>
+<li><strong>我们要存储大量数据，超出了 ZipList 最佳的上限该怎么办？</strong></li>
+</ul>
+<blockquote>
+<p>我们可以创建多个 ZipList 来分片存储数据。</p>
+</blockquote>
+<ul>
+<li><strong>数据拆分存储以后比较分散，不方便管理和查找，这多个 ZipList 如何建立联系？</strong></li>
+</ul>
+<blockquote>
+<p>Redis3.2版本引入了新的数据结构 QuickList ，它是一个双端链表，只不过链表中的每个节点都是一个 ZipList 。</p>
+</blockquote>
+</div>
 <h2 id="快速列表quicklist" tabindex="-1"><a class="header-anchor" href="#快速列表quicklist" aria-hidden="true">#</a> 快速列表QuickList</h2>
+<h3 id="基本概念-3" tabindex="-1"><a class="header-anchor" href="#基本概念-3" aria-hidden="true">#</a> 基本概念</h3>
+<p>QuickList 这个结构是 Redis3.2 版本后新加的, 之前的版本是 list(即 LinkedList)， 用于 String 数据类型中。</p>
+<p>QuickList 是一种以 ZipList 为结点的双端链表结构。 从宏观上看，QuickList是一个双向链表，从微观上看，QuickList 的每一个节点都是一个 ZipList。</p>
+<figure><img src="@source/../assets/redis-datastruct-underlying-implementation/2023-06-18-21-18-50.png" alt="QuickList示意图" tabindex="0" loading="lazy"><figcaption>QuickList示意图</figcaption></figure>
+<h3 id="底层实现-3" tabindex="-1"><a class="header-anchor" href="#底层实现-3" aria-hidden="true">#</a> 底层实现</h3>
+<ul>
+<li>quicklistNote</li>
+</ul>
+<details class="hint-container details"><summary>代码详情</summary>
+<div class="language-c line-numbers-mode" data-ext="c"><pre v-pre class="language-c"><code><span class="token keyword">typedef</span> <span class="token keyword">struct</span> <span class="token class-name">quicklistNode</span> <span class="token punctuation">{</span>
+    <span class="token keyword">struct</span> <span class="token class-name">quicklistNode</span> <span class="token operator">*</span>prev<span class="token punctuation">;</span>
+    <span class="token keyword">struct</span> <span class="token class-name">quicklistNode</span> <span class="token operator">*</span>next<span class="token punctuation">;</span>
+    <span class="token keyword">unsigned</span> <span class="token keyword">char</span> <span class="token operator">*</span>entry<span class="token punctuation">;</span>
+    <span class="token class-name">size_t</span> sz<span class="token punctuation">;</span>             <span class="token comment">/* entry size in bytes */</span>
+    <span class="token keyword">unsigned</span> <span class="token keyword">int</span> count <span class="token operator">:</span> <span class="token number">16</span><span class="token punctuation">;</span>     <span class="token comment">/* count of items in listpack */</span>
+    <span class="token keyword">unsigned</span> <span class="token keyword">int</span> encoding <span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">;</span>   <span class="token comment">/* RAW==1 or LZF==2 */</span>
+    <span class="token keyword">unsigned</span> <span class="token keyword">int</span> container <span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">;</span>  <span class="token comment">/* PLAIN==1 or PACKED==2 */</span>
+    <span class="token keyword">unsigned</span> <span class="token keyword">int</span> recompress <span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token comment">/* was this node previous compressed? */</span>
+    <span class="token keyword">unsigned</span> <span class="token keyword">int</span> attempted_compress <span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token comment">/* node can't compress; too small */</span>
+    <span class="token keyword">unsigned</span> <span class="token keyword">int</span> dont_compress <span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token comment">/* prevent compression of entry that will be used later */</span>
+    <span class="token keyword">unsigned</span> <span class="token keyword">int</span> extra <span class="token operator">:</span> <span class="token number">9</span><span class="token punctuation">;</span> <span class="token comment">/* more bits to steal for future usage */</span>
+<span class="token punctuation">}</span> quicklistNode<span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></details>
+<ul>
+<li>quicklistLZF</li>
+</ul>
+<details class="hint-container details"><summary>代码详情</summary>
+<div class="language-c line-numbers-mode" data-ext="c"><pre v-pre class="language-c"><code><span class="token keyword">typedef</span> <span class="token keyword">struct</span> <span class="token class-name">quicklistLZF</span> <span class="token punctuation">{</span>
+    <span class="token class-name">size_t</span> sz<span class="token punctuation">;</span> <span class="token comment">/* LZF size in bytes*/</span>
+    <span class="token keyword">char</span> compressed<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> quicklistLZF<span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></details>
+<ul>
+<li>quicklistBookmark</li>
+</ul>
+<details class="hint-container details"><summary>代码详情</summary>
+<div class="language-c line-numbers-mode" data-ext="c"><pre v-pre class="language-c"><code><span class="token keyword">typedef</span> <span class="token keyword">struct</span> <span class="token class-name">quicklistBookmark</span> <span class="token punctuation">{</span>
+    quicklistNode <span class="token operator">*</span>node<span class="token punctuation">;</span>
+    <span class="token keyword">char</span> <span class="token operator">*</span>name<span class="token punctuation">;</span>
+<span class="token punctuation">}</span> quicklistBookmark<span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></details>
+<ul>
+<li>quicklist</li>
+</ul>
+<details class="hint-container details"><summary>代码详情</summary>
+<div class="language-c line-numbers-mode" data-ext="c"><pre v-pre class="language-c"><code><span class="token keyword">typedef</span> <span class="token keyword">struct</span> <span class="token class-name">quicklist</span> <span class="token punctuation">{</span>
+    quicklistNode <span class="token operator">*</span>head<span class="token punctuation">;</span>
+    quicklistNode <span class="token operator">*</span>tail<span class="token punctuation">;</span>
+    <span class="token keyword">unsigned</span> <span class="token keyword">long</span> count<span class="token punctuation">;</span>        <span class="token comment">/* total count of all entries in all listpacks */</span>
+    <span class="token keyword">unsigned</span> <span class="token keyword">long</span> len<span class="token punctuation">;</span>          <span class="token comment">/* number of quicklistNodes */</span>
+    <span class="token keyword">signed</span> <span class="token keyword">int</span> fill <span class="token operator">:</span> QL_FILL_BITS<span class="token punctuation">;</span>       <span class="token comment">/* fill factor for individual nodes */</span>
+    <span class="token keyword">unsigned</span> <span class="token keyword">int</span> compress <span class="token operator">:</span> QL_COMP_BITS<span class="token punctuation">;</span> <span class="token comment">/* depth of end nodes not to compress;0=off */</span>
+    <span class="token keyword">unsigned</span> <span class="token keyword">int</span> bookmark_count<span class="token operator">:</span> QL_BM_BITS<span class="token punctuation">;</span>
+    quicklistBookmark bookmarks<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> quicklist<span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></details>
+<ul>
+<li>quicklistIter</li>
+</ul>
+<details class="hint-container details"><summary>代码详情</summary>
+<div class="language-c line-numbers-mode" data-ext="c"><pre v-pre class="language-c"><code><span class="token keyword">typedef</span> <span class="token keyword">struct</span> <span class="token class-name">quicklistIter</span> <span class="token punctuation">{</span>
+    quicklist <span class="token operator">*</span>quicklist<span class="token punctuation">;</span>
+    quicklistNode <span class="token operator">*</span>current<span class="token punctuation">;</span>
+    <span class="token keyword">unsigned</span> <span class="token keyword">char</span> <span class="token operator">*</span>zi<span class="token punctuation">;</span> <span class="token comment">/* points to the current element */</span>
+    <span class="token keyword">long</span> offset<span class="token punctuation">;</span> <span class="token comment">/* offset in current listpack */</span>
+    <span class="token keyword">int</span> direction<span class="token punctuation">;</span>
+<span class="token punctuation">}</span> quicklistIter<span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></details>
+<ul>
+<li>quicklistEntry</li>
+</ul>
+<details class="hint-container details"><summary>代码详情</summary>
+<div class="language-c line-numbers-mode" data-ext="c"><pre v-pre class="language-c"><code><span class="token keyword">typedef</span> <span class="token keyword">struct</span> <span class="token class-name">quicklistEntry</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> quicklist <span class="token operator">*</span>quicklist<span class="token punctuation">;</span>
+    quicklistNode <span class="token operator">*</span>node<span class="token punctuation">;</span>
+    <span class="token keyword">unsigned</span> <span class="token keyword">char</span> <span class="token operator">*</span>zi<span class="token punctuation">;</span>
+    <span class="token keyword">unsigned</span> <span class="token keyword">char</span> <span class="token operator">*</span>value<span class="token punctuation">;</span>
+    <span class="token keyword">long</span> <span class="token keyword">long</span> longval<span class="token punctuation">;</span>
+    <span class="token class-name">size_t</span> sz<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> offset<span class="token punctuation">;</span>
+<span class="token punctuation">}</span> quicklistEntry<span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></details>
+<ul>
+<li>
+<Badge text="quicklistNode" type="tip" vertical="middle" />： 宏观上, quicklist是一个链表, 这个结构描述的就是链表中的结点. 它通过zl字段持有底层的ziplist. 简单来讲, 它描述了一个ziplist实例</li>
+<li>
+<Badge text="quicklistLZF" type="info" vertical="middle" />：ziplist是一段连续的内存, 用LZ4算法压缩后, 就可以包装成一个quicklistLZF结构. 是否压缩quicklist中的每个ziplist实例是一个可配置项. 若这个配置项是开启的, 那么quicklistNode.zl字段指向的就不是一个ziplist实例, 而是一个压缩后的quicklistLZF实例</li>
+<li>
+<Badge text="quicklistBookmark" type="note" vertical="middle" />：在quicklist尾部增加的一个书签，它只有在大量节点的多余内存使用量可以忽略不计的情况且确实需要分批迭代它们，才会被使用。当不使用它们时，它们不会增加任何内存开销。</li>
+<li>
+<Badge text="quicklist" type="danger" vertical="middle" />：这就是一个双链表的定义. head, tail分别指向头尾指针. len代表链表中的结点. count指的是整个quicklist中的所有ziplist中的entry的数目. fill字段影响着每个链表结点中ziplist的最大占用空间, compress影响着是否要对每个ziplist以LZ4算法进行进一步压缩以更节省内存空间.</li>
+<li>
+<Badge text="quicklistIter" type="warning" vertical="middle" />：是一个迭代器quicklistEntry是对ziplist中的entry概念的封装. </li>
+<li>
+<Badge text="quicklist" type="info" vertical="middle" />：作为一个封装良好的数据结构, 不希望使用者感知到其内部的实现, 所以需要把ziplist.entry的概念重新包装一下.</li>
+</ul>
+<h3 id="限制压缩" tabindex="-1"><a class="header-anchor" href="#限制压缩" aria-hidden="true">#</a> 限制压缩</h3>
+<p><strong>限制</strong></p>
+<p>为了避免 QuickList 中的每一个 ZipList 中 Entry 过多，Redis 提供了一个配置项：list-max-ziplist-size 来限制。</p>
+<ul>
+<li>如果值为正，则代表 ZipList 允许 Entry 个数的最大值</li>
+<li>如果值为负，则代表 ZipList 的最大内存大小，分为5种情况：
+<ul>
+<li>-1 ：每个 ZipList 的内存占用不能超过 4 kb</li>
+<li>-2 ：每个 ZipList 的内存占用不能超过 8 kb</li>
+<li>-3 ：每个 ZipList 的内存占用不能超过 16 kb</li>
+<li>-4 ：每个 ZipList 的内存占用不能超过 32 kb</li>
+<li>-5 ：每个 ZipList 的内存占用不能超过 64 kb</li>
+<li>默认值为 -2 ，可以使用 <code v-pre>config get list-max-ziplist-size</code>命令查看。</li>
+</ul>
+</li>
+</ul>
+<p><strong>压缩</strong></p>
+<p>除了控制 ZipList 的大小，QuickList 还可以对节点的 ZipList 做压缩。通过配置项 list-compress-depth 来控制。因为链表一般都是从首尾访问较多，所以首尾是不压缩的。这个参数是控制首尾不压缩的节点个数：</p>
+<ul>
+<li>0 ：特殊值，代表不压缩</li>
+<li>1 ：标示 QuickList 的首尾各有 1 个节点不压缩，中间节点压缩</li>
+<li>2 ：标示 QuickList 的首尾各有 2 个节点不压缩，中间节点压缩</li>
+<li>......依次类推</li>
+<li>默认值为0，可以使用<code v-pre>config list-compress-depth</code>命令查看</li>
+</ul>
+<h3 id="quicklist小结" tabindex="-1"><a class="header-anchor" href="#quicklist小结" aria-hidden="true">#</a> QuickList小结</h3>
+<ul>
+<li>QuickList 是一个节点为 ZipList 的双端列表</li>
+<li>节点采用 ZipList ，解决了传统链表的内存占用问题</li>
+<li>控制 ZipList 大小，解决连续内存空间申请效率问题</li>
+<li>中间节点可以压缩，进一步节省了内存</li>
+</ul>
 <h2 id="跳表skiplist" tabindex="-1"><a class="header-anchor" href="#跳表skiplist" aria-hidden="true">#</a> 跳表SkipList</h2>
+<h3 id="基本概念-4" tabindex="-1"><a class="header-anchor" href="#基本概念-4" aria-hidden="true">#</a> 基本概念</h3>
+<p>SkipList （跳表）首先是链表，但是与传统的链表相比有些差异：</p>
+<ul>
+<li>SkipList 中的元素按照升序进行排列存储</li>
+<li>节点可能包含多个指针，指针的跨度不同，最多支持 32 级指针。</li>
+</ul>
+<blockquote>
+<p>几级指针代表一次横跨几个节点。</p>
+</blockquote>
+<figure><img src="@source/../assets/redis-datastruct-underlying-implementation/2023-06-18-21-52-01.png" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<figure><img src="@source/../assets/redis-datastruct-underlying-implementation/2023-06-18-21-58-56.png" alt="SkipList内存结构" tabindex="0" loading="lazy"><figcaption>SkipList内存结构</figcaption></figure>
+<h3 id="底层实现-4" tabindex="-1"><a class="header-anchor" href="#底层实现-4" aria-hidden="true">#</a> 底层实现</h3>
+<ul>
+<li>zskiplist</li>
+</ul>
+<div class="language-c line-numbers-mode" data-ext="c"><pre v-pre class="language-c"><code><span class="token keyword">typedef</span> <span class="token keyword">struct</span> <span class="token class-name">zskiplist</span> <span class="token punctuation">{</span>
+    <span class="token keyword">struct</span> <span class="token class-name">zskiplistNode</span> <span class="token operator">*</span>header<span class="token punctuation">,</span> <span class="token operator">*</span>tail<span class="token punctuation">;</span>
+    <span class="token keyword">unsigned</span> <span class="token keyword">long</span> length<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> level<span class="token punctuation">;</span>
+<span class="token punctuation">}</span> zskiplist<span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ul>
+<li>zskiplistNode</li>
+</ul>
+<div class="language-c line-numbers-mode" data-ext="c"><pre v-pre class="language-c"><code><span class="token keyword">typedef</span> <span class="token keyword">struct</span> <span class="token class-name">zskiplistNode</span> <span class="token punctuation">{</span>
+    sds ele<span class="token punctuation">;</span>
+    <span class="token keyword">double</span> score<span class="token punctuation">;</span>
+    <span class="token keyword">struct</span> <span class="token class-name">zskiplistNode</span> <span class="token operator">*</span>backward<span class="token punctuation">;</span>
+    <span class="token keyword">struct</span> <span class="token class-name">zskiplistLevel</span> <span class="token punctuation">{</span>
+        <span class="token keyword">struct</span> <span class="token class-name">zskiplistNode</span> <span class="token operator">*</span>forward<span class="token punctuation">;</span>
+        <span class="token keyword">unsigned</span> <span class="token keyword">long</span> span<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> level<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> zskiplistNode<span class="token punctuation">;</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="skiplist小结" tabindex="-1"><a class="header-anchor" href="#skiplist小结" aria-hidden="true">#</a> SkipList小结</h3>
+<ul>
+<li>跳跃表是一个双向链表，每个节点都包含 score 和 ele 值</li>
+<li>节点按照 score 值排序，score 值一样则按照 ele 字典排序</li>
+<li>每个节点都可以包含多层指针，层数是 1 到 32 之间的随机数</li>
+<li>不同层指针到下一个节点的跨度不同，层级越高，跨度越大</li>
+<li>增删改查效率与红黑树基本一致，实现却更简单</li>
+</ul>
 </div></template>
 
 

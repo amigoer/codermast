@@ -453,9 +453,266 @@ Dict的 rehash 并不是一次性完成的，如果 Dict 中包含数百万的 e
 
 ## 压缩列表ZipList
 
+ZipList 可以看做一种特殊的双端链表，由一系列特殊编码的连续内存块组成。可以在任意一端压入弹出操作，并且该操作的时间复杂度为 O(1)。
 
+![](../../../assets/redis-datastruct-underlying-implementation/2023-06-17-23-34-25.png)
 
+- <Badge text="zlbytes" type="tip" vertical="middle" />：uint32_t类型，4字节，记录整个压缩列表所占用的字节数。
+
+- <Badge text="zltail" type="info" vertical="middle" />：uint32_t类型，4字节，记录压缩列表表尾节点距离压缩列表的起始地址有多少字节，通过这个偏移量可以确定表尾节点的地址。
+
+- <Badge text="zllen" type="warning" vertical="middle" />uint16_t类型，2字节，记录了压缩列表包含的节点数量，最大值为UINT16_MAX(65534)，如果超出这个数，此处会记录为65535，但是节点的真实数量需要进行遍历整个压缩列表才可以得出。
+
+- <Badge text="entry" type="danger" vertical="middle" />：列表节点，长度不定，压缩列表的包含的各个节点，节点的长度由节点保存的内容决定。
+
+- <Badge text="zlend" type="note" vertical="middle" />：uint8_t类型，1字节，特殊值 0xFF （10进制255），用于标记压缩列表的末端。
+
+### ZipListEntry
+
+ZipList 中的Entry 并不像普通链表那样记录前后节点的指针，因为记录两个指针要占用 16 个字节，浪费内存，而是采用了如下的结构：
+
+![](../../../assets/redis-datastruct-underlying-implementation/2023-06-17-23-49-54.png)
+
+- <Badge text="previous_entry_length" type="tip" vertical="middle" />：前一节点的长度，占 1 个或者 5 个字节
+    - 如果前一节点的长度小于 254 字节，则采用 1 个字节来保存和这个长度值
+    - 如果前一节点的长度大于 254 节点，则采用 5 个字节来保存这个长度值，第一个字节位 0xfe ，后四个字节才是真实长度数据。
+- <Badge text="encoding" type="info" vertical="middle" />：编码属性，用来记录 content 的数据类型（字符串还是整数）以及长度，占用 1 个、2 个或者 5 个字节。
+
+- <Badge text="contents" type="danger" vertical="middle" />：负责保存节点的数据，可以是字符串或整数
+
+::: note 为什么ZipList特别省内存
+
+理解了 ZipList 的 Entry 结构，就很容易理解 ZipList 为什么节省内存。
+- ziplist 节省内存是相对于普通的list来说的，如果是普通的数组，那么它每个元素占用的内存是一样的且取决于最大的那个元素（很明显它是需要预留空间的）
+- 所以 ziplist 在设计时就很容易想到要尽量让每个元素按照实际的内容大小存储，所以增加 encoding 字段，针对不同的 encoding 来细化存储大小
+- 这时候还需要解决的一个问题是遍历元素时如何定位下一个元素呢？在普通数组中每个元素定长，所以不需要考虑这个问题；但是 ziplist 中每个 data 占据的内存不一样，所以为了解决遍历，需要增加记录上一个元素的 length，所以增加了 prelen 字段。
+
+:::
+
+### Encoding编码
+
+ZipListEntry 中的 Encoding 编码分为字符串和整数两种类型：
+
+- 字符串：Encoding 是以 "00"、"01"、"10" 开头，则 content 为字符串类型
+
+    - `|00pppppp|` ：此时encoding长度为1个字节，该字节的后六位表示entry中存储的string长度，因为是6位，所以entry中存储的string长度不能超过63；
+    - `|01pppppp|qqqqqqqq|` 此时encoding长度为两个字节；此时encoding的后14位用来存储string长度，长度不能超过16383；
+    - `|10000000|qqqqqqqq|rrrrrrrr|ssssssss|ttttttt|` 此时encoding长度为5个字节，后面的4个字节用来表示encoding中存储的字符串长度，长度不能超过2^32 - 1;
+
+- 整数：Encoding 是以 "11" 开头，则 content 为整数类型，且 encoding 固定只占用 1 个字节。
+
+    - `11000000`：int16_t （2 bytes）
+    - `11010000`：int32_t （4 bytes）
+    - `11100000`：int64_t （8 bytes）
+    - `11110000`：24位有符号整数 （3 bytes）
+    - `11111110`：8 位有符号整数 （1 bytes）
+    - `1111xxxx`：直接在 xxxx 位置保存数值，范围从 0001~1101 减 1 后结果为实际值
+- `11111111` ： zlend
+
+### 连锁更新问题
+
+ZipListEntry 节点中保存前一个节点的大小长度，前一个节点长度小于254字节，则使用一个字节保存这个长度，如果大于等于254字节，则使用 5 个字节来保存这个长度。那么当一个节点数据发生变化时，恰好从 254 字节以下变到 254 字节以上，那么 previous_entry_length 属性从1个字节变为5个字节，由于 ZipList 中 Entry 节点是连续存在的，则需要将后续的所有节点进行移动。如果后续空间不足，还需要申请新的空间等问题。
+
+ZipList 这种特殊情况下产生的连续多次空间扩展操作称之为 连锁更新 。新增删除都可能导致连锁更新的发生。ZipList 也不预留内存空间, 并且在移除结点后, 也是立即缩容, 这代表每次写操作都会进行内存分配操作.
+
+### ZipList小结
+
+1. 压缩列表ZipList 可以看做一种连续内存空间的“双端链表”。
+2. 列表的节点之间并不是通过指针连接的，而是记录上一个节点和本节点长度来寻址，内存占用较低。
+3. 如果列表数据较多，导致链表过长，可能会影响查询效率。查询时只能进行遍历，O(n)
+4. 增或者删较大数据时有可能发生连续更新问题。
+
+::: warning 思考
+
+- **ZipList 虽然节省内存，但是申请内存必须是连续空间，如果内存占用较多，申请内存的效率很低。怎么办？**
+
+> 为了缓解这个问题，我们必须限制 ZipList 的长度和 Entry 大小。
+
+- **我们要存储大量数据，超出了 ZipList 最佳的上限该怎么办？**
+
+> 我们可以创建多个 ZipList 来分片存储数据。
+
+- **数据拆分存储以后比较分散，不方便管理和查找，这多个 ZipList 如何建立联系？**
+
+> Redis3.2版本引入了新的数据结构 QuickList ，它是一个双端链表，只不过链表中的每个节点都是一个 ZipList 。
+:::
 ## 快速列表QuickList
+
+### 基本概念
+QuickList 这个结构是 Redis3.2 版本后新加的, 之前的版本是 list(即 LinkedList)， 用于 String 数据类型中。
+
+QuickList 是一种以 ZipList 为结点的双端链表结构。 从宏观上看，QuickList是一个双向链表，从微观上看，QuickList 的每一个节点都是一个 ZipList。
+
+![QuickList示意图](../../../assets/redis-datastruct-underlying-implementation/2023-06-18-21-18-50.png)
+
+### 底层实现
+
+- quicklistNote
+:::: details 代码详情
+```c
+typedef struct quicklistNode {
+    struct quicklistNode *prev;
+    struct quicklistNode *next;
+    unsigned char *entry;
+    size_t sz;             /* entry size in bytes */
+    unsigned int count : 16;     /* count of items in listpack */
+    unsigned int encoding : 2;   /* RAW==1 or LZF==2 */
+    unsigned int container : 2;  /* PLAIN==1 or PACKED==2 */
+    unsigned int recompress : 1; /* was this node previous compressed? */
+    unsigned int attempted_compress : 1; /* node can't compress; too small */
+    unsigned int dont_compress : 1; /* prevent compression of entry that will be used later */
+    unsigned int extra : 9; /* more bits to steal for future usage */
+} quicklistNode;
+```
+::::
+- quicklistLZF
+:::: details 代码详情
+```c
+typedef struct quicklistLZF {
+    size_t sz; /* LZF size in bytes*/
+    char compressed[];
+} quicklistLZF;
+```
+::::
+- quicklistBookmark
+:::: details 代码详情
+```c
+typedef struct quicklistBookmark {
+    quicklistNode *node;
+    char *name;
+} quicklistBookmark;
+```
+::::
+
+- quicklist
+:::: details 代码详情
+```c
+typedef struct quicklist {
+    quicklistNode *head;
+    quicklistNode *tail;
+    unsigned long count;        /* total count of all entries in all listpacks */
+    unsigned long len;          /* number of quicklistNodes */
+    signed int fill : QL_FILL_BITS;       /* fill factor for individual nodes */
+    unsigned int compress : QL_COMP_BITS; /* depth of end nodes not to compress;0=off */
+    unsigned int bookmark_count: QL_BM_BITS;
+    quicklistBookmark bookmarks[];
+} quicklist;
+```
+::::
+- quicklistIter
+
+:::: details 代码详情
+```c
+typedef struct quicklistIter {
+    quicklist *quicklist;
+    quicklistNode *current;
+    unsigned char *zi; /* points to the current element */
+    long offset; /* offset in current listpack */
+    int direction;
+} quicklistIter;
+```
+::::
+
+- quicklistEntry
+:::: details 代码详情
+```c
+typedef struct quicklistEntry {
+    const quicklist *quicklist;
+    quicklistNode *node;
+    unsigned char *zi;
+    unsigned char *value;
+    long long longval;
+    size_t sz;
+    int offset;
+} quicklistEntry;
+```
+::::
+
+- <Badge text="quicklistNode" type="tip" vertical="middle" />： 宏观上, quicklist是一个链表, 这个结构描述的就是链表中的结点. 它通过zl字段持有底层的ziplist. 简单来讲, 它描述了一个ziplist实例
+
+
+- <Badge text="quicklistLZF" type="info" vertical="middle" />：ziplist是一段连续的内存, 用LZ4算法压缩后, 就可以包装成一个quicklistLZF结构. 是否压缩quicklist中的每个ziplist实例是一个可配置项. 若这个配置项是开启的, 那么quicklistNode.zl字段指向的就不是一个ziplist实例, 而是一个压缩后的quicklistLZF实例
+
+- <Badge text="quicklistBookmark" type="note" vertical="middle" />：在quicklist尾部增加的一个书签，它只有在大量节点的多余内存使用量可以忽略不计的情况且确实需要分批迭代它们，才会被使用。当不使用它们时，它们不会增加任何内存开销。
+
+- <Badge text="quicklist" type="danger" vertical="middle" />：这就是一个双链表的定义. head, tail分别指向头尾指针. len代表链表中的结点. count指的是整个quicklist中的所有ziplist中的entry的数目. fill字段影响着每个链表结点中ziplist的最大占用空间, compress影响着是否要对每个ziplist以LZ4算法进行进一步压缩以更节省内存空间.
+
+- <Badge text="quicklistIter" type="warning" vertical="middle" />：是一个迭代器quicklistEntry是对ziplist中的entry概念的封装. 
+
+- <Badge text="quicklist" type="info" vertical="middle" />：作为一个封装良好的数据结构, 不希望使用者感知到其内部的实现, 所以需要把ziplist.entry的概念重新包装一下.
+
+### 限制压缩
+
+**限制**
+
+为了避免 QuickList 中的每一个 ZipList 中 Entry 过多，Redis 提供了一个配置项：list-max-ziplist-size 来限制。
+
+- 如果值为正，则代表 ZipList 允许 Entry 个数的最大值
+- 如果值为负，则代表 ZipList 的最大内存大小，分为5种情况：
+    - -1 ：每个 ZipList 的内存占用不能超过 4 kb
+    - -2 ：每个 ZipList 的内存占用不能超过 8 kb
+    - -3 ：每个 ZipList 的内存占用不能超过 16 kb
+    - -4 ：每个 ZipList 的内存占用不能超过 32 kb
+    - -5 ：每个 ZipList 的内存占用不能超过 64 kb
+    - 默认值为 -2 ，可以使用 `config get list-max-ziplist-size`命令查看。
+
+**压缩**
+
+除了控制 ZipList 的大小，QuickList 还可以对节点的 ZipList 做压缩。通过配置项 list-compress-depth 来控制。因为链表一般都是从首尾访问较多，所以首尾是不压缩的。这个参数是控制首尾不压缩的节点个数：
+- 0 ：特殊值，代表不压缩
+- 1 ：标示 QuickList 的首尾各有 1 个节点不压缩，中间节点压缩
+- 2 ：标示 QuickList 的首尾各有 2 个节点不压缩，中间节点压缩
+- ......依次类推
+- 默认值为0，可以使用`config list-compress-depth`命令查看
+
+### QuickList小结
+
+- QuickList 是一个节点为 ZipList 的双端列表
+- 节点采用 ZipList ，解决了传统链表的内存占用问题
+- 控制 ZipList 大小，解决连续内存空间申请效率问题
+- 中间节点可以压缩，进一步节省了内存
 
 ## 跳表SkipList
 
+### 基本概念
+SkipList （跳表）首先是链表，但是与传统的链表相比有些差异：
+
+- SkipList 中的元素按照升序进行排列存储
+- 节点可能包含多个指针，指针的跨度不同，最多支持 32 级指针。
+
+> 几级指针代表一次横跨几个节点。
+
+![](../../../assets/redis-datastruct-underlying-implementation/2023-06-18-21-52-01.png)
+
+![SkipList内存结构](../../../assets/redis-datastruct-underlying-implementation/2023-06-18-21-58-56.png)
+
+### 底层实现
+
+- zskiplist
+```c
+typedef struct zskiplist {
+    struct zskiplistNode *header, *tail;
+    unsigned long length;
+    int level;
+} zskiplist;
+```
+- zskiplistNode
+```c
+typedef struct zskiplistNode {
+    sds ele;
+    double score;
+    struct zskiplistNode *backward;
+    struct zskiplistLevel {
+        struct zskiplistNode *forward;
+        unsigned long span;
+    } level[];
+} zskiplistNode;
+```
+
+### SkipList小结
+
+- 跳跃表是一个双向链表，每个节点都包含 score 和 ele 值
+- 节点按照 score 值排序，score 值一样则按照 ele 字典排序
+- 每个节点都可以包含多层指针，层数是 1 到 32 之间的随机数
+- 不同层指针到下一个节点的跨度不同，层级越高，跨度越大
+- 增删改查效率与红黑树基本一致，实现却更简单
