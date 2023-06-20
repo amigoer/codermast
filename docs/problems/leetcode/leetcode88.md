@@ -63,38 +63,48 @@ class Solution {
 }
 ```
 
-- 解法2：双指针
+- 解法2：正向双指针
 
 ```java
 class Solution {
     public void merge(int[] nums1, int m, int[] nums2, int n) {
-        int i = m - 1;
-        int j = n - 1;
-        int index = m + n - 1;
-        while (i >= 0 || j >= 0) {
-            if (i < 0){
-                nums1[index] = nums2[j];
-                index --;
-                j --;
+        int i = 0;
+        int j = 0;
+        int[] arr = new int[m + n];
+
+        int index = 0;
+
+        while (i < m || j < n){
+            if (i == m){
+                arr[index] = nums2[j];
+                j ++;
+                index ++;
                 continue;
             }
 
-            if (j < 0){
-                nums1[index] = nums1[i];
-                index --;
-                i --;
+            if(j == n){
+                arr[index] = nums1[i];
+                i ++;
+                index ++;
                 continue;
             }
 
-            if (nums1[i] > nums2[j]){
-                nums1[index] = nums1[i];
-                index --;
-                i --;
+            if (nums1[i] < nums2[j]){
+                arr[index] = nums1[i];
+                i ++;
+                index ++;
+
             }else {
-                nums1[index] = nums2[j];
-                index --;
-                j --;
+                arr[index] = nums2[j];
+                j ++;
+                index ++;
+
             }
+
+        }
+
+        for (int k = 0; k < nums1.length; k++) {
+            nums1[k] = arr[k];
         }
     }
 }
