@@ -226,6 +226,7 @@ int epoll wait(
 ### WEB服务流程
 
 基于 epoll 模式的 web 服务的基本流程图：
+
 ![](../../../assets/redis-netword-model/2023-06-20-13-53-06.png)
 
 ### 总结

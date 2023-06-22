@@ -193,8 +193,8 @@
 <li>ET 模式最好结合非阻塞 IO 读取 FD 数据，相比 LT 会复杂一些</li>
 </ul>
 <h3 id="web服务流程" tabindex="-1"><a class="header-anchor" href="#web服务流程" aria-hidden="true">#</a> WEB服务流程</h3>
-<p>基于 epoll 模式的 web 服务的基本流程图：
-<img src="@source/../assets/redis-netword-model/2023-06-20-13-53-06.png" alt="" loading="lazy"></p>
+<p>基于 epoll 模式的 web 服务的基本流程图：</p>
+<figure><img src="@source/../assets/redis-netword-model/2023-06-20-13-53-06.png" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
 <h3 id="总结" tabindex="-1"><a class="header-anchor" href="#总结" aria-hidden="true">#</a> 总结</h3>
 <p><strong>select 模式的存在的三个问题：</strong></p>
 <ul>
