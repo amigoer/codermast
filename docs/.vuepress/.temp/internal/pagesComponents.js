@@ -7,6 +7,8 @@ export const pagesComponents = {
   "v-70bc2959": defineAsyncComponent(() => import(/* webpackChunkName: "v-70bc2959" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/algorithm/index.html.vue")),
   // path: /database/
   "v-2e25198a": defineAsyncComponent(() => import(/* webpackChunkName: "v-2e25198a" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/database/index.html.vue")),
+  // path: /problems/
+  "v-884a0bbc": defineAsyncComponent(() => import(/* webpackChunkName: "v-884a0bbc" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/problems/index.html.vue")),
   // path: /java/java-base-basic-grammar.html
   "v-368130d4": defineAsyncComponent(() => import(/* webpackChunkName: "v-368130d4" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/java/java-base-basic-grammar.html.vue")),
   // path: /java/java-base-final.html
@@ -17,8 +19,6 @@ export const pagesComponents = {
   "v-609fd806": defineAsyncComponent(() => import(/* webpackChunkName: "v-609fd806" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/java/java-base-static.html.vue")),
   // path: /java/
   "v-14c69af4": defineAsyncComponent(() => import(/* webpackChunkName: "v-14c69af4" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/java/index.html.vue")),
-  // path: /problems/
-  "v-884a0bbc": defineAsyncComponent(() => import(/* webpackChunkName: "v-884a0bbc" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/problems/index.html.vue")),
   // path: /tools/
   "v-d440f426": defineAsyncComponent(() => import(/* webpackChunkName: "v-d440f426" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/tools/index.html.vue")),
   // path: /computer/cn/
@@ -97,6 +97,8 @@ export const pagesComponents = {
   "v-775651ee": defineAsyncComponent(() => import(/* webpackChunkName: "v-775651ee" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/database/redis/redis-communication-protocol.html.vue")),
   // path: /database/redis/redis-datastruct-underlying-implementation.html
   "v-5feb02c4": defineAsyncComponent(() => import(/* webpackChunkName: "v-5feb02c4" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/database/redis/redis-datastruct-underlying-implementation.html.vue")),
+  // path: /database/redis/redis-memery-strategy.html
+  "v-506b325e": defineAsyncComponent(() => import(/* webpackChunkName: "v-506b325e" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/database/redis/redis-memery-strategy.html.vue")),
   // path: /database/redis/redis-netword-model.html
   "v-73212c57": defineAsyncComponent(() => import(/* webpackChunkName: "v-73212c57" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/database/redis/redis-netword-model.html.vue")),
   // path: /database/redis/redis-object.html

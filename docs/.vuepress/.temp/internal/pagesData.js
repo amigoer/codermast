@@ -5,6 +5,8 @@ export const pagesData = {
   "v-70bc2959": () => import(/* webpackChunkName: "v-70bc2959" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/algorithm/index.html.js").then(({ data }) => data),
   // path: /database/
   "v-2e25198a": () => import(/* webpackChunkName: "v-2e25198a" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/database/index.html.js").then(({ data }) => data),
+  // path: /problems/
+  "v-884a0bbc": () => import(/* webpackChunkName: "v-884a0bbc" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/problems/index.html.js").then(({ data }) => data),
   // path: /java/java-base-basic-grammar.html
   "v-368130d4": () => import(/* webpackChunkName: "v-368130d4" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/java/java-base-basic-grammar.html.js").then(({ data }) => data),
   // path: /java/java-base-final.html
@@ -15,8 +17,6 @@ export const pagesData = {
   "v-609fd806": () => import(/* webpackChunkName: "v-609fd806" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/java/java-base-static.html.js").then(({ data }) => data),
   // path: /java/
   "v-14c69af4": () => import(/* webpackChunkName: "v-14c69af4" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/java/index.html.js").then(({ data }) => data),
-  // path: /problems/
-  "v-884a0bbc": () => import(/* webpackChunkName: "v-884a0bbc" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/problems/index.html.js").then(({ data }) => data),
   // path: /tools/
   "v-d440f426": () => import(/* webpackChunkName: "v-d440f426" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/tools/index.html.js").then(({ data }) => data),
   // path: /computer/cn/
@@ -95,6 +95,8 @@ export const pagesData = {
   "v-775651ee": () => import(/* webpackChunkName: "v-775651ee" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/database/redis/redis-communication-protocol.html.js").then(({ data }) => data),
   // path: /database/redis/redis-datastruct-underlying-implementation.html
   "v-5feb02c4": () => import(/* webpackChunkName: "v-5feb02c4" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/database/redis/redis-datastruct-underlying-implementation.html.js").then(({ data }) => data),
+  // path: /database/redis/redis-memery-strategy.html
+  "v-506b325e": () => import(/* webpackChunkName: "v-506b325e" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/database/redis/redis-memery-strategy.html.js").then(({ data }) => data),
   // path: /database/redis/redis-netword-model.html
   "v-73212c57": () => import(/* webpackChunkName: "v-73212c57" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/database/redis/redis-netword-model.html.js").then(({ data }) => data),
   // path: /database/redis/redis-object.html
