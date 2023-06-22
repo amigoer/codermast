@@ -91,6 +91,8 @@ export const pagesData = {
   "v-2921a50f": () => import(/* webpackChunkName: "v-2921a50f" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/database/redis/index.html.js").then(({ data }) => data),
   // path: /database/redis/redis-IO.html
   "v-8a512f1c": () => import(/* webpackChunkName: "v-8a512f1c" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/database/redis/redis-IO.html.js").then(({ data }) => data),
+  // path: /database/redis/redis-communication-protocol.html
+  "v-775651ee": () => import(/* webpackChunkName: "v-775651ee" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/database/redis/redis-communication-protocol.html.js").then(({ data }) => data),
   // path: /database/redis/redis-datastruct-underlying-implementation.html
   "v-5feb02c4": () => import(/* webpackChunkName: "v-5feb02c4" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/database/redis/redis-datastruct-underlying-implementation.html.js").then(({ data }) => data),
   // path: /database/redis/redis-netword-model.html

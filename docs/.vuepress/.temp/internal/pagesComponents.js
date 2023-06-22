@@ -93,6 +93,8 @@ export const pagesComponents = {
   "v-2921a50f": defineAsyncComponent(() => import(/* webpackChunkName: "v-2921a50f" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/database/redis/index.html.vue")),
   // path: /database/redis/redis-IO.html
   "v-8a512f1c": defineAsyncComponent(() => import(/* webpackChunkName: "v-8a512f1c" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/database/redis/redis-IO.html.vue")),
+  // path: /database/redis/redis-communication-protocol.html
+  "v-775651ee": defineAsyncComponent(() => import(/* webpackChunkName: "v-775651ee" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/database/redis/redis-communication-protocol.html.vue")),
   // path: /database/redis/redis-datastruct-underlying-implementation.html
   "v-5feb02c4": defineAsyncComponent(() => import(/* webpackChunkName: "v-5feb02c4" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/database/redis/redis-datastruct-underlying-implementation.html.vue")),
   // path: /database/redis/redis-netword-model.html
