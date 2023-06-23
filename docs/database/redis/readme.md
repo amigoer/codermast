@@ -27,7 +27,7 @@ index : false
 
 ### Redis进阶
 
-- [Redis进阶 - 缓存问题]https://www.codermast.com/database/redis/redis-advance-cache-issues.html)
+- [Redis进阶 - 缓存问题](https://www.codermast.com/database/redis/redis-advance-cache-issues.html)
 - [Redis进阶 - Redis持久化](https://www.codermast.com/database/redis/redis-advance-persistence.html)
 - [Redis进阶 - Redis主从](https://www.codermast.com/database/redis/redis-advance-master-slave.html)
 - [Redis进阶 - Redis哨兵](https://www.codermast.com/database/redis/redis-advance-sentinel.html)

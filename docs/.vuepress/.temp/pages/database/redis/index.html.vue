@@ -21,7 +21,7 @@
 </ul>
 <h3 id="redis进阶" tabindex="-1"><a class="header-anchor" href="#redis进阶" aria-hidden="true">#</a> Redis进阶</h3>
 <ul>
-<li>[Redis进阶 - 缓存问题]<a href="https://www.codermast.com/database/redis/redis-advance-cache-issues.html" target="_blank" rel="noopener noreferrer">https://www.codermast.com/database/redis/redis-advance-cache-issues.html<ExternalLinkIcon/></a>)</li>
+<li><a href="https://www.codermast.com/database/redis/redis-advance-cache-issues.html" target="_blank" rel="noopener noreferrer">Redis进阶 - 缓存问题<ExternalLinkIcon/></a></li>
 <li><a href="https://www.codermast.com/database/redis/redis-advance-persistence.html" target="_blank" rel="noopener noreferrer">Redis进阶 - Redis持久化<ExternalLinkIcon/></a></li>
 <li><a href="https://www.codermast.com/database/redis/redis-advance-master-slave.html" target="_blank" rel="noopener noreferrer">Redis进阶 - Redis主从<ExternalLinkIcon/></a></li>
 <li><a href="https://www.codermast.com/database/redis/redis-advance-sentinel.html" target="_blank" rel="noopener noreferrer">Redis进阶 - Redis哨兵<ExternalLinkIcon/></a></li>
