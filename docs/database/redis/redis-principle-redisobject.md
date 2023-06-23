@@ -1,5 +1,5 @@
 ---
-order : 14
+order : 25
 
 ---
 # Redis原理 - RedisObject对象机制
