@@ -78,4 +78,177 @@ Sentinel 基于心跳机制监测服务状态，每隔 1 秒向集群的每个�
 ## 搭建哨兵集群
 
 
+### 集群结构
+ 
+这里我们搭建一个三节点形成的Sentinel集群，来监管之前的Redis主从集群。如图：
+
+三个sentinel实例信息如下：
+ 
+| 节点 |       IP        | PORT  |
+| :----: | :-------------: | :---: |
+| s1   | 192.168.150.101 | 27001 |
+| s2   | 192.168.150.101 | 27002 |
+| s3   | 192.168.150.101 | 27003 |
+ 
+### 准备实例和配置
+ 
+要在同一台虚拟机开启3个实例，必须准备三份不同的配置文件和目录，配置文件所在目录也就是工作目录。
+ 
+我们创建三个文件夹，名字分别叫s1、s2、s3：
+ 
+```sh
+# 进入/tmp目录
+cd /tmp
+# 创建目录
+mkdir s1 s2 s3
+```
+ 
+然后我们在s1目录创建一个sentinel.conf文件，添加下面的内容：
+ 
+```ini
+port 27001
+sentinel announce-ip 192.168.150.101
+sentinel monitor mymaster 192.168.150.101 7001 2
+sentinel down-after-milliseconds mymaster 5000
+sentinel failover-timeout mymaster 60000
+dir "/tmp/s1"
+```
+ 
+ 
+- `port 27001`：是当前sentinel实例的端口
+- `sentinel monitor mymaster 192.168.150.101 7001 2`：指定主节点信息
+  - `mymaster`：主节点名称，自定义，任意写
+  - `192.168.150.101 7001`：主节点的ip和端口
+  - `2`：选举master时的quorum值
+ 
+ 
+ 
+然后将s1/sentinel.conf文件拷贝到s2、s3两个目录中（在/tmp目录执行下列命令）：
+ 
+```sh
+# 方式一：逐个拷贝
+cp s1/sentinel.conf s2
+cp s1/sentinel.conf s3
+# 方式二：管道组合命令，一键拷贝
+echo s2 s3 | xargs -t -n 1 cp s1/sentinel.conf
+```
+ 
+ 
+ 
+修改s2、s3两个文件夹内的配置文件，将端口分别修改为27002、27003：
+ 
+```sh
+sed -i -e 's/27001/27002/g' -e 's/s1/s2/g' s2/sentinel.conf
+sed -i -e 's/27001/27003/g' -e 's/s1/s3/g' s3/sentinel.conf
+```
+ 
+ 
+ 
+### 启动
+ 
+为了方便查看日志，我们打开3个ssh窗口，分别启动3个redis实例，启动命令：
+ 
+```sh
+# 第1个
+redis-sentinel s1/sentinel.conf
+# 第2个
+redis-sentinel s2/sentinel.conf
+# 第3个
+redis-sentinel s3/sentinel.conf
+```
+
+启动后：
+ 
+![](../../../assets/redis-advance-sentinel/2023-06-27-21-40-52.png)
+ 
+ 
+### 测试
+ 
+尝试让master节点7001宕机，查看sentinel日志：
+ 
+![](../../../assets/redis-advance-sentinel/2023-06-27-21-41-08.png)
+
+查看7003的日志：
+ 
+![](../../../assets/redis-advance-sentinel/2023-06-27-21-41-26.png)
+ 
+查看7002的日志：
+ 
+
+![](../../../assets/redis-advance-sentinel/2023-06-27-21-42-13.png)
+
+
 ## RedisTemplate连接集群
+
+在 Sentinel 集群监管下的 Redis 主从集群，其节点会因为自动故障转移而发生变化，Redis 的客户端必须感知这种变化，及时更新连接信息。Spring 的 RedisTemplate 底层利用 lettuce 实现了节点的感知和自动切换。
+
+
+1. 引入 pom 文件
+
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-data-redis</artifactId>
+</dependency>
+```
+
+2. 配置文件
+
+```yaml
+spring:
+  redis:
+    sentinel:
+      master: mymaster
+      nodes:
+      - 192.168.127.101:27001
+      - 192.168.127.101:27002
+      - 192.168.127.101:27003
+```
+
+3. 修改配置类，实现读写分离
+
+> 这个方法写在项目启动类中。
+
+```java
+// 常规写法
+@Bean 
+public LettuceClientConfigurationBuilderCustomizer lettuceClientConfigurationBuilderCustomizer(){
+    return clientConfigurationBuilder -> clientConfigurationBuilder.readFrom(ReadFrom.REPLICA_PREFERRED);
+}
+// 匿名内部类的简写
+@Bean
+public LettuceClientConfigurationBuilderCustomizer lettuceClientConfigurationBuilderCustomizer(){
+    @Override
+    public void customize(LettuceClientConfiguration.LettuceClientConfigurationbuilder clientConfigurationBuilder){
+        clientConfigurationBuilder.readFrom(ReadFrom.REPLICA_PREFERRED);
+    }
+}
+```
+
+4. 控制器 Controller 类
+
+```java
+@RestController
+public class RedisController {
+
+    @Autowired
+    private StringRedisTemplate stringRedisTemplate;
+
+    @GetMapping("/set/{key}/{value}")
+    public String setKey(@PathVariable("key") String key, @PathVariable("value") String value){
+        stringRedisTemplate.opsForValue().set(key, value);
+        return "success";
+    }
+
+    @GetMapping("/get/{key}")
+    public String getKey(@PathVariable("key")String key) {
+        String value = stringRedisTemplate.opsForValue().get(key);
+        return value;
+    }
+}
+```
+
+5. 测试访问
+
+- 添加：http://localhost:8080/set/name/codermast/
+- 查询：http://localhost:8080/get/name/
