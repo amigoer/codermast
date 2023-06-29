@@ -258,6 +258,89 @@ key 是 num，那么就根据 num 计算，如果是 {itcast}num，则根据 itc
 
 ## 集群伸缩
 
+
+集群伸缩就是集群节点能够动态的增加和减少，并且在集群伸缩的同时，也伴随着槽位及槽位中数据在节点之间的移动。
+
+redis-cli --cluster 提供了很多操作集群的命令，可以通过`redis-cli --cluster help`指令查看。
+
+**向集群中添加一个新 master 节点，并存储 num = 1000 ：**
+
+1. 启动一个新的 Redis 实例，端口为 7004
+
+```sh
+# 创建实例目录
+mkdir 7004
+# 创建 redis 服务
+sed -i s/6379/7004/g 7004/redis.conf
+# 运行 redis 服务
+redis-server 7004/redis.conf
+```
+
+2. 添加 7004 到之前的集群，并作为一个 master 节点
+
+```sh
+redis-cli --cluster add-node 192.168.150.101:7004 192.168.150.101:7001
+```
+
+3. 给 7004 节点分配插槽，使得 num 这个 key 可以存储到 7004 实例
+```sh
+# 重新分片
+redis-cli --cluster reshard 192.168.150.101:7001
+# 移动 3000 个插槽
+How many slots do you want to move (from 1 to 16384)? 3000
+# 接收插槽的 ID
+What is the receiving node ID? 「这里输入 7001 的 ID 即可」
+# 使用 done 结束
+# 是否确认移动
+Do you want to proceed with the proposed rehard plan (yes/no)? yes
+```
+
 ## 故障转移
 
+当集群中有一个 master 宕机会发生什么？
+
+1. 首先是该实例与其他实例失去连接
+
+2. 然后是疑似宕机
+
+3. 最后是确定下线，自动提升一个 slave 为新的 master
+
+> 这里选取 slave 的方式是根据 offset 偏移量和 id 进行筛选
+
+**数据迁移**
+
+利用 cluster failover 命令可以手动让集群中的某个 master 宕机，切换到执行 cluster failover 命令的这个 slave 节点，实现无感知的数据迁移。具体的流程如下：
+
+![](../../../assets/redis-advance-sharded-cluster/2023-06-29-17-47-24.png)
+
+
+手动的 Failover 支持三种不同模式：
+
+- 缺省：默认的流程
+- force：省略的对 offset 的一致性校验
+- takeover：直接执行第 5 步，忽略数据一致性、忽略 master 状态和其他 master 的意见
+
 ## RedisTemplate访问分片集群
+
+RedisTemplate 底层同样基于 lettuce 实现了分片集群的支持，而使用的步骤与哨兵模式基本一致：
+
+1. 引入 redis 的 starter 依赖
+
+2. 配置分片集群地址
+
+3. 配置读写分离
+
+与哨兵模式相比，其中只有分片集群的配置方式略有差异，如下:
+
+```yml
+spring:
+  redis:
+    cluster:
+      nodes:    # 指定分片集群的每一个节点信息
+        - 192.168.150.101:7001
+        - 192.168.150.101:7002
+        - 192.168.150.101:7003
+        - 192.168.150.101:8001
+        - 192.168.150.101:8002
+        - 192.168.150.101:8003
+```

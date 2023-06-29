@@ -203,14 +203,14 @@ export const pagesData = {
   "v-d55a61c8": () => import(/* webpackChunkName: "v-d55a61c8" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/computer/ds/stack-queue-array/index.html.js").then(({ data }) => data),
   // path: /computer/ds/stack-queue-array/stack-queue-array.html
   "v-d21bf9c6": () => import(/* webpackChunkName: "v-d21bf9c6" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/computer/ds/stack-queue-array/stack-queue-array.html.js").then(({ data }) => data),
-  // path: /computer/ds/string/
-  "v-4fc8bece": () => import(/* webpackChunkName: "v-4fc8bece" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/computer/ds/string/index.html.js").then(({ data }) => data),
-  // path: /computer/ds/string/string.html
-  "v-46630da2": () => import(/* webpackChunkName: "v-46630da2" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/computer/ds/string/string.html.js").then(({ data }) => data),
   // path: /computer/ds/tree/
   "v-cda24d28": () => import(/* webpackChunkName: "v-cda24d28" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/computer/ds/tree/index.html.js").then(({ data }) => data),
   // path: /computer/ds/tree/tree-bree-tree.html
   "v-21f246fe": () => import(/* webpackChunkName: "v-21f246fe" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/computer/ds/tree/tree-bree-tree.html.js").then(({ data }) => data),
+  // path: /computer/ds/string/
+  "v-4fc8bece": () => import(/* webpackChunkName: "v-4fc8bece" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/computer/ds/string/index.html.js").then(({ data }) => data),
+  // path: /computer/ds/string/string.html
+  "v-46630da2": () => import(/* webpackChunkName: "v-46630da2" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/computer/ds/string/string.html.js").then(({ data }) => data),
   // path: /404.html
   "v-3706649a": () => import(/* webpackChunkName: "v-3706649a" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/404.html.js").then(({ data }) => data),
   // path: /computer/

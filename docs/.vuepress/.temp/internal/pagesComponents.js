@@ -205,14 +205,14 @@ export const pagesComponents = {
   "v-d55a61c8": defineAsyncComponent(() => import(/* webpackChunkName: "v-d55a61c8" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/computer/ds/stack-queue-array/index.html.vue")),
   // path: /computer/ds/stack-queue-array/stack-queue-array.html
   "v-d21bf9c6": defineAsyncComponent(() => import(/* webpackChunkName: "v-d21bf9c6" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/computer/ds/stack-queue-array/stack-queue-array.html.vue")),
-  // path: /computer/ds/string/
-  "v-4fc8bece": defineAsyncComponent(() => import(/* webpackChunkName: "v-4fc8bece" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/computer/ds/string/index.html.vue")),
-  // path: /computer/ds/string/string.html
-  "v-46630da2": defineAsyncComponent(() => import(/* webpackChunkName: "v-46630da2" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/computer/ds/string/string.html.vue")),
   // path: /computer/ds/tree/
   "v-cda24d28": defineAsyncComponent(() => import(/* webpackChunkName: "v-cda24d28" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/computer/ds/tree/index.html.vue")),
   // path: /computer/ds/tree/tree-bree-tree.html
   "v-21f246fe": defineAsyncComponent(() => import(/* webpackChunkName: "v-21f246fe" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/computer/ds/tree/tree-bree-tree.html.vue")),
+  // path: /computer/ds/string/
+  "v-4fc8bece": defineAsyncComponent(() => import(/* webpackChunkName: "v-4fc8bece" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/computer/ds/string/index.html.vue")),
+  // path: /computer/ds/string/string.html
+  "v-46630da2": defineAsyncComponent(() => import(/* webpackChunkName: "v-46630da2" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/computer/ds/string/string.html.vue")),
   // path: /404.html
   "v-3706649a": defineAsyncComponent(() => import(/* webpackChunkName: "v-3706649a" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/404.html.vue")),
   // path: /computer/

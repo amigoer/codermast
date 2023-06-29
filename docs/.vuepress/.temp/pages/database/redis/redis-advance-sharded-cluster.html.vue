@@ -181,8 +181,83 @@ key 是 num，那么就根据 num 计算，如果是 {itcast}num，则根据 itc
 <li>这一类数据使用相同的有效部分，例如 key 都以 { typeid } 为前缀</li>
 </ul>
 <h2 id="集群伸缩" tabindex="-1"><a class="header-anchor" href="#集群伸缩" aria-hidden="true">#</a> 集群伸缩</h2>
-<h2 id="故障转移" tabindex="-1"><a class="header-anchor" href="#故障转移" aria-hidden="true">#</a> 故障转移</h2>
+<p>集群伸缩就是集群节点能够动态的增加和减少，并且在集群伸缩的同时，也伴随着槽位及槽位中数据在节点之间的移动。</p>
+<p>redis-cli --cluster 提供了很多操作集群的命令，可以通过<code v-pre>redis-cli --cluster help</code>指令查看。</p>
+<p><strong>向集群中添加一个新 master 节点，并存储 num = 1000 ：</strong></p>
+<ol>
+<li>启动一个新的 Redis 实例，端口为 7004</li>
+</ol>
+<div class="language-bash line-numbers-mode" data-ext="sh"><pre v-pre class="language-bash"><code><span class="token comment"># 创建实例目录</span>
+<span class="token function">mkdir</span> <span class="token number">7004</span>
+<span class="token comment"># 创建 redis 服务</span>
+<span class="token function">sed</span> <span class="token parameter variable">-i</span> s/6379/7004/g <span class="token number">7004</span>/redis.conf
+<span class="token comment"># 运行 redis 服务</span>
+redis-server <span class="token number">7004</span>/redis.conf
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><ol start="2">
+<li>添加 7004 到之前的集群，并作为一个 master 节点</li>
+</ol>
+<div class="language-bash line-numbers-mode" data-ext="sh"><pre v-pre class="language-bash"><code>redis-cli <span class="token parameter variable">--cluster</span> add-node <span class="token number">192.168</span>.150.101:7004 <span class="token number">192.168</span>.150.101:7001
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><ol start="3">
+<li>给 7004 节点分配插槽，使得 num 这个 key 可以存储到 7004 实例</li>
+</ol>
+<div class="language-bash line-numbers-mode" data-ext="sh"><pre v-pre class="language-bash"><code><span class="token comment"># 重新分片</span>
+redis-cli <span class="token parameter variable">--cluster</span> reshard <span class="token number">192.168</span>.150.101:7001
+<span class="token comment"># 移动 3000 个插槽</span>
+How many slots <span class="token keyword">do</span> you want to move <span class="token punctuation">(</span>from <span class="token number">1</span> to <span class="token number">16384</span><span class="token punctuation">)</span>? <span class="token number">3000</span>
+<span class="token comment"># 接收插槽的 ID</span>
+What is the receiving <span class="token function">node</span> ID? 「这里输入 <span class="token number">7001</span> 的 ID 即可」
+<span class="token comment"># 使用 done 结束</span>
+<span class="token comment"># 是否确认移动</span>
+Do you want to proceed with the proposed rehard plan <span class="token punctuation">(</span>yes/no<span class="token punctuation">)</span>? <span class="token function">yes</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><h2 id="故障转移" tabindex="-1"><a class="header-anchor" href="#故障转移" aria-hidden="true">#</a> 故障转移</h2>
+<p>当集群中有一个 master 宕机会发生什么？</p>
+<ol>
+<li>
+<p>首先是该实例与其他实例失去连接</p>
+</li>
+<li>
+<p>然后是疑似宕机</p>
+</li>
+<li>
+<p>最后是确定下线，自动提升一个 slave 为新的 master</p>
+</li>
+</ol>
+<blockquote>
+<p>这里选取 slave 的方式是根据 offset 偏移量和 id 进行筛选</p>
+</blockquote>
+<p><strong>数据迁移</strong></p>
+<p>利用 cluster failover 命令可以手动让集群中的某个 master 宕机，切换到执行 cluster failover 命令的这个 slave 节点，实现无感知的数据迁移。具体的流程如下：</p>
+<figure><img src="@source/../assets/redis-advance-sharded-cluster/2023-06-29-17-47-24.png" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<p>手动的 Failover 支持三种不同模式：</p>
+<ul>
+<li>缺省：默认的流程</li>
+<li>force：省略的对 offset 的一致性校验</li>
+<li>takeover：直接执行第 5 步，忽略数据一致性、忽略 master 状态和其他 master 的意见</li>
+</ul>
 <h2 id="redistemplate访问分片集群" tabindex="-1"><a class="header-anchor" href="#redistemplate访问分片集群" aria-hidden="true">#</a> RedisTemplate访问分片集群</h2>
-</div></template>
+<p>RedisTemplate 底层同样基于 lettuce 实现了分片集群的支持，而使用的步骤与哨兵模式基本一致：</p>
+<ol>
+<li>
+<p>引入 redis 的 starter 依赖</p>
+</li>
+<li>
+<p>配置分片集群地址</p>
+</li>
+<li>
+<p>配置读写分离</p>
+</li>
+</ol>
+<p>与哨兵模式相比，其中只有分片集群的配置方式略有差异，如下:</p>
+<div class="language-yaml line-numbers-mode" data-ext="yml"><pre v-pre class="language-yaml"><code><span class="token key atrule">spring</span><span class="token punctuation">:</span>
+  <span class="token key atrule">redis</span><span class="token punctuation">:</span>
+    <span class="token key atrule">cluster</span><span class="token punctuation">:</span>
+      <span class="token key atrule">nodes</span><span class="token punctuation">:</span>    <span class="token comment"># 指定分片集群的每一个节点信息</span>
+        <span class="token punctuation">-</span> 192.168.150.101<span class="token punctuation">:</span><span class="token number">7001</span>
+        <span class="token punctuation">-</span> 192.168.150.101<span class="token punctuation">:</span><span class="token number">7002</span>
+        <span class="token punctuation">-</span> 192.168.150.101<span class="token punctuation">:</span><span class="token number">7003</span>
+        <span class="token punctuation">-</span> 192.168.150.101<span class="token punctuation">:</span><span class="token number">8001</span>
+        <span class="token punctuation">-</span> 192.168.150.101<span class="token punctuation">:</span><span class="token number">8002</span>
+        <span class="token punctuation">-</span> 192.168.150.101<span class="token punctuation">:</span><span class="token number">8003</span>
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div></div></template>
 
 
