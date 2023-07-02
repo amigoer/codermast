@@ -34,7 +34,7 @@
 <li>树形结构：结构中的数据元素之间存在一对多的关系。</li>
 <li>图状结构或网状结构：结构中的数据元素之间存在多对多的关系。</li>
 </ul>
-<figure><img src="@source/../../assets/data-structure-concept/2023-07-01-18-51-02.png" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<figure><img src="@source/../assets/data-structure-concept/2023-07-01-18-51-02.png" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
 </li>
 <li>
 <p>存储结构：是指数据结构在计算机中的表示，也称为物理结构。主要的存储结构有：顺序存储、链式存储、索引存储、散列存储。</p>
