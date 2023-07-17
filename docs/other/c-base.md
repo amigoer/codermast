@@ -89,7 +89,7 @@ Exp1 ? Exp2 : Exp3;
 **上述代码的含义为：** exp1 == true 时，则执行 exp2 语句，否则执行 exp3 语句。
 
 ::: note 详情参考
-https://www.runoob.com/cprogramming/c-decision.html
+https://www.bilibili.com/video/BV1vs411n7TH?p=31&vd_source=321621351b5c8d1d29a51feda1285409
 :::
 
 ## 循环语句
@@ -130,7 +130,7 @@ for (int i = 0; i < 10; i++){
 ```
 
 ::: note 详情参考
-https://www.runoob.com/cprogramming/c-loops.html
+https://www.bilibili.com/video/BV1Vm4y1r7jY?p=25&vd_source=321621351b5c8d1d29a51feda1285409
 :::
 ## 结构体
 
@@ -148,6 +148,9 @@ struct tag {
 举个简单的例子，我们可以构建一个名为 小狗 dog 的结构体，dog 结构体中包含了 小狗的名称、颜色、年龄等信息。即创建了一个 dog 的结构体。
 :::
 
+::: info 视频
+https://www.bilibili.com/video/BV1Vm4y1r7jY?p=24&vd_source=321621351b5c8d1d29a51feda1285409
+:::
 ## 指针
 
 指针也就是内存地址，指针变量是用来存放内存地址的变量。就像其他变量或常量一样，您必须在使用指针存储其他变量地址之前，对其进行声明。指针变量声明的一般形式为：
@@ -158,5 +161,5 @@ type *var_name;
 举个简单的例子，int i = 1 时，我们可以调用 i 来获取这个值，这时会自动找到 i 这个变量，然后找到 对应的存储位置，拿到存储位置以后，再去获取实际的值。这个存储位置就是指针。
 
 ::: note 详情参考
-https://www.runoob.com/cprogramming/c-pointers.html
+https://www.bilibili.com/video/BV1Vm4y1r7jY?p=23&vd_source=321621351b5c8d1d29a51feda1285409
 :::
