@@ -5,8 +5,6 @@ export const pagesData = {
   "v-70bc2959": () => import(/* webpackChunkName: "v-70bc2959" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/algorithm/index.html.js").then(({ data }) => data),
   // path: /database/
   "v-2e25198a": () => import(/* webpackChunkName: "v-2e25198a" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/database/index.html.js").then(({ data }) => data),
-  // path: /other/
-  "v-e4cb1150": () => import(/* webpackChunkName: "v-e4cb1150" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/other/index.html.js").then(({ data }) => data),
   // path: /java/java-base-basic-grammar.html
   "v-368130d4": () => import(/* webpackChunkName: "v-368130d4" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/java/java-base-basic-grammar.html.js").then(({ data }) => data),
   // path: /java/java-base-final.html
@@ -17,6 +15,8 @@ export const pagesData = {
   "v-609fd806": () => import(/* webpackChunkName: "v-609fd806" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/java/java-base-static.html.js").then(({ data }) => data),
   // path: /java/
   "v-14c69af4": () => import(/* webpackChunkName: "v-14c69af4" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/java/index.html.js").then(({ data }) => data),
+  // path: /other/
+  "v-e4cb1150": () => import(/* webpackChunkName: "v-e4cb1150" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/other/index.html.js").then(({ data }) => data),
   // path: /problems/
   "v-884a0bbc": () => import(/* webpackChunkName: "v-884a0bbc" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/problems/index.html.js").then(({ data }) => data),
   // path: /tools/
