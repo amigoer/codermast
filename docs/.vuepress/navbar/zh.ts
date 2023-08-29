@@ -74,10 +74,5 @@ export const zhNavbar = navbar([
         link: "problems/",
       },
     ]
-  },
-  {
-    text: "博客",
-    icon: "blog",
-    link: "https://blog.codermast.com/"
   }
 ]);
