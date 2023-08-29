@@ -4,12 +4,12 @@ export const zhNavbar = navbar([
 
   {
     text: "首页",
-    icon: "home",
+    icon: "iconfont icon-home",
     link: "/"
   },
   {
     text: "Java",
-    icon: "java",
+    icon: "iconfont icon-java",
     prefix: "/java/",
     children: [
       { text: "基础知识", link: "base/", },
@@ -18,10 +18,19 @@ export const zhNavbar = navbar([
       { text: "线程并发", link: "thread/", },
       { text: "JVM虚拟机", link: "jvm/", },
     ]
-  },
-  {
+  }, {
+    text: "Spring",
+    icon: "iconfont icon-light",
+    prefix: "/spring/",
+    children: [
+      { text: "Spring", link: "spring/", },
+      { text: "Spring Boot", link: "springboot/", },
+      { text: "Spring MVC", link: "springmvc/" },
+      { text: "Spring Cloud", link: "springcloud/", },
+    ]
+  }, {
     text: "数据库",
-    icon: "mysql",
+    icon: "iconfont icon-mysql",
     prefix: "/database/",
     children: [
       {
@@ -39,7 +48,7 @@ export const zhNavbar = navbar([
   },
   {
     text: "计算机基础",
-    icon: "computer",
+    icon: "iconfont icon-computer",
     prefix: "/computer/",
     children: [
       {
@@ -62,7 +71,7 @@ export const zhNavbar = navbar([
   },
   {
     text: "算法题解",
-    icon: "like",
+    icon: "iconfont icon-like",
     prefix: "/",
     children: [
       {

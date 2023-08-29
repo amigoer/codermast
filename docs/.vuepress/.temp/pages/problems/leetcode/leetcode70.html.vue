@@ -3,16 +3,16 @@
 <p>假设你正在爬楼梯。需要 n 阶你才能到达楼顶。</p>
 <p>每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？</p>
 <p>示例 1：</p>
-<p>输入：n = 2
-输出：2
+<p>输入：n = 2<br>
+输出：2<br>
 解释：有两种方法可以爬到楼顶。</p>
 <ol>
 <li>1 阶 + 1 阶</li>
-<li>2 阶
+<li>2 阶<br>
 示例 2：</li>
 </ol>
-<p>输入：n = 3
-输出：3
+<p>输入：n = 3<br>
+输出：3<br>
 解释：有三种方法可以爬到楼顶。</p>
 <ol>
 <li>1 阶 + 1 阶 + 1 阶</li>
@@ -24,8 +24,8 @@
 <h2 id="题目地址" tabindex="-1"><a class="header-anchor" href="#题目地址" aria-hidden="true">#</a> 题目地址</h2>
 <p><a href="https://leetcode-cn.com/problems/climbing-stairs/" target="_blank" rel="noopener noreferrer">Leetcode 70.爬楼梯<ExternalLinkIcon/></a></p>
 <h2 id="解题思路" tabindex="-1"><a class="header-anchor" href="#解题思路" aria-hidden="true">#</a> 解题思路</h2>
-<p>  爬到第⼀层楼梯有⼀种⽅法，爬到⼆层楼梯有两种⽅法。
-那么第⼀层楼梯再跨两步就到第三层 ，第⼆层楼梯再跨⼀步就到第三层。
+<p>  爬到第⼀层楼梯有⼀种⽅法，爬到⼆层楼梯有两种⽅法。<br>
+那么第⼀层楼梯再跨两步就到第三层 ，第⼆层楼梯再跨⼀步就到第三层。<br>
 所以到第三层楼梯的状态可以由第⼆层楼梯 和 到第⼀层楼梯状态推导出来，那么就可以想到动态规划了。</p>
 <p>  <strong>爬上 n-1 阶楼梯的方法数量。因为再爬1阶就能到第n阶</strong></p>
 <p>  <strong>爬上 n−2 阶楼梯的方法数量，因为再爬2阶就能到第n阶</strong></p>

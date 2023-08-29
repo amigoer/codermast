@@ -1,7 +1,7 @@
 <template><div><h1 id="_2-计算机网络的分类" tabindex="-1"><a class="header-anchor" href="#_2-计算机网络的分类" aria-hidden="true">#</a> 2 计算机网络的分类</h1>
 <h2 id="_2-1-按分布范围分类" tabindex="-1"><a class="header-anchor" href="#_2-1-按分布范围分类" aria-hidden="true">#</a> 2.1 按分布范围分类</h2>
 <ol>
-<li>广域网（WAN）
+<li>广域网（WAN）<br>
 广域网的任务时容果</li>
 <li>城域网（MAN）</li>
 <li>局域网（LAN）</li>

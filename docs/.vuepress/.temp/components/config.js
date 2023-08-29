@@ -1,8 +1,9 @@
 import { defineClientConfig } from "@vuepress/client";
-import { hasGlobalComponent } from "/Users/codermast/VScodeProjects/CoderMast/node_modules/vuepress-plugin-components/lib/client/shared.js";
+import { hasGlobalComponent } from "/Users/codermast/VScodeProjects/CoderMast/node_modules/vuepress-shared/lib/client/index.js";
 import { h } from "vue";
 
-import { useStyleTag } from "/Users/codermast/VScodeProjects/CoderMast/node_modules/vuepress-plugin-components/lib/client/vueuse.js";
+import { useScriptTag } from "/Users/codermast/VScodeProjects/CoderMast/node_modules/@vueuse/core/index.mjs";
+import { useStyleTag } from "/Users/codermast/VScodeProjects/CoderMast/node_modules/@vueuse/core/index.mjs";
 import Badge from "/Users/codermast/VScodeProjects/CoderMast/node_modules/vuepress-plugin-components/lib/client/components/Badge.js";
 import FontIcon from "/Users/codermast/VScodeProjects/CoderMast/node_modules/vuepress-plugin-components/lib/client/components/FontIcon.js";
 import BackToTop from "/Users/codermast/VScodeProjects/CoderMast/node_modules/vuepress-plugin-components/lib/client/components/BackToTop.js";
@@ -16,11 +17,14 @@ export default defineClientConfig({
     
   },
   setup: () => {
+    useScriptTag(
+  `https://cdn.jsdelivr.net/npm/iconify-icon@1`
+);
       useStyleTag(`\
   @import url("https://at.alicdn.com/t/c/font_2410206_5vb9zlyghj.css");
   `);
   },
   rootComponents: [
-    () => h(BackToTop, { threshold: 300 }),
+    () => h(BackToTop, {}),
   ],
 });

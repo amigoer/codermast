@@ -1,6 +1,6 @@
 <template><div><h1 id="mysql进阶-innodb存储引擎" tabindex="-1"><a class="header-anchor" href="#mysql进阶-innodb存储引擎" aria-hidden="true">#</a> MySQL进阶 - InnoDB存储引擎</h1>
 <h2 id="逻辑存储结构" tabindex="-1"><a class="header-anchor" href="#逻辑存储结构" aria-hidden="true">#</a> 逻辑存储结构</h2>
-<p><img src="@source/../assets/innodb-engine/2023-05-13-22-00-15.png" alt="InnoDB逻辑存储结构" loading="lazy">
+<p><img src="@source/../assets/innodb-engine/2023-05-13-22-00-15.png" alt="InnoDB逻辑存储结构" loading="lazy"><br>
 InnoDB引擎的存储结构主要包含5个部分：</p>
 <ol>
 <li>表空间Tablespace</li>
@@ -192,7 +192,7 @@ InnoDB引擎的存储结构主要包含5个部分：</p>
 <figure><img src="@source/../assets/innodb-engine/2023-05-14-00-12-25.png" alt="数据操作流程" tabindex="0" loading="lazy"><figcaption>数据操作流程</figcaption></figure>
 <h3 id="undo-log" tabindex="-1"><a class="header-anchor" href="#undo-log" aria-hidden="true">#</a> Undo Log</h3>
 <p>回滚日志，用于记录数据被修改前的信息，作用包含两个：提供回滚 和 MVCC（多版本并发控制），是用来实现事务的原子性。</p>
-<p>Undo Log和Redo Log记录物理日志不一样，它是逻辑日志。可以认为当delete一条记录时，Undo Log中会记录一条对应的insert记录，反之
+<p>Undo Log和Redo Log记录物理日志不一样，它是逻辑日志。可以认为当delete一条记录时，Undo Log中会记录一条对应的insert记录，反之<br>
 亦然，当update一条记录时，它记录一条对应相反的update记录。当执行rolback时，就可以从Undo Log中的逻辑记录读取到相应的内容并进行回滚。</p>
 <p>Undo Log销毁：undo Log在事务执行时产生，事务提交时，并不会立即删除undo log，因为这些日志可能还用于MVCC。</p>
 <p>Undo Log存储：undo log采用段的方式进行管理和记录，存放在前面介绍的rollback segment 回滚段中，内部包含 1024 个undo log segment。</p>

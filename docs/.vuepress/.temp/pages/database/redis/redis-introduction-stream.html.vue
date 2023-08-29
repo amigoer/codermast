@@ -101,7 +101,7 @@
 <li>$ ： 表示从尾部开始消费，只接受新消息，当前 Stream 消息会全部忽略。</li>
 </ul>
 <p><strong>从头开始消费:</strong></p>
-<p><code v-pre>XGROUP CREATE mystream consumer-group-name 0-0 </code>
+<p><code v-pre>XGROUP CREATE mystream consumer-group-name 0-0 </code><br>
 <strong>从尾部开始消费:</strong></p>
 <p><code v-pre>XGROUP CREATE mystream consumer-group-name $</code></p>
 <h2 id="xreadgroup-group" tabindex="-1"><a class="header-anchor" href="#xreadgroup-group" aria-hidden="true">#</a> XREADGROUP GROUP</h2>
@@ -113,7 +113,7 @@
 <li>count ： 读取数量。</li>
 <li>milliseconds ： 阻塞毫秒数。</li>
 <li>key ： 队列名。</li>
-<li>ID ： 消息 ID。
+<li>ID ： 消息 ID。<br>
 <code v-pre>XREADGROUP GROUP consumer-group-name consumer-name COUNT 1 STREAMS mystream &gt;</code></li>
 </ul>
 </div></template>

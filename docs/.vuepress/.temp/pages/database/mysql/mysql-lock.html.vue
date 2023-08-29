@@ -40,7 +40,7 @@
 </ol>
 <h3 id="_1-表锁" tabindex="-1"><a class="header-anchor" href="#_1-表锁" aria-hidden="true">#</a> 1.表锁</h3>
 <ul>
-<li>分类
+<li>分类<br>
 对于表锁，又可以分为两类：</li>
 </ul>
 <ol>

@@ -71,7 +71,7 @@
 <p>B树随着数据的插入或者删除会自动进行节点的裂变和合并，这里的具体细节可以去学习数据结构中的B树。</p>
 <div class="hint-container info">
 <p class="hint-container-title">B树知识点</p>
-<p>// todo 待更新
+<p>// todo 待更新<br>
 <a href="https://www.codermast.com" target="_blank" rel="noopener noreferrer">B树<ExternalLinkIcon/></a></p>
 </div>
 <h3 id="b-树" tabindex="-1"><a class="header-anchor" href="#b-树" aria-hidden="true">#</a> B+树</h3>
@@ -238,17 +238,17 @@
 <p class="hint-container-title">答案</p>
 <ul>
 <li>
-<p>假设：
+<p>假设：<br>
 一行数据大小为1K=1024B=1024字节，一页中能存储16行这样的数据，InnoDB的指针占用6个字节的空间，主键即使为bigint，占用8个字节。</p>
 </li>
 <li>
-<p>高度为2时：
-n * 8 + (n + 1) * 6 = 16 * 1024
+<p>高度为2时：<br>
+n * 8 + (n + 1) * 6 = 16 * 1024<br>
 解得：n = 1170</p>
 <p>所以一共能存储 1171 * 16 = 18736 个数据</p>
 </li>
 <li>
-<p>高度为3时：
+<p>高度为3时：<br>
 1171 * 1171 * 16 = 21939856 个数据</p>
 </li>
 </ul>
@@ -287,7 +287,7 @@ n * 8 + (n + 1) * 6 = 16 * 1024
 <h2 id="索引使用" tabindex="-1"><a class="header-anchor" href="#索引使用" aria-hidden="true">#</a> 索引使用</h2>
 <h3 id="索引失效场景" tabindex="-1"><a class="header-anchor" href="#索引失效场景" aria-hidden="true">#</a> 索引失效场景</h3>
 <ul>
-<li>最左前缀法则
+<li>最左前缀法则<br>
 如果索引了多列（联合索引），要遵守最左前缀法则，最左前缀法则指的是查询从索引的最左列开始，并且不跳过索引中的列。如果跳跃某一列，索引将部分失效（后面的字段索引失效）。</li>
 </ul>
 <blockquote>
@@ -295,33 +295,33 @@ n * 8 + (n + 1) * 6 = 16 * 1024
 <ol>
 <li>查询条件的顺序为：mail - tel - username，则走索引，长度为 5 + 6 + 7 = 18</li>
 <li>查询条件的顺序为：mail - username - tel，则走索引，但长度为 5</li>
-<li>查询条件的顺序为：tel - username - mail，则不走索引，长度为NULL
+<li>查询条件的顺序为：tel - username - mail，则不走索引，长度为NULL<br>
 ......以此类推，满足最左前缀法则，哪里不满足，则从哪里断开，可以根据索引长度来判断</li>
 </ol>
 </blockquote>
 <ul>
 <li>
-<p>范围查询
+<p>范围查询<br>
 联合索引中，出现范围查（<code v-pre>&gt;</code> ，<code v-pre>&lt;</code>），范围查询右侧的列索引失效。</p>
 </li>
 <li>
-<p>索引列运算
+<p>索引列运算<br>
 不要在索引列上进行运算操作，索引将失效。</p>
 </li>
 <li>
-<p>字符串类型不加引号
+<p>字符串类型不加引号<br>
 在字符串类型字段上使用时，不加引号，索引将失效。</p>
 </li>
 <li>
-<p>模糊查询
+<p>模糊查询<br>
 如果仅仅是尾部模糊匹配，索引不会失效。如果是开头模糊匹配，则索引失效。</p>
 </li>
 <li>
-<p>or连接的条件
+<p>or连接的条件<br>
 用or分割开的条件，如果or前的条件中的列有索引，而后面的列中没有索引，那么涉及的索引都不会被使用到。</p>
 </li>
 <li>
-<p>数据分布影响
+<p>数据分布影响<br>
 如果MySQL评估使用索引比全表更慢，则不会使用索引。</p>
 </li>
 </ul>
@@ -356,7 +356,7 @@ n * 8 + (n + 1) * 6 = 16 * 1024
 </ul>
 <div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">create</span> <span class="token keyword">index</span> idx_xxxx <span class="token keyword">on</span> table_name<span class="token punctuation">(</span><span class="token keyword">column</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><ul>
-<li>前缀长度
+<li>前缀长度<br>
 可以根据索引的选择性来决定，而选择性是指不重复的索引值(基数)和数据表的记录总数的比值，索引选择性越高则查询效率越高，唯一索引的选择性是1，这是最好的索引选择性，性能也是最好的。</li>
 </ul>
 <div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">select</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token keyword">distinct</span> email<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">from</span> tb_user<span class="token punctuation">;</span>
@@ -364,7 +364,7 @@ n * 8 + (n + 1) * 6 = 16 * 1024
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><h3 id="单列-联合索引" tabindex="-1"><a class="header-anchor" href="#单列-联合索引" aria-hidden="true">#</a> 单列/联合索引</h3>
 <ul>
 <li>单列索引：即一个索引值包含了单个列</li>
-<li>联合索引：即一个索引值包含了多个列
+<li>联合索引：即一个索引值包含了多个列<br>
 在业务场景中，如果存在多个查询条件，考虑针对于查询字段建立索引时，建议建立联合索引，而非单列索引。</li>
 </ul>
 <div class="hint-container info">

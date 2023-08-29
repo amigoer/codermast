@@ -4,26 +4,26 @@
 <p>机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角（在下图中标记为 “Finish” ）。</p>
 <p>问总共有多少条不同的路径？</p>
 <p>示例 1：</p>
-<p>输入：m = 3, n = 7
-输出：28
+<p>输入：m = 3, n = 7<br>
+输出：28<br>
 示例 2：</p>
-<p>输入：m = 3, n = 2
-输出：3
-解释：
+<p>输入：m = 3, n = 2<br>
+输出：3<br>
+解释：<br>
 从左上角开始，总共有 3 条路径可以到达右下角。</p>
 <ol>
 <li>向右 -&gt; 向下 -&gt; 向下</li>
 <li>向下 -&gt; 向下 -&gt; 向右</li>
-<li>向下 -&gt; 向右 -&gt; 向下
+<li>向下 -&gt; 向右 -&gt; 向下<br>
 示例 3：</li>
 </ol>
-<p>输入：m = 7, n = 3
-输出：28
+<p>输入：m = 7, n = 3<br>
+输出：28<br>
 示例 4：</p>
-<p>输入：m = 3, n = 3
+<p>输入：m = 3, n = 3<br>
 输出：6</p>
 <p>提示：</p>
-<p>1 &lt;= m, n &lt;= 100
+<p>1 &lt;= m, n &lt;= 100<br>
 题目数据保证答案小于等于 2 * 109</p>
 <h2 id="题目地址" tabindex="-1"><a class="header-anchor" href="#题目地址" aria-hidden="true">#</a> 题目地址</h2>
 <p><a href="https://leetcode.cn/problems/unique-paths/solution/dong-tai-gui-hua-dpmiao-jie-bu-tong-lu-j-61ut/" target="_blank" rel="noopener noreferrer">Leetcode 62. 不同路径<ExternalLinkIcon/></a></p>

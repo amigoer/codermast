@@ -57,23 +57,23 @@ mysql <span class="token comment">--local-infile -u root -p</span>
 <p>我们分别从 主键顺序插入 和 主键乱序插入 这两个角度来探究这个问题：</p>
 <ul>
 <li>
-<p>主键顺序插入
+<p>主键顺序插入<br>
 主键顺序插入数据，由于数据在页内存储会根据主键排序，那么此时所有的数据在页内都会顺序排列，页内剩余空间不足时，则开启下一个页，尽可能的保证了空间的利用率。也不存在数据的移动问题。</p>
 </li>
 <li>
-<p>主键乱序插入
+<p>主键乱序插入<br>
 同理，数据按主键排序，那么在主键乱序插入一组数据以后，此时页内的数据是有序的，但是如果下一次想要插入的数据主键不为最大值，那么此时需要将数据插入到页中，而不是直接添加到页尾，则此时需要进行数据的移动。</p>
 </li>
 </ul>
 <figure><img src="@source/../assets/sql-optimize/2023-04-14-10-29-31.png" alt="主键乱序插入" tabindex="0" loading="lazy"><figcaption>主键乱序插入</figcaption></figure>
 <ol>
-<li>先开启一个新的数据页，page3
+<li>先开启一个新的数据页，page3<br>
 <img src="@source/../assets/sql-optimize/2023-04-14-10-34-34.png" alt="开辟新的数据页" loading="lazy"></li>
-<li>将page1中50%的位置，将后半段数据移动到page3
+<li>将page1中50%的位置，将后半段数据移动到page3<br>
 <img src="@source/../assets/sql-optimize/2023-04-14-10-35-08.png" alt="移动page1中一半的数据" loading="lazy"></li>
-<li>将主键为50的这行数据，插入到page3的末尾。
+<li>将主键为50的这行数据，插入到page3的末尾。<br>
 <img src="@source/../assets/sql-optimize/2023-04-14-10-32-55.png" alt="将数据插入到page3末尾" loading="lazy"></li>
-<li>由于要保证page之间有序，还需要调整页间指针的方向，调整为 page1 -&gt; page3 -&gt; page2
+<li>由于要保证page之间有序，还需要调整页间指针的方向，调整为 page1 -&gt; page3 -&gt; page2<br>
 <img src="@source/../assets/sql-optimize/2023-04-14-10-33-44.png" alt="调整页间指针" loading="lazy"></li>
 <li>此时则完成了数据的插入。</li>
 </ol>
@@ -159,7 +159,7 @@ mysql <span class="token comment">--local-infile -u root -p</span>
 <p>count()是一个聚合函数，对于返回的结果集，一行行地判断，如果count函数的参数不是Null，累计值就加1，否则不加，最后返回累计值。</p>
 <ul>
 <li>
-<p>count(*)
+<p>count(*)<br>
 InnoDB 引擎并不会把全部字段取出来，而是专门做了优化，不取值，服务层直接按行进行累加。</p>
 </li>
 <li>
@@ -168,12 +168,12 @@ InnoDB 引擎并不会把全部字段取出来，而是专门做了优化，不�
 </ul>
 <p>InnoDB引擎会遍历整张表，把每一行的主键ID值都取出来，返回给服务层。服务层拿到主键以后，直接按行进行累加（主键不可能为null）</p>
 <ul>
-<li>count(字段)
+<li>count(字段)<br>
 没有not null约束：innoDB引擎会遍历整张表，把每一行的字段值都取出来，返回给服务层，服务层判断是否为null，不为null，计数累加。</li>
 </ul>
 <p>有not null约束：InnoDB引擎会遍历整张表，把每一行的字段值都取出来，返回给服务层，直接按行进行累加。</p>
 <ul>
-<li>count(1)
+<li>count(1)<br>
 InnoDB引擎遍历整张表，但不取值，服务层对于返回的每一行，放一个数字“1”进去，直接按行进行累加。</li>
 </ul>
 <div class="hint-container tip">

@@ -1,10 +1,10 @@
 <template><div><h1 id="_1646-获取生成数组中的最大值" tabindex="-1"><a class="header-anchor" href="#_1646-获取生成数组中的最大值" aria-hidden="true">#</a> 1646. 获取生成数组中的最大值</h1>
 <h2 id="题目介绍" tabindex="-1"><a class="header-anchor" href="#题目介绍" aria-hidden="true">#</a> 题目介绍</h2>
 <p>给你一个整数 n 。按下述规则生成一个长度为 n + 1 的数组 nums ：</p>
-<p>nums[0] = 0
-nums[1] = 1
-当 2 &lt;= 2 * i &lt;= n 时，nums[2 * i] = nums[i]
-当 2 &lt;= 2 * i + 1 &lt;= n 时，nums[2 * i + 1] = nums[i] + nums[i + 1]
+<p>nums[0] = 0<br>
+nums[1] = 1<br>
+当 2 &lt;= 2 * i &lt;= n 时，nums[2 * i] = nums[i]<br>
+当 2 &lt;= 2 * i + 1 &lt;= n 时，nums[2 * i + 1] = nums[i] + nums[i + 1]<br>
 返回生成数组 nums 中的 最大 值。</p>
 <h2 id="题目地址" tabindex="-1"><a class="header-anchor" href="#题目地址" aria-hidden="true">#</a> 题目地址</h2>
 <p><a href="https://leetcode-cn.com/problems/get-maximum-in-generated-array/" target="_blank" rel="noopener noreferrer">1646. 获取生成数组中的最大值<ExternalLinkIcon/></a></p>

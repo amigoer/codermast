@@ -3,11 +3,11 @@
 <figure><img src="@source/../assets/storage-engine/2023-04-10-18-34-31.png" alt="MySQL的体系结构示意图" tabindex="0" loading="lazy"><figcaption>MySQL的体系结构示意图</figcaption></figure>
 <ul>
 <li>
-<p>连接层
+<p>连接层<br>
 连接层处于MySQL体系结构中的最上层，是一些客户端和链接服务，主要完成一些类似于连接处理、授权认证、以及相关的安全方案。服务器也会为安全接入的每个客户端验证它所具有的操作权限。</p>
 </li>
 <li>
-<p>服务层
+<p>服务层<br>
 服务层处于MySQL体系结构中的第二层，主要完成大多书的核心服务功能，如SQL接口，并完成缓存的查询，SQL的分析和优化，部分内置函数的执行。所有存储引擎的功能也在这一层实现，如 过程、函数等。</p>
 </li>
 <li>
@@ -16,7 +16,7 @@
 </ul>
 <p>引擎层处于MySQL体系结构中的第三层，真正的负责了MySQL中数据的存储和提取，服务器通过API和存储引擎进行通信。不同的存储引擎具有不同的功能，这样我们可以根据自己的需要，来选取合适的存储引擎。</p>
 <ul>
-<li>存储层
+<li>存储层<br>
 存储层位于MySQL结构体系的最底层，主要是将数据存储在文件系统之上，完成与存储引擎的交互。</li>
 </ul>
 <h2 id="存储引擎简介" tabindex="-1"><a class="header-anchor" href="#存储引擎简介" aria-hidden="true">#</a> 存储引擎简介</h2>
@@ -41,7 +41,7 @@
 <h3 id="innodb" tabindex="-1"><a class="header-anchor" href="#innodb" aria-hidden="true">#</a> InnoDB</h3>
 <ol>
 <li>
-<p>介绍
+<p>介绍<br>
 InnoDB是一种兼顾高可靠性和高性能的通用存储引擎，在MySQL5.5以后，InnoDB是默认的MySQL存储引擎。</p>
 </li>
 <li>
@@ -54,7 +54,7 @@ InnoDB是一种兼顾高可靠性和高性能的通用存储引擎，在MySQL5.5
 <li>支持外键FOREIGN KEY约束，保证数据的完整性和正确性</li>
 </ul>
 <ol start="3">
-<li>文件
+<li>文件<br>
 <code v-pre>xxx.ibd</code>：xxx代表的是数据表名，InnoDB引擎的每张表都会对应这样一个表空间文件，存储该表的表架构(frm、sdi)、数据和索引。</li>
 </ol>
 <p>参数：<code v-pre>innodb_file_per_table</code></p>
@@ -70,7 +70,7 @@ InnoDB是一种兼顾高可靠性和高性能的通用存储引擎，在MySQL5.5
 <h3 id="myisam" tabindex="-1"><a class="header-anchor" href="#myisam" aria-hidden="true">#</a> MyISAM</h3>
 <ol>
 <li>
-<p>介绍
+<p>介绍<br>
 MyISAM是MySQL早期的默认存储引擎。</p>
 </li>
 <li>
@@ -92,7 +92,7 @@ MyISAM是MySQL早期的默认存储引擎。</p>
 </ul>
 <h3 id="memory" tabindex="-1"><a class="header-anchor" href="#memory" aria-hidden="true">#</a> Memory</h3>
 <ol>
-<li>介绍
+<li>介绍<br>
 Memory存储引擎的表数据存储在内存中，由于受到硬件问题、断电问题的影响，只能将这些表作为临时表或者缓存使用。</li>
 <li>特点</li>
 </ol>
@@ -101,7 +101,7 @@ Memory存储引擎的表数据存储在内存中，由于受到硬件问题、�
 <li>支持Hash索引(<Badge text="默认" type="danger" />)</li>
 </ul>
 <ol start="3">
-<li>文件
+<li>文件<br>
 xxx.sdi：存储表结构信息，只有这一个，索引和数据均存储在内存中。</li>
 </ol>
 <table>

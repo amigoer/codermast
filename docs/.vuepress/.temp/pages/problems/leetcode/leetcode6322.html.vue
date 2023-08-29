@@ -5,17 +5,17 @@
 <p>如果 grid 表示了骑士的有效巡视方案，返回 true；否则返回 false。</p>
 <p>注意，骑士行动时可以垂直移动两个格子且水平移动一个格子，或水平移动两个格子且垂直移动一个格子。下图展示了骑士从某个格子出发可能的八种行动路线。</p>
 <p>示例 1：</p>
-<p>输入：grid = [[0,11,16,5,20],[17,4,19,10,15],[12,1,8,21,6],[3,18,23,14,9],[24,13,2,7,22]]
-输出：true
-解释：grid 如上图所示，可以证明这是一个有效的巡视方案。
+<p>输入：grid = [[0,11,16,5,20],[17,4,19,10,15],[12,1,8,21,6],[3,18,23,14,9],[24,13,2,7,22]]<br>
+输出：true<br>
+解释：grid 如上图所示，可以证明这是一个有效的巡视方案。<br>
 示例 2：</p>
-<p>输入：grid = [[0,3,6],[5,8,1],[2,7,4]]
-输出：false
+<p>输入：grid = [[0,3,6],[5,8,1],[2,7,4]]<br>
+输出：false<br>
 解释：grid 如上图所示，考虑到骑士第 7 次行动后的位置，第 8 次行动是无效的。</p>
 <p>提示：</p>
-<p>n == grid.length == grid[i].length
-3 &lt;= n &lt;= 7
-0 &lt;= grid[row][col] &lt; n * n
+<p>n == grid.length == grid[i].length<br>
+3 &lt;= n &lt;= 7<br>
+0 &lt;= grid[row][col] &lt; n * n<br>
 grid 中的所有整数 互不相同</p>
 <h2 id="题目地址" tabindex="-1"><a class="header-anchor" href="#题目地址" aria-hidden="true">#</a> 题目地址</h2>
 <p><a href="https://leetcode.cn/problems/check-knight-tour-configuration/solution/leetcode-6322-jian-cha-qi-shi-xun-shi-fa-0ece/" target="_blank" rel="noopener noreferrer">Leetcode 6322. 检查骑士巡视方案<ExternalLinkIcon/></a></p>

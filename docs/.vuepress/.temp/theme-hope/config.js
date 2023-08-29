@@ -1,13 +1,18 @@
 import { defineClientConfig } from "@vuepress/client";
+import { VPLink } from "/Users/codermast/VScodeProjects/CoderMast/node_modules/vuepress-shared/lib/client/index.js";
 
-import { HopeIcon, Layout, NotFound, useScrollPromise, injectDarkmode, setupDarkmode, setupSidebarItems } from "/Users/codermast/VScodeProjects/CoderMast/node_modules/vuepress-theme-hope/lib/client/export.js";
+import { HopeIcon, Layout, NotFound, useScrollPromise, injectDarkmode, setupDarkmode, setupSidebarItems } from "/Users/codermast/VScodeProjects/CoderMast/node_modules/vuepress-theme-hope/lib/bundle/export.js";
 
-import { BlogCategory, BlogHome, BlogType, BloggerInfo, Timeline, setupBlog } from "/Users/codermast/VScodeProjects/CoderMast/node_modules/vuepress-theme-hope/lib/client/modules/blog/export.js";
-import "/Users/codermast/VScodeProjects/CoderMast/node_modules/vuepress-theme-hope/lib/client/modules/blog/styles/layout.scss";
-import { GlobalEncrypt, LocalEncrypt } from "/Users/codermast/VScodeProjects/CoderMast/node_modules/vuepress-theme-hope/lib/client/modules/encrypt/export.js";
+import { defineAutoCatalogIconComponent } from "/Users/codermast/VScodeProjects/CoderMast/node_modules/vuepress-plugin-auto-catalog/lib/client/index.js"
+import { BlogCategory, BlogHome, BlogType, BloggerInfo, Timeline, setupBlog } from "/Users/codermast/VScodeProjects/CoderMast/node_modules/vuepress-theme-hope/lib/bundle/modules/blog/export.js";
+import "/Users/codermast/VScodeProjects/CoderMast/node_modules/vuepress-theme-hope/lib/bundle/modules/blog/styles/all.scss";
+import { GlobalEncrypt, LocalEncrypt } from "/Users/codermast/VScodeProjects/CoderMast/node_modules/vuepress-theme-hope/lib/bundle/modules/encrypt/export.js";
+import "/Users/codermast/VScodeProjects/CoderMast/node_modules/vuepress-theme-hope/lib/bundle/modules/encrypt/styles/all.scss"
 import Slide from "/Users/codermast/VScodeProjects/CoderMast/node_modules/vuepress-plugin-md-enhance/lib/client/SlidePage.js";
 
-import "/Users/codermast/VScodeProjects/CoderMast/node_modules/vuepress-theme-hope/lib/client/styles/index.scss";
+import "/Users/codermast/VScodeProjects/CoderMast/node_modules/vuepress-theme-hope/lib/bundle/styles/all.scss";
+
+defineAutoCatalogIconComponent(HopeIcon);
 
 export default defineClientConfig({
   enhance: ({ app, router }) => {
@@ -22,8 +27,10 @@ export default defineClientConfig({
     // inject global properties
     injectDarkmode(app);
 
-    // render icon for auto-catalog
+    // provide HopeIcon as global component
     app.component("HopeIcon", HopeIcon);
+    // provide VPLink as global component
+    app.component("VPLink", VPLink);
 
     app.component("BloggerInfo", BloggerInfo);
     app.component("GlobalEncrypt", GlobalEncrypt);

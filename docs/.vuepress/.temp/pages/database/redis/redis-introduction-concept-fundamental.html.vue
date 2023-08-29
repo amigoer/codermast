@@ -162,8 +162,8 @@ WantedBy=multi-user.target
 <li>不指定commond时，会进入redis-cli的交互控制台。</li>
 </ul>
 <h3 id="图形化客户端" tabindex="-1"><a class="header-anchor" href="#图形化客户端" aria-hidden="true">#</a> 图形化客户端</h3>
-<p>图形化客户端，顾名思义就是通过可视化的软件，来对redis数据库进⾏操作。
-图形化界⾯的客户端种类很多，可以选择⾃⼰喜欢的⼀款就可以，这⾥我选择的是Another Redis Desktop Manager这款，⽀持Mac、Linux、Windows系统，更重要的是还免
+<p>图形化客户端，顾名思义就是通过可视化的软件，来对redis数据库进⾏操作。<br>
+图形化界⾯的客户端种类很多，可以选择⾃⼰喜欢的⼀款就可以，这⾥我选择的是Another Redis Desktop Manager这款，⽀持Mac、Linux、Windows系统，更重要的是还免<br>
 费。</p>
 <blockquote>
 <p>笔者的电脑系统为macos，故就演示Mac环境下的图形化客户端，windows系统下的客户端种类很多，网络上的资源也很多，这里就不赘述。</p>

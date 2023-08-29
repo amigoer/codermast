@@ -1,22 +1,22 @@
 <template><div><h1 id="_509-斐波那契数" tabindex="-1"><a class="header-anchor" href="#_509-斐波那契数" aria-hidden="true">#</a> 509. 斐波那契数</h1>
 <h2 id="题目描述" tabindex="-1"><a class="header-anchor" href="#题目描述" aria-hidden="true">#</a> 题目描述</h2>
 <p>斐波那契数 （通常用 F(n) 表示）形成的序列称为 斐波那契数列 。该数列由 0 和 1 开始，后面的每一项数字都是前面两项数字的和。也就是：</p>
-<p>F(0) = 0，F(1) = 1
-F(n) = F(n - 1) + F(n - 2)，其中 n &gt; 1
+<p>F(0) = 0，F(1) = 1<br>
+F(n) = F(n - 1) + F(n - 2)，其中 n &gt; 1<br>
 给定 n ，请计算 F(n) 。</p>
 <p>示例 1：</p>
-<p>输入：n = 2
-输出：1
+<p>输入：n = 2<br>
+输出：1<br>
 解释：F(2) = F(1) + F(0) = 1 + 0 = 1</p>
-<p>示例 2：
-输入：n = 3
-输出：2
+<p>示例 2：<br>
+输入：n = 3<br>
+输出：2<br>
 解释：F(3) = F(2) + F(1) = 1 + 1 = 2</p>
-<p>示例 3：
-输入：n = 4
-输出：3
+<p>示例 3：<br>
+输入：n = 4<br>
+输出：3<br>
 解释：F(4) = F(3) + F(2) = 2 + 1 = 3</p>
-<p>提示：
+<p>提示：<br>
 0 &lt;= n &lt;= 30</p>
 <h2 id="题目地址" tabindex="-1"><a class="header-anchor" href="#题目地址" aria-hidden="true">#</a> 题目地址</h2>
 <p><a href="https://leetcode-cn.com/problems/fibonacci-number/" target="_blank" rel="noopener noreferrer">LeetCode509. 斐波那契数<ExternalLinkIcon/></a></p>

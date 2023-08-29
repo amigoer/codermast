@@ -290,17 +290,17 @@ intset <span class="token operator">*</span><span class="token function">intsetA
 </ul>
 <h2 id="字典-哈希表dict" tabindex="-1"><a class="header-anchor" href="#字典-哈希表dict" aria-hidden="true">#</a> 字典/哈希表Dict</h2>
 <h3 id="基本概念-2" tabindex="-1"><a class="header-anchor" href="#基本概念-2" aria-hidden="true">#</a> 基本概念</h3>
-<p><strong>Dict</strong>
+<p><strong>Dict</strong><br>
 Dict 由三部分组成，分别是：哈希表（DictHashTable）、哈希节点（DictEntry）、字典（Dict）</p>
 <p><strong>哈希算法</strong></p>
 <p>Redis 计算哈希值和索引值方法如下：</p>
 <ol>
 <li>
-<p>使用字典设置的哈希函数，计算键 key 的哈希值
+<p>使用字典设置的哈希函数，计算键 key 的哈希值<br>
 <code v-pre>hash = dict-&gt;type-&gt;hashFunction(key);</code></p>
 </li>
 <li>
-<p>使用哈希表的sizemask属性和第一步得到的哈希值，计算索引值
+<p>使用哈希表的sizemask属性和第一步得到的哈希值，计算索引值<br>
 <code v-pre>index = hash &amp; dict-&gt;ht[x].sizemask;</code></p>
 </li>
 </ol>

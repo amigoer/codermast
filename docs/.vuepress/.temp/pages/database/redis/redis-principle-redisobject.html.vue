@@ -149,7 +149,7 @@
 <li>根据redisObject的encoding属性所指定的编码，选择合适的操作函数来处理底层的数据结构</li>
 <li>返回数据结构的操作结果作为命令的返回值</li>
 </ol>
-<p><strong>比如现在执行LPOP命令：</strong>
+<p><strong>比如现在执行LPOP命令：</strong><br>
 <img src="@source/../assets/redis-object/2023-06-16-12-37-00.png" alt="" loading="lazy"></p>
 <h2 id="对象共享" tabindex="-1"><a class="header-anchor" href="#对象共享" aria-hidden="true">#</a> 对象共享</h2>
 <p>Redis 一般会把一些常见的值放到一个共享对象中，这样可使程序避免了重复分配的麻烦，也节约了一些CPU时间。</p>

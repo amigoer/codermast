@@ -25,10 +25,10 @@ export default hopeTheme({
   author: {
     name: "CoderMast",
     url: "https://www.codermast.com",
-    email: "codermast@qq.com",
+    email: "codermast@163.com",
   },
 
-  iconAssets: "iconfont",
+  iconAssets: ["iconify", "iconfont"],
 
   logo: "/logo.svg",
 

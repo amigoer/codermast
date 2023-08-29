@@ -4,7 +4,7 @@
 <p>使用别名OLD和NEW来引用触发器中发生变化的记录内容，这与其他的数据库是相似的。现在触发器还只支持行级触发，不支持语句级触发。</p>
 <div class="hint-container note">
 <p class="hint-container-title">举例</p>
-<p>语句级触发：执行一次SQL，触发器会触发一次，无论影响多少行。
+<p>语句级触发：执行一次SQL，触发器会触发一次，无论影响多少行。<br>
 行级触发：如一个SQL语句更新了3行数据，则触发器会触发三次。</p>
 </div>
 <h2 id="类型" tabindex="-1"><a class="header-anchor" href="#类型" aria-hidden="true">#</a> 类型</h2>

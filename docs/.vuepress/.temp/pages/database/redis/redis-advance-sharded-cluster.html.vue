@@ -167,8 +167,8 @@ get num
 <li>key 中包含 <code v-pre>{}</code> ，且<code v-pre>{}</code>中至少包含 1 个字符，<code v-pre>{}</code>中的部分是有效部分</li>
 <li>key 中不包含 <code v-pre>{}</code>，整个 key 都是有效部分</li>
 </ul>
-<p>::: 例如
-key 是 num，那么就根据 num 计算，如果是 {itcast}num，则根据 itcast 计算。计算方式是利用 CRC16 算法得到一个 hash 值，然后对 16384 取余，得到的结果就是 slot 值。
+<p>::: 例如<br>
+key 是 num，那么就根据 num 计算，如果是 {itcast}num，则根据 itcast 计算。计算方式是利用 CRC16 算法得到一个 hash 值，然后对 16384 取余，得到的结果就是 slot 值。<br>
 :::</p>
 <p><strong>Redis如何判断某个 key 应该在哪个实例？</strong></p>
 <ul>

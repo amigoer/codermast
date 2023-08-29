@@ -304,7 +304,7 @@
 <h3 id="聚合查询" tabindex="-1"><a class="header-anchor" href="#聚合查询" aria-hidden="true">#</a> 聚合查询</h3>
 <h4 id="聚合函数" tabindex="-1"><a class="header-anchor" href="#聚合函数" aria-hidden="true">#</a> 聚合函数</h4>
 <ol>
-<li>介绍
+<li>介绍<br>
 将一列数据作为一个整体，进行纵向计算</li>
 <li>常见的聚合函数</li>
 </ol>
@@ -352,8 +352,8 @@
 </ol>
 <div class="language-sql line-numbers-mode" data-ext="sql"><pre v-pre class="language-sql"><code><span class="token keyword">SELECT</span> 字段列表 <span class="token keyword">FROM</span> 表名 <span class="token punctuation">[</span><span class="token keyword">WHERE</span> 条件列表<span class="token punctuation">]</span> <span class="token keyword">GROUP</span> <span class="token keyword">BY</span> 分组字段名 <span class="token punctuation">[</span><span class="token keyword">HAVING</span> 分组后的过滤条件<span class="token punctuation">]</span><span class="token punctuation">;</span>
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><ol start="2">
-<li>WHERE 和 HAVING 区别
-执行时机不同：where是分组之前进行过滤，不符合where条件的不参与分组，而having是在分组之后进行过滤。
+<li>WHERE 和 HAVING 区别<br>
+执行时机不同：where是分组之前进行过滤，不符合where条件的不参与分组，而having是在分组之后进行过滤。<br>
 判断条件不同：where不能对聚合函数进行判断，而having可以。</li>
 </ol>
 <div class="hint-container info">
