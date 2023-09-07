@@ -6,4 +6,5 @@ export const zhSidebar = sidebar({
   "/computer/": "structure",
   "/algorithm/": "structure",
   "/problems/": "structure",
+  "/spring": "structure",
 });
