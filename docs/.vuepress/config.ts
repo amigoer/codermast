@@ -6,7 +6,7 @@ import { searchProPlugin } from "vuepress-plugin-search-pro";
 export default defineUserConfig({
   base: "/",
   lang: "zh-CN",
-  title: "CoderMast编程桅杆",
+  title: "编程桅杆",
   head: [
     ["script", {}, `var _hmt = _hmt || [];
     (function() {
