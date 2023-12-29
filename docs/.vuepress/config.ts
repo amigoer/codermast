@@ -36,7 +36,4 @@ export default defineUserConfig({
       ],
     }),
   ],
-
-
-
 });

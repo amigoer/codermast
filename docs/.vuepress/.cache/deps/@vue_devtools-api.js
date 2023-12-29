@@ -3,7 +3,7 @@ import {
   now,
   setupDevtoolsPlugin
 } from "./chunk-J4VLYDXT.js";
-import "./chunk-2LSFTFF7.js";
+import "./chunk-USJHI7ER.js";
 export {
   isPerformanceSupported,
   now,

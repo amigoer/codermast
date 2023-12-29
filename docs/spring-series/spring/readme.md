@@ -1,7 +1,11 @@
 ---
-index : true
+index : false
 ---
+
 # Spring
+
+![Spring](../../../assets/readme/2023-12-29-20-51-14.png)
+
 
 ## 参考资料
 
@@ -9,6 +13,11 @@ index : true
 
 ::: info 视频地址
 https://www.bilibili.com/video/BV1kR4y1b7Qc
+:::
+- 黑马程序员Spring教程
+
+:::info 视频地址
+https://www.bilibili.com/video/BV1rt4y1u7q5
 :::
 
 - 笔记资料  

@@ -1,6 +1,6 @@
 import {
   __publicField
-} from "./chunk-2LSFTFF7.js";
+} from "./chunk-USJHI7ER.js";
 
 // node_modules/slimsearch/dist/index.mjs
 var mt = "ENTRIES";
