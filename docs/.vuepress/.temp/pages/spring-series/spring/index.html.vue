@@ -2,6 +2,13 @@
 <figure><img src="@source/../assets/readme/2023-12-29-20-51-14.png" alt="Spring" tabindex="0" loading="lazy"><figcaption>Spring</figcaption></figure>
 <h2 id="参考资料" tabindex="-1"><a class="header-anchor" href="#参考资料" aria-hidden="true">#</a> 参考资料</h2>
 <ul>
+<li>代码仓库：</li>
+</ul>
+<div class="hint-container info">
+<p class="hint-container-title">Github</p>
+<p><a href="https://github.com/CoderMast/Spring6" target="_blank" rel="noopener noreferrer">https://github.com/CoderMast/Spring6<ExternalLinkIcon/></a></p>
+</div>
+<ul>
 <li>尚硅谷Spring6视频教程</li>
 </ul>
 <div class="hint-container info">
