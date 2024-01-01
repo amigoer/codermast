@@ -223,4 +223,6 @@ export const pagesComponents = {
   "v-154dc4c4": defineAsyncComponent(() => import(/* webpackChunkName: "v-154dc4c4" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/star/index.html.vue")),
   // path: /timeline/
   "v-01560935": defineAsyncComponent(() => import(/* webpackChunkName: "v-01560935" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/timeline/index.html.vue")),
+  // path: /spring-series/spring/spring-junit.html
+  "v-11375dfa": defineAsyncComponent(() => import(/* webpackChunkName: "v-11375dfa" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/spring-series/spring/spring-junit.html.vue")),
 }

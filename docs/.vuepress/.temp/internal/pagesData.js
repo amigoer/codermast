@@ -221,4 +221,6 @@ export const pagesData = {
   "v-154dc4c4": () => import(/* webpackChunkName: "v-154dc4c4" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/star/index.html.js").then(({ data }) => data),
   // path: /timeline/
   "v-01560935": () => import(/* webpackChunkName: "v-01560935" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/timeline/index.html.js").then(({ data }) => data),
+  // path: /spring-series/spring/spring-junit.html
+  "v-11375dfa": () => import(/* webpackChunkName: "v-11375dfa" */"/Users/codermast/VScodeProjects/CoderMast/docs/.vuepress/.temp/pages/spring-series/spring/spring-junit.html.js").then(({ data }) => data),
 }
