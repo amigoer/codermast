@@ -223,7 +223,7 @@ public class AnnotationApplicationContext implements ApplicationContext {
 ```
 ::::
 
-::: warning 
+::: danger 
 在 `AnnotationApplicationContext` 的代码中，有涉及到文件的路径转换。需要注意 `Windows` 和 `Linux`、`Mac` 平台下的文件路径分隔符是不相同的。
 - `Windows` 下是 `\`，反斜杠
 - `Linux`、`Mac` 下是 `/`，斜杠
