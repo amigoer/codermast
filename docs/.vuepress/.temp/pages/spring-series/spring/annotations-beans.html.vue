@@ -9,7 +9,7 @@
 <li>依赖注入</li>
 </ol>
 <h2 id="创建子模块" tabindex="-1"><a class="header-anchor" href="#创建子模块" aria-hidden="true">#</a> 创建子模块</h2>
-<p>在使用 注解 管理 Bean 之前，为了防止和之前的项目冲突，我们重新构建一个子模块，叫做 spring6-ioc-annotation ，并且引入 beans.xml 文件即可。</p>
+<p>在使用 注解 管理 Bean 之前，为了防止和之前的项目冲突，我们重新创建一个子模块，叫做 spring6-ioc-annotation ，并且引入 beans.xml 文件即可。</p>
 <ol>
 <li>创建 spring6-ioc-annotation</li>
 <li>引入配置文件

@@ -1,6 +1,6 @@
 <template><div><h1 id="spring-基于xml管理bean" tabindex="-1"><a class="header-anchor" href="#spring-基于xml管理bean" aria-hidden="true">#</a> Spring - 基于XML管理Bean</h1>
-<h2 id="搭建子模块" tabindex="-1"><a class="header-anchor" href="#搭建子模块" aria-hidden="true">#</a> 搭建子模块</h2>
-<p>在使用 XML 管理 Bean 之前，为了防止和之前的项目冲突，我们重新构建一个子模块，叫做 spring6-ioc-xml ，并且引入 beans.xml 文件即可。</p>
+<h2 id="创建子模块" tabindex="-1"><a class="header-anchor" href="#创建子模块" aria-hidden="true">#</a> 创建子模块</h2>
+<p>在使用 XML 管理 Bean 之前，为了防止和之前的项目冲突，我们重新创建一个子模块，叫做 spring6-ioc-xml ，并且引入 beans.xml 文件即可。</p>
 <h2 id="获取bean" tabindex="-1"><a class="header-anchor" href="#获取bean" aria-hidden="true">#</a> 获取bean</h2>
 <p>在通过 xml 方式获取 bean 之前，我们需要先导入对应的配置文件，这里我们是 beans.xml。构建 ApplicationContext 容器。</p>
 <div class="language-java line-numbers-mode" data-ext="java"><pre v-pre class="language-java"><code><span class="token comment">// 导入 bean 的 xml 配置文件</span>
