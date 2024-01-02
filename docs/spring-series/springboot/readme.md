@@ -1,7 +1,7 @@
 ---
 index : false
 ---
-# SpringBoot 全栈指南
+# SpringBoot
 
 ## 章节分布
 

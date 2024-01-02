@@ -1,4 +1,4 @@
-<template><div><h1 id="springboot-全栈指南" tabindex="-1"><a class="header-anchor" href="#springboot-全栈指南" aria-hidden="true">#</a> SpringBoot 全栈指南</h1>
+<template><div><h1 id="springboot" tabindex="-1"><a class="header-anchor" href="#springboot" aria-hidden="true">#</a> SpringBoot</h1>
 <h2 id="章节分布" tabindex="-1"><a class="header-anchor" href="#章节分布" aria-hidden="true">#</a> 章节分布</h2>
 <ol>
 <li>
