@@ -125,7 +125,7 @@ copy日志文件：`log4j2.xml`
 </configuration>
 ```
 
-### 添加java类
+### 添加Java类
 
 ```java
 package com.codermast.spring6.bean;
