@@ -480,8 +480,6 @@ public class Demo4 {
 
 效果前面已经演示
 
-
-
 ### 使用前缀指定访问策略
 
 **实验一：classpath前缀使用**
