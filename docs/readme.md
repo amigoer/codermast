@@ -76,7 +76,6 @@ footer:  <a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral
 ## 联系我
 
 <div align="center">
-   <img src="../assets/readme/2023-06-17-21-50-45.png"  height="500px">
-   
+   <img src="../assets/readme/2024-01-03-14-00-26.png"  height="500px">
    <!-- <img src="../assets/readme/2023-06-17-21-51-44.png" height=160> -->
 </div>
