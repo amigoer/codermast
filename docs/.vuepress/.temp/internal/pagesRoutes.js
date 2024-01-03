@@ -112,4 +112,5 @@ export const pagesRoutes = [
   ["v-e52c881c","/article/",{"y":"p","t":"文章","I":0},[]],
   ["v-154dc4c4","/star/",{"y":"p","t":"收藏","I":0},[]],
   ["v-01560935","/timeline/",{"y":"p","t":"时间轴","I":0},[]],
+  ["v-5da3c0ba","/spring-series/spring/spring-resources.html",{"y":"a","t":"Spring - 资源操作","O":null},[":md"]],
 ]
