@@ -1,8 +1,8 @@
 ---
-order :
+order : 11
 ---
 
-# Spring6 - 国际化i18n
+# Spring - 国际化i18n
 
 ## i18n概述
 
