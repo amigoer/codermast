@@ -1,7 +1,7 @@
 ---
 home: true
 icon: home
-title: 首页
+title: 编程桅杆
 heroImage: /logo.svg
 heroText: CoderMast编程桅杆
 tagline: 学习笔记 & 工作总结
@@ -14,29 +14,9 @@ actions:
   - text: 数据库
     link: /database/
 
-features:
-  - title: Java
-    icon: java
-    details: Java基础、Java集合、Java8、Java并发、JavaIO、JVM
-    link: /java/base/Java-basis-oop
-
-  - title: 数据库
-    icon: mysql
-    details: 数据库基础/SQL基础、Mysql、Oracle、Redis、MongoDb、Elasticsearch
-    link: /db/mysql/sql-mysql-overview
-
-  - title: 框架|依赖
-    icon: frame
-    details: Spring、SpringBoot、Mybatis、Mybatis-Plus
-    link: /dependencies/C1spring/base/spring-overview
-
-  - title: 架构|系统
-    icon: strong
-    details: 架构基础、分布式系统
-    link: /arch/base/arch-basic
 
 copyright: false
-footer:  <a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral&invite=HkVyvO3mw" rel="nofollow"><img src="/assets/images/upyun-footer.png" style="width:240px;"/></a><hr><a href="https://vuepress-theme-hope.github.io/v2/" target="_blank">VuePress Theme Hope</a> &#124 Copyright © 2023-2023 CoderMast
+footer:  <a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral&invite=HkVyvO3mw" rel="nofollow"><img src="/assets/images/upyun-footer.png" style="width:240px;"/></a><hr><a href="https://vuepress-theme-hope.github.io/v2/" target="_blank">VuePress Theme Hope</a> &#124 Copyright © 2023-2024 CoderMast
  &#124 <a href="https://beian.miit.gov.cn/" rel="nofollow">陕ICP备20010345号-5</a>
 ---
 
@@ -62,11 +42,8 @@ footer:  <a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral
 
 知识只有被系统性的归纳起来，才能建立起知识体系，碎片化、零散化地去学习，会让自己陷入一种自我麻痹且极度自信的状态，会让你产生一种所有知识都懂假象，随便提起来一些知识点也都能说上两嘴，但是不能深究，一旦深入一点，就好像缓存穿透一般，所有的刨根问底都造成了真实伤害。
 
-::: info 缓存穿透
- 是指查询一个根本不存在的数据，缓存层和持久层都不会命中。在日常工作中出于容错的考虑，如果从持久层查不到数据则不写入缓存层，缓存穿透将导致不存在的数据每次请求都要到持久层去查询，失去了缓存保护后端持久的意义。
-:::
-
 ## 参考与鸣谢
+
 本项目中的内容除了自己的日常学习、工作总结，也不乏来源于互联网，并非所有内容都是本人原创，但也绝不是简单的复制粘帖，本人根据互联网上的资料加上本人对知识的理解，总结的一份有自己思考成分的笔记。
 
 在对参考的部分，会给出参考的地址，方便自己或者读者进行知识追溯，也希望其他人在对本人文章进行参考时，也加上文章的来源，保证读者能够对知识点进行刨根问题，追究源头。

@@ -3,11 +3,6 @@ import { navbar } from "vuepress-theme-hope";
 export const zhNavbar = navbar([
 
   {
-    text: "首页",
-    icon: "iconfont icon-home",
-    link: "/"
-  },
-  {
     text: "Java",
     icon: "iconfont icon-java",
     prefix: "/java",
@@ -68,29 +63,30 @@ export const zhNavbar = navbar([
         link: "/cn",
       },
     ],
-  }, {
-    text: "前端",
-    icon: "iconfont icon-mysql",
-    prefix: "/front",
-    children: [
-      {
-        text: "前端基础",
-        children: [
-          { text: "HTML", link: "/html" },
-          { text: "CSS", link: "/css" },
-          { text: "JavaScript", link: "/js" },
-        ],
-      },
-      {
-        text: "前端框架",
-        prefix: "/frame",
-        children: [
-          { text: "Vue3", link: "/vue3" },
-          { text: "Element UI", link: "/element-ui" },
-          { text: "BootStrap", link: "/bootstrap" }],
-      },
-    ],
-  },
+  }, 
+  // {
+  //   text: "前端",
+  //   icon: "iconfont icon-mysql",
+  //   prefix: "/front",
+  //   children: [
+  //     {
+  //       text: "前端基础",
+  //       children: [
+  //         { text: "HTML", link: "/html" },
+  //         { text: "CSS", link: "/css" },
+  //         { text: "JavaScript", link: "/js" },
+  //       ],
+  //     },
+  //     {
+  //       text: "前端框架",
+  //       prefix: "/frame",
+  //       children: [
+  //         { text: "Vue3", link: "/vue3" },
+  //         { text: "Element UI", link: "/element-ui" },
+  //         { text: "BootStrap", link: "/bootstrap" }],
+  //     },
+  //   ],
+  // },
   {
     text: "算法题解",
     icon: "iconfont icon-like",
