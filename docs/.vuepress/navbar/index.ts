@@ -135,7 +135,7 @@ export const zhNavbar = navbar([
         ]
     }, {
         text: "关于",
-        icon: "iconfont icon-tool",
+        icon: "iconfont icon-like",
         prefix: "/about",
         children: [
             {
