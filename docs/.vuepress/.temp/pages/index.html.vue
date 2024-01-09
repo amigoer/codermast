@@ -21,8 +21,10 @@
 <p>也希望读者朋友们保持一个批判性思维，本人所写的所有内容也并非100%正确，可能也会有对知识的误解和遗漏、错误等情况，希望读者们不吝赐教，能够指出文章中一些能够完美，但时并未做到完美的点，也能够后续的读者展现出更高质量的文章，非常感谢大家的支持！</p>
 <h2 id="联系我" tabindex="-1"><a class="header-anchor" href="#联系我" aria-hidden="true">#</a> 联系我</h2>
 <div align="center">
-   <img src="@source/../assets/readme/2024-01-03-14-00-26.png"  height="500px">
-   <!-- <img src="@source/../assets/readme/2023-06-17-21-51-44.png" height=160> -->
+   <img src="@source/../assets/readme/2024-01-03-14-00-26.png" height="500px">
+   <img src="@source/../assets/readme/2024-01-09-23-35-09.png" height="500px">
+   <img src="@source/../assets/readme/2024-01-09-23-45-30.png" height="500px">
+   <p>目前知识星球还在建设之中，加我微信免费拉你进星球，我的微信号：codermast888</p>
 </div></div></template>
 
 
