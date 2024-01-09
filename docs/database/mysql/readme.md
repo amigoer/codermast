@@ -1,5 +1,6 @@
 ---
-index : false
+index : true
+order : 0
 ---
 # MySQL 数据库
 

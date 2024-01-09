@@ -1,10 +1,10 @@
 ---
 home: true
 icon: home
-title: 编程桅杆
+title: 编程学习知识库
 heroImage: /logo.svg
 heroText: CoderMast编程桅杆
-tagline: 学习笔记 & 工作总结
+tagline: 「编程学习知识库」包含计算机基础，Java 基础，面经总结，数据库等，涵盖大部分 Java 程序员所需要掌握的核心知识！
 lang : zh-CN
 actions:
   - text: Java 💡
