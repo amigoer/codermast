@@ -3,7 +3,6 @@ import { hasGlobalComponent } from "/Users/codermast/DevProjects/CoderMast/node_
 import { h } from "vue";
 
 import { useScriptTag } from "/Users/codermast/DevProjects/CoderMast/node_modules/@vueuse/core/index.mjs";
-import { useStyleTag } from "/Users/codermast/DevProjects/CoderMast/node_modules/@vueuse/core/index.mjs";
 import Badge from "/Users/codermast/DevProjects/CoderMast/node_modules/vuepress-plugin-components/lib/client/components/Badge.js";
 import FontIcon from "/Users/codermast/DevProjects/CoderMast/node_modules/vuepress-plugin-components/lib/client/components/FontIcon.js";
 import BackToTop from "/Users/codermast/DevProjects/CoderMast/node_modules/vuepress-plugin-components/lib/client/components/BackToTop.js";
@@ -17,12 +16,7 @@ export default defineClientConfig({
     
   },
   setup: () => {
-    useScriptTag(
-  `https://cdn.jsdelivr.net/npm/iconify-icon@1`
-);
-      useStyleTag(`\
-  @import url("https://at.alicdn.com/t/c/font_2410206_5vb9zlyghj.css");
-  `);
+    useScriptTag(`//code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js`);
   },
   rootComponents: [
     () => h(BackToTop, {}),

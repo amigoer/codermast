@@ -4,7 +4,7 @@ export const zhNavbar = navbar([
 
     {
         text: "Java系列",
-        icon: "iconfont icon-java",
+        icon: "la:java",
         children: [
             {
                 text: "基础篇",
@@ -22,8 +22,8 @@ export const zhNavbar = navbar([
                 ]
             }, {
                 text: "Spring系列",
-                icon: "iconfont icon-light",
                 prefix: "/spring-series",
+                icon: "simple-icons:spring",
                 children: [
                     { text: "Spring6", link: "/spring", },
                     { text: "Spring Boot", link: "/springboot", },
@@ -34,25 +34,25 @@ export const zhNavbar = navbar([
         ]
     }, {
         text: "数据库",
-        icon: "iconfont icon-mysql",
+        icon: "mdi:sql-query",
         prefix: "/database",
         children: [
             {
                 text: "SQL数据库",
-                children: [{ text: "MySQL", link: "/mysql" }],
+                children: [{ text: "MySQL", link: "/mysql", icon: "simple-icons:mysql" }],
             },
             {
                 text: "NoSQL数据库",
                 children: [
-                    { text: "Redis", link: "/redis" },
-                    { text: "MongoDB", link: "/mongodb" },
-                    { text: "ElaticSearch", link: "/elaticsearch" }],
+                    { text: "Redis", link: "/redis", icon: "cib:redis" },
+                    { text: "MongoDB", link: "/mongodb", icon: "teenyicons:mongodb-solid" },
+                    { text: "ElaticSearch", link: "/elaticsearch", icon: "mingcute:search-fill" }],
             },
         ],
     },
     {
         text: "计算机基础",
-        icon: "iconfont icon-computer",
+        icon: "ri:computer-fill",
         prefix: "/computer",
         children: [
             {
@@ -113,29 +113,39 @@ export const zhNavbar = navbar([
     // },
     {
         text: "开发工具",
-        icon: "iconfont icon-tool",
+        icon: "mdi:tools",
         prefix: "/dev-tools",
         children: [
             {
                 text: "Docker",
                 link: "/docker",
+                icon: "mdi:docker",
             },
             {
                 text: "Git",
                 link: "/git",
+                icon: "mdi:git",
             },
             {
                 text: "IDEA",
                 link: "/idea",
+                icon: "simple-icons:intellijidea",
             },
             {
                 text: "Maven",
                 link: "/maven",
+                icon: "devicon-plain:maven",
             },
         ]
-    }, {
+    },
+    // {
+    //     text: "知识星球",
+    //     icon: "ph:planet-bold",
+    //     link: "/planet",
+    // },
+    {
         text: "关于",
-        icon: "iconfont icon-like",
+        icon: "fa-solid:user-friends",
         prefix: "/about",
         children: [
             {

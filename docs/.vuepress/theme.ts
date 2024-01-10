@@ -3,6 +3,7 @@ import { zhNavbar } from "./navbar/index.js";
 import { zhSidebar } from "./sidebar/index.js";
 
 export default hopeTheme({
+  breadcrumb: false,
   headerDepth: 2,
   // ico图标
   favicon: "/favicon.ico",
@@ -23,12 +24,12 @@ export default hopeTheme({
 
   // 作者信息
   author: {
-    name: "CoderMast",
+    name: "友人CoderMast",
     url: "https://www.codermast.com",
     email: "codermast@163.com",
   },
 
-  iconAssets: ["iconify", "iconfont"],
+  iconAssets: "//code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js",
 
   logo: "/logo.svg",
 
