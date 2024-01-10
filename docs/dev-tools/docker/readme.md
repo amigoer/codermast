@@ -6,25 +6,13 @@ order : 0
 
 ![](../../../assets/docker-install/2024-01-09-11-18-04.png)
 
-## Docker 是什么
+## 为什么要写这个系列？
 
-Docker 是一个开源的应用容器引擎，基于 Go 语言 并遵从 Apache2.0 协议开源。
+众所周知，Docker的教程网络上非常多，也不乏有许多大佬，整理和总结的笔记都很优秀。但是对于我（一个Java后端开发人员）来说，目前市面上的Docker要么过于繁琐，要么过于精炼。过于繁琐学起来费时费力，过于精炼又不能达到我快速掌握 Docker 核心的目的，当然也不是说这些教程不好，只是针对我来说，并不是我所需求的，故此就开了 Docker 这个篇章。也顺便记录自己学习 Docker 的一些学习心得和笔记，希望能够帮到你。
 
-Docker 可以让开发者打包他们的应用以及依赖包到一个轻量级、可移植的容器中，然后发布到任何流行的 Linux 机器上，也可以实现虚拟化。
 
-容器是完全使用沙箱机制，相互之间不会有任何接口（类似 iPhone 的 app）,更重要的是容器性能开销极低。
-
-Docker 从 17.03 版本之后分为 CE（Community Edition: 社区版） 和 EE（Enterprise Edition: 企业版），我们用社区版就可以了。
-
-## 学习Docker之前，需要什么基础
-
-在学习 Docker 之前，你需要掌握一些常用的 Linux 操作指令，至少认识一些常见的命令，能读懂即可。
-
-::: tip 
-如果您对 Linux 操作指令不太熟悉，或者您想学习 Linux ，可以参考本站的 Linux 系列学习笔记。
-
-// TODO:Linux学习笔记
-:::
-
-## 教程详情
-
+<!-- 用于限制高度 -->
+<div class="catalog-display-container">
+  <AutoCatalog base='/dev-tools/docker/'  index='true'
+  hideHeading='true'/>
+</div>

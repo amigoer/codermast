@@ -50,6 +50,12 @@
 <div class="language-bash line-numbers-mode" data-ext="sh"><pre v-pre class="language-bash"><code><span class="token function">curl</span> <span class="token parameter variable">-fsSL</span> https://test.docker.com <span class="token parameter variable">-o</span> test-docker.sh
 <span class="token function">sudo</span> <span class="token function">sh</span> test-docker.sh
 </code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><p>直接使用 Docker 官方提供的安装脚本安装即可。</p>
+<h2 id="docker官方安装教程" tabindex="-1"><a class="header-anchor" href="#docker官方安装教程" aria-hidden="true">#</a> Docker官方安装教程</h2>
+<ul>
+<li>Docker Desktop For Windows ：<a href="https://docs.docker.com/desktop/install/windows-install/" target="_blank" rel="noopener noreferrer">https://docs.docker.com/desktop/install/windows-install/<ExternalLinkIcon/></a></li>
+<li>Docker Desktop For MacOS：<a href="https://docs.docker.com/desktop/install/mac-install/" target="_blank" rel="noopener noreferrer">https://docs.docker.com/desktop/install/mac-install/<ExternalLinkIcon/></a></li>
+<li>Docker Desktop For Linux：<a href="https://docs.docker.com/desktop/install/linux-install/" target="_blank" rel="noopener noreferrer">https://docs.docker.com/desktop/install/linux-install/<ExternalLinkIcon/></a></li>
+</ul>
 </div></template>
 
 
