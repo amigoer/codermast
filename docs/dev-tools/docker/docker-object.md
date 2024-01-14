@@ -354,12 +354,118 @@ docker exec -i -t d3a11e669e88 /bin/bash
 
 ### 容器导出和导入
 
-### 强制停止容器
+1. 容器的导出
+```sh
+docker export 246b23d5d5a5 > redis-latest-codermast.tar
+```
+- 246b23d5d5a5：容器 ID
+- redis-latest-codermast.tar：导出文件名
+
+![](../../../assets/docker-object/2024-01-14-21-23-52.png)
+
+2. 容器的导入
+
+```sh
+docker import redis-latest-codermast.tar codermast/redis:latest
+```
+- redis-latest-codermast.tar：配置文件名
+- codermast/redis:latest：导入的镜像名称
+
+![](../../../assets/docker-object/2024-01-14-21-26-24.png)
+
+> 要注意的是，这里是对 Docker 容器进行导出，但是导出的结果是镜像的配置文件，通过该配置文件导入的也是 Docker 镜像。
+>
+> ![](../../../assets/docker-object/2024-01-14-21-30-15.png)
+
+### 强制删除容器
+
+我们知道，当容器在运行的时候是无法直接删除的，需要先将容器先停止运行，随后才能删除该容器，那么能不能直接删除正在运行中的容器呢？
+
+答案是可以的，我们只需要在其中加上 `-f` 的选项即可，代表 `force` 强制的意思。
+
+```sh
+docker rm -f b234f112186d
+
+```
+
+- b234f112186d：为 正在运行 Docker 容器的 ID
+
+![](../../../assets/docker-object/2024-01-14-21-34-21.png)
 
 ### 清理停止的容器
 
+在容器停止运行后，并不会自动被删除，需要手动清除。该指令一次性清除所有的停止状态的容器。
+
+```sh
+docker container prune
+```
+
+![](../../../assets/docker-object/2024-01-14-21-38-12.png)
+
+
 ### 容器别名及操作
+
+
+上述对容器的操作都是针对容器 ID，这个 ID 是随机的，为了方便起见，我们可以设置一个自定义的 name 来进行操作。仅需在指令中设置 `name` 选项即可。
+
+
+```sh
+docker run -d --name codermast-redis-001 redis:latest
+```
+
+- codermast-redis-001：自定义的名称
+- redis:latest：镜像名称
+
+![](../../../assets/docker-object/2024-01-14-21-42-30.png)
 
 ### 容器错误日志
 
+```sh
+docker logs ...
+```
+
+- 实时查看docker容器名为user-uat的最后10行日志
+
+`docker logs -f -t --tail 10 user-uat`
+
+- 查看指定时间后的日志，只显示最后100行：
+
+`docker logs -f -t --since="2024-01-14" --tail=100 user-uat`
+
+- 查看最近30分钟的日志:
+
+`docker logs --since 30m user-uat`
+
+- 查看某时间之后的日志：
+
+`docker logs -t --since="2024-01-14T21:00:00" user-uat`
+
+- 查看某时间段日志：
+
+`docker logs -t --since="2024-01-14T21:00:00" --until "2018-02-09T12:23:37" user-uat`
+
+- 将错误日志写入文件：
+
+`docker logs -f -t --since="2024-01-14" user-uat | grep error >> logs_error.txt`
+
 ## Docker仓库 
+
+Docker 仓库是集中存放 Docker 镜像的地方。默认使用的仓库为 Docker Hub，也可以更改为自己的想使用的仓库。类似于 Github 的仓库，只不过 Github 管理的是代码，Docker Hub 管理的是 Docker 镜像。
+
+
+这里以 Docker Hub 为例进行说明。
+
+1. 登录仓库
+
+```sh
+docker login
+```
+
+2. 将准备好的镜像推送至仓库
+
+```sh
+docker push codermast/redis:latest
+```
+
+- codermast/redis:latest：Docker 镜像名
+

@@ -253,11 +253,89 @@
 <p>✅ 推荐大家使用 <code v-pre>docker exec</code></p>
 </div>
 <h3 id="容器导出和导入" tabindex="-1"><a class="header-anchor" href="#容器导出和导入" aria-hidden="true">#</a> 容器导出和导入</h3>
-<h3 id="强制停止容器" tabindex="-1"><a class="header-anchor" href="#强制停止容器" aria-hidden="true">#</a> 强制停止容器</h3>
+<ol>
+<li>容器的导出</li>
+</ol>
+<div class="language-bash line-numbers-mode" data-ext="sh"><pre v-pre class="language-bash"><code><span class="token function">docker</span> <span class="token builtin class-name">export</span> 246b23d5d5a5 <span class="token operator">></span> redis-latest-codermast.tar
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><ul>
+<li>246b23d5d5a5：容器 ID</li>
+<li>redis-latest-codermast.tar：导出文件名</li>
+</ul>
+<figure><img src="@source/../assets/docker-object/2024-01-14-21-23-52.png" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<ol start="2">
+<li>容器的导入</li>
+</ol>
+<div class="language-bash line-numbers-mode" data-ext="sh"><pre v-pre class="language-bash"><code><span class="token function">docker</span> <span class="token function">import</span> redis-latest-codermast.tar codermast/redis:latest
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><ul>
+<li>redis-latest-codermast.tar：配置文件名</li>
+<li>codermast/redis:latest：导入的镜像名称</li>
+</ul>
+<figure><img src="@source/../assets/docker-object/2024-01-14-21-26-24.png" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+<blockquote>
+<p>要注意的是，这里是对 Docker 容器进行导出，但是导出的结果是镜像的配置文件，通过该配置文件导入的也是 Docker 镜像。</p>
+<figure><img src="@source/../assets/docker-object/2024-01-14-21-30-15.png" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
+</blockquote>
+<h3 id="强制删除容器" tabindex="-1"><a class="header-anchor" href="#强制删除容器" aria-hidden="true">#</a> 强制删除容器</h3>
+<p>我们知道，当容器在运行的时候是无法直接删除的，需要先将容器先停止运行，随后才能删除该容器，那么能不能直接删除正在运行中的容器呢？</p>
+<p>答案是可以的，我们只需要在其中加上 <code v-pre>-f</code> 的选项即可，代表 <code v-pre>force</code> 强制的意思。</p>
+<div class="language-bash line-numbers-mode" data-ext="sh"><pre v-pre class="language-bash"><code><span class="token function">docker</span> <span class="token function">rm</span> <span class="token parameter variable">-f</span> b234f112186d
+
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div></div></div><ul>
+<li>b234f112186d：为 正在运行 Docker 容器的 ID</li>
+</ul>
+<figure><img src="@source/../assets/docker-object/2024-01-14-21-34-21.png" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
 <h3 id="清理停止的容器" tabindex="-1"><a class="header-anchor" href="#清理停止的容器" aria-hidden="true">#</a> 清理停止的容器</h3>
+<p>在容器停止运行后，并不会自动被删除，需要手动清除。该指令一次性清除所有的停止状态的容器。</p>
+<div class="language-bash line-numbers-mode" data-ext="sh"><pre v-pre class="language-bash"><code><span class="token function">docker</span> container prune
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><figure><img src="@source/../assets/docker-object/2024-01-14-21-38-12.png" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
 <h3 id="容器别名及操作" tabindex="-1"><a class="header-anchor" href="#容器别名及操作" aria-hidden="true">#</a> 容器别名及操作</h3>
+<p>上述对容器的操作都是针对容器 ID，这个 ID 是随机的，为了方便起见，我们可以设置一个自定义的 name 来进行操作。仅需在指令中设置 <code v-pre>name</code> 选项即可。</p>
+<div class="language-bash line-numbers-mode" data-ext="sh"><pre v-pre class="language-bash"><code><span class="token function">docker</span> run <span class="token parameter variable">-d</span> <span class="token parameter variable">--name</span> codermast-redis-001 redis:latest
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><ul>
+<li>codermast-redis-001：自定义的名称</li>
+<li>redis:latest：镜像名称</li>
+</ul>
+<figure><img src="@source/../assets/docker-object/2024-01-14-21-42-30.png" alt="" tabindex="0" loading="lazy"><figcaption></figcaption></figure>
 <h3 id="容器错误日志" tabindex="-1"><a class="header-anchor" href="#容器错误日志" aria-hidden="true">#</a> 容器错误日志</h3>
+<div class="language-bash line-numbers-mode" data-ext="sh"><pre v-pre class="language-bash"><code><span class="token function">docker</span> logs <span class="token punctuation">..</span>.
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><ul>
+<li>实时查看docker容器名为user-uat的最后10行日志</li>
+</ul>
+<p><code v-pre>docker logs -f -t --tail 10 user-uat</code></p>
+<ul>
+<li>查看指定时间后的日志，只显示最后100行：</li>
+</ul>
+<p><code v-pre>docker logs -f -t --since=&quot;2024-01-14&quot; --tail=100 user-uat</code></p>
+<ul>
+<li>查看最近30分钟的日志:</li>
+</ul>
+<p><code v-pre>docker logs --since 30m user-uat</code></p>
+<ul>
+<li>查看某时间之后的日志：</li>
+</ul>
+<p><code v-pre>docker logs -t --since=&quot;2024-01-14T21:00:00&quot; user-uat</code></p>
+<ul>
+<li>查看某时间段日志：</li>
+</ul>
+<p><code v-pre>docker logs -t --since=&quot;2024-01-14T21:00:00&quot; --until &quot;2018-02-09T12:23:37&quot; user-uat</code></p>
+<ul>
+<li>将错误日志写入文件：</li>
+</ul>
+<p><code v-pre>docker logs -f -t --since=&quot;2024-01-14&quot; user-uat | grep error &gt;&gt; logs_error.txt</code></p>
 <h2 id="docker仓库" tabindex="-1"><a class="header-anchor" href="#docker仓库" aria-hidden="true">#</a> Docker仓库</h2>
+<p>Docker 仓库是集中存放 Docker 镜像的地方。默认使用的仓库为 Docker Hub，也可以更改为自己的想使用的仓库。类似于 Github 的仓库，只不过 Github 管理的是代码，Docker Hub 管理的是 Docker 镜像。</p>
+<p>这里以 Docker Hub 为例进行说明。</p>
+<ol>
+<li>登录仓库</li>
+</ol>
+<div class="language-bash line-numbers-mode" data-ext="sh"><pre v-pre class="language-bash"><code><span class="token function">docker</span> login
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><ol start="2">
+<li>将准备好的镜像推送至仓库</li>
+</ol>
+<div class="language-bash line-numbers-mode" data-ext="sh"><pre v-pre class="language-bash"><code><span class="token function">docker</span> push codermast/redis:latest
+</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div></div></div><ul>
+<li>codermast/redis:latest：Docker 镜像名</li>
+</ul>
 </div></template>
 
 
