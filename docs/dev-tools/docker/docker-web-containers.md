@@ -5,8 +5,6 @@ order : 6
 
 在之前的章节中，仅对普通容器进行了演示，但在实际中常常使用到 Docker 容器中的 WEB 应用程序。
 
-接下来将演示一种基于 WEB 的 Docker 容器。
-
 ## 运行一个WEB应用
 
 
@@ -60,13 +58,37 @@ docker run -d -p 55001:5000 training/webapp python app.py
 
 ![](../../../assets/docker-web-containers/2024-01-15-23-38-01.png)
 
-## 检查 WEB 应用程序
-
-
-
 
 ## 停止WEB应用容器
 
+WEB 应用容器，本身就是一个 Docker 容器，使用 Docker 本身的停止命令即可。
+
+```sh
+# 通过 Docker 容器名称停止
+docker stop busy_hodgkin
+
+# 通过 Docker 容器 ID 停止
+docker stop af9b91fa3cc6
+```
 
 ## 重启WEB应用容器
-## 移除WEB应用容器
+
+```sh
+# 通过 Docker 容器名称重启
+docker restart busy_hodgkin
+
+# 通过 Docker 容器 ID 重启
+docker restart af9b91fa3cc6
+```
+
+## 删除WEB应用容器
+
+```sh
+docker rm busy_hodgkin
+```
+
+这里要注意，该指令是无法直接删除运行中的容器，想要直接删除需要加上 `-f` 选项
+
+```sh
+docker rm -f busy_hodgkin
+```
