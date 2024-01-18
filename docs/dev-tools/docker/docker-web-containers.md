@@ -1,9 +1,10 @@
 ---
 order : 6
 ---
-# Docker - WEB容器
+# Docker - WEB应用实例
 
 在之前的章节中，仅对普通容器进行了演示，但在实际中常常使用到 Docker 容器中的 WEB 应用程序。
+
 
 ## 运行一个WEB应用
 
@@ -28,7 +29,15 @@ docker run -d -P training/webapp python app.py
 - -d:让容器在后台运行。
 
 - -P:将容器内部使用的网络端口随机映射到我们使用的主机上。
+- -p:是容器内部端口绑定到指定的主机端口。
 
+```sh
+docker run -d -p 5001:5000 training/webapp python app.py
+```
+
+即将本机的 5001 端口绑定到容器内部的 5000 端口上。
+
+![](../../../assets/docker-web-containers/2024-01-18-23-38-50.png)
 
 ## 查看WEB应用容器
 
@@ -42,7 +51,7 @@ docker ps
 
 ![](../../../assets/docker-web-containers/2024-01-15-23-37-47.png)
 
-## 设置自定义映射端口
+## 自定义网络端口映射
 
 在上面的例子中，使用 `-p` 参数映射到主机上的端口是随机的，下面我们对其进行端口的自定义操作。
 
@@ -57,6 +66,25 @@ docker run -d -p 55001:5000 training/webapp python app.py
 访问 `localhost:55001`
 
 ![](../../../assets/docker-web-containers/2024-01-15-23-38-01.png)
+
+::: tip 补充
+端口映射既可以是本地端口映射，也可以是网络端口映射，即将 Docker 容器中的端口直接映射到某个指定的网络 IP 的端口。
+
+- 本地端口映射：5000/tcp -> 0.0.0.0:5001
+- 网络端口映射：5000/tcp -> 123.23.46.123:5001
+
+另外，这里的端口映射默认都是 TCP 端口，也可以指定为 UDP 端口，在端口后面加上 `/udp` 即可。
+:::
+
+## 查看端口映射信息
+
+```sh
+docker port focused_boyd 5000
+```
+
+该指令即查看名为 `focused_boyd` 的 Docker 容器的 5000 端口映射到什么位置。
+
+![](../../../assets/docker-web-containers/2024-01-18-23-47-46.png)
 
 
 ## 停止WEB应用容器
