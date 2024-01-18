@@ -131,4 +131,5 @@ export const pagesRoutes = [
   ["v-154dc4c4","/star/",{"y":"p","t":"收藏","I":0},[]],
   ["v-01560935","/timeline/",{"y":"p","t":"时间轴","I":0},[]],
   ["v-51da8368","/dev-tools/docker/docker-container-connection.html",{"y":"a","t":"Docker - 容器互联","O":7},[":md"]],
+  ["v-de108d8e","/dev-tools/docker/docker-warehouse.html",{"y":"a","t":"Docker - 仓库管理","O":8},[":md"]],
 ]

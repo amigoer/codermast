@@ -263,4 +263,6 @@ export const pagesData = {
   "v-01560935": () => import(/* webpackChunkName: "v-01560935" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/timeline/index.html.js").then(({ data }) => data),
   // path: /dev-tools/docker/docker-container-connection.html
   "v-51da8368": () => import(/* webpackChunkName: "v-51da8368" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/dev-tools/docker/docker-container-connection.html.js").then(({ data }) => data),
+  // path: /dev-tools/docker/docker-warehouse.html
+  "v-de108d8e": () => import(/* webpackChunkName: "v-de108d8e" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/dev-tools/docker/docker-warehouse.html.js").then(({ data }) => data),
 }

@@ -265,4 +265,6 @@ export const pagesComponents = {
   "v-01560935": defineAsyncComponent(() => import(/* webpackChunkName: "v-01560935" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/timeline/index.html.vue")),
   // path: /dev-tools/docker/docker-container-connection.html
   "v-51da8368": defineAsyncComponent(() => import(/* webpackChunkName: "v-51da8368" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/dev-tools/docker/docker-container-connection.html.vue")),
+  // path: /dev-tools/docker/docker-warehouse.html
+  "v-de108d8e": defineAsyncComponent(() => import(/* webpackChunkName: "v-de108d8e" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/dev-tools/docker/docker-warehouse.html.vue")),
 }
