@@ -44,8 +44,8 @@
 <p class="hint-container-title">补充</p>
 <p>端口映射既可以是本地端口映射，也可以是网络端口映射，即将 Docker 容器中的端口直接映射到某个指定的网络 IP 的端口。</p>
 <ul>
-<li>本地端口映射：5000/tcp -&gt; 0.0.0.0:5001</li>
-<li>网络端口映射：5000/tcp -&gt; 123.23.46.123:5001</li>
+<li>本地端口映射：<code v-pre>5000/tcp</code> -&gt; <code v-pre>0.0.0.0:5001</code></li>
+<li>网络端口映射：<code v-pre>5000/tcp</code> -&gt; <code v-pre>123.23.46.123:5001</code></li>
 </ul>
 <p>另外，这里的端口映射默认都是 TCP 端口，也可以指定为 UDP 端口，在端口后面加上 <code v-pre>/udp</code> 即可。</p>
 </div>
