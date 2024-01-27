@@ -16,7 +16,7 @@ actions:
 
 
 copyright: false
-footer:  <a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral&invite=HkVyvO3mw" rel="nofollow"><img src="/assets/images/upyun-footer.png" style="width:240px;"/></a><hr><a href="https://vuepress-theme-hope.github.io/v2/" target="_blank">VuePress Theme Hope</a> &#124 Copyright © 2023-2024 CoderMast
+footer:  <a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" rel="nofollow"><img src="/assets/images/upyun-footer.png" style="width:240px;"/></a><hr><a href="https://vuepress-theme-hope.github.io/v2/" target="_blank">VuePress Theme Hope</a> &#124 Copyright © 2023-2024 CoderMast
  &#124 <a href="https://beian.miit.gov.cn/" rel="nofollow">陕ICP备20010345号-5</a>
 ---
 
