@@ -73,44 +73,7 @@ export const zhNavbar = navbar([
             },
         ],
     },
-    // {
-    //   text: "前端",
-    //   icon: "iconfont icon-mysql",
-    //   prefix: "/front",
-    //   children: [
-    //     {
-    //       text: "前端基础",
-    //       children: [
-    //         { text: "HTML", link: "/html" },
-    //         { text: "CSS", link: "/css" },
-    //         { text: "JavaScript", link: "/js" },
-    //       ],
-    //     },
-    //     {
-    //       text: "前端框架",
-    //       prefix: "/frame",
-    //       children: [
-    //         { text: "Vue3", link: "/vue3" },
-    //         { text: "Element UI", link: "/element-ui" },
-    //         { text: "BootStrap", link: "/bootstrap" }],
-    //     },
-    //   ],
-    // },
-    // {
-    //     text: "算法题解",
-    //     icon: "iconfont icon-like",
-    //     prefix: "/",
-    //     children: [
-    //         {
-    //             text: "算法",
-    //             link: "/algorithm",
-    //         },
-    //         {
-    //             text: "题解",
-    //             link: "/problems",
-    //         },
-    //     ]
-    // },
+
     {
         text: "开发工具",
         icon: "mdi:tools",
@@ -143,6 +106,7 @@ export const zhNavbar = navbar([
     //     icon: "ph:planet-bold",
     //     link: "/planet",
     // },
+
     {
         text: "关于",
         icon: "fa-solid:user-friends",
