@@ -11,7 +11,7 @@ https://www.bilibili.com/video/BV1TP411v7v6/?p=5
 1. 前端资料下载
 
 ::: tip 前端资料
-下载地址：https://pan.baidu.com/s/1ga3Cy_CPANj7dTDLFni7mw?pwd=6cyn
+下载地址：https://pan.baidu.com/s/1ga3Cy_CPANj7dTDLFni7mw?pwd=6cyn0
 提取码: 6cyn 
 :::
 

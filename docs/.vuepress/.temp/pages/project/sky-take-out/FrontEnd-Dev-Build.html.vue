@@ -10,7 +10,7 @@
 </ol>
 <div class="hint-container tip">
 <p class="hint-container-title">前端资料</p>
-<p>下载地址：<a href="https://pan.baidu.com/s/1ga3Cy_CPANj7dTDLFni7mw?pwd=6cyn" target="_blank" rel="noopener noreferrer">https://pan.baidu.com/s/1ga3Cy_CPANj7dTDLFni7mw?pwd=6cyn<ExternalLinkIcon/></a><br>
+<p>下载地址：<a href="https://pan.baidu.com/s/1ga3Cy_CPANj7dTDLFni7mw?pwd=6cyn0" target="_blank" rel="noopener noreferrer">https://pan.baidu.com/s/1ga3Cy_CPANj7dTDLFni7mw?pwd=6cyn0<ExternalLinkIcon/></a><br>
 提取码: 6cyn</p>
 </div>
 <p>点击上面的前端资料下载链接，即可下载。下载之后解压，解压完成以后的文件如下。</p>
