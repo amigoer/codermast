@@ -9,5 +9,6 @@ export const zhSidebar = sidebar({
     "/spring-series": "structure",
     "/dev-tools": "structure",
     "/about": "structure",
+    "/project": "structure",
 });
 
