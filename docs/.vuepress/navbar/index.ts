@@ -10,7 +10,7 @@ export const zhNavbar = navbar([
                 text: "基础篇",
                 prefix: "/java",
                 children: [
-                    { text: "基础知识", link: "/base", },
+                    { text: "基础知识", link: "/basis", },
                     { text: "集合框架", link: "/collection", },
                     { text: "面向对象", link: "/oop" },
                     { text: "线程并发", link: "/thread", },

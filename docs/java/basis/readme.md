@@ -1,7 +1,7 @@
 ---
-index : true
+index : false
 dir :
-    order : 2
+    order : 1
 ---
 # Java 基础知识
 
