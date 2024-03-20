@@ -160,31 +160,6 @@
 <li>continue; 继续当前循环</li>
 </ul>
 </div>
-<h2 id="类和对象" tabindex="-1"><a class="header-anchor" href="#类和对象" aria-hidden="true">#</a> 类和对象</h2>
-<ul>
-<li>类：类是描述对象模板的蓝图，定义了对象的属性和方法。</li>
-<li>对象：对象是类的实例，是类的具体化。每个对象都有自己的属性值。</li>
-</ul>
-<p>举个简单的例子，动物可以看做一个类，一只小猫、一条小鱼、一匹马等就可以看做是动物的一个对象。</p>
-<h2 id="属性和方法" tabindex="-1"><a class="header-anchor" href="#属性和方法" aria-hidden="true">#</a> 属性和方法</h2>
-<ul>
-<li>属性：也称为字段或成员变量，是类中存储数据的变量。可以是基本数据类型，也可以是引用数据类型。分为类属性和对象属性。</li>
-<li>方法：对一段代码能够实现特定功能代码的封装。分为类方法和对象方法。语法如下：</li>
-</ul>
-<div class="language-java line-numbers-mode" data-ext="java"><pre v-pre class="language-java"><code>访问修饰符 关键字 返回值类型 方法名称 <span class="token punctuation">(</span>参数列表<span class="token punctuation">)</span><span class="token punctuation">{</span>
-    <span class="token comment">// 方法内要执行的语句</span>
-<span class="token punctuation">}</span>
-</code></pre><div class="line-numbers" aria-hidden="true"><div class="line-number"></div><div class="line-number"></div><div class="line-number"></div></div></div><div class="hint-container info">
-<p class="hint-container-title">相关信息</p>
-<ul>
-<li>访问修饰符：default、public、protected、private</li>
-<li>非访问控制修饰符：final、abstract、static、synchronized</li>
-</ul>
-</div>
-<ul>
-<li>类属性和类方法，是指其属于类，可以直接通过类名调用，也可以由对象引用调用，整个类共有，仅维护一份，类加载时初始化。需使用 static 关键字修饰。</li>
-<li>对象属性和对象方法，是指其属于对象，需要通过实例化对象的引用来调用，对象私有，每个对象内都维护一份，对象构建时初始化。</li>
-</ul>
 </div></template>
 
 
