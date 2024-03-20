@@ -282,6 +282,11 @@ Class 提供了以下几种从类中获取成员方法的方法：
 
 另外获取到的成员方法，也可以调用，使用 invoke() 方法调用。
 
+|方法|功能|
+|:---:|:---:|
+|public Object invoke(Object obj, Object... args)|触发对象 obj 的该方法执行|
+|public void setAccessible(boolean flag)|设置为 true，表示禁止检查访问控制（暴力执行）|
+
 - 获取类的成员方法测试类
 
 ```java
@@ -353,3 +358,5 @@ codermast正在跑...
 codermast正在吃：米饭
 ```
 
+
+## 反射的作用
