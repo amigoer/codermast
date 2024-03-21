@@ -360,3 +360,53 @@ codermast正在吃：米饭
 
 ## 反射的作用
 
+经过上面的学习，反射的基本作用就是可以得到一个类的全部成分（成员变量、成员方法、构造器），然后进行操作。
+
+故反射最重要的用途就是适合做 Java 的框架，基本上，主流的框架都会基于反射设计出一些通用的功能。
+
+下面是一个简易的将对象保存到文件中的程序：
+
+- ObjectFrame
+
+```java
+public class ObjectFrame {
+    public static void savaObject(Object obj) throws Exception{
+        PrintStream printStream = new PrintStream(new FileOutputStream("data.txt",true));
+        Class<?> c = obj.getClass();
+
+        Field[] fields = c.getDeclaredFields();
+        printStream.println("======" + c.getSimpleName() + "======");
+        for (Field field : fields) {
+            field.setAccessible(true);
+            printStream.println(field.getName() + "=" + field.get(obj));
+        }
+        printStream.close();
+    }
+}
+```
+
+- Test
+
+```java
+public class ObjectFrameTest {
+    public static void main(String[] args) throws Exception {
+        Student student = new Student();
+
+        ObjectFrame.savaObject(student);
+
+        Person person = new Person("小明",21);
+        ObjectFrame.savaObject(person);
+    }
+}
+```
+
+- date.txt
+
+```text
+======Student======
+name=codermast
+age=18
+======Person======
+name=小明
+age=21
+```
