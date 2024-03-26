@@ -5,12 +5,12 @@ export const pagesData = {
   "v-74bc627b": () => import(/* webpackChunkName: "v-74bc627b" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/about/index.html.js").then(({ data }) => data),
   // path: /database/
   "v-2e25198a": () => import(/* webpackChunkName: "v-2e25198a" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/database/index.html.js").then(({ data }) => data),
-  // path: /project/
-  "v-c9bbfba2": () => import(/* webpackChunkName: "v-c9bbfba2" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/project/index.html.js").then(({ data }) => data),
   // path: /dev-tools/
   "v-936853b6": () => import(/* webpackChunkName: "v-936853b6" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/dev-tools/index.html.js").then(({ data }) => data),
   // path: /java/
   "v-14c69af4": () => import(/* webpackChunkName: "v-14c69af4" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/java/index.html.js").then(({ data }) => data),
+  // path: /project/
+  "v-c9bbfba2": () => import(/* webpackChunkName: "v-c9bbfba2" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/project/index.html.js").then(({ data }) => data),
   // path: /resource-sharing/e-books.html
   "v-41b2bd30": () => import(/* webpackChunkName: "v-41b2bd30" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/resource-sharing/e-books.html.js").then(({ data }) => data),
   // path: /resource-sharing/
@@ -23,22 +23,6 @@ export const pagesData = {
   "v-294cffea": () => import(/* webpackChunkName: "v-294cffea" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/about/journey/index.html.js").then(({ data }) => data),
   // path: /about/update/
   "v-0e28cdab": () => import(/* webpackChunkName: "v-0e28cdab" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/about/update/index.html.js").then(({ data }) => data),
-  // path: /computer/cn/
-  "v-9a72c4ae": () => import(/* webpackChunkName: "v-9a72c4ae" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/computer/cn/index.html.js").then(({ data }) => data),
-  // path: /computer/cn/cn-tcp-3-4.html
-  "v-1be8c5c4": () => import(/* webpackChunkName: "v-1be8c5c4" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/computer/cn/cn-tcp-3-4.html.js").then(({ data }) => data),
-  // path: /computer/co/
-  "v-9a72c470": () => import(/* webpackChunkName: "v-9a72c470" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/computer/co/index.html.js").then(({ data }) => data),
-  // path: /computer/ds/complexity.html
-  "v-0fac0cf6": () => import(/* webpackChunkName: "v-0fac0cf6" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/computer/ds/complexity.html.js").then(({ data }) => data),
-  // path: /computer/ds/data-structure-concept.html
-  "v-01ac142e": () => import(/* webpackChunkName: "v-01ac142e" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/computer/ds/data-structure-concept.html.js").then(({ data }) => data),
-  // path: /computer/ds/linear-list.html
-  "v-fd067b50": () => import(/* webpackChunkName: "v-fd067b50" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/computer/ds/linear-list.html.js").then(({ data }) => data),
-  // path: /computer/ds/
-  "v-9a72bbf6": () => import(/* webpackChunkName: "v-9a72bbf6" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/computer/ds/index.html.js").then(({ data }) => data),
-  // path: /computer/os/
-  "v-9a726960": () => import(/* webpackChunkName: "v-9a726960" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/computer/os/index.html.js").then(({ data }) => data),
   // path: /database/mysql/constraint.html
   "v-dfa09558": () => import(/* webpackChunkName: "v-dfa09558" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/database/mysql/constraint.html.js").then(({ data }) => data),
   // path: /database/mysql/dividing-databases-tables.html
@@ -149,6 +133,22 @@ export const pagesData = {
   "v-a98569f0": () => import(/* webpackChunkName: "v-a98569f0" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/database/redis/redis-principle-netword-model.html.js").then(({ data }) => data),
   // path: /database/redis/redis-principle-redisobject.html
   "v-38959971": () => import(/* webpackChunkName: "v-38959971" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/database/redis/redis-principle-redisobject.html.js").then(({ data }) => data),
+  // path: /computer/cn/
+  "v-9a72c4ae": () => import(/* webpackChunkName: "v-9a72c4ae" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/computer/cn/index.html.js").then(({ data }) => data),
+  // path: /computer/cn/cn-tcp-3-4.html
+  "v-1be8c5c4": () => import(/* webpackChunkName: "v-1be8c5c4" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/computer/cn/cn-tcp-3-4.html.js").then(({ data }) => data),
+  // path: /computer/co/
+  "v-9a72c470": () => import(/* webpackChunkName: "v-9a72c470" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/computer/co/index.html.js").then(({ data }) => data),
+  // path: /computer/ds/complexity.html
+  "v-0fac0cf6": () => import(/* webpackChunkName: "v-0fac0cf6" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/computer/ds/complexity.html.js").then(({ data }) => data),
+  // path: /computer/ds/data-structure-concept.html
+  "v-01ac142e": () => import(/* webpackChunkName: "v-01ac142e" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/computer/ds/data-structure-concept.html.js").then(({ data }) => data),
+  // path: /computer/ds/linear-list.html
+  "v-fd067b50": () => import(/* webpackChunkName: "v-fd067b50" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/computer/ds/linear-list.html.js").then(({ data }) => data),
+  // path: /computer/ds/
+  "v-9a72bbf6": () => import(/* webpackChunkName: "v-9a72bbf6" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/computer/ds/index.html.js").then(({ data }) => data),
+  // path: /computer/os/
+  "v-9a726960": () => import(/* webpackChunkName: "v-9a726960" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/computer/os/index.html.js").then(({ data }) => data),
   // path: /dev-tools/docker/docker-basic.html
   "v-c94937a4": () => import(/* webpackChunkName: "v-c94937a4" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/dev-tools/docker/docker-basic.html.js").then(({ data }) => data),
   // path: /dev-tools/docker/docker-compose.html
@@ -171,14 +171,6 @@ export const pagesData = {
   "v-67ba3c2b": () => import(/* webpackChunkName: "v-67ba3c2b" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/dev-tools/docker/docker-web-containers.html.js").then(({ data }) => data),
   // path: /dev-tools/docker/
   "v-5b613c4a": () => import(/* webpackChunkName: "v-5b613c4a" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/dev-tools/docker/index.html.js").then(({ data }) => data),
-  // path: /project/sky-take-out/BackEnd-Dev-Build.html
-  "v-5a85e730": () => import(/* webpackChunkName: "v-5a85e730" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/project/sky-take-out/BackEnd-Dev-Build.html.js").then(({ data }) => data),
-  // path: /project/sky-take-out/Database-Dev-Build.html
-  "v-4ad44c69": () => import(/* webpackChunkName: "v-4ad44c69" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/project/sky-take-out/Database-Dev-Build.html.js").then(({ data }) => data),
-  // path: /project/sky-take-out/FrontEnd-Dev-Build.html
-  "v-591229dc": () => import(/* webpackChunkName: "v-591229dc" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/project/sky-take-out/FrontEnd-Dev-Build.html.js").then(({ data }) => data),
-  // path: /project/sky-take-out/
-  "v-431d90ac": () => import(/* webpackChunkName: "v-431d90ac" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/project/sky-take-out/index.html.js").then(({ data }) => data),
   // path: /dev-tools/git/
   "v-62aaa642": () => import(/* webpackChunkName: "v-62aaa642" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/dev-tools/git/index.html.js").then(({ data }) => data),
   // path: /dev-tools/homebrew/
@@ -189,28 +181,42 @@ export const pagesData = {
   "v-4a889bdf": () => import(/* webpackChunkName: "v-4a889bdf" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/dev-tools/idea/shortcuts.html.js").then(({ data }) => data),
   // path: /dev-tools/maven/
   "v-6c683669": () => import(/* webpackChunkName: "v-6c683669" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/dev-tools/maven/index.html.js").then(({ data }) => data),
-  // path: /java/basis/basic-grammar.html
-  "v-157f1d36": () => import(/* webpackChunkName: "v-157f1d36" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/java/basis/basic-grammar.html.js").then(({ data }) => data),
-  // path: /java/basis/class-and-object.html
-  "v-57af2dac": () => import(/* webpackChunkName: "v-57af2dac" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/java/basis/class-and-object.html.js").then(({ data }) => data),
-  // path: /java/basis/exception.html
-  "v-733e6662": () => import(/* webpackChunkName: "v-733e6662" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/java/basis/exception.html.js").then(({ data }) => data),
-  // path: /java/basis/jdk-env-path.html
-  "v-391d5b93": () => import(/* webpackChunkName: "v-391d5b93" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/java/basis/jdk-env-path.html.js").then(({ data }) => data),
-  // path: /java/basis/
-  "v-ffb970b6": () => import(/* webpackChunkName: "v-ffb970b6" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/java/basis/index.html.js").then(({ data }) => data),
-  // path: /java/basis/reflection.html
-  "v-78b1dd6e": () => import(/* webpackChunkName: "v-78b1dd6e" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/java/basis/reflection.html.js").then(({ data }) => data),
   // path: /java/collection/list-arraylist.html
   "v-0c2ad8d4": () => import(/* webpackChunkName: "v-0c2ad8d4" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/java/collection/list-arraylist.html.js").then(({ data }) => data),
+  // path: /java/collection/list-linkedlist.html
+  "v-be3711a0": () => import(/* webpackChunkName: "v-be3711a0" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/java/collection/list-linkedlist.html.js").then(({ data }) => data),
   // path: /java/collection/
   "v-16722c46": () => import(/* webpackChunkName: "v-16722c46" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/java/collection/index.html.js").then(({ data }) => data),
+  // path: /java/core/annotation.html
+  "v-255e3ce4": () => import(/* webpackChunkName: "v-255e3ce4" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/java/core/annotation.html.js").then(({ data }) => data),
+  // path: /java/core/basic-grammar.html
+  "v-3c7fefcd": () => import(/* webpackChunkName: "v-3c7fefcd" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/java/core/basic-grammar.html.js").then(({ data }) => data),
+  // path: /java/core/class-and-object.html
+  "v-a63a099a": () => import(/* webpackChunkName: "v-a63a099a" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/java/core/class-and-object.html.js").then(({ data }) => data),
+  // path: /java/core/exception.html
+  "v-fa2efa34": () => import(/* webpackChunkName: "v-fa2efa34" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/java/core/exception.html.js").then(({ data }) => data),
+  // path: /java/core/generics.html
+  "v-6cad573e": () => import(/* webpackChunkName: "v-6cad573e" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/java/core/generics.html.js").then(({ data }) => data),
+  // path: /java/core/jdk-env-path.html
+  "v-a4074bc8": () => import(/* webpackChunkName: "v-a4074bc8" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/java/core/jdk-env-path.html.js").then(({ data }) => data),
+  // path: /java/core/
+  "v-674f61fc": () => import(/* webpackChunkName: "v-674f61fc" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/java/core/index.html.js").then(({ data }) => data),
+  // path: /java/core/reflection.html
+  "v-cfd3c3dc": () => import(/* webpackChunkName: "v-cfd3c3dc" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/java/core/reflection.html.js").then(({ data }) => data),
   // path: /java/io/
   "v-9828af56": () => import(/* webpackChunkName: "v-9828af56" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/java/io/index.html.js").then(({ data }) => data),
   // path: /java/jvm/redemd.html
   "v-5383d968": () => import(/* webpackChunkName: "v-5383d968" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/java/jvm/redemd.html.js").then(({ data }) => data),
   // path: /java/thread/
   "v-48579df1": () => import(/* webpackChunkName: "v-48579df1" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/java/thread/index.html.js").then(({ data }) => data),
+  // path: /project/sky-take-out/BackEnd-Dev-Build.html
+  "v-5a85e730": () => import(/* webpackChunkName: "v-5a85e730" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/project/sky-take-out/BackEnd-Dev-Build.html.js").then(({ data }) => data),
+  // path: /project/sky-take-out/Database-Dev-Build.html
+  "v-4ad44c69": () => import(/* webpackChunkName: "v-4ad44c69" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/project/sky-take-out/Database-Dev-Build.html.js").then(({ data }) => data),
+  // path: /project/sky-take-out/FrontEnd-Dev-Build.html
+  "v-591229dc": () => import(/* webpackChunkName: "v-591229dc" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/project/sky-take-out/FrontEnd-Dev-Build.html.js").then(({ data }) => data),
+  // path: /project/sky-take-out/
+  "v-431d90ac": () => import(/* webpackChunkName: "v-431d90ac" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/project/sky-take-out/index.html.js").then(({ data }) => data),
   // path: /spring-series/spring/annotations-beans.html
   "v-2ea65610": () => import(/* webpackChunkName: "v-2ea65610" */"/Users/codermast/DevProjects/CoderMast/docs/.vuepress/.temp/pages/spring-series/spring/annotations-beans.html.js").then(({ data }) => data),
   // path: /spring-series/spring/implement-ioc.html

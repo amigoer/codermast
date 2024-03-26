@@ -37,7 +37,7 @@ List<E> list = new ArrayList<>();
 - size()：计算大小
 - isEmpty()：判断是否为空
 
-## ArrayList实现
+## 实现方式
 
 ### 底层存储
 

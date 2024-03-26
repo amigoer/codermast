@@ -64,6 +64,7 @@ export default hopeTheme({
 
     // markdown增强
     mdEnhance: {
+      // 启动自定义对齐
       align: true,
       attrs: true,
       chart: true,
@@ -82,9 +83,7 @@ export default hopeTheme({
       playground: {
         presets: ["ts", "vue"],
       },
-      presentation: {
-        plugins: ["highlight", "math", "search", "notes", "zoom"],
-      },
+      presentation: ["highlight", "math", "search", "notes", "zoom"],
       stylize: [
         {
           matcher: "Recommended",

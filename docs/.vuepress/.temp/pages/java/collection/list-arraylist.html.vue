@@ -23,7 +23,7 @@
 <li>size()：计算大小</li>
 <li>isEmpty()：判断是否为空</li>
 </ul>
-<h2 id="arraylist实现" tabindex="-1"><a class="header-anchor" href="#arraylist实现" aria-hidden="true">#</a> ArrayList实现</h2>
+<h2 id="实现方式" tabindex="-1"><a class="header-anchor" href="#实现方式" aria-hidden="true">#</a> 实现方式</h2>
 <h3 id="底层存储" tabindex="-1"><a class="header-anchor" href="#底层存储" aria-hidden="true">#</a> 底层存储</h3>
 <div class="language-java line-numbers-mode" data-ext="java"><pre v-pre class="language-java"><code><span class="token doc-comment comment">/**
  * The array buffer into which the elements of the ArrayList are stored.
