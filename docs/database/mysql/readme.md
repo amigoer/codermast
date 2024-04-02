@@ -4,29 +4,11 @@ order : 0
 ---
 # MySQL 数据库
 
-## 学习目录
-- 基础篇
-    1. MySQL基础
-    2. SQL基础语法
-    3. 函数
-    4. 约束
-    5. 多表查询
-    6. 事务
-- 进阶篇
-    1. 存储引擎
-    2. 索引
-    3. SQL优化
-    4. 视图
-    5. 存储过程
-    6. 触发器
-    7. 锁
-    8. InnoDB引擎
-    9. MySQL管理
-- 运维篇
-    1. 日志
-    2. 主从复制
-    3. 分库分表
-    4. 读写分离
+<!-- 用于限制高度 -->
+<div class="catalog-display-container">
+  <AutoCatalog base='/database/mysql/'  index='true'
+  hideHeading='true'/>
+</div>
 
 ## 参考资料
 

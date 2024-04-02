@@ -1,5 +1,10 @@
 <template><div><h1 id="spring" tabindex="-1"><a class="header-anchor" href="#spring" aria-hidden="true">#</a> Spring</h1>
 <figure><img src="@source/../assets/readme/2023-12-29-20-51-14.png" alt="Spring" tabindex="0" loading="lazy"><figcaption>Spring</figcaption></figure>
+<!-- 用于限制高度 -->
+<div class="catalog-display-container">
+  <AutoCatalog base='/spring-series/spring/'  index='false'
+  hideHeading='true'/>
+</div>
 <h2 id="参考资料" tabindex="-1"><a class="header-anchor" href="#参考资料" aria-hidden="true">#</a> 参考资料</h2>
 <ul>
 <li>代码仓库：</li>
