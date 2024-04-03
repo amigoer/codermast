@@ -1,10 +1,10 @@
 ---
 home: true
 icon: home
-title: 编程学习知识库
+title: 「编程桅杆」Java 全栈学习指南
 heroImage: /logo.png
 heroText: CoderMast编程桅杆
-tagline: 「编程学习知识库」包含计算机基础，Java 基础，面经总结，数据库等，涵盖大部分 Java 程序员所需要掌握的核心知识！
+tagline: 「编程桅杆」包含计算机基础，Java 基础，面经总结，数据库等，涵盖大部分 Java 程序员所需要掌握的核心知识！
 lang : zh-CN
 actions:
   - text: Java 💡
@@ -49,14 +49,3 @@ footer:  <a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral
 在对参考的部分，会给出参考的地址，方便自己或者读者进行知识追溯，也希望其他人在对本人文章进行参考时，也加上文章的来源，保证读者能够对知识点进行刨根问题，追究源头。
 
 也希望读者朋友们保持一个批判性思维，本人所写的所有内容也并非100%正确，可能也会有对知识的误解和遗漏、错误等情况，希望读者们不吝赐教，能够指出文章中一些能够完美，但时并未做到完美的点，也能够后续的读者展现出更高质量的文章，非常感谢大家的支持！
-
-<!-- ## 联系我
-
-<div align="center">
-   <img src="../assets/readme/2024-01-03-14-00-26.png" height="500px">
-   <img src="../assets/readme/2024-01-09-23-35-09.png" height="500px">
-   <img src="../assets/readme/2024-01-09-23-45-30.png" height="500px">
-
-   <p>目前知识星球还在建设之中，加我微信免费拉你进星球，我的微信号：codermast888</p>
-
-</div> -->

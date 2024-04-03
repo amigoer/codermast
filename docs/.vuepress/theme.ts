@@ -14,6 +14,7 @@ export default hopeTheme({
   // 页脚
   footer: '<a href="https://beian.miit.gov.cn/" rel="nofollow">陕ICP备20010345号-5</a>',
 
+  // 全局显示页脚
   displayFooter: true,
   metaLocales: {
     editLink: "编辑此页",
