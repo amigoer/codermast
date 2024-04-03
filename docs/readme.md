@@ -50,13 +50,3 @@ footer:  <a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral
 
 也希望读者朋友们保持一个批判性思维，本人所写的所有内容也并非100%正确，可能也会有对知识的误解和遗漏、错误等情况，希望读者们不吝赐教，能够指出文章中一些能够完美，但时并未做到完美的点，也能够后续的读者展现出更高质量的文章，非常感谢大家的支持！
 
-<!-- ## 联系我
-
-<div align="center">
-   <img src="../assets/readme/2024-01-03-14-00-26.png" height="500px">
-   <img src="../assets/readme/2024-01-09-23-35-09.png" height="500px">
-   <img src="../assets/readme/2024-01-09-23-45-30.png" height="500px">
-
-   <p>目前知识星球还在建设之中，加我微信免费拉你进星球，我的微信号：codermast888</p>
-
-</div> -->
