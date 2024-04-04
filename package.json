@@ -11,10 +11,18 @@
     "docs:update-package": "npx vp-update"
   },
   "devDependencies": {
-    "@vuepress/client": "2.0.0-beta.67",
-    "vue": "^3.3.4",
-    "vuepress": "2.0.0-beta.67",
-    "vuepress-plugin-search-pro": "2.0.0-beta.236",
-    "vuepress-theme-hope": "2.0.0-beta.236"
+    "@vuepress/bundler-vite": "^2.0.0-rc.9",
+    "vue": "^3.4.21",
+    "vuepress": "2.0.0-rc.9",
+    "vuepress-theme-hope": "2.0.0-rc.33"
+  },
+  "dependencies": {
+    "@vue/repl": "^4.1.1",
+    "chart.js": "^4.4.2",
+    "echarts": "^5.5.0",
+    "flowchart.ts": "^3.0.0",
+    "katex": "^0.16.10",
+    "mermaid": "^10.9.0",
+    "reveal.js": "^5.0.5"
   }
 }

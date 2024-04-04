@@ -1,75 +1,75 @@
 import { navbar } from "vuepress-theme-hope";
 
 export const zhNavbar = navbar([
-
     {
         text: "Java系列",
         icon: "la:java",
+        prefix: "/java/",
         children: [
             {
                 text: "基础篇",
-                prefix: "/java",
                 children: [
-                    { text: "核心知识", link: "/core", },
-                    { text: "集合框架", link: "/collection", },
-                    { text: "并发框架", link: "/thread" },
-                    { text: "IO框架", link: "/io", },
+                    { text: "核心知识", link: "core/", },
+                    { text: "集合框架", link: "collection/", },
+                    { text: "并发框架", link: "thread/" },
+                    { text: "IO框架", link: "io/", },
                 ]
             }, {
                 text: "原理篇",
                 children: [
-                    { text: "JVM虚拟机", link: "/jvm", },
+                    { text: "JVM虚拟机", link: "jvm/", },
                 ]
             }, {
                 text: "Spring系列",
-                prefix: "/spring-series",
+                prefix: "/spring-series/",
                 icon: "simple-icons:spring",
                 children: [
-                    { text: "Spring6", link: "/spring", },
-                    { text: "Spring Boot", link: "/springboot", },
-                    { text: "Spring MVC", link: "/springmvc" },
-                    { text: "Spring Cloud", link: "/springcloud", },
+                    { text: "Spring6", link: "spring/", },
+                    { text: "Spring Boot", link: "springboot/", },
+                    { text: "Spring MVC", link: "springmvc/" },
+                    { text: "Spring Cloud", link: "springcloud/", },
                 ]
             }
         ]
-    }, {
+    },
+    {
         text: "数据库",
         icon: "mdi:sql-query",
-        prefix: "/database",
+        prefix: "/database/",
         children: [
             {
                 text: "SQL数据库",
-                children: [{ text: "MySQL", link: "/mysql", icon: "simple-icons:mysql" }],
+                children: [{ text: "MySQL", link: "mysql/", icon: "simple-icons:mysql" }],
             },
             {
                 text: "NoSQL数据库",
                 children: [
-                    { text: "Redis", link: "/redis", icon: "cib:redis" },
-                    { text: "MongoDB", link: "/mongodb", icon: "teenyicons:mongodb-solid" },
-                    { text: "ElaticSearch", link: "/elaticsearch", icon: "mingcute:search-fill" }],
+                    { text: "Redis", link: "redis/", icon: "cib:redis" },
+                    { text: "MongoDB", link: "mongodb/", icon: "teenyicons:mongodb-solid" },
+                    { text: "ElaticSearch", link: "elaticsearch/", icon: "mingcute:search-fill" }],
             },
         ],
     },
     {
         text: "计算机基础",
         icon: "ri:computer-fill",
-        prefix: "/computer",
+        prefix: "/computer/",
         children: [
             {
                 text: "数据结构",
-                link: "/ds",
+                link: "ds/",
             },
             {
                 text: "组成原理",
-                link: "/co",
+                link: "co/",
             },
             {
                 text: "操作系统",
-                link: "/os",
+                link: "os/",
             },
             {
                 text: "计算机网络",
-                link: "/cn",
+                link: "cn/",
             },
         ],
     },
@@ -77,26 +77,26 @@ export const zhNavbar = navbar([
     {
         text: "开发工具",
         icon: "mdi:tools",
-        prefix: "/dev-tools",
+        prefix: "/dev-tools/",
         children: [
             {
                 text: "Docker",
-                link: "/docker",
+                link: "docker/",
                 icon: "mdi:docker",
             },
             {
                 text: "Git",
-                link: "/git",
+                link: "git/",
                 icon: "mdi:git",
             },
             {
                 text: "IDEA",
-                link: "/idea",
+                link: "idea/",
                 icon: "simple-icons:intellijidea",
             },
             {
                 text: "Maven",
-                link: "/maven",
+                link: "maven/",
                 icon: "devicon-plain:maven",
             },
         ]
@@ -104,30 +104,30 @@ export const zhNavbar = navbar([
     {
         text: "项目实战",
         icon: "ph:planet-bold",
-        link: "/project",
+        link: "project/",
     },
-    // {
-    //     text: "知识星球",
-    //     icon: "ph:planet-bold",
-    //     link: "/planet",
-    // },
+    {
+        text: "知识星球",
+        icon: "ph:planet-bold",
+        link: "planet/",
+    },
 
     {
         text: "关于",
         icon: "fa-solid:user-friends",
-        prefix: "/about",
+        prefix: "/about/",
         children: [
             {
                 text: "网站更新",
-                link: "/update"
+                link: "update/"
             },
             {
                 text: "作者相关",
-                link: "/author",
+                link: "author/",
             },
             {
                 text: "心路历程",
-                link: "/journey",
+                link: "journey/",
             },
         ]
     }

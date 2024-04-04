@@ -4,18 +4,22 @@ import { zhSidebar } from "./sidebar/index.js";
 
 export default hopeTheme({
   breadcrumb: false,
+
   headerDepth: 2,
   // ico图标
   favicon: "/favicon.ico",
   // 顶部导航栏
   navbar: zhNavbar,
+
   // 侧边栏
   sidebar: zhSidebar,
+
   // 页脚
   footer: '<a href="https://beian.miit.gov.cn/" rel="nofollow">陕ICP备20010345号-5</a>',
 
   // 全局显示页脚
   displayFooter: true,
+
   metaLocales: {
     editLink: "编辑此页",
   },
@@ -30,6 +34,10 @@ export default hopeTheme({
     email: "codermast@163.com",
   },
 
+  // 配置深色模式
+  darkmode: "switch",
+
+  // 配置图标库
   iconAssets: "//code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js",
 
   logo: "/logo.svg",
@@ -43,13 +51,23 @@ export default hopeTheme({
   // 文档存放的分值
   docsBranch: "main",
 
-  // encrypt: {
-  //   config: {
-  //     "/demo/encrypt.html": ["1234"],
-  //   },
-  // },
-
   plugins: {
+    searchPro: {
+      // 索引全部内容
+      indexContent: true,
+      // 为分类和标签添加索引
+      customFields: [
+        {
+          getter: (page) => page.frontmatter.category,
+          formatter: "分类：$content",
+        },
+        {
+          getter: (page) => page.frontmatter.tag,
+          formatter: "标签：$content",
+        },
+      ],
+    },
+
     // 配置评论框
     comment: {
       provider: "Giscus",
@@ -80,7 +98,7 @@ export default hopeTheme({
       playground: {
         presets: ["ts", "vue"],
       },
-      presentation: ["highlight", "math", "search", "notes", "zoom"],
+      revealJs: ["highlight", "math", "search", "notes", "zoom"],
       stylize: [
         {
           matcher: "Recommended",
