@@ -1,7 +1,7 @@
 {
-  "name": "vuepress-theme-hope-template",
-  "version": "2.0.0",
-  "description": "A project of vuepress-theme-hope",
+  "name": "CoderMast-Notes",
+  "version": "1.0.0",
+  "description": "A Project Of CoderMast Notes",
   "license": "MIT",
   "type": "module",
   "scripts": {
