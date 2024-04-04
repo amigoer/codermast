@@ -4,10 +4,10 @@ icon: home
 title: 「编程桅杆」Java 全栈学习指南
 heroImage: /logo.png
 heroText: CoderMast编程桅杆
-tagline: 「编程桅杆」包含计算机基础，Java 基础，面经总结，数据库等，涵盖大部分 Java 程序员所需要掌握的核心知识！
+tagline: 「编程桅杆」包含计算机基础、Java 基础、面试经验，数据库等，包含了大部分 Java 程序员所需要掌握的核心知识！
 lang : zh-CN
 actions:
-  - text: Java 💡
+  - text: 快速学习 💡
     link: /java/
     type: primary
 

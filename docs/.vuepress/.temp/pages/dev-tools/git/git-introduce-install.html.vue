@@ -1,4 +1,4 @@
-<template><div><h1 id="git介绍和安装" tabindex="-1"><a class="header-anchor" href="#git介绍和安装" aria-hidden="true">#</a> Git介绍和安装</h1>
+<template><div><h1 id="git-介绍和安装" tabindex="-1"><a class="header-anchor" href="#git-介绍和安装" aria-hidden="true">#</a> Git 介绍和安装</h1>
 <h2 id="git介绍" tabindex="-1"><a class="header-anchor" href="#git介绍" aria-hidden="true">#</a> Git介绍</h2>
 <p>Git是一款免费、开源的分布式版本控制系统，用于敏捷高效地处理任何或小或大的项目。</p>
 <p>Git是一个开源的分布式版本控制系统，可以有效、高速的处理从很小到非常大的项目版本管理。Git 是 Linus Torvalds 为了帮助管理 Linux 内核开发而开发的一个开放源码的版本控制软件。</p>
