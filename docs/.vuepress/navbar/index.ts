@@ -106,11 +106,11 @@ export const zhNavbar = navbar([
         icon: "ph:planet-bold",
         link: "project/",
     },
-    {
-        text: "知识星球",
-        icon: "ph:planet-bold",
-        link: "planet/",
-    },
+    // {
+    //     text: "知识星球",
+    //     icon: "ph:planet-bold",
+    //     link: "planet/",
+    // },
 
     {
         text: "关于",

@@ -1,5 +1,5 @@
 ---
-index : true
+index : false
 order : 0
 ---
 # Redis 数据库

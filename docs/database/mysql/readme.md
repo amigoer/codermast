@@ -1,14 +1,12 @@
 ---
-index : true
-order : 0
+index : false
+order : 1
 ---
 # MySQL 数据库
 
-<!-- 用于限制高度 -->
-<div class="catalog-display-container">
-  <AutoCatalog base='/database/mysql/'  index='true'
-  hideHeading='true'/>
-</div>
+## 目录
+
+<Catalog  hideHeading='false'/>
 
 ## 参考资料
 

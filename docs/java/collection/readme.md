@@ -9,28 +9,10 @@ dir :
 
 Java 中的集合框架的继承和实现大体上如上图所示，但有部分类的接口实现不止一个，这里为了尽可能清晰的展现层次结构，仅保留了最核心的实现接口，如需查看完整的集合框架图可自行在IDEA中查看。
 
-## Collection
+## 目录
 
-- List
-    - ArrayList
-    - LinkedList
-    - Vetor
-        - Stack
-- Set
-    - HashSet
-        - LinkedHashSet
-    - TreeSet
-- Queue
-    - LinkedList
-    - PriorityQueue
+<Catalog  hideHeading='false'/>
 
-
-## Map
-
-- HashMap
-    - LinkedHashMap
-- HashTable
-- TreeMap
 
 
 ## 参考资料

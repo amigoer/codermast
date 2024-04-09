@@ -1,5 +1,5 @@
 ---
-index : true
+index : false
 order : 0
 ---
 # Spring
@@ -7,11 +7,9 @@ order : 0
 ![Spring](../../../assets/readme/2023-12-29-20-51-14.png)
 
 
-<!-- 用于限制高度 -->
-<div class="catalog-display-container">
-  <AutoCatalog base='/spring-series/spring/'  index='false'
-  hideHeading='true'/>
-</div>
+## 目录
+
+<Catalog  hideHeading='false'/>
 
 ## 参考资料
 - 代码仓库：

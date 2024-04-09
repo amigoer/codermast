@@ -3,8 +3,10 @@ import { zhNavbar } from "./navbar/index.js";
 import { zhSidebar } from "./sidebar/index.js";
 
 export default hopeTheme({
+
   breadcrumb: false,
 
+  // 标题深度
   headerDepth: 2,
   // ico图标
   favicon: "/favicon.ico",
@@ -15,7 +17,7 @@ export default hopeTheme({
   sidebar: zhSidebar,
 
   // 页脚
-  footer: '<a href="https://beian.miit.gov.cn/" rel="nofollow">陕ICP备20010345号-5</a>',
+  footer: '<a href="https://beian.miit.gov.cn/" target="_blank" rel="nofollow">陕ICP备20010345号-5</a>',
 
   // 全局显示页脚
   displayFooter: true,
@@ -55,6 +57,8 @@ export default hopeTheme({
     searchPro: {
       // 索引全部内容
       indexContent: true,
+      // 设置快捷键
+      hotKeys: [{ key: "k", ctrl: true }, { key: "/", ctrl: true }],
       // 为分类和标签添加索引
       customFields: [
         {
