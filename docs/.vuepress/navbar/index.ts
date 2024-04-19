@@ -51,6 +51,19 @@ export const zhNavbar = navbar([
         ],
     },
     {
+        text: "前端系列",
+        icon: "akar-icons:html-fill",
+        prefix: "/front-end/",
+        children: [
+            {
+                icon: "carbon:logo-vue",
+                text: "Vue3",
+                link: "vue3/",
+            },
+
+        ],
+    },
+    {
         text: "计算机基础",
         icon: "ri:computer-fill",
         prefix: "/computer/",
