@@ -109,8 +109,13 @@ export const zhNavbar = navbar([
             },
             {
                 text: "Maven",
-                link: "maven/",
+                link: "maven",
                 icon: "devicon-plain:maven",
+            },
+            {
+                text: "Homebrew",
+                link: "homebrew",
+                icon: "simple-icons:homebrew",
             },
         ]
     },

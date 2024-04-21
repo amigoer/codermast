@@ -123,4 +123,6 @@ export default hopeTheme({
       vuePlayground: true,
     },
   },
+}, {
+  custom: true,
 });

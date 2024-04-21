@@ -1,4 +1,6 @@
 ---
+dir :
+    link : true
 index : false
 ---
 # Git 学习笔记
