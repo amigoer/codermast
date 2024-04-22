@@ -1,7 +1,8 @@
 import theme from "./theme.js";
-import { getDirname, path } from "vuepress/utils";
+
 import { defineUserConfig } from "vuepress";
 import { viteBundler } from '@vuepress/bundler-vite'
+import { getDirname, path } from "vuepress/utils";
 
 const __dirname = getDirname(import.meta.url);
 
@@ -21,20 +22,10 @@ export default defineUserConfig({
       s.parentNode.insertBefore(hm, s);
     })();`]
   ],
-
   theme,
 
   bundler: viteBundler({
     viteOptions: {},
     vuePluginOptions: {},
   }),
-
-  alias: {
-    // 你可以在这里将别名定向到自己的组件
-    // 比如这里我们将主题的主页组件改为用户 .vuepress/components 下的 HomePage.vue
-    "@theme-hope/components/CommonWrapper": path.resolve(
-      __dirname,
-      "./components/MyCommonWrapper.vue",
-    ),
-  },
 });
