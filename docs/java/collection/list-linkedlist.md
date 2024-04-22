@@ -2,7 +2,7 @@
 order : 2
 ---
 
-# Collection - LinkedList 源码解析
+# List - LinkedList 源码解析
 
 ![](../../../assets/list-linkedlist/2024-03-24-22-48-48.png)
 

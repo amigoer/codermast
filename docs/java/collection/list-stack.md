@@ -1,7 +1,7 @@
 ---
 order : 3
 ---
-# Collection - Satck源码解析
+# List - Satck源码解析
 
 ![](../../../assets/list-stack/2024-04-22-15-23-19.png)
 

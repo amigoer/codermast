@@ -2,7 +2,7 @@
 order : 1
 ---
 
-# Collection - ArrayList 源码解析
+# List - ArrayList 源码解析
 
 ![](../../../assets/list-arraylist/2024-03-20-12-47-16.png)
 
