@@ -1,6 +1,8 @@
 ---
 index : false
-order : 0
+dir : 
+    link : true
+    order : 0
 ---
 # Redis 数据库
 

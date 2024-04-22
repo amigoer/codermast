@@ -1,7 +1,7 @@
 ---
 index : false
 dir :
-    order : 4
+    link : true
 ---
 # Java 集合框架
 

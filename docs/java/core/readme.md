@@ -2,6 +2,7 @@
 index : false
 dir :
     order : 1
+    link : true
 ---
 # Java 核心知识
 

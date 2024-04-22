@@ -1,6 +1,8 @@
 ---
 index : false
-order : 1
+dir : 
+    link : true
+    order : 1
 ---
 # MySQL 数据库
 

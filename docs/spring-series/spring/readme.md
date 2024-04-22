@@ -1,6 +1,8 @@
 ---
 index : false
-order : 0
+dir :
+    order : 0
+    link : true
 ---
 # Spring
 

@@ -1,5 +1,7 @@
 ---
 index : false
+dir :
+    link : true
 ---
 
 # Java IO框架

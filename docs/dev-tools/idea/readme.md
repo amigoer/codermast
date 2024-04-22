@@ -1,5 +1,7 @@
 ---
 index : false
+dir : 
+    link : true
 ---
 
 # IDEA 使用教程
