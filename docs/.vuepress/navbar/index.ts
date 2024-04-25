@@ -88,34 +88,50 @@ export const zhNavbar = navbar([
     },
 
     {
-        text: "开发工具",
-        icon: "mdi:tools",
-        prefix: "/dev-tools/",
+        text: "开发相关",
+        icon: "fluent:window-dev-tools-16-filled",
         children: [
             {
-                text: "Docker",
-                link: "docker/",
-                icon: "mdi:docker",
+                text: "开发工具",
+                prefix: "/dev-tools/",
+                children: [
+                    {
+                        text: "Docker",
+                        link: "docker/",
+                        icon: "mdi:docker",
+                    },
+                    {
+                        text: "Git",
+                        link: "git/",
+                        icon: "mdi:git",
+                    },
+                    {
+                        text: "IDEA",
+                        link: "idea/",
+                        icon: "simple-icons:intellijidea",
+                    },
+                    {
+                        text: "Maven",
+                        link: "maven/",
+                        icon: "devicon-plain:maven",
+                    },
+                    {
+                        text: "Homebrew",
+                        link: "homebrew",
+                        icon: "simple-icons:homebrew",
+                    },
+                ]
             },
             {
-                text: "Git",
-                link: "git/",
-                icon: "mdi:git",
-            },
-            {
-                text: "IDEA",
-                link: "idea/",
-                icon: "simple-icons:intellijidea",
-            },
-            {
-                text: "Maven",
-                link: "maven/",
-                icon: "devicon-plain:maven",
-            },
-            {
-                text: "Homebrew",
-                link: "homebrew",
-                icon: "simple-icons:homebrew",
+                text: "开发思想",
+                prefix: "/dev-idea/",
+                children: [
+                    {
+                        text: "设计模式",
+                        link: "design-patterns/",
+                        icon: "mdi:design",
+                    },
+                ]
             },
         ]
     },

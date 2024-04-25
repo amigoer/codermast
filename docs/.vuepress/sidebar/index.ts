@@ -7,6 +7,7 @@ export const zhSidebar = sidebar({
     "/computer/": "structure",
     "/spring-series": "structure",
     "/dev-tools": "structure",
+    "/dev-idea": "structure",
     "/about": "structure",
     "/project": "structure",
 });
