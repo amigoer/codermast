@@ -108,3 +108,7 @@ public class FactoryPattern {
 画一个圆...
 画一个矩形...
 ```
+
+## 小结
+
+一个或一类实例化过程较为复杂的类，可以使用工厂模式来构建对象，同一种类型的类，可抽象为一个工厂方法，通过参数来判断其具体实例化哪个对象。在 Java 中，工厂模式广泛应用于各种框架和类库中，例如 JDBC 中的 DataSource 工厂、 Spring 框架中的 Bean 工厂、MyBatis 框架中的 SqlSessionFactory 等等。
