@@ -10,3 +10,6 @@ index : false
 <Catalog  hideHeading='false'/>
 
 ## 配套资料
+
+- 尚硅谷Vue3教程：https://www.bilibili.com/video/BV1Za4y1r7KE
+- Vue官网：https://cn.vuejs.org/
