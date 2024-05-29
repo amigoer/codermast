@@ -72,6 +72,20 @@ my-vue3-project/
 - JS/TS 脚本区`<script></script>`：主要编写一些在当前组件中使用到的一些脚本
 - CSS 样式区`<style></style>`：主要编写一些在当前组件中使用到的样式表
 
+::: important 下面是一个简单的 Vue 组件实例
+```vue
+<script setup>
+import { ref } from 'vue'
+
+const count = ref(0)
+</script>
+
+<template>
+  <button @click="count++">You clicked me {{ count }} times.</button>
+</template>
+```
+:::
+
 ## API风格
 
 这里的 API 风格是指 Vue 的两种编写风格，一种是 组合式，一种是选项式。

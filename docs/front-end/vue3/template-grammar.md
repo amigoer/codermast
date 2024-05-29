@@ -260,3 +260,77 @@ const id = ref(1)
 ```html:no-line-numbers
 <form v-on:submit.prevent="onSubmit"></form>
 ```
+
+## Ref 属性
+
+想要获取页面上标签对应的 DOM 信息，通常使用 JS 中的选择器来进行获取，但是由于 Vue 是单页面项目，所有的组件都是挂载在 index.html 中的某个标签上，组件中的命名不免重复，获取指定标签的难度较大。
+
+为了解决这个问题，可以使用标签上的 ref 属性，可以直接获取到标签的 DOM 信息，不必使用 JS 来进行操作。
+
+### 普通标签
+
+使用在普通标签上，获取的是改标签的 DOM 信息。
+
+```vue
+<template>
+    <h1 ref="title">Hello CoderMast！</h1>
+    <button @click="getTitleInfo">获取 Title DOM 信息</button>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+
+// 定义 DOM 元素接受变量
+const title = ref();
+
+// 获取 Title DOM 信息
+const getTitleInfo = () => {
+    console.log(title.value);
+}
+</script>
+```
+
+点击该按钮，打印在控制台的信息为：`<h1>Hello CoderMast！</h1>`
+
+可以直接拿到这个对象，像我们之前去操作 DOM 元素那样，可以对它进行任何操作。
+
+::: info 说明
+在这个案例中，将打印信息写在了方法内，那么不写在方法内直接进行打印呢？答案是打印为空。出现这种现象的主要原因是标签上标注了 setup，setup 函数内执行的内容是早于页面挂载的，当页面还没挂载时，当然获取不到对应的 DOM 信息。
+- [Vue - 生命周期详解](https://www.codermast.com/front-end/vue3/life-cycle.html)
+:::
+
+### 组件标签
+
+使用在组件标签上，获取的是其子组件的信息。
+
+```vue
+<template>
+    <Person ref="person" />
+    <button @click="getPersonInfo">获取信息</button>
+</template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+import Person from './components/Person.vue';
+
+const person = ref();
+
+const getPersonInfo = () => {
+    console.log(person.value);
+}
+</script>
+```
+
+这里打印出来的信息是子组件中的对象信息，但是该对象中的信息是无法拿到的，需要子组件去配置。
+
+在子组件中需要将数据暴露给外部，这样外部才能获取到对应的信息。
+```ts
+import {ref,defineExpose} from 'vue'
+
+// 数据
+let name = ref('张三')
+let age = ref(18)
+
+// 使用 defineExpose 将组件中的数据交给外部
+defineExpose({ name, age })
+```
