@@ -88,6 +88,7 @@ export default hopeTheme({
       attrs: true,
       chart: true,
       codetabs: true,
+      components: true,
       demo: true,
       echarts: true,
       figure: true,

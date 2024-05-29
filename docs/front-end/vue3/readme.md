@@ -17,5 +17,6 @@ dir :
 
 ## 配套资料
 
-- Vue 官方文档：https://cn.vuejs.org/
-- vue3目录结构详细说明及文件命名规范：https://blog.csdn.net/Jo_liver/article/details/135392995
+- [Vue 官方文档](https://cn.vuejs.org/)
+- [vue3目录结构详细说明及文件命名规范](https://blog.csdn.net/Jo_liver/article/details/135392995)
+- [快速打通 Vue 3（四）：标签的 ref 属性与 Vue3 生命周期](https://blog.csdn.net/weixin_74895237/article/details/135540926)
