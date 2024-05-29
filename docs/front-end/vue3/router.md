@@ -42,6 +42,127 @@ cnpm install vue-router
 ```
 :::
 
+## 路由定义
+
+使用路由之前，需要先进行路由的配置，主要配置 URL 和 页面组件的映射关系。创建路由配置文件 `/src/router/index.js`
+
+```ts
+import { createRouter,createWebHistory } from 'vue-router'
+
+import Home from '../pages/Home.vue'
+import News from '../pages/News.vue'
+import Detail from '../pages/Detail.vue'
+
+// 构建路由映射对象
+const routes = [
+    {
+        path: '/',
+        name: 'home',
+        component: Home
+    },
+    {
+        path: '/news',
+        name: 'news',
+        component: News,
+        children:[
+				{
+					path: '/detail',
+					name: 'detail',
+					component: Detail
+				}
+			]
+    }
+];
+
+// 创建路由对象
+const router = createRouter({
+    // 配置路由器模式
+    history: createWebHistory(),
+    routes
+});
+
+export default router
+```
+
+其中routes 是一个数组，其中的元素就是路由映射信息。
+
+- path：对应的 URL 信息
+- name：路由名称
+- component：组件信息
+- children：子路由信息
+
+::: info 路由的映射关系中，也支持配置子路由，便于 URL 匹配，支持多级子路由嵌套
+:::
+
+## 路由传参
+
+### Query 参数
+
+- 传递参数
+```vue
+<!-- 跳转并携带query参数（to的字符串写法） -->
+<router-link to="/news/detail?a=1&b=2&content=欢迎你">
+	跳转
+</router-link>
+				
+<!-- 跳转并携带query参数（to的对象写法） -->
+<RouterLink 
+  :to="{
+    //name:'xiang', //用name也可以跳转
+    path:'/news/detail',
+    query:{
+      id:news.id,
+      title:news.title,
+      content:news.content
+    }
+  }"
+>
+  {{news.title}}
+</RouterLink>
+```
+- 接收参数
+
+```ts
+import {useRoute} from 'vue-router'
+const route = useRoute()
+// 打印query参数
+console.log(route.query)
+```
+### Params 参数
+
+- 传递参数
+```vue
+<!-- 跳转并携带params参数（to的字符串写法） -->
+<RouterLink :to="`/news/detail/001/新闻001/内容001`">{{news.title}}</RouterLink>
+
+<!-- 跳转并携带params参数（to的对象写法） -->
+<RouterLink 
+    :to="{
+      name:'xiang', //用name跳转
+      params:{
+        id:news.id,
+        title:news.title,
+        content:news.title
+      }
+    }"
+  >
+    {{news.title}}
+  </RouterLink>
+```
+
+- 接收参数
+
+```ts
+import {useRoute} from 'vue-router'
+const route = useRoute()
+// 打印params参数
+console.log(route.params)
+```
+::: warning 注意
+- 传递`params`参数时，若使用`to`的对象写法，必须使用`name`配置项，不能用`path`。
+
+- 传递`params`参数时，需要提前在规则中占位。
+:::
 ## RouterLink
 
 `<router-link>` 是一个组件，该组件用于设置一个导航链接，切换不同的 HTML 内容。使得 Vue Router 可以在不重新加载页面的情况下更改 URL，处理 URL 的生成以及编码。
