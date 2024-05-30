@@ -335,6 +335,48 @@ const routes = [
 ]
 ```
 
+
+## 编程式导航
+
+上面的方式否是通过标签来进行路由控制，但是在实际的开发中经常遇到的一种情况就是，需要通过脚本的执行来进行路由控制。
+
+例如，控制用户在登录成功后，自动跳转到用户中心。这就无法使用上述标签来实现，这该如何解决呢？
+
+在 Vue3 中 可以使用 vue-router 插件中提供的两个方法 `useRoute` 和 `useRouter`，这和 Vue2 中的 `$route`和`$router` 类似。
+
+具体的跳转方式有 push 和 replace 两种，和之前说过的用法一致，不过多赘述。
+
+::: center
+[点击跳转到 replace 属性](#replace-属性)
+:::
+
+```vue
+<template>
+  <div class="app">
+    <h2>Vue 编程式路由测试</h2>
+  </div>
+</template>
+
+<script lang="ts" setup>
+import { onMounted } from 'vue'
+import { useRouter } from 'vue-router'  
+
+const router = useRouter();
+
+// 在页面成功挂载后 3 秒进行路由跳转
+onMounted(()=> {
+   setTimeout(() => {
+      // 跳转到 "/news" 路由
+      router.push("/news")    // 有痕跳转
+      router.replace("/news") // 无痕跳转
+   },3000)
+})
+</script>
+```
+
+::: important 实际的开发中，使用编程式导航的情况远远大于链接式。
+:::
+
 ## 使用
 
 在使用路由之前，需要先进行配置注册。
@@ -403,7 +445,20 @@ app.mount('#app');
 </template>
 
 <script lang="ts" setup>
-import { RouterLink, RouterView } from 'vue-router'  
+import { RouterLink, RouterView, useRouter } from 'vue-router'  
+
+import { onMounted } from 'vue'
+
+const router = useRouter();
+
+// 在页面成功挂载后 3 秒进行路由跳转
+onMounted(()=> {
+   setTimeout(() => {
+      // 跳转到 "/news" 路由
+      router.push("/news")    // 有痕跳转
+      router.replace("/news") // 无痕跳转
+   },3000)
+})
 </script>
 ```
 
