@@ -24,9 +24,9 @@ export const zhNavbar = navbar([
                 prefix: "/spring-series/",
                 icon: "simple-icons:spring",
                 children: [
-                    { text: "Spring6", link: "spring/", },
-                    { text: "Spring Boot", link: "springboot/", },
+                    { text: "Spring 6", link: "spring/", },
                     { text: "Spring MVC", link: "springmvc/" },
+                    { text: "Spring Boot", link: "springboot/", },
                     { text: "Spring Cloud", link: "springcloud/", },
                 ]
             }

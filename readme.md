@@ -2,8 +2,8 @@
 
 <div align=center><img  src="assets/readme/2024-04-05-06-49-03.png" /></div>
 
+&emsp;&emsp;「编程桅杆」包含完整的编程学习指南、计算机基础、数据库、项目实战、面试经验等知识教程，涵盖了大部分程序员所需要掌握的核心知识！ 项目内记录了本人学习过程中所总结的一些学习经验，其中包括Java、MySQL、Redis、Spring、SpringBoot、Kafka、Mybatis、Mybatis-plus、Docker、Linux、ElasticSearch、计算机网络、数据结构、操作系统、计算机组成原理等知识。
 
-&emsp;&emsp;本项目是基于Vuepress框架 Vuepress-theme-hope主题搭建的一个个人学习笔记文档站点，项目内记录了本人学习过程中所总结的一些学习经验，其中包括Java、MySQL、Redis、Spring、SpringBoot、Kafka、Mybatis、Mybatis-plus、Docker、Linux、ElasticSearch、计算机网络、数据结构、操作系统、计算机组成原理等知识。
 
 ## 项目地址
 
@@ -51,7 +51,6 @@
 ### JavaIO
 
 ### JVM
-
 
 ### MySQL
 
