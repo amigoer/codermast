@@ -7,7 +7,7 @@ import { viteBundler } from '@vuepress/bundler-vite'
 export default defineUserConfig({
   base: "/",
   lang: "zh-CN",
-  title: "编程笔记",
+  title: "CoderMast编程桅杆",
   description: "CoderMast编程桅杆，深入学习编程的知识宝典，早日成为编码大师！。",
   head: [
     ["meta", { name: "keywords", content: "CoderMast,编程桅杆,Java编程,MySQL,Redis,Spring,MyBatis" }],
