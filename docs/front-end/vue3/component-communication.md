@@ -24,7 +24,7 @@ order : 9
 ![](../../../assets/component-communication/2024-06-03-17-29-53.png)
 
 
-## 1. props
+## **1. props**
 
 Props 是使用频率最高的一种通信方式，通常被使用于 父组件向子组件传递数据。
 
@@ -55,6 +55,7 @@ defineProps(['car','getToy'])
 
 
 ::: details Props 案例
+
 - 父组件
 
 ```vue
@@ -101,7 +102,7 @@ defineProps(['car','getToy'])
 ```
 :::
 
-## 2. 自定义事件
+## **2. 自定义事件**
 
 自定义事件通常用于 子组件 -> 父组件传递数据，这里需要注意的是自定义事件和自定义方法的区别，还要区分原生事件和自定义事件。
 
@@ -138,7 +139,7 @@ const emit = defineEmits(['send-toy'])
 ::: tip 子组件触发了父组件传递的事件后，父组件中对应的方法则会被调用，从而实现了子组件向父组件传递数据的效果。
 :::
 
-## 3. mitt
+## **3. mitt**
 
 mitt 与订阅发布模式类似，可以实现任意组件之间互相通信，在正式使用之前，请先安装 mitt
 
@@ -242,7 +243,7 @@ emitter.emit('send-toy',toy.value)
 > 在触发事件之前不能解绑事件，否则无法成功触发。
 :::
 
-## 4. v-model
+## **4. v-model**
 
 实际上在前面的 [3. 指令及模板语法](/front-end/vue3/template-grammar.html) 中已经介绍过 v-model 了，回顾一下 v-model 用于数据的双向绑定。
 
@@ -251,24 +252,27 @@ emitter.emit('send-toy',toy.value)
 1. 作用于普通标签
 
 ```vue
-<input v-model="username" />
+<template>
+    <input v-model="username" />
 
-<!-- 等价于 -->
-<input :value="username"  
-       @input="userName =(<HTMLInputElement>$event.target).value"
-/>
+    <!-- 等价于 -->
+    <input v-bind:value="username"  
+           @input="username =($event.target as HTMLInputElement).value" 
+    />
+</template>
 ```
-
 
 2. 作用于组件标签
 
 ```vue
-<MyInput v-model="username" />
+<template>
+    <MyInput v-model="username" />
 
-<!-- 等价于 -->
-<MyInput :modelValue="username"  
-         @update:modelValue="userName = $event" 
-/>
+    <!-- 等价于 -->
+    <MyInput :modelValue="username"  
+            @update:modelValue="username = $event" 
+    />
+</template>
 ```
 
 ::: warning $event 什么时候调用 target？
@@ -300,6 +304,7 @@ emitter.emit('send-toy',toy.value)
   const emit = defineEmits(['update:model-value'])
 </script>
 ```
+
 父组件既向子组件传递了数据，子组件也向父组件传递了数据。
 
 ::: tip 自定义 v-model 值
@@ -310,8 +315,86 @@ emitter.emit('send-toy',toy.value)
 2. 接收时：`defineProps(['username'])` 和 `defineEmits(['update:username'])`
 
 3. 在模板中使用即可
+
+4. 当使用了自定义 v-model 值后，则可以在组件标签上多次使用 v-model
+
+```vue:no-line-numbers
+<Child v-model:username="username" v-model:password="password" ... />
+```
 :::
 
 
+## **5. $attrs**
 
-## 5.
+`$attrs` 用于实现当前组件向其子组件传递数据通信的一种方式，也可跨代进行通信。祖组件 => 子组件
+
+`$attrs`是一个对象，包含所有父组件传入的标签属性。
+
+`$attrs` 会自动排除在组件传递过程中 `props` 中声明的属性，可以认为声明过的组件 `props` 被子组件消费了，故不会再继续向下传递。
+
+具体的使用方式：
+
+1. 父组件中向子组件绑定数据
+
+```vue
+<template>
+    <Child v-bind:a="a" :b="b" :="{x:100,y:200}" :addA="addA">
+</template>
+<script>
+let a = ref(0);
+let b = ref(3);
+
+function addA(value : number){
+    a.value += value;
+}
+</script>
+```
+
+2. 子组件消费数据
+
+```vue
+<template>
+	<h4>a：{{ a }}</h4>
+	<button @click="addA(3)">点我更新 A</button>
+</template>
+
+<script setup lang="ts">
+defineProps(['a','addA'])
+</script>
+```
+
+3. 子组件向孙组件传递数据
+
+```vue
+<template>
+    <GrantChild v-bind="$attrs" />
+</template>
+```
+
+::: info 此时，孙组件中能使用的数据就剩下了 b、x、y 这三个数据，a 和 addA 被子组件消费了，不会向后传递。
+:::
+
+## 6. **$refs、$parent**
+
+1. 概述：
+
+   * `$refs`用于 ：**父→子。**
+   * `$parent`用于：**子→父。**
+
+2. 原理如下：
+
+   | 属性      | 说明                                                     |
+   | --------- | -------------------------------------------------------- |
+   | `$refs`   | 值为对象，包含所有被`ref`属性标识的`DOM`元素或组件实例。 |
+   | `$parent` | 值为对象，当前组件的父组件实例对象。                     |
+
+## 7. provide、inject
+
+
+## 8. Pinia 方式
+
+::: important 请参考 第 8 章节 「<a href="/front-end/vue3/pinia.html" style="color:darkviolet;">Pinia 详解</a>」
+:::
+
+## 9. Slot 插槽
+
