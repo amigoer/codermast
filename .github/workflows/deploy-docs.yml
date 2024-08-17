@@ -24,8 +24,14 @@ jobs:
           node-version: 20
           cache: npm
 
+      - name: 清理缓存
+        run: |-
+          npm cache clean --force
+          rm -rf node_modules
+          rm -f package-lock.json
+      
       - name: 安装依赖
-        run: npm ci
+        run: npm install
 
       - name: 构建文档
         env:
