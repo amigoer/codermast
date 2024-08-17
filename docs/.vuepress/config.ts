@@ -7,10 +7,10 @@ import { viteBundler } from '@vuepress/bundler-vite'
 export default defineUserConfig({
   base: "/",
   lang: "zh-CN",
-  title: "CoderMast编程桅杆",
-  description: "CoderMast编程桅杆，深入学习编程的知识宝典，早日成为编码大师！。",
+  title: "友人的编程指南",
+  description: "CoderMast编程指南，深入学习编程的技术指南，早日成为编码大师！。",
   head: [
-    ["meta", { name: "keywords", content: "CoderMast,编程桅杆,Java编程,MySQL,Redis,Spring,MyBatis" }],
+    ["meta", { name: "keywords", content: "CoderMast,编程指南,Java编程,MySQL,Redis,Spring,MyBatis" }],
     ["meta", { name: "baidu-site-verification", content: "codeva-GfqTd2Cs0w" }],
     ["script", {}, `var _hmt = _hmt || [];
     (function() {
