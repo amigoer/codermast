@@ -40,7 +40,7 @@ export default hopeTheme({
   darkmode: "switch",
 
   // 配置图标库
-  iconAssets: "//code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js",
+  iconAssets: "iconify",
 
   logo: "/logo.svg",
 
@@ -54,21 +54,27 @@ export default hopeTheme({
   docsBranch: "main",
 
   plugins: {
+
+    components: {
+      components: [
+        "ArtPlayer",
+        "Badge",
+        "BiliBili",
+        "CodePen",
+        "PDF",
+        "Share",
+        "SiteInfo",
+        "StackBlitz",
+        "VPBanner",
+        "VPCard",
+        "VidStack",
+      ],
+    },
+
     searchPro: {
-      // 索引全部内容
-      indexContent: true,
-      // 设置快捷键
-      hotKeys: [{ key: "k", ctrl: true }, { key: "/", ctrl: true }],
-      // 为分类和标签添加索引
-      customFields: [
-        {
-          getter: (page) => page.frontmatter.category,
-          formatter: "分类：$content",
-        },
-        {
-          getter: (page) => page.frontmatter.tag,
-          formatter: "标签：$content",
-        },
+      hotKeys: [
+        { key: "k", ctrl: true },
+        { key: "k", meta: true },
       ],
     },
 
@@ -88,7 +94,7 @@ export default hopeTheme({
       attrs: true,
       chart: true,
       codetabs: true,
-      components: true,
+      component: true,
       demo: true,
       echarts: true,
       figure: true,
@@ -103,7 +109,23 @@ export default hopeTheme({
       playground: {
         presets: ["ts", "vue"],
       },
-      revealJs: ["highlight", "math", "search", "notes", "zoom"],
+      revealJs: {
+        plugins: ["highlight", "math", "search", "notes", "zoom"],
+        themes: [
+          "auto",
+          "beige",
+          "black",
+          "blood",
+          "league",
+          "moon",
+          "night",
+          "serif",
+          "simple",
+          "sky",
+          "solarized",
+          "white",
+        ],
+      },
       stylize: [
         {
           matcher: "Recommended",
