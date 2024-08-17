@@ -374,7 +374,7 @@ defineProps(['a','addA'])
 ::: info 此时，孙组件中能使用的数据就剩下了 b、x、y 这三个数据，a 和 addA 被子组件消费了，不会向后传递。
 :::
 
-## 6. **$refs、$parent**
+## 6. **\$refs、\$parent**
 
 1. 概述：
 
