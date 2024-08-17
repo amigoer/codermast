@@ -6,8 +6,8 @@ heroImage: /logo.png
 heroText: CoderMast编程指南
 tagline: 「编程指南」包含完整的编程学习指南、计算机基础、数据库、项目实战、面试经验等知识教程，涵盖了大部分程序员所需要掌握的核心知识！
 lang : zh-CN
-bgImage: https://www.golangnotes.com/assets/bg/6-light.svg
-bgImageDark: https://www.golangnotes.com/assets/bg/6-dark.svg
+bgImage: https://www.codermast.com/assets/bg/6-light.svg
+bgImageDark: https://www.codermast.com/assets/bg/6-dark.svg
 bgImageStyle:
   background-attachment: fixed
   
@@ -27,8 +27,8 @@ highlights:
   - header : 
     description: 知识图谱，快速找到你想要学习的资源
     image: /assets/image/index-filled.svg
-    bgImage: https://www.golangnotes.com/assets/bg/2-light.svg
-    bgImageDark: https://www.golangnotes.com/assets/bg/2-dark.svg
+    bgImage: https://www.codermast.com/assets/bg/2-light.svg
+    bgImageDark: https://www.codermast.com/assets/bg/2-dark.svg
     bgImageStyle:
       background-repeat: repeat
       background-size: initial
@@ -97,8 +97,8 @@ highlights:
   - header: Golang 学习路线
     description: 增强站点与用户体验的高级功能
     image: /assets/image/go.svg
-    bgImage: https://www.golangnotes.com/assets/bg/3-light.svg
-    bgImageDark: https://www.golangnotes.com/assets/bg/3-dark.svg
+    bgImage: https://www.codermast.com/assets/bg/3-light.svg
+    bgImageDark: https://www.codermast.com/assets/bg/3-dark.svg
     highlights:
       - title: 核心基础
         icon: ri:coreos-fill
@@ -123,8 +123,8 @@ highlights:
   - header: 后端技术
     description: 后端必学的一些主流技术
     image: /assets/image/box.svg
-    bgImage: https://www.golangnotes.com/assets/bg/4-light.svg
-    bgImageDark: https://www.golangnotes.com/assets/bg/4-dark.svg
+    bgImage: https://www.codermast.com/assets/bg/4-light.svg
+    bgImageDark: https://www.codermast.com/assets/bg/4-dark.svg
     highlights:
       - title: MySQL 数据库
         icon: tabler:brand-mysql
@@ -154,8 +154,8 @@ highlights:
   - header: 计算机基础
     description: 掌握扎实的计算机基础知识能够让你在学习和开发过程事半功倍
     image: /assets/image/computer.svg
-    bgImage: https://www.golangnotes.com/assets/bg/9-light.svg
-    bgImageDark: https://www.golangnotes.com/assets/bg/9-dark.svg
+    bgImage: https://www.codermast.com/assets/bg/9-light.svg
+    bgImageDark: https://www.codermast.com/assets/bg/9-dark.svg
     highlights:
       - title: 数据结构
         icon: carbon:data-structured
@@ -180,8 +180,8 @@ highlights:
 
   - header: 项目实战
     image: /assets/image/features.svg
-    bgImage: https://www.golangnotes.com/assets/bg/1-light.svg
-    bgImageDark: https://www.golangnotes.com/assets/bg/1-dark.svg
+    bgImage: https://www.codermast.com/assets/bg/1-light.svg
+    bgImageDark: https://www.codermast.com/assets/bg/1-dark.svg
     features:
       - title: Pont SSH
         icon: mdi:powershell
@@ -206,8 +206,8 @@ highlights:
   - header: 开源生态
     description: Golang 社区的开源框架、开源库、开源项目
     image: /assets/image/open-source.svg
-    bgImage: https://www.golangnotes.com/assets/bg/5-light.svg
-    bgImageDark: https://www.golangnotes.com/assets/bg/5-dark.svg
+    bgImage: https://www.codermast.com/assets/bg/5-light.svg
+    bgImageDark: https://www.codermast.com/assets/bg/5-dark.svg
     highlights:
       - title: 标准库
         icon: majesticons:library
@@ -227,8 +227,8 @@ highlights:
         
   - header: 参与贡献
     image: /assets/image/github-dark.svg
-    bgImage: https://www.golangnotes.com/assets/bg/4-light.svg
-    bgImageDark: https://www.golangnotes.com/assets/bg/4-dark.svg
+    bgImage: https://www.codermast.com/assets/bg/4-light.svg
+    bgImageDark: https://www.codermast.com/assets/bg/4-dark.svg
     highlights:
       - title: 本项目开源至：<img src="/assets/image/github-repo.svg" />
         link : https://github.com/codermast/CoderMast-Notes
