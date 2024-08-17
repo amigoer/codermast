@@ -42,7 +42,7 @@ export default hopeTheme({
   // 配置图标库
   iconAssets: "iconify",
 
-  logo: "/logo.svg",
+  logo: "/logo.png",
 
   // 文档仓库地址
   repo: "https://github.com/codermast/codermast-notes",
