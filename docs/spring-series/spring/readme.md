@@ -1,7 +1,8 @@
 ---
 index : false
+icon : simple-icons:spring
 dir :
-    order : 0
+    order : 1
     link : true
 ---
 # Spring

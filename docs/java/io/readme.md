@@ -1,5 +1,6 @@
 ---
 index : false
+icon : fluent:stream-20-filled
 dir :
     link : true
 ---

@@ -1,5 +1,6 @@
 ---
 index : false
+icon : mdi:collection
 dir :
     link : true
 ---

@@ -4,7 +4,7 @@ export const zhSidebar = sidebar({
     "/java/": "structure",
     "/database/": "structure",
     "/front-end": "structure",
-    "/computer/": "structure",
+    "/computer-basic/": "structure",
     "/spring-series": "structure",
     "/dev-tools": "structure",
     "/dev-idea": "structure",

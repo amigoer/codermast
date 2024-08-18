@@ -1,6 +1,8 @@
 ---
 index : false
-dir : 
+icon : simple-icons:springboot
+dir :
+    order : 3
     link : true
 ---
 # SpringBoot

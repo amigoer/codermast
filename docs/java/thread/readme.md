@@ -1,5 +1,6 @@
 ---
 index : false
+icon : uim:process
 dir :
     link : true
 ---

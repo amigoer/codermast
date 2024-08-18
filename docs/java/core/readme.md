@@ -1,5 +1,6 @@
 ---
 index : false
+icon : ri:coreos-fill
 dir :
     order : 1
     link : true
