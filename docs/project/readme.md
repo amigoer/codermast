@@ -1,4 +1,5 @@
 ---
+index : false
 dir : 
     link : true
 ---
