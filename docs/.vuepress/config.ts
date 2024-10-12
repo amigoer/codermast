@@ -12,13 +12,7 @@ export default defineUserConfig({
   head: [
     ["meta", { name: "keywords", content: "CoderMast,编程指南,Java编程,MySQL,Redis,Spring,MyBatis" }],
     ["meta", { name: "baidu-site-verification", content: "codeva-GfqTd2Cs0w" }],
-    ["script", {}, `var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement("script");
-      hm.src = "https://hm.baidu.com/hm.js?32371a71caaa9940216104814b1449b6";
-      var s = document.getElementsByTagName("script")[0]; 
-      s.parentNode.insertBefore(hm, s);
-    })();`]
+    ["script", {}, `<script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script><script>LA.init({id:"JWxCHZQ6MtnZPBkF",ck:"JWxCHZQ6MtnZPBkF"})</script>`]
   ],
   theme,
 
