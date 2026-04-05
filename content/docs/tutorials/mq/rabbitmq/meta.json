@@ -1,0 +1,9 @@
+{
+  "title": "RabbitMQ",
+  "pages": [
+    "rabbitmq-introduction",
+    "rabbitmq-exchange",
+    "rabbitmq-reliability",
+    "rabbitmq-springboot"
+  ]
+}

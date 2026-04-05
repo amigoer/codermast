@@ -1,37 +1,30 @@
 {
-  "name": "codermast-notes",
+  "name": "codermast",
   "version": "1.0.0",
-  "description": "A Project Of CoderMast Notes",
-  "license": "MIT",
+  "private": true,
   "type": "module",
   "scripts": {
-    "docs:build": "vuepress build docs",
-    "docs:clean-dev": "vuepress dev docs --clean-cache",
-    "docs:dev": "vuepress dev docs  --port 3000",
-    "docs:update-package": "npx vp-update"
-  },
-  "devDependencies": {
-    "@vuepress/bundler-vite": "2.0.0-rc.26",
-    "@vuepress/plugin-catalog": "2.0.0-rc.120",
-    "@vuepress/plugin-revealjs": "2.0.0-rc.120",
-    "@vuepress/plugin-slimsearch": "2.0.0-rc.120",
-    "sass-embedded": "^1.93.3",
-    "vue": "^3.5.25",
-    "vuepress": "2.0.0-rc.26"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
   },
   "dependencies": {
-    "@vue/repl": "^4.1.1",
-    "artplayer": "^5.1.7",
-    "chart.js": "^4.4.2",
-    "dashjs": "^4.7.4",
-    "echarts": "^5.5.0",
-    "flowchart.ts": "^3.0.0",
-    "hls.js": "^1.5.14",
-    "katex": "^0.16.10",
-    "mermaid": "^10.9.0",
-    "mpegts.js": "^1.7.3",
-    "reveal.js": "^5.0.5",
-    "vidstack": "^1.12.9",
-    "vuepress-theme-hope": "2.0.0-rc.99"
+    "fumadocs-core": "^16.7.10",
+    "fumadocs-mdx": "^14.2.11",
+    "fumadocs-ui": "^16.7.10",
+    "lucide-react": "^1.7.0",
+    "next": "^16.2.2",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.4",
+    "@types/mdx": "^2.0.13",
+    "@types/node": "^25.5.2",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^4.1.4",
+    "typescript": "^6.0.2"
   }
 }

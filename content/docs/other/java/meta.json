@@ -1,0 +1,10 @@
+{
+  "title": "Java",
+  "pages": [
+    "core",
+    "collection",
+    "io",
+    "jvm",
+    "thread"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "title": "MySQL",
+  "pages": [
+    "sql-basic",
+    "sql-advanced",
+    "mysql-index",
+    "mysql-transaction",
+    "mysql-lock",
+    "mysql-optimize",
+    "mysql-architecture",
+    "introduce"
+  ]
+}

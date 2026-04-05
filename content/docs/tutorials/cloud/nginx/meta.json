@@ -1,0 +1,12 @@
+{
+  "title": "Nginx",
+  "pages": [
+    "nginx-https",
+    "nginx-install",
+    "nginx-loadbalance",
+    "nginx-optimization",
+    "nginx-proxy",
+    "nginx-static",
+    "nginx-vhost"
+  ]
+}

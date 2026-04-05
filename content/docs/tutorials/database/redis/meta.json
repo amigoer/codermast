@@ -1,0 +1,12 @@
+{
+  "title": "Redis",
+  "pages": [
+    "redis-basic",
+    "redis-datatype",
+    "redis-advanced",
+    "redis-persistence",
+    "redis-cluster",
+    "redis-optimize",
+    "redis-principle"
+  ]
+}

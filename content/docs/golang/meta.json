@@ -1,0 +1,11 @@
+{
+  "title": "Golang",
+  "pages": [
+    "core",
+    "advanced",
+    "web",
+    "distributed",
+    "engineering",
+    "stdlib"
+  ]
+}

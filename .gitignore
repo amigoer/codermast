@@ -1,0 +1,9 @@
+node_modules/
+.next/
+.source/
+out/
+
+*/.DS_Store
+.DS_Store
+.idea
+.claude

@@ -1,0 +1,16 @@
+{
+  "title": "Vue3 入门教程",
+  "pages": [
+    "basic-knowledge",
+    "component-communication",
+    "computed",
+    "create-vue-project",
+    "life-cycle",
+    "other-api",
+    "pinia",
+    "router",
+    "template-grammar",
+    "vue3-new-component",
+    "watch"
+  ]
+}

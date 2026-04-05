@@ -1,0 +1,10 @@
+{
+  "title": "Go 工程化",
+  "pages": [
+    "testing",
+    "logging",
+    "config",
+    "docker",
+    "kubernetes"
+  ]
+}

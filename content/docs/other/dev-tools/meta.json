@@ -1,0 +1,9 @@
+{
+  "title": "开发工具",
+  "pages": [
+    "git",
+    "idea",
+    "maven",
+    "homebrew"
+  ]
+}
