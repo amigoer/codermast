@@ -30,11 +30,10 @@
   },
   "tabs": [
     { "name": "Golang", "url": "golang" },
-    { "name": "Java", "url": "other/java" },
-    { "name": "Spring", "url": "other/spring-series" },
+    { "name": "Java & Spring", "url": "other" },
     { "name": "技术教程", "url": "tutorials" },
-    { "name": "开发工具", "url": "other/dev" },
     { "name": "面试宝典", "url": "interview" },
+    { "name": "项目实战", "url": "project" },
     { "name": "关于", "url": "about" }
   ],
   "navigation": [
@@ -196,7 +195,7 @@
       ]
     },
     {
-      "group": "",
+      "group": "Java",
       "pages": [
         {
           "group": "Java 核心知识",
@@ -264,7 +263,7 @@
       ]
     },
     {
-      "group": "",
+      "group": "Spring 系列",
       "pages": [
         {
           "group": "Spring",
@@ -443,36 +442,36 @@
         {
           "group": "Git",
           "pages": [
-            "other/dev-tools/git/git-introduce-install",
-            "other/dev-tools/git/git-basic-operations",
-            "other/dev-tools/git/git-branch-manage",
-            "other/dev-tools/git/git-content-operations",
-            "other/dev-tools/git/git-remote-manage",
-            "other/dev-tools/git/git-workspace-index-repo"
+            "tutorials/dev-tools/git/git-introduce-install",
+            "tutorials/dev-tools/git/git-basic-operations",
+            "tutorials/dev-tools/git/git-branch-manage",
+            "tutorials/dev-tools/git/git-content-operations",
+            "tutorials/dev-tools/git/git-remote-manage",
+            "tutorials/dev-tools/git/git-workspace-index-repo"
           ]
         },
         {
           "group": "IDEA",
           "pages": [
-            "other/dev-tools/idea/shortcuts"
+            "tutorials/dev-tools/idea/shortcuts"
           ]
         },
         {
           "group": "Maven",
           "pages": [
-            "other/dev-tools/maven/introduce-install-config"
+            "tutorials/dev-tools/maven/introduce-install-config"
           ]
         },
-        "other/dev-tools/homebrew"
+        "tutorials/dev-tools/homebrew"
       ]
     },
     {
       "group": "设计模式",
       "pages": [
-        "other/dev-idea/design-patterns/behaiver-patterns/observer-pattern",
-        "other/dev-idea/design-patterns/create-patterns/factory-pattern",
-        "other/dev-idea/design-patterns/create-patterns/singleton-pattern",
-        "other/dev-idea/design-patterns/structural-patterns/adapter-pattern"
+        "tutorials/dev-idea/design-patterns/behaiver-patterns/observer-pattern",
+        "tutorials/dev-idea/design-patterns/create-patterns/factory-pattern",
+        "tutorials/dev-idea/design-patterns/create-patterns/singleton-pattern",
+        "tutorials/dev-idea/design-patterns/structural-patterns/adapter-pattern"
       ]
     },
     {
@@ -481,17 +480,30 @@
         {
           "group": "Vue3",
           "pages": [
-            "other/front-end/vue3/basic-knowledge",
-            "other/front-end/vue3/create-vue-project",
-            "other/front-end/vue3/template-grammar",
-            "other/front-end/vue3/computed",
-            "other/front-end/vue3/watch",
-            "other/front-end/vue3/life-cycle",
-            "other/front-end/vue3/component-communication",
-            "other/front-end/vue3/pinia",
-            "other/front-end/vue3/router",
-            "other/front-end/vue3/vue3-new-component",
-            "other/front-end/vue3/other-api"
+            "tutorials/front-end/vue3/basic-knowledge",
+            "tutorials/front-end/vue3/create-vue-project",
+            "tutorials/front-end/vue3/template-grammar",
+            "tutorials/front-end/vue3/computed",
+            "tutorials/front-end/vue3/watch",
+            "tutorials/front-end/vue3/life-cycle",
+            "tutorials/front-end/vue3/component-communication",
+            "tutorials/front-end/vue3/pinia",
+            "tutorials/front-end/vue3/router",
+            "tutorials/front-end/vue3/vue3-new-component",
+            "tutorials/front-end/vue3/other-api"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "",
+      "pages": [
+        {
+          "group": "苍穹外卖",
+          "pages": [
+            "project/sky-take-out/BackEnd-Dev-Build",
+            "project/sky-take-out/Database-Dev-Build",
+            "project/sky-take-out/FrontEnd-Dev-Build"
           ]
         }
       ]
