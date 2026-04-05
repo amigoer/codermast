@@ -37,7 +37,7 @@
   ],
   "navigation": [
     {
-      "group": "Golang",
+      "group": "",
       "pages": [
         {
           "group": "Go 核心基础",
@@ -137,14 +137,14 @@
       ]
     },
     {
-      "group": "关于",
+      "group": "",
       "pages": [
         "about/author/index",
         "about/journey/index"
       ]
     },
     {
-      "group": "面试宝典",
+      "group": "",
       "pages": [
         "interview/golang",
         "interview/mysql",
@@ -341,7 +341,7 @@
       ]
     },
     {
-      "group": "项目篇",
+      "group": "",
       "pages": [
         {
           "group": "苍穹外卖",
