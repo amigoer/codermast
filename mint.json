@@ -23,20 +23,15 @@
   ],
   "topbarCtaButton": {
     "name": "开始阅读",
-    "url": "/golang"
+    "url": "/golang/index"
   },
   "tabs": [
     { "name": "Golang", "url": "golang" },
-    { "name": "Java", "url": "other/java" },
+    { "name": "Java & Spring", "url": "other" },
     { "name": "技术教程", "url": "tutorials" },
-    { "name": "面试宝典", "url": "interview" }
-  ],
-  "anchors": [
-    {
-      "name": "GitHub",
-      "icon": "github",
-      "url": "https://github.com/amigoer/codermast"
-    }
+    { "name": "面试宝典", "url": "interview" },
+    { "name": "项目实战", "url": "project" },
+    { "name": "关于", "url": "about" }
   ],
   "navigation": [
     {
