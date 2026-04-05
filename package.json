@@ -2,29 +2,11 @@
   "name": "codermast",
   "version": "1.0.0",
   "private": true,
-  "type": "module",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
-  },
-  "dependencies": {
-    "fumadocs-core": "^16.7.10",
-    "fumadocs-mdx": "^14.2.11",
-    "fumadocs-ui": "^16.7.10",
-    "lucide-react": "^1.7.0",
-    "next": "^16.2.2",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4"
+    "dev": "npx mintlify dev",
+    "start": "npx mintlify dev"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.1.4",
-    "@types/mdx": "^2.0.13",
-    "@types/node": "^25.5.2",
-    "@types/react": "^19.2.14",
-    "@types/react-dom": "^19.2.3",
-    "postcss": "^8.5.3",
-    "tailwindcss": "^4.1.4",
-    "typescript": "^6.0.2"
+    "mintlify": "^4.2.487"
   }
 }

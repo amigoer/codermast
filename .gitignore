@@ -1,7 +1,5 @@
 node_modules/
-.next/
-.source/
-out/
+.mintlify/
 
 */.DS_Store
 .DS_Store

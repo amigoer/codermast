@@ -1,9 +1,0 @@
-{
-  "title": "JVM 虚拟机",
-  "pages": [
-    "class-loading",
-    "garbage-collection",
-    "jvm-memory",
-    "jvm-tuning"
-  ]
-}

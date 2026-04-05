@@ -1,9 +1,0 @@
-{
-  "title": "Go 分布式",
-  "pages": [
-    "redis",
-    "mq",
-    "grpc",
-    "microservice"
-  ]
-}

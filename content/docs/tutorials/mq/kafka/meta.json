@@ -1,8 +1,0 @@
-{
-  "title": "Kafka",
-  "pages": [
-    "kafka-introduction",
-    "kafka-producer-consumer",
-    "kafka-springboot"
-  ]
-}

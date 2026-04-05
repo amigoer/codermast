@@ -1,7 +1,0 @@
-{
-  "title": "创建型模式",
-  "pages": [
-    "factory-pattern",
-    "singleton-pattern"
-  ]
-}

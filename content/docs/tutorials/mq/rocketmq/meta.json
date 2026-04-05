@@ -1,9 +1,0 @@
-{
-  "title": "RocketMQ",
-  "pages": [
-    "rocketmq-concepts",
-    "rocketmq-message-type",
-    "rocketmq-installation",
-    "rocketmq-client"
-  ]
-}

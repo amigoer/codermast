@@ -1,9 +1,0 @@
-{
-  "title": "SpringBoot",
-  "pages": [
-    "springboot-quickstart",
-    "springboot-config",
-    "springboot-web",
-    "springboot-data"
-  ]
-}
