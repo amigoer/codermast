@@ -2,8 +2,8 @@
   "$schema": "https://mintlify.com/schema.json",
   "name": "CoderMast",
   "logo": {
-    "dark": "/logo.svg",
-    "light": "/logo.svg"
+    "dark": "/logo-text-dark.svg",
+    "light": "/logo-text.svg"
   },
   "favicon": "/favicon.ico",
   "colors": {
