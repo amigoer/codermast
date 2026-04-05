@@ -23,7 +23,7 @@
   ],
   "topbarCtaButton": {
     "name": "开始阅读",
-    "url": "/golang/index"
+    "url": "/golang/core/go-install"
   },
   "tabs": [
     { "name": "Golang", "url": "golang" },
@@ -37,11 +37,9 @@
     {
       "group": "Golang",
       "pages": [
-        "golang/index",
         {
           "group": "Go 核心基础",
           "pages": [
-            "golang/core/index",
             "golang/core/go-install",
             "golang/core/go-basic",
             "golang/core/go-control",
@@ -55,7 +53,6 @@
         {
           "group": "Go 进阶",
           "pages": [
-            "golang/advanced/index",
             "golang/advanced/concurrency",
             "golang/advanced/gmp",
             "golang/advanced/memory",
@@ -67,7 +64,6 @@
         {
           "group": "Go Web 开发",
           "pages": [
-            "golang/web/index",
             {
               "group": "Gin",
               "pages": [
@@ -98,7 +94,6 @@
         {
           "group": "Go 分布式",
           "pages": [
-            "golang/distributed/index",
             "golang/distributed/redis",
             "golang/distributed/mq",
             "golang/distributed/grpc",
@@ -108,7 +103,6 @@
         {
           "group": "Go 工程化",
           "pages": [
-            "golang/engineering/index",
             "golang/engineering/testing",
             "golang/engineering/logging",
             "golang/engineering/config",
@@ -119,7 +113,6 @@
         {
           "group": "标准库",
           "pages": [
-            "golang/stdlib/index",
             "golang/stdlib/bufio",
             "golang/stdlib/container",
             "golang/stdlib/crypto",
@@ -144,7 +137,6 @@
     {
       "group": "关于",
       "pages": [
-        "about/index",
         "about/author/index",
         "about/journey/index"
       ]
@@ -152,7 +144,6 @@
     {
       "group": "面试宝典",
       "pages": [
-        "interview/index",
         "interview/golang",
         "interview/mysql",
         "interview/redis",
@@ -164,11 +155,9 @@
     {
       "group": "Java",
       "pages": [
-        "other/java/index",
         {
           "group": "Java 核心知识",
           "pages": [
-            "other/java/core/index",
             "other/java/core/jdk-env-path",
             "other/java/core/basic-grammar",
             "other/java/core/class-and-object",
@@ -183,7 +172,6 @@
         {
           "group": "Java 集合框架",
           "pages": [
-            "other/java/collection/index",
             "other/java/collection/list-arraylist",
             "other/java/collection/list-linkedlist",
             "other/java/collection/list-stack",
@@ -201,7 +189,6 @@
         {
           "group": "Java IO 框架",
           "pages": [
-            "other/java/io/index",
             "other/java/io/buffer-stream",
             "other/java/io/byte-stream",
             "other/java/io/char-stream",
@@ -213,7 +200,6 @@
         {
           "group": "JVM 虚拟机",
           "pages": [
-            "other/java/jvm/index",
             "other/java/jvm/class-loading",
             "other/java/jvm/garbage-collection",
             "other/java/jvm/jvm-memory",
@@ -223,7 +209,6 @@
         {
           "group": "Java 并发框架",
           "pages": [
-            "other/java/thread/index",
             "other/java/thread/atomic",
             "other/java/thread/completable-future",
             "other/java/thread/concurrent-collections",
@@ -238,17 +223,12 @@
     {
       "group": "开发思想",
       "pages": [
-        "other/dev-idea/index",
         {
           "group": "设计模式",
           "pages": [
-            "other/dev-idea/design-patterns/index",
-            "other/dev-idea/design-patterns/behaiver-patterns/index",
             "other/dev-idea/design-patterns/behaiver-patterns/observer-pattern",
-            "other/dev-idea/design-patterns/create-patterns/index",
             "other/dev-idea/design-patterns/create-patterns/factory-pattern",
             "other/dev-idea/design-patterns/create-patterns/singleton-pattern",
-            "other/dev-idea/design-patterns/structural-patterns/index",
             "other/dev-idea/design-patterns/structural-patterns/adapter-pattern"
           ]
         }
@@ -257,11 +237,9 @@
     {
       "group": "开发工具",
       "pages": [
-        "other/dev-tools/index",
         {
           "group": "Git",
           "pages": [
-            "other/dev-tools/git/index",
             "other/dev-tools/git/git-introduce-install",
             "other/dev-tools/git/git-basic-operations",
             "other/dev-tools/git/git-branch-manage",
@@ -273,14 +251,12 @@
         {
           "group": "IDEA",
           "pages": [
-            "other/dev-tools/idea/index",
             "other/dev-tools/idea/shortcuts"
           ]
         },
         {
           "group": "Maven",
           "pages": [
-            "other/dev-tools/maven/index",
             "other/dev-tools/maven/introduce-install-config"
           ]
         },
@@ -290,11 +266,9 @@
     {
       "group": "前端",
       "pages": [
-        "other/front-end/index",
         {
           "group": "Vue3",
           "pages": [
-            "other/front-end/vue3/index",
             "other/front-end/vue3/basic-knowledge",
             "other/front-end/vue3/create-vue-project",
             "other/front-end/vue3/template-grammar",
@@ -313,11 +287,9 @@
     {
       "group": "Spring 系列",
       "pages": [
-        "other/spring-series/index",
         {
           "group": "Spring",
           "pages": [
-            "other/spring-series/spring/index",
             "other/spring-series/spring/introduction-case",
             "other/spring-series/spring/spring-ioc",
             "other/spring-series/spring/implement-ioc",
@@ -336,7 +308,6 @@
         {
           "group": "Spring MVC",
           "pages": [
-            "other/spring-series/springmvc/index",
             "other/spring-series/springmvc/springmvc-introduction",
             "other/spring-series/springmvc/springmvc-request",
             "other/spring-series/springmvc/springmvc-response",
@@ -348,7 +319,6 @@
         {
           "group": "SpringBoot",
           "pages": [
-            "other/spring-series/springboot/index",
             "other/spring-series/springboot/springboot-quickstart",
             "other/spring-series/springboot/springboot-config",
             "other/spring-series/springboot/springboot-web",
@@ -358,7 +328,6 @@
         {
           "group": "Spring Cloud",
           "pages": [
-            "other/spring-series/springcloud/index",
             "other/spring-series/springcloud/springcloud-introduction",
             "other/spring-series/springcloud/springcloud-discovery",
             "other/spring-series/springcloud/springcloud-gateway",
@@ -372,11 +341,9 @@
     {
       "group": "项目篇",
       "pages": [
-        "project/index",
         {
           "group": "苍穹外卖",
           "pages": [
-            "project/sky-take-out/index",
             "project/sky-take-out/BackEnd-Dev-Build",
             "project/sky-take-out/Database-Dev-Build",
             "project/sky-take-out/FrontEnd-Dev-Build"
@@ -387,11 +354,9 @@
     {
       "group": "云原生",
       "pages": [
-        "tutorials/cloud/index",
         {
           "group": "Docker",
           "pages": [
-            "tutorials/cloud/docker/index",
             "tutorials/cloud/docker/docker-introduce",
             "tutorials/cloud/docker/docker-install",
             "tutorials/cloud/docker/docker-helloworld",
@@ -407,7 +372,6 @@
         {
           "group": "Kubernetes",
           "pages": [
-            "tutorials/cloud/kubernetes/index",
             "tutorials/cloud/kubernetes/k8s-introduction",
             "tutorials/cloud/kubernetes/k8s-install",
             "tutorials/cloud/kubernetes/k8s-kubectl",
@@ -423,7 +387,6 @@
         {
           "group": "Linux",
           "pages": [
-            "tutorials/cloud/linux/index",
             "tutorials/cloud/linux/linux-file-directory",
             "tutorials/cloud/linux/linux-user-permission",
             "tutorials/cloud/linux/linux-process",
@@ -437,7 +400,6 @@
         {
           "group": "Nginx",
           "pages": [
-            "tutorials/cloud/nginx/index",
             "tutorials/cloud/nginx/nginx-install",
             "tutorials/cloud/nginx/nginx-static",
             "tutorials/cloud/nginx/nginx-proxy",
@@ -452,11 +414,9 @@
     {
       "group": "数据库",
       "pages": [
-        "tutorials/database/index",
         {
           "group": "MySQL",
           "pages": [
-            "tutorials/database/mysql/index",
             "tutorials/database/mysql/sql-basic",
             "tutorials/database/mysql/sql-advanced",
             "tutorials/database/mysql/mysql-index",
@@ -469,7 +429,6 @@
         {
           "group": "Redis",
           "pages": [
-            "tutorials/database/redis/index",
             "tutorials/database/redis/redis-basic",
             "tutorials/database/redis/redis-datatype",
             "tutorials/database/redis/redis-advanced",
@@ -484,11 +443,9 @@
     {
       "group": "消息队列",
       "pages": [
-        "tutorials/mq/index",
         {
           "group": "Kafka",
           "pages": [
-            "tutorials/mq/kafka/index",
             "tutorials/mq/kafka/kafka-introduction",
             "tutorials/mq/kafka/kafka-producer-consumer",
             "tutorials/mq/kafka/kafka-springboot"
@@ -497,7 +454,6 @@
         {
           "group": "RabbitMQ",
           "pages": [
-            "tutorials/mq/rabbitmq/index",
             "tutorials/mq/rabbitmq/rabbitmq-introduction",
             "tutorials/mq/rabbitmq/rabbitmq-exchange",
             "tutorials/mq/rabbitmq/rabbitmq-reliability",
@@ -507,7 +463,6 @@
         {
           "group": "RocketMQ",
           "pages": [
-            "tutorials/mq/rocketmq/index",
             "tutorials/mq/rocketmq/rocketmq-concepts",
             "tutorials/mq/rocketmq/rocketmq-message-type",
             "tutorials/mq/rocketmq/rocketmq-installation",
