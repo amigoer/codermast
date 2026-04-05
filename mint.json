@@ -25,8 +25,10 @@
     "name": "开始阅读",
     "url": "/golang/core/go-install"
   },
+  "primaryTab": {
+    "name": "Golang"
+  },
   "tabs": [
-    { "name": "Golang", "url": "golang" },
     { "name": "Java & Spring", "url": "other" },
     { "name": "技术教程", "url": "tutorials" },
     { "name": "面试宝典", "url": "interview" },
