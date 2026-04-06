@@ -492,6 +492,26 @@ export const tabs: NavTab[] = [
     ],
   },
   {
+    name: '项目',
+    icon: 'i-lucide-rocket',
+    prefix: '/project',
+    groups: [
+      {
+        title: 'Rocket-Leaf',
+        icon: 'i-lucide-send',
+        children: [
+          { title: '项目简介', path: '/project/rocket-leaf' },
+          { title: '项目架构', path: '/project/rocket-leaf/architecture' },
+          { title: 'Wails v3 入门', path: '/project/rocket-leaf/wails-v3' },
+          { title: '后端分层设计', path: '/project/rocket-leaf/backend-layers' },
+          { title: 'RocketMQ 客户端管理器', path: '/project/rocket-leaf/client-manager' },
+          { title: '连接信息加密存储', path: '/project/rocket-leaf/encryption' },
+          { title: '前端结构与类型绑定', path: '/project/rocket-leaf/frontend' },
+        ],
+      },
+    ],
+  },
+  {
     name: '关于',
     icon: 'i-lucide-info',
     prefix: '/about',
