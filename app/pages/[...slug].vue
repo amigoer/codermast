@@ -21,24 +21,25 @@
           <div class="rounded-lg bg-gray-50 dark:bg-gray-800/50">
             <button
               type="button"
-              class="flex w-full items-center justify-between p-5 text-left"
+              class="flex w-full items-center justify-between gap-3 p-4 text-left sm:p-5"
               :aria-expanded="changelogOpen"
               @click="changelogOpen = !changelogOpen"
             >
-              <div class="flex items-center gap-2 font-semibold text-gray-900 dark:text-gray-100">
-                <Icon name="i-lucide-clock" class="size-4" />
-                <span>{{ formatDate(commits[0].date) }}</span>
+              <div class="flex min-w-0 items-center gap-2 text-xs font-semibold text-gray-900 sm:text-sm dark:text-gray-100">
+                <Icon name="i-lucide-clock" class="size-4 shrink-0" />
+                <span class="truncate">{{ formatDate(commits[0].date) }}</span>
               </div>
-              <div class="flex items-center gap-3">
+              <div class="flex shrink-0 items-center gap-2 sm:gap-3">
                 <a
                   :href="historyUrl"
                   target="_blank"
                   rel="noopener"
-                  class="inline-flex items-center gap-1.5 text-sm text-gray-600 transition-colors hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400"
+                  class="inline-flex items-center gap-1.5 text-xs text-gray-600 transition-colors hover:text-blue-600 sm:text-sm dark:text-gray-400 dark:hover:text-blue-400"
+                  :aria-label="'查看所有更新日志'"
                   @click.stop
                 >
                   <Icon name="i-lucide-list" class="size-4" />
-                  查看所有更新日志
+                  <span class="hidden sm:inline">查看所有更新日志</span>
                 </a>
                 <Icon
                   name="i-lucide-chevron-down"
@@ -47,24 +48,23 @@
                 />
               </div>
             </button>
-            <ul v-if="changelogOpen" class="space-y-2 px-5 pb-5 text-sm">
+            <ul v-if="changelogOpen" class="space-y-2 px-4 pb-4 text-xs sm:px-5 sm:pb-5 sm:text-sm">
               <li
                 v-for="c in commits"
                 :key="c.sha"
-                class="flex items-center gap-2 text-gray-700 dark:text-gray-300"
+                class="flex min-w-0 items-center gap-2 text-gray-700 dark:text-gray-300"
               >
                 <Icon name="i-lucide-git-commit-horizontal" class="size-4 shrink-0 text-gray-400" />
                 <a
                   :href="c.url"
                   target="_blank"
                   rel="noopener"
-                  class="rounded bg-gray-200/70 px-1.5 py-0.5 font-mono text-xs text-gray-600 transition-colors hover:bg-blue-100 hover:text-blue-700 dark:bg-gray-700/70 dark:text-gray-400 dark:hover:bg-blue-950 dark:hover:text-blue-300"
+                  class="shrink-0 rounded bg-gray-200/70 px-1.5 py-0.5 font-mono text-xs text-gray-600 transition-colors hover:bg-blue-100 hover:text-blue-700 dark:bg-gray-700/70 dark:text-gray-400 dark:hover:bg-blue-950 dark:hover:text-blue-300"
                 >
                   {{ c.shortSha }}
                 </a>
-                <span class="text-gray-400">-</span>
-                <span class="flex-1 truncate">{{ c.message }}</span>
-                <span class="shrink-0 text-xs text-gray-500 dark:text-gray-500">
+                <span class="min-w-0 flex-1 truncate">{{ c.message }}</span>
+                <span class="hidden shrink-0 text-xs text-gray-500 sm:inline dark:text-gray-500">
                   于 {{ formatShortDate(c.date) }}
                 </span>
               </li>
