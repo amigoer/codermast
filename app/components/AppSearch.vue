@@ -3,125 +3,185 @@
     <!-- Trigger button (looks like a search input) -->
     <button
       type="button"
-      class="group flex w-full items-center gap-2 rounded-md border border-gray-200 bg-white px-3 py-2 text-sm text-gray-400 transition-colors hover:border-blue-400 hover:text-gray-600 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-500 dark:hover:border-blue-500 dark:hover:text-gray-300"
+      class="group relative flex w-full items-center gap-2.5 rounded-lg border border-gray-200 bg-gray-50/80 px-3 py-2 text-sm text-gray-500 transition-all hover:border-blue-300 hover:bg-white hover:text-gray-700 hover:shadow-sm focus:border-blue-400 focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-100 dark:border-gray-800 dark:bg-gray-800/50 dark:text-gray-400 dark:hover:border-blue-600 dark:hover:bg-gray-900 dark:hover:text-gray-200 dark:focus:border-blue-500 dark:focus:ring-blue-950"
       @click="open"
     >
-      <Icon name="i-lucide-search" class="size-4 shrink-0" />
-      <span class="flex-1 text-left">搜索...</span>
-      <kbd class="hidden items-center gap-0.5 rounded border border-gray-200 bg-gray-50 px-1.5 py-0.5 font-mono text-[10px] font-medium text-gray-500 sm:flex dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400">
-        <span>⌘</span><span>K</span>
-      </kbd>
+      <Icon name="i-lucide-search" class="size-4 shrink-0 text-gray-400 transition-colors group-hover:text-blue-500 dark:text-gray-500 dark:group-hover:text-blue-400" />
+      <span class="flex-1 text-left text-gray-400 dark:text-gray-500">搜索文档...</span>
+      <span class="hidden items-center gap-1 sm:flex">
+        <kbd class="flex size-6 items-center justify-center rounded-md border border-gray-200 bg-white font-sans text-xs font-medium text-gray-600 shadow-sm dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300">
+          ⌘
+        </kbd>
+        <kbd class="flex size-6 items-center justify-center rounded-md border border-gray-200 bg-white font-sans text-xs font-medium text-gray-600 shadow-sm dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300">
+          K
+        </kbd>
+      </span>
     </button>
 
     <!-- Modal overlay -->
     <Teleport to="body">
-      <div
-        v-if="isOpen"
-        class="fixed inset-0 z-50 flex items-start justify-center bg-black/50 p-4 pt-[10vh]"
-        @click.self="close"
+      <Transition
+        enter-active-class="transition duration-200 ease-out"
+        enter-from-class="opacity-0"
+        enter-to-class="opacity-100"
+        leave-active-class="transition duration-150 ease-in"
+        leave-from-class="opacity-100"
+        leave-to-class="opacity-0"
       >
         <div
-          class="flex max-h-[70vh] w-full max-w-2xl flex-col overflow-hidden rounded-xl border border-gray-200 bg-white shadow-2xl dark:border-gray-700 dark:bg-gray-900"
+          v-if="isOpen"
+          class="fixed inset-0 z-50 flex items-start justify-center bg-gray-900/40 p-4 pt-[12vh] backdrop-blur-sm dark:bg-black/60"
+          @click.self="close"
         >
-          <!-- Input -->
-          <div class="flex items-center gap-3 border-b border-gray-200 px-4 py-3 dark:border-gray-800">
-            <Icon name="i-lucide-search" class="size-5 shrink-0 text-gray-400" />
-            <input
-              ref="inputRef"
-              v-model="query"
-              type="text"
-              placeholder="搜索文档..."
-              class="flex-1 bg-transparent text-sm text-gray-900 placeholder-gray-400 outline-none dark:text-gray-100"
-              @keydown.down.prevent="move(1)"
-              @keydown.up.prevent="move(-1)"
-              @keydown.enter.prevent="selectCurrent"
-              @keydown.esc.prevent="close"
-            >
-            <button
-              type="button"
-              class="flex size-6 items-center justify-center rounded text-gray-400 hover:bg-gray-100 hover:text-gray-600 dark:hover:bg-gray-800 dark:hover:text-gray-300"
-              @click="close"
-            >
-              <Icon name="i-lucide-x" class="size-4" />
-            </button>
-          </div>
-
-          <!-- Results -->
-          <div
-            ref="listRef"
-            class="min-h-0 flex-1 overflow-y-auto"
+          <Transition
+            enter-active-class="transition duration-200 ease-out"
+            enter-from-class="translate-y-2 scale-[0.98] opacity-0"
+            enter-to-class="translate-y-0 scale-100 opacity-100"
+            leave-active-class="transition duration-150 ease-in"
+            leave-from-class="translate-y-0 scale-100 opacity-100"
+            leave-to-class="translate-y-2 scale-[0.98] opacity-0"
           >
             <div
-              v-if="!filtered.length"
-              class="flex flex-col items-center gap-2 px-4 py-12 text-sm text-gray-400"
+              v-if="isOpen"
+              class="flex max-h-[75vh] w-full max-w-2xl flex-col overflow-hidden rounded-2xl border border-gray-200/80 bg-white/95 shadow-2xl shadow-gray-900/10 backdrop-blur-xl dark:border-gray-800 dark:bg-gray-900/95 dark:shadow-black/40"
             >
-              <Icon name="i-lucide-file-search" class="size-8" />
-              <span>{{ query ? '没有找到相关文档' : '输入关键词开始搜索' }}</span>
-            </div>
-            <template v-else>
-              <template v-for="(group, gi) in grouped" :key="gi">
-                <div class="sticky top-0 bg-gray-50 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-wider text-gray-500 dark:bg-gray-800/80 dark:text-gray-400">
-                  {{ group.tab }}
-                </div>
-                <button
-                  v-for="item in group.items"
-                  :key="item.path"
-                  :ref="el => setItemRef(el, item._index)"
-                  type="button"
-                  class="flex w-full items-start gap-3 px-4 py-3 text-left transition-colors"
-                  :class="
-                    activeIndex === item._index
-                      ? 'bg-blue-50 dark:bg-blue-950/40'
-                      : 'hover:bg-gray-50 dark:hover:bg-gray-800/60'
-                  "
-                  @mouseenter="activeIndex = item._index"
-                  @click="go(item)"
+              <!-- Input -->
+              <div class="flex items-center gap-3 border-b border-gray-100 px-4 py-3.5 dark:border-gray-800">
+                <Icon name="i-lucide-search" class="size-5 shrink-0 text-gray-400" />
+                <input
+                  ref="inputRef"
+                  v-model="query"
+                  type="text"
+                  placeholder="搜索文档、标题、关键字..."
+                  class="flex-1 bg-transparent text-[15px] text-gray-900 placeholder-gray-400 outline-none dark:text-gray-100 dark:placeholder-gray-500"
+                  @keydown.down.prevent="move(1)"
+                  @keydown.up.prevent="move(-1)"
+                  @keydown.enter.prevent="selectCurrent"
+                  @keydown.esc.prevent="close"
                 >
-                  <Icon name="i-lucide-file-text" class="mt-0.5 size-4 shrink-0 text-gray-400" />
-                  <div class="min-w-0 flex-1">
-                    <div
-                      class="truncate text-sm font-medium"
-                      :class="activeIndex === item._index ? 'text-blue-700 dark:text-blue-300' : 'text-gray-900 dark:text-gray-100'"
-                    >
-                      {{ item.title }}
-                    </div>
-                    <div v-if="item.description" class="mt-0.5 truncate text-xs text-gray-500 dark:text-gray-400">
-                      {{ item.description }}
-                    </div>
-                    <div class="mt-0.5 truncate font-mono text-[11px] text-gray-400 dark:text-gray-500">
-                      {{ item.path }}
-                    </div>
-                  </div>
-                  <Icon
-                    v-if="activeIndex === item._index"
-                    name="i-lucide-corner-down-left"
-                    class="mt-1 size-3.5 shrink-0 text-blue-500"
-                  />
-                </button>
-              </template>
-            </template>
-          </div>
+                <kbd
+                  class="hidden items-center rounded-md border border-gray-200 bg-gray-50 px-1.5 py-0.5 font-mono text-[10px] font-medium text-gray-500 sm:flex dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400"
+                >
+                  ESC
+                </kbd>
+              </div>
 
-          <!-- Footer hint -->
-          <div class="flex items-center justify-between gap-4 border-t border-gray-200 bg-gray-50 px-4 py-2 text-[11px] text-gray-500 dark:border-gray-800 dark:bg-gray-900/60 dark:text-gray-400">
-            <div class="flex items-center gap-3">
-              <span class="flex items-center gap-1">
-                <kbd class="rounded border border-gray-300 bg-white px-1 font-mono dark:border-gray-700 dark:bg-gray-800">↑↓</kbd>
-                导航
-              </span>
-              <span class="flex items-center gap-1">
-                <kbd class="rounded border border-gray-300 bg-white px-1 font-mono dark:border-gray-700 dark:bg-gray-800">↵</kbd>
-                选择
-              </span>
-              <span class="flex items-center gap-1">
-                <kbd class="rounded border border-gray-300 bg-white px-1 font-mono dark:border-gray-700 dark:bg-gray-800">Esc</kbd>
-                关闭
-              </span>
+              <!-- Results -->
+              <div
+                ref="listRef"
+                class="min-h-0 flex-1 overflow-y-auto py-2"
+              >
+                <!-- Empty state -->
+                <div
+                  v-if="!filtered.length"
+                  class="flex flex-col items-center gap-3 px-4 py-16 text-center"
+                >
+                  <div class="flex size-12 items-center justify-center rounded-full bg-gray-100 dark:bg-gray-800">
+                    <Icon
+                      :name="query ? 'i-lucide-search-x' : 'i-lucide-sparkles'"
+                      class="size-5 text-gray-400"
+                    />
+                  </div>
+                  <div class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                    {{ query ? '没有找到相关文档' : '开始搜索' }}
+                  </div>
+                  <div class="text-xs text-gray-500 dark:text-gray-500">
+                    {{ query ? `试试其它关键词，比如 "MCP"、"Golang"` : '按标题、描述或路径快速定位文档' }}
+                  </div>
+                </div>
+
+                <!-- Grouped results -->
+                <template v-else>
+                  <div
+                    v-for="(group, gi) in grouped"
+                    :key="gi"
+                    class="px-2"
+                    :class="gi > 0 ? 'mt-2' : ''"
+                  >
+                    <div class="flex items-center gap-1.5 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wider text-gray-400 dark:text-gray-500">
+                      <Icon :name="tabIconMap[group.tab] || 'i-lucide-folder'" class="size-3" />
+                      {{ group.tab }}
+                      <span class="ml-auto font-mono text-[10px] normal-case tracking-normal text-gray-400">
+                        {{ group.items.length }}
+                      </span>
+                    </div>
+                    <button
+                      v-for="item in group.items"
+                      :key="item.path"
+                      :ref="el => setItemRef(el, item._index)"
+                      type="button"
+                      class="group/item flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-left transition-colors"
+                      :class="
+                        activeIndex === item._index
+                          ? 'bg-blue-50 dark:bg-blue-950/40'
+                          : 'hover:bg-gray-50 dark:hover:bg-gray-800/60'
+                      "
+                      @mouseenter="activeIndex = item._index"
+                      @click="go(item)"
+                    >
+                      <div
+                        class="flex size-8 shrink-0 items-center justify-center rounded-md border transition-colors"
+                        :class="
+                          activeIndex === item._index
+                            ? 'border-blue-200 bg-white text-blue-600 dark:border-blue-800 dark:bg-blue-950 dark:text-blue-400'
+                            : 'border-gray-200 bg-gray-50 text-gray-400 dark:border-gray-700 dark:bg-gray-800/60 dark:text-gray-500'
+                        "
+                      >
+                        <Icon name="i-lucide-file-text" class="size-4" />
+                      </div>
+                      <div class="min-w-0 flex-1">
+                        <div
+                          class="truncate text-sm font-medium"
+                          :class="activeIndex === item._index ? 'text-blue-700 dark:text-blue-300' : 'text-gray-900 dark:text-gray-100'"
+                          v-html="highlight(item.title)"
+                        />
+                        <div
+                          v-if="item.description"
+                          class="mt-0.5 truncate text-xs text-gray-500 dark:text-gray-400"
+                          v-html="highlight(item.description)"
+                        />
+                      </div>
+                      <Icon
+                        v-if="activeIndex === item._index"
+                        name="i-lucide-corner-down-left"
+                        class="size-4 shrink-0 text-blue-500"
+                      />
+                      <Icon
+                        v-else
+                        name="i-lucide-chevron-right"
+                        class="size-4 shrink-0 text-gray-300 opacity-0 transition-opacity group-hover/item:opacity-100 dark:text-gray-600"
+                      />
+                    </button>
+                  </div>
+                </template>
+              </div>
+
+              <!-- Footer hint -->
+              <div class="flex items-center justify-between gap-4 border-t border-gray-100 bg-gray-50/80 px-5 py-3 text-xs text-gray-500 dark:border-gray-800 dark:bg-gray-900/60 dark:text-gray-400">
+                <div class="flex items-center gap-4">
+                  <span class="flex items-center gap-1.5">
+                    <kbd class="flex size-5 items-center justify-center rounded-md border border-gray-200 bg-white font-mono text-xs shadow-sm dark:border-gray-700 dark:bg-gray-800">↑</kbd>
+                    <kbd class="flex size-5 items-center justify-center rounded-md border border-gray-200 bg-white font-mono text-xs shadow-sm dark:border-gray-700 dark:bg-gray-800">↓</kbd>
+                    <span class="ml-0.5">导航</span>
+                  </span>
+                  <span class="flex items-center gap-1.5">
+                    <kbd class="flex h-5 min-w-5 items-center justify-center rounded-md border border-gray-200 bg-white px-1.5 font-mono text-xs shadow-sm dark:border-gray-700 dark:bg-gray-800">↵</kbd>
+                    <span class="ml-0.5">选择</span>
+                  </span>
+                  <span class="hidden items-center gap-1.5 sm:flex">
+                    <kbd class="flex h-5 items-center rounded-md border border-gray-200 bg-white px-1.5 font-mono text-[10px] font-medium shadow-sm dark:border-gray-700 dark:bg-gray-800">ESC</kbd>
+                    <span class="ml-0.5">关闭</span>
+                  </span>
+                </div>
+                <span v-if="filtered.length" class="flex items-center gap-1.5 font-medium">
+                  <Icon name="i-lucide-file-text" class="size-3.5" />
+                  {{ filtered.length }} 条结果
+                </span>
+              </div>
             </div>
-            <span>{{ filtered.length }} 条结果</span>
-          </div>
+          </Transition>
         </div>
-      </div>
+      </Transition>
     </Teleport>
   </div>
 </template>
@@ -145,6 +205,15 @@ const activeIndex = ref(0)
 const inputRef = ref<HTMLInputElement>()
 const listRef = ref<HTMLElement>()
 const itemRefs = new Map<number, HTMLElement>()
+
+// Tab -> icon lookup built from navigation config
+const tabIconMap = computed<Record<string, string>>(() => {
+  const map: Record<string, string> = {}
+  for (const t of tabs) {
+    if (t.icon) map[t.name] = t.icon
+  }
+  return map
+})
 
 function setItemRef(el: any, index: number) {
   if (el) itemRefs.set(index, el as HTMLElement)
@@ -211,6 +280,32 @@ const grouped = computed(() => {
   }
   return Array.from(map.entries()).map(([tab, items]) => ({ tab, items }))
 })
+
+// Highlight matched portions of text
+function escapeHtml(s: string) {
+  return s
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;')
+}
+
+function escapeRegex(s: string) {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+}
+
+function highlight(text: string | undefined): string {
+  if (!text) return ''
+  const safe = escapeHtml(text)
+  const q = query.value.trim()
+  if (!q) return safe
+  const re = new RegExp(`(${escapeRegex(escapeHtml(q))})`, 'ig')
+  return safe.replace(
+    re,
+    '<mark class="rounded-sm bg-yellow-200/70 px-0.5 text-gray-900 dark:bg-yellow-500/30 dark:text-yellow-100">$1</mark>',
+  )
+}
 
 function open() {
   isOpen.value = true

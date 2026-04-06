@@ -106,35 +106,38 @@
         <!-- Prev / Next navigation -->
         <nav
           v-if="prevPage || nextPage"
-          class="mt-6 grid grid-cols-2 gap-3 sm:mt-8 sm:gap-4"
+          class="mt-6 grid gap-3 sm:mt-8 sm:gap-4"
+          :class="prevPage && nextPage ? 'grid-cols-2' : 'grid-cols-1'"
         >
           <NuxtLink
             v-if="prevPage"
             :to="prevPage.path!"
-            class="group flex min-w-0 flex-col rounded-xl border border-gray-200 bg-white p-3 transition-all hover:-translate-y-0.5 hover:border-blue-400 hover:shadow-md sm:p-4 dark:border-gray-800 dark:bg-gray-900 dark:hover:border-blue-600"
+            class="group flex min-w-0 items-center gap-3 rounded-xl border border-gray-200 bg-white p-3 transition-all hover:-translate-y-0.5 hover:border-blue-400 hover:shadow-md sm:p-4 dark:border-gray-800 dark:bg-gray-900 dark:hover:border-blue-600"
           >
-            <span class="flex items-center gap-1.5 text-xs font-medium text-gray-500 dark:text-gray-500">
-              <Icon name="i-lucide-arrow-left" class="size-3.5" />
-              上一篇
-            </span>
-            <span class="mt-1.5 w-full truncate text-sm font-semibold text-gray-900 transition-colors group-hover:text-blue-600 sm:mt-2 sm:text-base dark:text-gray-100 dark:group-hover:text-blue-400">
-              {{ prevPage.title }}
-            </span>
+            <Icon name="i-lucide-arrow-left" class="size-5 shrink-0 text-gray-400 transition-all group-hover:-translate-x-0.5 group-hover:text-blue-600 dark:text-gray-500 dark:group-hover:text-blue-400" />
+            <div class="min-w-0 flex-1">
+              <div class="text-xs font-medium text-gray-500 dark:text-gray-500">
+                上一篇
+              </div>
+              <div class="mt-0.5 truncate text-sm font-semibold text-gray-900 transition-colors group-hover:text-blue-600 sm:text-base dark:text-gray-100 dark:group-hover:text-blue-400">
+                {{ prevPage.title }}
+              </div>
+            </div>
           </NuxtLink>
-          <div v-else />
           <NuxtLink
             v-if="nextPage"
             :to="nextPage.path!"
-            class="group flex min-w-0 flex-col items-end rounded-xl border border-gray-200 bg-white p-3 text-right transition-all hover:-translate-y-0.5 hover:border-blue-400 hover:shadow-md sm:p-4 dark:border-gray-800 dark:bg-gray-900 dark:hover:border-blue-600"
-            :class="{ 'col-start-2': !prevPage }"
+            class="group flex min-w-0 items-center gap-3 rounded-xl border border-gray-200 bg-white p-3 text-right transition-all hover:-translate-y-0.5 hover:border-blue-400 hover:shadow-md sm:p-4 dark:border-gray-800 dark:bg-gray-900 dark:hover:border-blue-600"
           >
-            <span class="flex items-center gap-1.5 text-xs font-medium text-gray-500 dark:text-gray-500">
-              下一篇
-              <Icon name="i-lucide-arrow-right" class="size-3.5" />
-            </span>
-            <span class="mt-1.5 w-full truncate text-sm font-semibold text-gray-900 transition-colors group-hover:text-blue-600 sm:mt-2 sm:text-base dark:text-gray-100 dark:group-hover:text-blue-400">
-              {{ nextPage.title }}
-            </span>
+            <div class="min-w-0 flex-1">
+              <div class="text-xs font-medium text-gray-500 dark:text-gray-500">
+                下一篇
+              </div>
+              <div class="mt-0.5 truncate text-sm font-semibold text-gray-900 transition-colors group-hover:text-blue-600 sm:text-base dark:text-gray-100 dark:group-hover:text-blue-400">
+                {{ nextPage.title }}
+              </div>
+            </div>
+            <Icon name="i-lucide-arrow-right" class="size-5 shrink-0 text-gray-400 transition-all group-hover:translate-x-0.5 group-hover:text-blue-600 dark:text-gray-500 dark:group-hover:text-blue-400" />
           </NuxtLink>
         </nav>
       </div>
