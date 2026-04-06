@@ -20,6 +20,11 @@ export default defineNuxtConfig({
     alias: {
       'remark-code-title': remarkCodeTitlePath,
     },
+    prerender: {
+      crawlLinks: true,
+      routes: ['/'],
+      failOnError: false,
+    },
   },
 
   vite: {
