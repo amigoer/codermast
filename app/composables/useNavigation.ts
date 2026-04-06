@@ -8,8 +8,11 @@ export function useNavigation() {
     const path = route.path
     // Homepage and other non-tab routes: no active tab
     if (path === '/') return undefined
-    // Find the tab whose prefix matches the current path
-    return tabs.find(tab => path.startsWith(tab.prefix))
+    // Find the tab whose prefix (or extraPrefixes) matches the current path
+    return tabs.find(tab =>
+      path.startsWith(tab.prefix)
+      || tab.extraPrefixes?.some(p => path.startsWith(p)),
+    )
   })
 
   const sidebarItems = computed<NavItem[]>(() => {
