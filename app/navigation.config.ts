@@ -323,7 +323,7 @@ export const tabs: NavTab[] = [
       },
       {
         title: 'Kubernetes',
-        icon: 'i-vscode-icons:file-type-kubernetes',
+        icon: 'i-devicon:kubernetes',
         children: [
           { title: '简介', path: '/tutorials/cloud/kubernetes/k8s-introduction' },
           { title: '安装', path: '/tutorials/cloud/kubernetes/k8s-install' },
@@ -339,7 +339,7 @@ export const tabs: NavTab[] = [
       },
       {
         title: 'Linux',
-        icon: 'i-vscode-icons:file-type-linux',
+        icon: 'i-devicon:linux',
         children: [
           { title: '文件与目录', path: '/tutorials/cloud/linux/linux-file-directory' },
           { title: '用户与权限', path: '/tutorials/cloud/linux/linux-user-permission' },
@@ -485,7 +485,7 @@ export const tabs: NavTab[] = [
       { title: 'Redis', path: '/interview/redis', icon: 'i-devicon:redis' },
       { title: 'RocketMQ', path: '/interview/rocketmq', icon: 'i-lucide-send' },
       { title: '计算机基础', path: '/interview/basic', icon: 'i-lucide-cpu' },
-      { title: 'Kubernetes', path: '/interview/k8s', icon: 'i-vscode-icons:file-type-kubernetes' },
+      { title: 'Kubernetes', path: '/interview/k8s', icon: 'i-devicon:kubernetes' },
     ],
   },
   {
