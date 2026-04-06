@@ -30,13 +30,6 @@ export default defineNuxtConfig({
     },
   },
 
-  ui: {
-    colors: {
-      primary: 'blue',
-      secondary: 'blue',
-    },
-  },
-
   colorMode: {
     preference: 'light',
   },

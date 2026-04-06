@@ -15,5 +15,8 @@
     "better-sqlite3": "^12.8.0",
     "nuxt": "^4.4.2",
     "unist-util-visit": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0"
   }
 }
