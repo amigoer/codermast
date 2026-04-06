@@ -1,12 +1,18 @@
 <template>
   <div class="flex min-h-[calc(100vh-4rem)] min-w-0 flex-1">
     <!-- Content area -->
-    <main class="min-w-0 flex-1 px-6 py-8 lg:px-12">
+    <main class="min-w-0 flex-1 px-6 pt-8 lg:px-12">
       <div v-if="page" class="mx-auto max-w-3xl">
         <!-- Page title -->
-        <h1 class="mb-8 text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100">
+        <h1 class="mb-6 text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100">
           {{ page.title }}
         </h1>
+
+        <!-- Mobile / tablet TOC (hidden on xl where the sidebar TOC is visible) -->
+        <MobileToc
+          v-if="page?.body?.toc?.links && !activeTab?.standalone"
+          :toc="tocItems"
+        />
 
         <!-- Rendered content -->
         <div class="prose prose-blue max-w-none dark:prose-invert prose-headings:scroll-mt-20 prose-a:text-blue-600 prose-a:no-underline hover:prose-a:underline prose-code:before:content-[''] prose-code:after:content-[''] prose-pre:bg-gray-950 prose-img:rounded-lg">
@@ -14,7 +20,7 @@
         </div>
 
         <!-- Changelog (GitHub commits for this file) -->
-        <section v-if="commits && commits.length" class="mt-16">
+        <section v-if="commits && commits.length" class="mt-10 sm:mt-12">
           <h2 class="mb-4 border-b border-gray-200 pb-2 text-xl font-bold text-gray-900 dark:border-gray-800 dark:text-gray-100">
             更新日志
           </h2>
@@ -73,7 +79,7 @@
         </section>
 
         <!-- Edit page / Report issue -->
-        <div class="mt-16 flex items-center gap-4 text-sm">
+        <div class="mt-10 flex items-center gap-4 text-sm sm:mt-12">
           <div class="h-px flex-1 bg-gray-200 dark:bg-gray-800" />
           <a
             :href="editUrl"
@@ -100,32 +106,33 @@
         <!-- Prev / Next navigation -->
         <nav
           v-if="prevPage || nextPage"
-          class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2"
+          class="mt-6 grid grid-cols-2 gap-3 sm:mt-8 sm:gap-4"
         >
           <NuxtLink
             v-if="prevPage"
             :to="prevPage.path!"
-            class="group flex flex-col rounded-xl border border-gray-200 bg-white p-4 transition-all hover:-translate-y-0.5 hover:border-blue-400 hover:shadow-md dark:border-gray-800 dark:bg-gray-900 dark:hover:border-blue-600"
+            class="group flex min-w-0 flex-col rounded-xl border border-gray-200 bg-white p-3 transition-all hover:-translate-y-0.5 hover:border-blue-400 hover:shadow-md sm:p-4 dark:border-gray-800 dark:bg-gray-900 dark:hover:border-blue-600"
           >
             <span class="flex items-center gap-1.5 text-xs font-medium text-gray-500 dark:text-gray-500">
               <Icon name="i-lucide-arrow-left" class="size-3.5" />
               上一篇
             </span>
-            <span class="mt-2 truncate text-base font-semibold text-gray-900 transition-colors group-hover:text-blue-600 dark:text-gray-100 dark:group-hover:text-blue-400">
+            <span class="mt-1.5 w-full truncate text-sm font-semibold text-gray-900 transition-colors group-hover:text-blue-600 sm:mt-2 sm:text-base dark:text-gray-100 dark:group-hover:text-blue-400">
               {{ prevPage.title }}
             </span>
           </NuxtLink>
-          <div v-else class="hidden sm:block" />
+          <div v-else />
           <NuxtLink
             v-if="nextPage"
             :to="nextPage.path!"
-            class="group flex flex-col items-end rounded-xl border border-gray-200 bg-white p-4 text-right transition-all hover:-translate-y-0.5 hover:border-blue-400 hover:shadow-md dark:border-gray-800 dark:bg-gray-900 dark:hover:border-blue-600"
+            class="group flex min-w-0 flex-col items-end rounded-xl border border-gray-200 bg-white p-3 text-right transition-all hover:-translate-y-0.5 hover:border-blue-400 hover:shadow-md sm:p-4 dark:border-gray-800 dark:bg-gray-900 dark:hover:border-blue-600"
+            :class="{ 'col-start-2': !prevPage }"
           >
             <span class="flex items-center gap-1.5 text-xs font-medium text-gray-500 dark:text-gray-500">
               下一篇
               <Icon name="i-lucide-arrow-right" class="size-3.5" />
             </span>
-            <span class="mt-2 truncate text-base font-semibold text-gray-900 transition-colors group-hover:text-blue-600 dark:text-gray-100 dark:group-hover:text-blue-400">
+            <span class="mt-1.5 w-full truncate text-sm font-semibold text-gray-900 transition-colors group-hover:text-blue-600 sm:mt-2 sm:text-base dark:text-gray-100 dark:group-hover:text-blue-400">
               {{ nextPage.title }}
             </span>
           </NuxtLink>

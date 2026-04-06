@@ -47,6 +47,7 @@
 
     <AppLightbox />
     <AppToaster />
+    <BackToTop />
   </div>
 </template>
 
