@@ -1,6 +1,6 @@
 <template>
   <div class="min-h-screen bg-white dark:bg-gray-900">
-    <AppHeader :has-sidebar="true" @toggle-sidebar="sidebarOpen = !sidebarOpen" />
+    <AppHeader @toggle-sidebar="sidebarOpen = !sidebarOpen" />
 
     <div class="mx-auto flex max-w-[90rem]">
       <!-- Sidebar overlay (mobile) -->
