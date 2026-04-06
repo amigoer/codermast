@@ -27,16 +27,6 @@ function firstPath(tab: NavTab): string {
   return find(tab.groups) ?? tab.prefix
 }
 
-const tabColors: Record<string, string> = {
-  '/ai': 'from-purple-500/20 to-blue-500/20 text-purple-600 dark:text-purple-400',
-  '/golang': 'from-cyan-500/20 to-blue-500/20 text-cyan-600 dark:text-cyan-400',
-  '/other': 'from-orange-500/20 to-red-500/20 text-orange-600 dark:text-orange-400',
-  '/tutorials': 'from-emerald-500/20 to-green-500/20 text-emerald-600 dark:text-emerald-400',
-  '/interview': 'from-amber-500/20 to-orange-500/20 text-amber-600 dark:text-amber-400',
-  '/project': 'from-pink-500/20 to-rose-500/20 text-pink-600 dark:text-pink-400',
-  '/about': 'from-gray-500/20 to-slate-500/20 text-gray-600 dark:text-gray-400',
-}
-
 const tabDescriptions: Record<string, string> = {
   '/ai': '从机器学习基础到大语言模型，系统学习 AI 技术栈',
   '/golang': 'Go 语言核心基础、Web 开发、分布式系统与工程化实践',
@@ -49,179 +39,115 @@ const tabDescriptions: Record<string, string> = {
 
 const features = [
   {
-    icon: 'i-lucide-book-open-check',
-    title: '系统化学习路径',
-    desc: '从入门到进阶，精心规划的学习路线，避免盲目摸索',
+    icon: 'i-lucide-book-open',
+    title: '系统化规划',
+    desc: '从入门到进阶的全景规划，带你告别碎片化学习的焦虑，循序渐进构建核心能力。',
   },
   {
-    icon: 'i-lucide-code-2',
-    title: '代码与实战并重',
-    desc: '每个知识点都配有可运行的代码示例和实战案例',
+    icon: 'i-lucide-monitor-play',
+    title: '实战驱动',
+    desc: '所有的核心理论讲解都会贴身结合真实代码案例，确保你所学即所用，拒绝纸上谈兵。',
   },
   {
     icon: 'i-lucide-layers',
-    title: '覆盖全技术栈',
-    desc: '后端、前端、AI、数据库、中间件，一站式技术文档',
-  },
-  {
-    icon: 'i-lucide-refresh-cw',
-    title: '持续更新迭代',
-    desc: '跟随技术演进，持续补充和优化内容',
+    title: '全栈视野',
+    desc: '我们不设边界。从后端微服务架构、前沿前端框架、到如今大火的 AI 训练和推理知识。',
   },
 ]
 </script>
 
 <template>
-  <div>
-    <!-- Hero -->
-    <section class="relative overflow-hidden">
-      <!-- Background decoration -->
-      <div class="pointer-events-none absolute inset-0 -z-10">
-        <div class="absolute left-1/2 top-0 h-[600px] w-[800px] -translate-x-1/2 rounded-full bg-gradient-to-br from-blue-500/10 via-cyan-500/5 to-transparent blur-3xl" />
+  <main
+    class="min-h-screen bg-white text-[#2c3e50] dark:bg-[#1e1e20] dark:text-[#c9d1d9] font-sans selection:bg-[#3b82f6]/30">
+    <!-- Hero Section: Theme Hope Style -->
+    <header class="relative px-6 pt-24 pb-16 lg:pt-36 lg:pb-24 overflow-hidden">
+      <!-- 极浅淡的径向渐变背景 -->
+      <div
+        class="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[120vw] h-[120vw] max-w-[1200px] max-h-[1200px] bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.06)_0%,rgba(255,255,255,0)_70%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.1)_0%,rgba(30,30,32,0)_70%)] z-0">
       </div>
 
-      <div class="mx-auto max-w-6xl px-4 pb-20 pt-16 sm:pt-24 lg:px-8 lg:pt-32">
-        <div class="text-center">
-          <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-4 py-1.5 text-sm text-blue-700 dark:border-blue-900 dark:bg-blue-950/50 dark:text-blue-300">
-            <Icon name="i-lucide-sparkles" class="size-4" />
-            <span>程序员的编程知识体系</span>
-          </div>
-          <h1 class="mx-auto max-w-4xl text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl lg:text-6xl dark:text-white">
-            成为编程领域的
-            <span class="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
-              CoderMast
-            </span>
-          </h1>
-          <p class="mx-auto mt-6 max-w-2xl text-lg text-gray-600 dark:text-gray-400">
-            系统化整理 AI、Golang、Java、Spring、数据库、中间件等核心技术，助你构建完整的知识体系，轻松应对面试与实战。
-          </p>
-          <div class="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <NuxtLink
-              to="/ai/getting-started"
-              class="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-6 py-3 text-base font-medium text-white shadow-sm transition-all hover:bg-blue-700 hover:shadow-md"
-            >
-              开始学习
-              <Icon name="i-lucide-arrow-right" class="size-4" />
-            </NuxtLink>
-            <a
-              href="https://github.com/amigoer/codermast"
-              target="_blank"
-              class="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-6 py-3 text-base font-medium text-gray-900 transition-all hover:border-gray-400 hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:text-white dark:hover:border-gray-600 dark:hover:bg-gray-700"
-            >
-              <Icon name="mdi:github" class="size-5" />
-              GitHub
-            </a>
-          </div>
+      <div class="relative z-10 flex flex-col items-center justify-center text-center">
+        <!-- Main Logo / Image -->
+        <div
+          class="mb-8 overflow-hidden rounded-3xl bg-white shadow-xl shadow-[#3b82f6]/10 dark:bg-black/20 dark:shadow-none p-4 w-32 h-32 flex items-center justify-center border border-gray-100 dark:border-gray-800">
+          <Icon name="i-lucide-graduation-cap" class="size-20 text-[#3b82f6]" />
+        </div>
+
+        <h1 class="text-4xl md:text-6xl font-bold tracking-tight mb-4 text-[#2c3e50] dark:text-white">
+          CoderMast
+        </h1>
+        <p class="text-xl md:text-2xl text-[#6a8bad] dark:text-[#8b9eb0] mb-10 max-w-2xl font-medium">
+          一个拥有完整知识体系的现代程序员学习指南 ✨
+        </p>
+
+        <!-- CTA Actions -->
+        <div class="flex flex-wrap justify-center gap-4">
+          <NuxtLink to="/ai/getting-started"
+            class="inline-flex items-center justify-center px-8 py-3 text-lg font-medium text-white transition-all duration-300 ease-in-out bg-[#3b82f6] rounded-full hover:bg-[#2563eb] hover:-translate-y-0.5">
+            开始探索
+            <Icon name="i-lucide-arrow-right" class="ml-2 size-5" />
+          </NuxtLink>
+          <a href="https://github.com/amigoer/codermast" target="_blank"
+            class="inline-flex items-center justify-center px-8 py-3 text-lg font-medium transition-all duration-300 ease-in-out rounded-full bg-[#f8f8f8] text-[#4e6e8e] hover:bg-[#e6e6e6] dark:bg-[#2b2b2f] dark:text-[#a0a5ad] dark:hover:bg-[#35353a] hover:-translate-y-0.5">
+            项目介绍
+          </a>
         </div>
       </div>
-    </section>
+    </header>
 
-    <!-- Tabs grid -->
-    <section class="mx-auto max-w-6xl px-4 pb-20 lg:px-8">
-      <div class="mb-10 text-center">
-        <h2 class="text-3xl font-bold text-gray-900 dark:text-white">
-          探索知识栏目
-        </h2>
-        <p class="mt-3 text-gray-600 dark:text-gray-400">
-          选择你感兴趣的领域开始学习
-        </p>
-      </div>
-      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        <NuxtLink
-          v-for="tab in tabs"
-          :key="tab.prefix"
-          :to="firstPath(tab)"
-          class="group relative overflow-hidden rounded-xl border border-gray-200 bg-white p-6 transition-all hover:-translate-y-1 hover:border-blue-300 hover:shadow-lg dark:border-gray-800 dark:bg-gray-800/50 dark:hover:border-blue-700"
-        >
-          <div
-            class="pointer-events-none absolute inset-0 bg-gradient-to-br opacity-0 transition-opacity group-hover:opacity-100"
-            :class="tabColors[tab.prefix] ?? ''"
-          />
-          <div class="relative">
-            <div
-              class="mb-4 inline-flex size-12 items-center justify-center rounded-lg bg-gradient-to-br"
-              :class="tabColors[tab.prefix] ?? 'from-blue-500/20 to-cyan-500/20'"
-            >
-              <Icon :name="tab.icon || 'i-lucide-book'" class="size-6" />
-            </div>
-            <h3 class="mb-2 text-lg font-semibold text-gray-900 dark:text-white">
-              {{ tab.name }}
-            </h3>
-            <p class="mb-4 text-sm text-gray-600 dark:text-gray-400">
-              {{ tabDescriptions[tab.prefix] ?? '' }}
-            </p>
-            <div class="flex items-center text-sm font-medium text-blue-600 dark:text-blue-400">
-              <span>开始学习</span>
-              <Icon name="i-lucide-arrow-right" class="ml-1 size-4 transition-transform group-hover:translate-x-1" />
-            </div>
-          </div>
-        </NuxtLink>
-      </div>
-    </section>
+    <!-- Content Wrap -->
+    <div class="mx-auto max-w-[1152px] px-6 sm:px-8 pb-24">
 
-    <!-- Features -->
-    <section class="border-t border-gray-200 bg-gray-50 dark:border-gray-800 dark:bg-gray-900/50">
-      <div class="mx-auto max-w-6xl px-4 py-20 lg:px-8">
-        <div class="mb-12 text-center">
-          <h2 class="text-3xl font-bold text-gray-900 dark:text-white">
-            为什么选择 CoderMast
+      <!-- Primary Features -->
+      <div
+        class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-10 pt-10 border-t border-[#eaecef] dark:border-[#3e4c5a]/40">
+        <div v-for="feature in features" :key="feature.title" class="flex flex-col text-center md:text-left">
+          <h2
+            class="text-xl font-semibold mb-3 text-[#2c3e50] dark:text-[#e2e2e3] flex items-center justify-center md:justify-start gap-2">
+            <Icon :name="feature.icon" class="size-6 text-[#3b82f6]" />
+            {{ feature.title }}
           </h2>
-          <p class="mt-3 text-gray-600 dark:text-gray-400">
-            高质量、成体系、易上手的编程学习平台
+          <p class="text-[15px] leading-relaxed text-[#6a8bad] dark:text-[#8b9eb0] m-0">
+            {{ feature.desc }}
           </p>
         </div>
-        <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          <div
-            v-for="feature in features"
-            :key="feature.title"
-            class="text-center"
-          >
-            <div class="mx-auto mb-4 inline-flex size-12 items-center justify-center rounded-lg bg-blue-100 text-blue-600 dark:bg-blue-950 dark:text-blue-400">
-              <Icon :name="feature.icon" class="size-6" />
+      </div>
+
+      <!-- Secondary Block: Tabs grid -->
+      <div class="mt-20 pt-16 border-t border-[#eaecef] dark:border-[#3e4c5a]/40">
+        <h2 class="text-2xl font-bold text-center mb-10 text-[#2c3e50] dark:text-[#e2e2e3]">详细专栏指南</h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <NuxtLink v-for="(tab, index) in tabs" :key="tab.prefix" :to="firstPath(tab)"
+            class="group block bg-[#f8f9fa] dark:bg-[#202023] rounded-xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg dark:hover:shadow-none hover:shadow-[#3b82f6]/10 dark:hover:bg-[#29292c]">
+            <div class="flex items-center gap-4 mb-4">
+              <div
+                class="flex items-center justify-center w-12 h-12 rounded-lg bg-white dark:bg-[#1e1e20] text-[#3b82f6] shadow-sm">
+                <Icon :name="tab.icon || 'i-lucide-folder'" class="size-6 transition-transform group-hover:scale-110" />
+              </div>
+              <h3 class="text-lg font-semibold m-0 text-[#2c3e50] dark:text-[#e2e2e3]">
+                {{ tab.name }}
+              </h3>
             </div>
-            <h3 class="mb-2 font-semibold text-gray-900 dark:text-white">
-              {{ feature.title }}
-            </h3>
-            <p class="text-sm text-gray-600 dark:text-gray-400">
-              {{ feature.desc }}
+            <p class="text-[14px] text-[#6a8bad] dark:text-[#8b9eb0] leading-normal m-0 line-clamp-3">
+              {{ tabDescriptions[tab.prefix] ?? '深入探索该领域的核心知识与实战技巧。' }}
             </p>
-          </div>
+          </NuxtLink>
         </div>
       </div>
-    </section>
 
-    <!-- CTA -->
-    <section class="mx-auto max-w-6xl px-4 py-20 lg:px-8">
-      <div class="rounded-2xl bg-gradient-to-br from-blue-600 to-cyan-600 p-12 text-center">
-        <h2 class="text-3xl font-bold text-white">
-          开启你的编程之旅
-        </h2>
-        <p class="mx-auto mt-4 max-w-xl text-blue-50">
-          加入 CoderMast，和千万程序员一起系统化学习，构建扎实的技术功底。
-        </p>
-        <NuxtLink
-          to="/ai/getting-started"
-          class="mt-8 inline-flex items-center gap-2 rounded-lg bg-white px-6 py-3 text-base font-medium text-blue-700 shadow-sm transition-all hover:bg-blue-50"
-        >
-          立即开始
-          <Icon name="i-lucide-arrow-right" class="size-4" />
-        </NuxtLink>
-      </div>
-    </section>
+    </div>
 
     <!-- Footer -->
-    <footer class="border-t border-gray-200 dark:border-gray-800">
-      <div class="mx-auto max-w-6xl px-4 py-8 lg:px-8">
-        <div class="flex flex-col items-center justify-between gap-4 sm:flex-row">
-          <div class="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
-            <img src="/logo-text.svg" alt="CoderMast" class="h-6 dark:hidden" />
-            <img src="/logo-text-dark.svg" alt="CoderMast" class="hidden h-6 dark:block" />
-          </div>
-          <p class="text-sm text-gray-500 dark:text-gray-400">
-            © {{ new Date().getFullYear() }} CoderMast. Built with Nuxt.
-          </p>
-        </div>
+    <footer
+      class="border-t border-[#eaecef] dark:border-[#3e4c5a]/40 py-8 text-center text-[#6a8bad] dark:text-[#8b9eb0] text-sm">
+      <div class="flex items-center justify-center mb-4 text-[#2c3e50] dark:text-[#e2e2e3]">
+        <img src="/logo-text.svg" alt="CoderMast" class="h-6 dark:hidden" />
+        <img src="/logo-text-dark.svg" alt="CoderMast" class="hidden h-6 dark:block" />
+      </div>
+      <div>
+        MIT Licensed | Copyright &copy; {{ new Date().getFullYear() }} CoderMast
       </div>
     </footer>
-  </div>
+  </main>
 </template>
