@@ -2,7 +2,7 @@
   <div class="min-h-screen bg-white dark:bg-gray-900">
     <AppHeader @toggle-sidebar="sidebarOpen = !sidebarOpen" />
 
-    <div class="mx-auto flex max-w-[90rem]">
+    <div class="relative mx-auto flex max-w-[90rem]">
       <!-- Sidebar overlay (mobile) -->
       <div
         v-if="sidebarOpen"
@@ -25,15 +25,19 @@
         />
       </div>
 
-      <!-- Desktop: floating expand button when sidebar is collapsed -->
-      <button
-        v-if="sidebarCollapsed"
-        class="fixed left-0 top-20 z-30 hidden items-center justify-center rounded-r-md border border-l-0 border-gray-200 bg-white p-2 text-gray-500 shadow-sm transition-colors hover:text-blue-600 lg:flex dark:border-gray-800 dark:bg-gray-900 dark:text-gray-400 dark:hover:text-blue-400"
-        aria-label="展开侧边栏"
-        @click="toggleCollapsed"
-      >
-        <Icon name="i-lucide-panel-left-open" class="size-4" />
-      </button>
+      <!-- Desktop: edge toggle button, sits on the sidebar/content border -->
+      <div class="pointer-events-none sticky top-16 hidden h-[calc(100vh-4rem)] w-0 self-start lg:block">
+        <button
+          class="pointer-events-auto absolute top-1/2 flex size-6 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-500 shadow-sm transition-all hover:border-blue-400 hover:text-blue-600 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-400 dark:hover:border-blue-500 dark:hover:text-blue-400"
+          :aria-label="sidebarCollapsed ? '展开侧边栏' : '收起侧边栏'"
+          @click="toggleCollapsed"
+        >
+          <Icon
+            :name="sidebarCollapsed ? 'i-lucide-chevron-right' : 'i-lucide-chevron-left'"
+            class="size-3.5"
+          />
+        </button>
+      </div>
 
       <!-- Main content -->
       <slot />

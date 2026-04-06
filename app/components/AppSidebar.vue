@@ -2,15 +2,6 @@
   <aside
     class="sidebar-scroll relative h-[calc(100vh-4rem)] w-64 shrink-0 overflow-y-auto border-r border-gray-200 bg-white pb-8 pt-4 dark:border-gray-800 dark:bg-gray-900"
   >
-    <!-- Desktop collapse button -->
-    <button
-      class="absolute right-2 top-2 z-10 hidden rounded-md p-1.5 text-gray-400 hover:bg-gray-100 hover:text-gray-700 lg:block dark:hover:bg-gray-800 dark:hover:text-gray-200"
-      aria-label="收起侧边栏"
-      @click="$emit('toggle-collapsed')"
-    >
-      <Icon name="i-lucide-panel-left-close" class="size-4" />
-    </button>
-
     <!-- Mobile tabs -->
     <div class="mb-4 space-y-1 px-3 lg:hidden">
       <NuxtLink
