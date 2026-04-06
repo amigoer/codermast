@@ -11,6 +11,9 @@ export interface NavTab {
   /** Additional path prefixes that should also activate this tab. */
   extraPrefixes?: string[]
   icon?: string
+  /** When true, routes under this tab render without a sidebar, and the
+   *  header tab shows its items in a hover dropdown instead. */
+  standalone?: boolean
   groups: NavItem[]
 }
 
@@ -508,9 +511,10 @@ export const tabs: NavTab[] = [
     name: '关于',
     icon: 'i-lucide-info',
     prefix: '/about',
+    standalone: true,
     groups: [
-      { title: '关于作者', path: '/about/author/index', icon: 'i-lucide-user' },
-      { title: '成长之路', path: '/about/journey/index', icon: 'i-lucide-map' },
+      { title: '关于作者', path: '/about/author', icon: 'i-lucide-user' },
+      { title: '成长之路', path: '/about/journey', icon: 'i-lucide-map' },
     ],
   },
 ]

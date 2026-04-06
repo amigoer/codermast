@@ -146,13 +146,13 @@
     </main>
 
     <!-- Table of Contents -->
-    <TableOfContents v-if="page?.body?.toc?.links" :toc="tocItems" />
+    <TableOfContents v-if="page?.body?.toc?.links && !activeTab?.standalone" :toc="tocItems" />
   </div>
 </template>
 
 <script setup lang="ts">
 const route = useRoute()
-const { prevPage, nextPage } = useNavigation()
+const { prevPage, nextPage, activeTab } = useNavigation()
 
 const { data: page } = await useAsyncData(
   `doc-${route.path}`,

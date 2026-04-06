@@ -19,29 +19,75 @@
       <!-- Tabs (desktop) -->
       <nav class="hidden flex-1 items-center justify-center lg:flex">
         <div class="flex items-center gap-1">
-          <NuxtLink
-            v-for="tab in tabs"
-            :key="tab.prefix"
-            :to="getTabLink(tab)"
-            class="group relative flex items-center gap-1.5 rounded-md px-3 py-2 text-sm font-medium transition-colors"
-            :class="
-              activeTab?.prefix === tab.prefix
-                ? 'text-blue-600 dark:text-blue-400'
-                : 'text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200'
-            "
-          >
-            <Icon
-              v-if="tab.icon"
-              :name="tab.icon"
-              class="size-4 shrink-0"
-              :class="activeTab?.prefix !== tab.prefix && !tab.icon?.startsWith('i-vscode-icons') ? 'opacity-80' : ''"
-            />
-            <span>{{ tab.name }}</span>
-            <span
-              v-if="activeTab?.prefix === tab.prefix"
-              class="absolute inset-x-3 -bottom-px h-0.5 rounded-full bg-blue-600 dark:bg-blue-400"
-            />
-          </NuxtLink>
+          <template v-for="tab in tabs" :key="tab.prefix">
+            <!-- Standalone tab: hover dropdown with flat page list -->
+            <div
+              v-if="tab.standalone"
+              class="group relative"
+            >
+              <NuxtLink
+                :to="getTabLink(tab)"
+                class="relative flex items-center gap-1.5 rounded-md px-3 py-2 text-sm font-medium transition-colors"
+                :class="
+                  activeTab?.prefix === tab.prefix
+                    ? 'text-blue-600 dark:text-blue-400'
+                    : 'text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200'
+                "
+              >
+                <Icon v-if="tab.icon" :name="tab.icon" class="size-4 shrink-0" />
+                <span>{{ tab.name }}</span>
+                <Icon name="i-lucide-chevron-down" class="size-3.5 opacity-60 transition-transform group-hover:rotate-180" />
+                <span
+                  v-if="activeTab?.prefix === tab.prefix"
+                  class="absolute inset-x-3 -bottom-px h-0.5 rounded-full bg-blue-600 dark:bg-blue-400"
+                />
+              </NuxtLink>
+              <!-- Dropdown -->
+              <div
+                class="invisible absolute left-1/2 top-full z-50 min-w-[12rem] -translate-x-1/2 translate-y-1 pt-1 opacity-0 transition-all group-hover:visible group-hover:translate-y-0 group-hover:opacity-100"
+              >
+                <div class="overflow-hidden rounded-lg border border-gray-200 bg-white p-1 shadow-lg dark:border-gray-700 dark:bg-gray-900">
+                  <NuxtLink
+                    v-for="item in flattenTabItems(tab)"
+                    :key="item.path"
+                    :to="item.path!"
+                    class="flex items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors"
+                    :class="
+                      route.path === item.path
+                        ? 'bg-blue-50 text-blue-700 dark:bg-blue-950/50 dark:text-blue-300'
+                        : 'text-gray-700 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-800'
+                    "
+                  >
+                    <Icon v-if="item.icon" :name="item.icon" class="size-4 shrink-0" />
+                    <span>{{ item.title }}</span>
+                  </NuxtLink>
+                </div>
+              </div>
+            </div>
+            <!-- Regular tab -->
+            <NuxtLink
+              v-else
+              :to="getTabLink(tab)"
+              class="group relative flex items-center gap-1.5 rounded-md px-3 py-2 text-sm font-medium transition-colors"
+              :class="
+                activeTab?.prefix === tab.prefix
+                  ? 'text-blue-600 dark:text-blue-400'
+                  : 'text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200'
+              "
+            >
+              <Icon
+                v-if="tab.icon"
+                :name="tab.icon"
+                class="size-4 shrink-0"
+                :class="activeTab?.prefix !== tab.prefix && !tab.icon?.startsWith('i-vscode-icons') ? 'opacity-80' : ''"
+              />
+              <span>{{ tab.name }}</span>
+              <span
+                v-if="activeTab?.prefix === tab.prefix"
+                class="absolute inset-x-3 -bottom-px h-0.5 rounded-full bg-blue-600 dark:bg-blue-400"
+              />
+            </NuxtLink>
+          </template>
         </div>
       </nav>
 
@@ -68,13 +114,26 @@
 </template>
 
 <script setup lang="ts">
-import type { NavTab } from '~/navigation.config'
+import type { NavItem, NavTab } from '~/navigation.config'
 
 defineEmits<{
   'toggle-sidebar': []
 }>()
 
+const route = useRoute()
 const { tabs, activeTab } = useNavigation()
+
+function flattenTabItems(tab: NavTab): NavItem[] {
+  const out: NavItem[] = []
+  const walk = (items: NavItem[]) => {
+    for (const it of items) {
+      if (it.path) out.push(it)
+      if (it.children) walk(it.children)
+    }
+  }
+  walk(tab.groups)
+  return out
+}
 const colorMode = useColorMode()
 
 const colorModeIcon = computed(() =>
