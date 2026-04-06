@@ -1,5 +1,9 @@
 node_modules/
 .mintlify/
+.nuxt/
+.data/
+.output/
+dist/
 
 */.DS_Store
 .DS_Store

@@ -1,12 +1,19 @@
 {
   "name": "codermast",
-  "version": "1.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "npx mintlify dev",
-    "start": "npx mintlify dev"
+    "dev": "nuxi dev",
+    "build": "nuxi build",
+    "generate": "nuxi generate",
+    "preview": "nuxi preview"
   },
-  "devDependencies": {
-    "mintlify": "^4.2.487"
+  "dependencies": {
+    "@nuxt/content": "^3.12.0",
+    "@nuxt/icon": "^2.2.1",
+    "@nuxt/ui": "^4.6.1",
+    "better-sqlite3": "^12.8.0",
+    "nuxt": "^4.4.2",
+    "unist-util-visit": "^5.1.0"
   }
 }
