@@ -8,7 +8,7 @@
         v-for="tab in tabs"
         :key="tab.prefix"
         :to="getTabLink(tab)"
-        class="block rounded-md px-3 py-2 text-sm font-medium"
+        class="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium"
         :class="
           activeTab?.prefix === tab.prefix
             ? 'bg-blue-50 text-blue-700 dark:bg-blue-950 dark:text-blue-300'
@@ -16,7 +16,8 @@
         "
         @click="$emit('close')"
       >
-        {{ tab.name }}
+        <Icon v-if="tab.icon" :name="tab.icon" class="size-4 shrink-0" />
+        <span>{{ tab.name }}</span>
       </NuxtLink>
       <hr class="my-2 border-gray-200 dark:border-gray-700" />
     </div>
