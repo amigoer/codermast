@@ -492,22 +492,6 @@ export const tabs: NavTab[] = [
     ],
   },
   {
-    name: '项目实战',
-    icon: 'i-lucide-rocket',
-    prefix: '/project',
-    groups: [
-      {
-        title: '苍穹外卖',
-        icon: 'i-lucide-utensils',
-        children: [
-          { title: '后端搭建', path: '/project/sky-take-out/BackEnd-Dev-Build' },
-          { title: '数据库搭建', path: '/project/sky-take-out/Database-Dev-Build' },
-          { title: '前端搭建', path: '/project/sky-take-out/FrontEnd-Dev-Build' },
-        ],
-      },
-    ],
-  },
-  {
     name: '关于',
     icon: 'i-lucide-info',
     prefix: '/about',
