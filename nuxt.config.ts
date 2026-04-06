@@ -33,6 +33,13 @@ export default defineNuxtConfig({
         'remark-code-title': remarkCodeTitlePath,
       },
     },
+    optimizeDeps: {
+      include: [
+        '@vue/devtools-core',
+        '@vue/devtools-kit',
+        'mermaid',
+      ],
+    },
   },
 
   colorMode: {

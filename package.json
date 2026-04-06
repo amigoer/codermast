@@ -18,6 +18,7 @@
     "unist-util-visit": "^5.1.0"
   },
   "devDependencies": {
+    "@iconify-json/lucide": "^1.2.101",
     "@types/node": "^22.10.0"
   }
 }

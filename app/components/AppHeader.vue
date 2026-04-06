@@ -2,9 +2,12 @@
   <header class="sticky top-0 z-50 border-b border-gray-200 bg-white/80 backdrop-blur-md dark:border-gray-800 dark:bg-gray-900/80">
     <div class="mx-auto flex h-16 max-w-[90rem] items-center gap-6 px-4 lg:px-8">
       <!-- Logo -->
-      <NuxtLink to="/" class="flex shrink-0 items-center">
-        <img src="/logo-text.svg" alt="CoderMast" class="h-8 dark:hidden" />
-        <img src="/logo-text-dark.svg" alt="CoderMast" class="hidden h-8 dark:block" />
+      <NuxtLink to="/" class="flex shrink-0 items-center gap-2.5 group">
+        <div class="flex items-center justify-center rounded-lg bg-[#3b82f6]/10 p-1.5 transition-colors group-hover:bg-[#3b82f6]/20 dark:bg-blue-900/40 dark:group-hover:bg-blue-900/60">
+          <Icon name="i-lucide-graduation-cap" class="size-5 text-[#3b82f6] dark:text-blue-400" />
+        </div>
+        <img src="/logo-text.svg" alt="CoderMast" class="h-6 dark:hidden" />
+        <img src="/logo-text-dark.svg" alt="CoderMast" class="hidden h-6 dark:block" />
       </NuxtLink>
 
       <!-- Mobile menu button -->
