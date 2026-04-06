@@ -7,12 +7,24 @@
         <img src="/logo-text-dark.svg" alt="CoderMast" class="hidden h-8 dark:block" />
       </NuxtLink>
 
-      <!-- Mobile menu button -->
+      <!-- Mobile: sidebar toggle (only when layout provides sidebar) -->
       <button
+        v-if="hasSidebar"
         class="ml-auto rounded-md p-2 text-gray-500 hover:bg-gray-100 lg:hidden dark:hover:bg-gray-800"
+        aria-label="Toggle sidebar"
         @click="$emit('toggle-sidebar')"
       >
         <Icon name="heroicons:bars-3" class="size-5" />
+      </button>
+
+      <!-- Mobile: tabs menu toggle -->
+      <button
+        class="rounded-md p-2 text-gray-500 hover:bg-gray-100 lg:hidden dark:hover:bg-gray-800"
+        :class="hasSidebar ? '' : 'ml-auto'"
+        aria-label="Toggle menu"
+        @click="mobileMenuOpen = !mobileMenuOpen"
+      >
+        <Icon :name="mobileMenuOpen ? 'heroicons:x-mark' : 'heroicons:ellipsis-vertical'" class="size-5" />
       </button>
 
       <!-- Tabs (desktop) -->
@@ -63,6 +75,46 @@
         </button>
       </div>
     </div>
+
+    <!-- Mobile tabs dropdown -->
+    <div
+      v-if="mobileMenuOpen"
+      class="border-t border-gray-200 bg-white lg:hidden dark:border-gray-800 dark:bg-gray-900"
+    >
+      <nav class="flex flex-col p-2">
+        <NuxtLink
+          v-for="tab in tabs"
+          :key="tab.prefix"
+          :to="getTabLink(tab)"
+          class="flex items-center gap-2 rounded-md px-3 py-2.5 text-sm font-medium transition-colors"
+          :class="
+            activeTab?.prefix === tab.prefix
+              ? 'bg-blue-50 text-blue-600 dark:bg-blue-950/50 dark:text-blue-400'
+              : 'text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800'
+          "
+          @click="mobileMenuOpen = false"
+        >
+          <Icon v-if="tab.icon" :name="tab.icon" class="size-4 shrink-0" />
+          <span>{{ tab.name }}</span>
+        </NuxtLink>
+        <div class="my-2 border-t border-gray-200 dark:border-gray-800" />
+        <a
+          href="https://github.com/amigoer/codermast"
+          target="_blank"
+          class="flex items-center gap-2 rounded-md px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
+        >
+          <Icon name="mdi:github" class="size-4" />
+          <span>GitHub</span>
+        </a>
+        <button
+          class="flex items-center gap-2 rounded-md px-3 py-2.5 text-left text-sm font-medium text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
+          @click="toggleColorMode"
+        >
+          <Icon :name="colorModeIcon" class="size-4" />
+          <span>{{ colorMode.value === 'dark' ? '浅色模式' : '深色模式' }}</span>
+        </button>
+      </nav>
+    </div>
   </header>
 </template>
 
@@ -73,8 +125,15 @@ defineEmits<{
   'toggle-sidebar': []
 }>()
 
+const props = defineProps<{
+  hasSidebar?: boolean
+}>()
+
 const { tabs, activeTab } = useNavigation()
 const colorMode = useColorMode()
+const mobileMenuOpen = ref(false)
+const route = useRoute()
+watch(() => route.path, () => { mobileMenuOpen.value = false })
 
 const colorModeIcon = computed(() =>
   colorMode.value === 'dark' ? 'heroicons:sun' : 'heroicons:moon'

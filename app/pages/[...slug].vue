@@ -1,5 +1,5 @@
 <template>
-  <div class="flex min-h-[calc(100vh-4rem)] flex-1">
+  <div class="flex min-h-[calc(100vh-4rem)] min-w-0 flex-1">
     <!-- Content area -->
     <main class="min-w-0 flex-1 px-6 py-8 lg:px-12">
       <div v-if="page" class="mx-auto max-w-3xl">
