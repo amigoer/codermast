@@ -1,6 +1,7 @@
 export interface NavItem {
   title: string
   path?: string
+  icon?: string
   children?: NavItem[]
 }
 
@@ -17,9 +18,10 @@ export const tabs: NavTab[] = [
     prefix: '/ai',
     icon: 'i-lucide-sparkles',
     groups: [
-      { title: 'AI 学习路线', path: '/ai/getting-started' },
+      { title: 'AI 学习路线', path: '/ai/getting-started', icon: 'i-lucide-map' },
       {
         title: 'AI 基础',
+        icon: 'i-lucide-book-open',
         children: [
           { title: '机器学习基础', path: '/ai/fundamentals/ml-basics' },
           { title: '深度学习', path: '/ai/fundamentals/deep-learning' },
@@ -28,6 +30,7 @@ export const tabs: NavTab[] = [
       },
       {
         title: '大语言模型',
+        icon: 'i-lucide-brain',
         children: [
           { title: 'LLM 简介', path: '/ai/llm/introduction' },
           { title: 'Transformer', path: '/ai/llm/transformer' },
@@ -37,6 +40,7 @@ export const tabs: NavTab[] = [
       },
       {
         title: 'Prompt 工程',
+        icon: 'i-lucide-message-square',
         children: [
           { title: '基础', path: '/ai/prompt/basics' },
           { title: '技巧', path: '/ai/prompt/techniques' },
@@ -45,6 +49,7 @@ export const tabs: NavTab[] = [
       },
       {
         title: 'RAG 开发',
+        icon: 'i-lucide-database',
         children: [
           { title: '简介', path: '/ai/rag/introduction' },
           { title: '向量数据库', path: '/ai/rag/vector-database' },
@@ -54,6 +59,7 @@ export const tabs: NavTab[] = [
       },
       {
         title: 'AI Agent',
+        icon: 'i-lucide-bot',
         children: [
           { title: '简介', path: '/ai/agent/introduction' },
           { title: '框架', path: '/ai/agent/frameworks' },
@@ -63,6 +69,7 @@ export const tabs: NavTab[] = [
       },
       {
         title: 'MCP 协议',
+        icon: 'i-lucide-plug',
         children: [
           { title: '简介', path: '/ai/mcp/introduction' },
           { title: 'Server', path: '/ai/mcp/server' },
@@ -78,6 +85,7 @@ export const tabs: NavTab[] = [
     groups: [
       {
         title: 'Go 核心基础',
+        icon: 'i-lucide-box',
         children: [
           { title: '安装配置', path: '/golang/core/go-install' },
           { title: '基础语法', path: '/golang/core/go-basic' },
@@ -91,6 +99,7 @@ export const tabs: NavTab[] = [
       },
       {
         title: 'Go 进阶',
+        icon: 'i-lucide-trending-up',
         children: [
           { title: '并发编程', path: '/golang/advanced/concurrency' },
           { title: 'GMP 模型', path: '/golang/advanced/gmp' },
@@ -102,6 +111,7 @@ export const tabs: NavTab[] = [
       },
       {
         title: 'Go Web 开发',
+        icon: 'i-lucide-globe',
         children: [
           {
             title: 'Gin',
@@ -132,6 +142,7 @@ export const tabs: NavTab[] = [
       },
       {
         title: 'Go 分布式',
+        icon: 'i-lucide-network',
         children: [
           { title: 'Redis', path: '/golang/distributed/redis' },
           { title: '消息队列', path: '/golang/distributed/mq' },
@@ -141,6 +152,7 @@ export const tabs: NavTab[] = [
       },
       {
         title: 'Go 工程化',
+        icon: 'i-lucide-wrench',
         children: [
           { title: '测试', path: '/golang/engineering/testing' },
           { title: '日志', path: '/golang/engineering/logging' },
@@ -151,6 +163,7 @@ export const tabs: NavTab[] = [
       },
       {
         title: '标准库',
+        icon: 'i-lucide-library',
         children: [
           { title: 'bufio', path: '/golang/stdlib/bufio' },
           { title: 'container', path: '/golang/stdlib/container' },
@@ -180,6 +193,7 @@ export const tabs: NavTab[] = [
     groups: [
       {
         title: 'Java 核心知识',
+        icon: 'i-lucide-box',
         children: [
           { title: 'JDK 环境配置', path: '/other/java/core/jdk-env-path' },
           { title: '基础语法', path: '/other/java/core/basic-grammar' },
@@ -194,6 +208,7 @@ export const tabs: NavTab[] = [
       },
       {
         title: 'Java 集合框架',
+        icon: 'i-lucide-layers',
         children: [
           { title: 'ArrayList', path: '/other/java/collection/list-arraylist' },
           { title: 'LinkedList', path: '/other/java/collection/list-linkedlist' },
@@ -211,6 +226,7 @@ export const tabs: NavTab[] = [
       },
       {
         title: 'Java IO 框架',
+        icon: 'i-lucide-file-input',
         children: [
           { title: '缓冲流', path: '/other/java/io/buffer-stream' },
           { title: '字节流', path: '/other/java/io/byte-stream' },
@@ -222,6 +238,7 @@ export const tabs: NavTab[] = [
       },
       {
         title: 'JVM 虚拟机',
+        icon: 'i-lucide-cpu',
         children: [
           { title: '类加载', path: '/other/java/jvm/class-loading' },
           { title: '垃圾回收', path: '/other/java/jvm/garbage-collection' },
@@ -231,6 +248,7 @@ export const tabs: NavTab[] = [
       },
       {
         title: 'Java 并发框架',
+        icon: 'i-lucide-git-branch',
         children: [
           { title: '原子操作', path: '/other/java/thread/atomic' },
           { title: 'CompletableFuture', path: '/other/java/thread/completable-future' },
@@ -243,6 +261,7 @@ export const tabs: NavTab[] = [
       },
       {
         title: 'Spring',
+        icon: 'i-lucide-leaf',
         children: [
           { title: '入门案例', path: '/other/spring-series/spring/introduction-case' },
           { title: 'Spring IoC', path: '/other/spring-series/spring/spring-ioc' },
@@ -261,6 +280,7 @@ export const tabs: NavTab[] = [
       },
       {
         title: 'Spring MVC',
+        icon: 'i-lucide-layout',
         children: [
           { title: '简介', path: '/other/spring-series/springmvc/springmvc-introduction' },
           { title: '请求处理', path: '/other/spring-series/springmvc/springmvc-request' },
@@ -272,6 +292,7 @@ export const tabs: NavTab[] = [
       },
       {
         title: 'SpringBoot',
+        icon: 'i-lucide-rocket',
         children: [
           { title: '快速开始', path: '/other/spring-series/springboot/springboot-quickstart' },
           { title: '配置', path: '/other/spring-series/springboot/springboot-config' },
@@ -281,6 +302,7 @@ export const tabs: NavTab[] = [
       },
       {
         title: 'Spring Cloud',
+        icon: 'i-lucide-cloud',
         children: [
           { title: '简介', path: '/other/spring-series/springcloud/springcloud-introduction' },
           { title: '服务发现', path: '/other/spring-series/springcloud/springcloud-discovery' },
@@ -299,6 +321,7 @@ export const tabs: NavTab[] = [
     groups: [
       {
         title: 'Docker',
+        icon: 'i-vscode-icons:file-type-docker',
         children: [
           { title: 'Docker 简介', path: '/tutorials/cloud/docker/docker-introduce' },
           { title: '安装', path: '/tutorials/cloud/docker/docker-install' },
@@ -314,6 +337,7 @@ export const tabs: NavTab[] = [
       },
       {
         title: 'Kubernetes',
+        icon: 'i-vscode-icons:file-type-kubernetes',
         children: [
           { title: '简介', path: '/tutorials/cloud/kubernetes/k8s-introduction' },
           { title: '安装', path: '/tutorials/cloud/kubernetes/k8s-install' },
@@ -329,6 +353,7 @@ export const tabs: NavTab[] = [
       },
       {
         title: 'Linux',
+        icon: 'i-vscode-icons:file-type-linux',
         children: [
           { title: '文件与目录', path: '/tutorials/cloud/linux/linux-file-directory' },
           { title: '用户与权限', path: '/tutorials/cloud/linux/linux-user-permission' },
@@ -342,6 +367,7 @@ export const tabs: NavTab[] = [
       },
       {
         title: 'Nginx',
+        icon: 'i-vscode-icons:file-type-nginx',
         children: [
           { title: '安装', path: '/tutorials/cloud/nginx/nginx-install' },
           { title: '静态资源', path: '/tutorials/cloud/nginx/nginx-static' },
@@ -354,6 +380,7 @@ export const tabs: NavTab[] = [
       },
       {
         title: 'MySQL',
+        icon: 'i-vscode-icons:file-type-mysql',
         children: [
           { title: 'SQL 基础', path: '/tutorials/database/mysql/sql-basic' },
           { title: 'SQL 进阶', path: '/tutorials/database/mysql/sql-advanced' },
@@ -366,6 +393,7 @@ export const tabs: NavTab[] = [
       },
       {
         title: 'Redis',
+        icon: 'i-devicon:redis',
         children: [
           { title: '基础', path: '/tutorials/database/redis/redis-basic' },
           { title: '数据类型', path: '/tutorials/database/redis/redis-datatype' },
@@ -378,6 +406,7 @@ export const tabs: NavTab[] = [
       },
       {
         title: 'Kafka',
+        icon: 'i-devicon:apachekafka',
         children: [
           { title: '简介', path: '/tutorials/mq/kafka/kafka-introduction' },
           { title: '生产者与消费者', path: '/tutorials/mq/kafka/kafka-producer-consumer' },
@@ -386,6 +415,7 @@ export const tabs: NavTab[] = [
       },
       {
         title: 'RabbitMQ',
+        icon: 'i-devicon:rabbitmq',
         children: [
           { title: '简介', path: '/tutorials/mq/rabbitmq/rabbitmq-introduction' },
           { title: '交换机', path: '/tutorials/mq/rabbitmq/rabbitmq-exchange' },
@@ -395,6 +425,7 @@ export const tabs: NavTab[] = [
       },
       {
         title: 'RocketMQ',
+        icon: 'i-lucide-send',
         children: [
           { title: '核心概念', path: '/tutorials/mq/rocketmq/rocketmq-concepts' },
           { title: '消息类型', path: '/tutorials/mq/rocketmq/rocketmq-message-type' },
@@ -404,6 +435,7 @@ export const tabs: NavTab[] = [
       },
       {
         title: 'Git',
+        icon: 'i-vscode-icons:file-type-git',
         children: [
           { title: '简介与安装', path: '/tutorials/dev-tools/git/git-introduce-install' },
           { title: '基本操作', path: '/tutorials/dev-tools/git/git-basic-operations' },
@@ -415,19 +447,22 @@ export const tabs: NavTab[] = [
       },
       {
         title: 'IDEA',
+        icon: 'i-vscode-icons:file-type-jetbrains',
         children: [
           { title: '快捷键', path: '/tutorials/dev-tools/idea/shortcuts' },
         ],
       },
       {
         title: 'Maven',
+        icon: 'i-vscode-icons:file-type-maven',
         children: [
           { title: '简介与配置', path: '/tutorials/dev-tools/maven/introduce-install-config' },
         ],
       },
-      { title: 'Homebrew', path: '/tutorials/dev-tools/homebrew' },
+      { title: 'Homebrew', path: '/tutorials/dev-tools/homebrew', icon: 'i-lucide-package' },
       {
         title: '设计模式',
+        icon: 'i-lucide-shapes',
         children: [
           { title: '观察者模式', path: '/tutorials/dev-idea/design-patterns/behaiver-patterns/observer-pattern' },
           { title: '工厂模式', path: '/tutorials/dev-idea/design-patterns/create-patterns/factory-pattern' },
@@ -437,6 +472,7 @@ export const tabs: NavTab[] = [
       },
       {
         title: 'Vue3',
+        icon: 'i-vscode-icons:file-type-vue',
         children: [
           { title: '基础知识', path: '/tutorials/front-end/vue3/basic-knowledge' },
           { title: '创建项目', path: '/tutorials/front-end/vue3/create-vue-project' },
@@ -458,12 +494,12 @@ export const tabs: NavTab[] = [
     icon: 'i-lucide-briefcase',
     prefix: '/interview',
     groups: [
-      { title: 'Golang', path: '/interview/golang' },
-      { title: 'MySQL', path: '/interview/mysql' },
-      { title: 'Redis', path: '/interview/redis' },
-      { title: 'RocketMQ', path: '/interview/rocketmq' },
-      { title: '计算机基础', path: '/interview/basic' },
-      { title: 'Kubernetes', path: '/interview/k8s' },
+      { title: 'Golang', path: '/interview/golang', icon: 'i-vscode-icons:file-type-go' },
+      { title: 'MySQL', path: '/interview/mysql', icon: 'i-vscode-icons:file-type-mysql' },
+      { title: 'Redis', path: '/interview/redis', icon: 'i-devicon:redis' },
+      { title: 'RocketMQ', path: '/interview/rocketmq', icon: 'i-lucide-send' },
+      { title: '计算机基础', path: '/interview/basic', icon: 'i-lucide-cpu' },
+      { title: 'Kubernetes', path: '/interview/k8s', icon: 'i-vscode-icons:file-type-kubernetes' },
     ],
   },
   {
@@ -473,6 +509,7 @@ export const tabs: NavTab[] = [
     groups: [
       {
         title: '苍穹外卖',
+        icon: 'i-lucide-utensils',
         children: [
           { title: '后端搭建', path: '/project/sky-take-out/BackEnd-Dev-Build' },
           { title: '数据库搭建', path: '/project/sky-take-out/Database-Dev-Build' },
@@ -486,8 +523,8 @@ export const tabs: NavTab[] = [
     icon: 'i-lucide-info',
     prefix: '/about',
     groups: [
-      { title: '关于作者', path: '/about/author/index' },
-      { title: '成长之路', path: '/about/journey/index' },
+      { title: '关于作者', path: '/about/author/index', icon: 'i-lucide-user' },
+      { title: '成长之路', path: '/about/journey/index', icon: 'i-lucide-map' },
     ],
   },
 ]

@@ -36,8 +36,9 @@ html.dark .prose pre.shiki {
   border-color: #30363d;
 }
 
-/* When preceded by a filename header (Nuxt UI ProsePre wrapper), attach pre to header */
-.prose .group > pre.shiki {
+/* When the ProsePre wrapper has a filename header, attach pre to header.
+   :has() scopes this to wrappers that actually contain a filename header div. */
+.prose div.group:has(> div.rounded-t-md) > pre.shiki {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   border-top-width: 0;

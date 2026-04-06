@@ -1,4 +1,7 @@
+import { fileURLToPath } from 'node:url'
 import remarkCodeTitle from './remark-code-title'
+
+const remarkCodeTitlePath = fileURLToPath(new URL('./remark-code-title.ts', import.meta.url))
 
 export default defineNuxtConfig({
   modules: [
@@ -8,6 +11,24 @@ export default defineNuxtConfig({
   ],
 
   css: ['~/assets/css/main.css'],
+
+  alias: {
+    'remark-code-title': remarkCodeTitlePath,
+  },
+
+  nitro: {
+    alias: {
+      'remark-code-title': remarkCodeTitlePath,
+    },
+  },
+
+  vite: {
+    resolve: {
+      alias: {
+        'remark-code-title': remarkCodeTitlePath,
+      },
+    },
+  },
 
   ui: {
     colors: {

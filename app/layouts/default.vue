@@ -12,7 +12,7 @@
 
       <!-- Sidebar -->
       <div
-        class="fixed left-0 top-16 z-40 transition-transform lg:relative lg:top-0 lg:z-auto lg:translate-x-0"
+        class="fixed left-0 top-16 z-40 transition-transform lg:sticky lg:top-16 lg:z-auto lg:h-[calc(100vh-4rem)] lg:translate-x-0 lg:self-start"
         :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'"
       >
         <AppSidebar @close="sidebarOpen = false" />

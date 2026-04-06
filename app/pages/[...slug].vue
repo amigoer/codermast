@@ -18,23 +18,36 @@
           <h2 class="mb-4 border-b border-gray-200 pb-2 text-xl font-bold text-gray-900 dark:border-gray-800 dark:text-gray-100">
             更新日志
           </h2>
-          <div class="rounded-lg bg-gray-50 p-5 dark:bg-gray-800/50">
-            <div class="mb-4 flex items-center justify-between">
+          <div class="rounded-lg bg-gray-50 dark:bg-gray-800/50">
+            <button
+              type="button"
+              class="flex w-full items-center justify-between p-5 text-left"
+              :aria-expanded="changelogOpen"
+              @click="changelogOpen = !changelogOpen"
+            >
               <div class="flex items-center gap-2 font-semibold text-gray-900 dark:text-gray-100">
                 <Icon name="i-lucide-clock" class="size-4" />
                 <span>{{ formatDate(commits[0].date) }}</span>
               </div>
-              <a
-                :href="historyUrl"
-                target="_blank"
-                rel="noopener"
-                class="inline-flex items-center gap-1.5 text-sm text-gray-600 transition-colors hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400"
-              >
-                <Icon name="i-lucide-list" class="size-4" />
-                查看所有更新日志
-              </a>
-            </div>
-            <ul class="space-y-2 text-sm">
+              <div class="flex items-center gap-3">
+                <a
+                  :href="historyUrl"
+                  target="_blank"
+                  rel="noopener"
+                  class="inline-flex items-center gap-1.5 text-sm text-gray-600 transition-colors hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400"
+                  @click.stop
+                >
+                  <Icon name="i-lucide-list" class="size-4" />
+                  查看所有更新日志
+                </a>
+                <Icon
+                  name="i-lucide-chevron-down"
+                  class="size-4 text-gray-500 transition-transform"
+                  :class="{ 'rotate-180': changelogOpen }"
+                />
+              </div>
+            </button>
+            <ul v-if="changelogOpen" class="space-y-2 px-5 pb-5 text-sm">
               <li
                 v-for="c in commits"
                 :key="c.sha"
@@ -180,6 +193,8 @@ const { data: commitsData } = useFetch('/api/commits', {
 })
 
 const commits = computed(() => (commitsData.value as any)?.commits ?? [])
+
+const changelogOpen = ref(false)
 
 function formatDate(iso: string | null) {
   if (!iso) return ''
