@@ -72,13 +72,13 @@ var assets embed.FS
 
 ```mermaid
 flowchart TD
-  Start[main()] --> Init[init() 初始化加密密钥]
-  Init --> NewServices[实例化 7 个 Service]
-  NewServices --> SetInit[设置默认连接懒加载器]
-  SetInit --> NewApp[application.New]
-  NewApp --> Register[注册 Services / Assets]
-  Register --> Run[app.Run 启动窗口]
-  Run --> Loop[事件循环]
+  Start["main()"] --> Init["init() 初始化加密密钥"]
+  Init --> NewServices["实例化 7 个 Service"]
+  NewServices --> SetInit["设置默认连接懒加载器"]
+  SetInit --> NewApp["application.New"]
+  NewApp --> Register["注册 Services / Assets"]
+  Register --> Run["app.Run 启动窗口"]
+  Run --> Loop["事件循环"]
 ```
 
 关键代码（节选）：
