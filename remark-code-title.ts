@@ -12,6 +12,13 @@ import { visit } from 'unist-util-visit'
 export default function remarkCodeTitle() {
   return (tree: Root) => {
     visit(tree, 'code', (node: Code) => {
+      // Mermaid: re-label lang so shiki treats it as plaintext,
+      // and flag it via meta so ProsePre can render <Mermaid>.
+      if (node.lang === 'mermaid') {
+        node.lang = 'text'
+        node.meta = node.meta ? `${node.meta} mermaid` : 'mermaid'
+        return
+      }
       if (!node.meta) return
       const match = node.meta.match(/title=(?:"([^"]+)"|'([^']+)'|(\S+))/)
       if (!match) return

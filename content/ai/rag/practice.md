@@ -13,14 +13,15 @@ description: "RAG 应用实战：文档问答系统、知识库搭建"
 
 最终实现的效果：用户可以上传自己的文档（PDF、Markdown 等），然后通过自然语言提问获取基于文档内容的准确回答。
 
-```
-你的文档（PDF/Markdown/TXT）
-    ↓ 加载 & 分块 & 嵌入
-ChromaDB 向量数据库
-    ↓ 用户提问 → 语义检索
-检索到的相关片段 + 用户问题
-    ↓ 组合 Prompt
-OpenAI GPT → 生成有依据的回答
+```mermaid
+flowchart TD
+    Doc["你的文档#40;PDF/Markdown/TXT#41;"]
+    DB["ChromaDB 向量数据库"]
+    Chunks["检索到的相关片段 + 用户问题"]
+    LLM["OpenAI GPT → 生成有依据的回答"]
+    Doc -->|加载 & 分块 & 嵌入| DB
+    DB -->|用户提问 → 语义检索| Chunks
+    Chunks -->|组合 Prompt| LLM
 ```
 
 ## 环境准备

@@ -118,14 +118,13 @@ redis-sentinel /path/to/sentinel.conf
 
 ### 哨兵架构
 
-```
-    Sentinel1   Sentinel2   Sentinel3
-         \         |         /
-          \        |        /
-           ↘      ↓       ↙
-              Master
-            /        \
-        Slave1      Slave2
+```mermaid
+flowchart TD
+    S1["Sentinel1"] --> Master["Master"]
+    S2["Sentinel2"] --> Master
+    S3["Sentinel3"] --> Master
+    Master --> Slave1["Slave1"]
+    Master --> Slave2["Slave2"]
 ```
 
 **客户端连接：**
@@ -210,19 +209,19 @@ CLUSTER FAILOVER              # 从节点执行，手动切换
 
 ### 集群架构
 
-```
-      ┌─────────────────────────────────────┐
-      │            Cluster                  │
-      │  ┌───────┐  ┌───────┐  ┌───────┐   │
-      │  │Master1│  │Master2│  │Master3│   │
-      │  │0-5460 │  │5461-  │  │10923- │   │
-      │  │       │  │10922  │  │16383  │   │
-      │  └───┬───┘  └───┬───┘  └───┬───┘   │
-      │      │          │          │       │
-      │  ┌───┴───┐  ┌───┴───┐  ┌───┴───┐   │
-      │  │Slave1 │  │Slave2 │  │Slave3 │   │
-      │  └───────┘  └───────┘  └───────┘   │
-      └─────────────────────────────────────┘
+```mermaid
+flowchart TD
+    subgraph Cluster["Cluster"]
+        M1["Master1<br/>0-5460"]
+        M2["Master2<br/>5461-10922"]
+        M3["Master3<br/>10923-16383"]
+        S1["Slave1"]
+        S2["Slave2"]
+        S3["Slave3"]
+        M1 --> S1
+        M2 --> S2
+        M3 --> S3
+    end
 ```
 
 ### 客户端连接

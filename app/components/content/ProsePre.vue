@@ -47,10 +47,17 @@ const icon = computed(() => {
   const mapped = langIconMap[lang] ?? lang
   return `i-vscode-icons:file-type-${mapped}`
 })
+
+// Mermaid blocks are relabeled to lang=text with "mermaid" in meta
+// by the remark-code-title plugin — detect that here.
+const isMermaid = computed(() => {
+  return /(^|\s)mermaid(\s|$)/.test(props.meta ?? '')
+})
 </script>
 
 <template>
-  <UPre v-bind="props" :icon="icon">
+  <Mermaid v-if="isMermaid" :code="code ?? ''" />
+  <UPre v-else v-bind="props" :icon="icon">
     <slot />
   </UPre>
 </template>

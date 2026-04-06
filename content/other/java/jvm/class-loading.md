@@ -5,23 +5,19 @@ title: "类加载机制"
 
 ## 类的生命周期
 
-```
-┌─────────┐   ┌─────────┐   ┌─────────┐   ┌─────────┐   ┌─────────┐
-│  加载   │ → │  验证   │ → │  准备   │ → │  解析   │ → │  初始化  │
-│ Loading │   │Verifying│   │Preparing│   │Resolving│   │Initializ│
-└─────────┘   └─────────┘   └─────────┘   └─────────┘   └─────────┘
-                    ↓─────────────────────────────↓
-                              连接（Linking）
-                                    ↓
-                            ┌─────────────┐
-                            │    使用     │
-                            │   Using     │
-                            └─────────────┘
-                                    ↓
-                            ┌─────────────┐
-                            │    卸载     │
-                            │  Unloading  │
-                            └─────────────┘
+```mermaid
+flowchart LR
+    Load["加载<br/>Loading"] --> Verify["验证<br/>Verifying"]
+    Verify --> Prepare["准备<br/>Preparing"]
+    Prepare --> Resolve["解析<br/>Resolving"]
+    Resolve --> Init["初始化<br/>Initializing"]
+    Init --> Use["使用<br/>Using"]
+    Use --> Unload["卸载<br/>Unloading"]
+    subgraph Linking["连接 #40;Linking#41;"]
+        Verify
+        Prepare
+        Resolve
+    end
 ```
 
 ## 加载（Loading）
@@ -180,29 +176,13 @@ public class Test {
 
 ### 类加载器类型
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│              Bootstrap ClassLoader                          │
-│              启动类加载器（C++ 实现）                         │
-│              加载 JAVA_HOME/lib 下的类                       │
-└─────────────────────────────────────────────────────────────┘
-                              ↓
-┌─────────────────────────────────────────────────────────────┐
-│              Extension ClassLoader                          │
-│              扩展类加载器                                    │
-│              加载 JAVA_HOME/lib/ext 下的类                  │
-└─────────────────────────────────────────────────────────────┘
-                              ↓
-┌─────────────────────────────────────────────────────────────┐
-│              Application ClassLoader                        │
-│              应用程序类加载器                                │
-│              加载用户类路径（classpath）下的类               │
-└─────────────────────────────────────────────────────────────┘
-                              ↓
-┌─────────────────────────────────────────────────────────────┐
-│              Custom ClassLoader                             │
-│              自定义类加载器                                  │
-└─────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    Boot["Bootstrap ClassLoader<br/>启动类加载器 #40;C++ 实现#41;<br/>加载 JAVA_HOME/lib 下的类"]
+    Ext["Extension ClassLoader<br/>扩展类加载器<br/>加载 JAVA_HOME/lib/ext 下的类"]
+    App["Application ClassLoader<br/>应用程序类加载器<br/>加载用户类路径 #40;classpath#41; 下的类"]
+    Custom["Custom ClassLoader<br/>自定义类加载器"]
+    Boot --> Ext --> App --> Custom
 ```
 
 ### 获取类加载器

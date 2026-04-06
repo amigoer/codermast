@@ -229,22 +229,16 @@ public void checkOrderTimeout(MessageExt msg) {
 
 ### 事务流程
 
-```
-Producer                    Broker                    Consumer
-    │                          │                          │
-    │  1. 发送半消息            │                          │
-    │ ───────────────────────→ │                          │
-    │                          │                          │
-    │  2. 响应半消息结果        │                          │
-    │ ←─────────────────────── │                          │
-    │                          │                          │
-    │  3. 执行本地事务          │                          │
-    │                          │                          │
-    │  4. 提交/回滚             │                          │
-    │ ───────────────────────→ │                          │
-    │                          │                          │
-    │                          │  5. 投递消息（提交后）     │
-    │                          │ ──────────────────────→ │
+```mermaid
+sequenceDiagram
+    participant P as Producer
+    participant B as Broker
+    participant C as Consumer
+    P->>B: 1. 发送半消息
+    B->>P: 2. 响应半消息结果
+    Note over P: 3. 执行本地事务
+    P->>B: 4. 提交/回滚
+    B->>C: 5. 投递消息（提交后）
 ```
 
 ### 发送事务消息

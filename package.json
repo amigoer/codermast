@@ -13,6 +13,7 @@
     "@nuxt/icon": "^2.2.1",
     "@nuxt/ui": "^4.6.1",
     "better-sqlite3": "^12.8.0",
+    "mermaid": "^11.14.0",
     "nuxt": "^4.4.2",
     "unist-util-visit": "^5.1.0"
   },

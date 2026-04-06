@@ -15,17 +15,17 @@ LinkedHashMap 的特点：
 
 LinkedHashMap 在 HashMap 的基础上，增加了双向链表来维护顺序：
 
-```
-HashMap 结构 + 双向链表
-    ┌───────────────────────────────────────┐
-    │  table[0] → Entry1 ←→ Entry2          │
-    │  table[1] → Entry3                     │
-    │  table[2] → Entry4 ←→ Entry5 ←→ Entry6 │
-    │  ...                                   │
-    └───────────────────────────────────────┘
-                    ↓
-    双向链表（按顺序连接所有 Entry）：
-    head ←→ Entry1 ←→ Entry3 ←→ Entry4 ←→ Entry2 ←→ ... ←→ tail
+```mermaid
+flowchart LR
+    subgraph Table["HashMap 结构"]
+        T0["table[0]"] --> E1["Entry1"] <--> E2["Entry2"]
+        T1["table[1]"] --> E3["Entry3"]
+        T2["table[2]"] --> E4["Entry4"] <--> E5["Entry5"] <--> E6["Entry6"]
+    end
+    subgraph DLL["双向链表 #40;按顺序连接所有 Entry#41;"]
+        Head["head"] <--> L1["Entry1"] <--> L3["Entry3"] <--> L4["Entry4"] <--> L2["Entry2"] <--> Tail["tail"]
+    end
+    Table --> DLL
 ```
 
 ## 常用 API

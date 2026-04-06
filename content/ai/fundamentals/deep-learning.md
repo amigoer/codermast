@@ -7,9 +7,14 @@ description: "深度学习基础知识：前向传播、反向传播、损失函
 
 深度学习（Deep Learning）是机器学习的一个子领域，使用多层神经网络从数据中自动学习分层特征表示。与传统机器学习需要手工设计特征不同，深度学习能够端到端地从原始数据中提取特征。
 
-```
-传统机器学习:  原始数据 → [手工特征工程] → [模型] → 预测
-深度学习:      原始数据 → [自动特征提取 + 模型] → 预测
+```mermaid
+flowchart LR
+    subgraph Traditional["传统机器学习"]
+        TD["原始数据"] --> TF["手工特征工程"] --> TM["模型"] --> TP["预测"]
+    end
+    subgraph DL["深度学习"]
+        DD["原始数据"] --> DM["自动特征提取 + 模型"] --> DP["预测"]
+    end
 ```
 
 <Tip>
@@ -118,14 +123,14 @@ print(f"模型参数量: {sum(p.numel() for p in model.parameters()):,}")
 
 前向传播的计算流程：
 
-```
-输入 x
-  ↓
-z1 = W1·x + b1  →  a1 = ReLU(z1)
-  ↓
-z2 = W2·a1 + b2  →  a2 = ReLU(z2)
-  ↓
-z3 = W3·a2 + b3  →  输出 (logits)
+```mermaid
+flowchart TD
+    X["输入 x"] --> L1["z1 = W1·x + b1"]
+    L1 --> A1["a1 = ReLU#40;z1#41;"]
+    A1 --> L2["z2 = W2·a1 + b2"]
+    L2 --> A2["a2 = ReLU#40;z2#41;"]
+    A2 --> L3["z3 = W3·a2 + b3"]
+    L3 --> Out["输出 #40;logits#41;"]
 ```
 
 ## 反向传播（Backpropagation）

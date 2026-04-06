@@ -135,25 +135,13 @@ MVCC（Multi-Version Concurrency Control）多版本并发控制，用于实现 
 
 ### 版本链
 
-```
-当前版本
-┌──────────────────────┐
-│ id=1, name='张三'    │
-│ DB_TRX_ID = 100      │
-│ DB_ROLL_PTR ─────────┼──┐
-└──────────────────────┘  │
-                          ▼
-                    ┌──────────────────────┐
-                    │ id=1, name='李四'    │
-                    │ DB_TRX_ID = 50       │
-                    │ DB_ROLL_PTR ─────────┼──┐
-                    └──────────────────────┘  │
-                                              ▼
-                                        ┌──────────────────────┐
-                                        │ id=1, name='王五'    │
-                                        │ DB_TRX_ID = 10       │
-                                        │ DB_ROLL_PTR = NULL   │
-                                        └──────────────────────┘
+```mermaid
+flowchart TD
+    A["当前版本<br/>id=1, name='张三'<br/>DB_TRX_ID = 100<br/>DB_ROLL_PTR"]
+    B["id=1, name='李四'<br/>DB_TRX_ID = 50<br/>DB_ROLL_PTR"]
+    C["id=1, name='王五'<br/>DB_TRX_ID = 10<br/>DB_ROLL_PTR = NULL"]
+    A --> B
+    B --> C
 ```
 
 ### Read View
@@ -196,15 +184,10 @@ trx_id in m_ids           → 不可见（未提交的活跃事务）
 - **原理**：记录数据页的物理变化
 - **机制**：WAL（Write-Ahead Logging），先写日志再写磁盘
 
-```
-┌──────────┐    ①写入    ┌──────────┐
-│  事务    │ ──────────→ │ redo log │  ← 顺序写，速度快
-└──────────┘             └──────────┘
-                               │
-                               ↓ ②后台刷盘
-                         ┌──────────┐
-                         │ 数据文件  │  ← 随机写，速度慢
-                         └──────────┘
+```mermaid
+flowchart TD
+    A["事务"] -->|"①写入"| B["redo log<br/>顺序写，速度快"]
+    B -->|"②后台刷盘"| C["数据文件<br/>随机写，速度慢"]
 ```
 
 ### undo log（回滚日志）

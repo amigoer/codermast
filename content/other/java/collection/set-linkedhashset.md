@@ -87,25 +87,23 @@ HashSet(int initialCapacity, float loadFactor, boolean dummy) {
 
 ### 存储结构对比
 
+```mermaid
+flowchart LR
+    subgraph HS["HashSet 存储结构 #40;HashMap#41; - 遍历顺序：无序"]
+        H0["[0]"] --> HA["A"] --> HD["D"]
+        H1["[1]"] --> HB["B"]
+        H2["[2]"] --> HC["C"] --> HE["E"]
+    end
 ```
-HashSet 存储结构（HashMap）：
-┌─────────────────────────────────────┐
-│  [0] → A → D                        │
-│  [1] → B                            │
-│  [2] → C → E                        │
-│  ...                                │
-└─────────────────────────────────────┘
-遍历顺序：无序
 
-LinkedHashSet 存储结构（LinkedHashMap）：
-┌─────────────────────────────────────┐
-│  [0] → A → D                        │
-│  [1] → B                            │
-│  [2] → C → E                        │
-│  ...                                │
-└─────────────────────────────────────┘
-双向链表：A ←→ B ←→ C ←→ D ←→ E
-遍历顺序：按插入顺序
+```mermaid
+flowchart LR
+    subgraph LHS["LinkedHashSet 存储结构 #40;LinkedHashMap#41; - 遍历顺序：按插入顺序"]
+        L0["[0]"] --> LA["A"] --> LD["D"]
+        L1["[1]"] --> LB["B"]
+        L2["[2]"] --> LC["C"] --> LE["E"]
+    end
+    LA <-.双向链表.-> LB <-.-> LC <-.-> LD <-.-> LE
 ```
 
 ## 使用示例

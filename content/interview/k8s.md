@@ -115,9 +115,9 @@ kubectl get pods
 4. **资源监控**：收集节点资源使用情况
 5. **容器日志**：管理容器日志
 
-```bash
-# kubelet 通过 CRI 与容器运行时交互
-kubelet → CRI → containerd → 容器
+```mermaid
+flowchart LR
+    K["kubelet"] --> C["CRI"] --> CD["containerd"] --> Ctr["容器"]
 ```
 
 ---
@@ -215,11 +215,10 @@ readinessProbe:
 
 **Deployment 管理 ReplicaSet，ReplicaSet 管理 Pod。**
 
-```
-Deployment
-    │
-    ├── ReplicaSet (v1) ── Pod, Pod, Pod
-    └── ReplicaSet (v2) ── Pod, Pod, Pod  (滚动更新时)
+```mermaid
+flowchart LR
+    D["Deployment"] --> RS1["ReplicaSet #40;v1#41;"] --> P1["Pod, Pod, Pod"]
+    D --> RS2["ReplicaSet #40;v2#41;"] --> P2["Pod, Pod, Pod<br/>#40;滚动更新时#41;"]
 ```
 
 **Deployment 的能力：**
@@ -515,17 +514,11 @@ volumeMounts:
 
 ### Q25: PV、PVC、StorageClass 的关系？
 
-```
-StorageClass (动态供应策略)
-      │
-      ↓
-PersistentVolume (存储资源)
-      │
-      ↓ (绑定)
-PersistentVolumeClaim (存储请求)
-      │
-      ↓ (挂载)
-Pod
+```mermaid
+flowchart TD
+    SC["StorageClass #40;动态供应策略#41;"] --> PV["PersistentVolume #40;存储资源#41;"]
+    PV -->|"绑定"| PVC["PersistentVolumeClaim #40;存储请求#41;"]
+    PVC -->|"挂载"| Pod["Pod"]
 ```
 
 | 概念 | 说明 |
@@ -980,10 +973,12 @@ kubectl get events -w
 
 **监控架构：**
 
-```
-Node Exporter  → Prometheus → Grafana
-kube-state-metrics ↗
-cAdvisor ↗
+```mermaid
+flowchart LR
+    NE["Node Exporter"] --> P["Prometheus"]
+    KSM["kube-state-metrics"] --> P
+    CA["cAdvisor"] --> P
+    P --> G["Grafana"]
 ```
 
 **核心组件：**

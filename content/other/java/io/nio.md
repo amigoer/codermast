@@ -15,14 +15,17 @@ NIO（New IO）是 JDK 1.4 引入的新 IO 模型，提供了更高效的 IO 操
 
 ## NIO 核心组件
 
-```
-┌─────────────────────────────────────┐
-│              Selector               │  多路复用器
-├─────────────────────────────────────┤
-│  Channel   Channel   Channel   ...  │  通道
-├─────────────────────────────────────┤
-│              Buffer                 │  缓冲区
-└─────────────────────────────────────┘
+```mermaid
+flowchart TD
+    Selector["Selector #40;多路复用器#41;"]
+    subgraph Channels["Channel #40;通道#41;"]
+        C1["Channel"]
+        C2["Channel"]
+        C3["Channel"]
+    end
+    Buffer["Buffer #40;缓冲区#41;"]
+    Selector --> Channels
+    Channels --> Buffer
 ```
 
 ### 三大核心
@@ -260,12 +263,11 @@ Selector 实现 IO 多路复用，一个线程可以管理多个 Channel。
 
 ### Selector 工作原理
 
-```
-           ┌─── SocketChannel 1
-           │
-Selector ──├─── SocketChannel 2
-           │
-           └─── SocketChannel 3
+```mermaid
+flowchart LR
+    Selector["Selector"] --> S1["SocketChannel 1"]
+    Selector --> S2["SocketChannel 2"]
+    Selector --> S3["SocketChannel 3"]
 ```
 
 ### 事件类型

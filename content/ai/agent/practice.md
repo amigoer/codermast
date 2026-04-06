@@ -360,25 +360,14 @@ agent = build_agent_graph()
 
 工作流图的完整结构：
 
-```
-START
-  │
-  ▼
-┌──────────┐
-│  agent   │◀──────────────────────┐
-└────┬─────┘                       │
-     │                             │
-     ▼                             │
- ┌────────┐   是    ┌──────┐      │
- │需要工具？│──────▶│ tools │──────┘
- └────┬───┘        └──────┘
-      │ 否
-      │          ┌──────────────┐
-      │          │error_handler │
-      │          └──────┬───────┘
-      │                 │
-      ▼                 │
-     END          回到 agent 重试
+```mermaid
+flowchart TD
+    START["START"] --> Agent["agent"]
+    Agent --> Cond{"需要工具？"}
+    Cond -->|是| Tools["tools"]
+    Tools --> Agent
+    Cond -->|否| END["END"]
+    Err["error_handler"] --> Agent
 ```
 
 ## 第五步：对话记忆管理

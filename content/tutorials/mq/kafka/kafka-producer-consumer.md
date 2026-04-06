@@ -5,18 +5,13 @@ title: "Kafka 生产者与消费者"
 
 ### 发送流程
 
-```
-Producer
-    ↓
-Serializer（序列化）
-    ↓
-Partitioner（分区选择）
-    ↓
-RecordAccumulator（消息累加器）
-    ↓
-Sender（发送线程）
-    ↓
-Broker
+```mermaid
+flowchart TD
+    P["Producer"] --> S["Serializer（序列化）"]
+    S --> Pt["Partitioner（分区选择）"]
+    Pt --> RA["RecordAccumulator（消息累加器）"]
+    RA --> Sd["Sender（发送线程）"]
+    Sd --> B["Broker"]
 ```
 
 ### 核心配置
@@ -138,20 +133,14 @@ public class UserSerializer implements Serializer<User> {
 
 ### 消费流程
 
-```
-Consumer Group
-    ↓
-Group Coordinator（协调者）
-    ↓
-Partition Assignment（分区分配）
-    ↓
-Fetch Messages（拉取消息）
-    ↓
-Deserialize（反序列化）
-    ↓
-Process（处理）
-    ↓
-Commit Offset（提交位移）
+```mermaid
+flowchart TD
+    CG["Consumer Group"] --> GC["Group Coordinator（协调者）"]
+    GC --> PA["Partition Assignment（分区分配）"]
+    PA --> FM["Fetch Messages（拉取消息）"]
+    FM --> D["Deserialize（反序列化）"]
+    D --> Pr["Process（处理）"]
+    Pr --> CO["Commit Offset（提交位移）"]
 ```
 
 ### 核心配置
@@ -333,10 +322,12 @@ props.put(ConsumerConfig.PARTITION_ASSIGNMENT_STRATEGY_CONFIG,
 
 ### 消费者组状态
 
-```
-Empty → PreparingRebalance → CompletingRebalance → Stable
-                 ↑                                    │
-                 └────────────────────────────────────┘
+```mermaid
+flowchart LR
+    E["Empty"] --> PR["PreparingRebalance"]
+    PR --> CR["CompletingRebalance"]
+    CR --> S["Stable"]
+    S --> PR
 ```
 
 ## 小结

@@ -95,24 +95,20 @@ spec:
 
 ### Pod 生命周期
 
+```mermaid
+flowchart LR
+    P["Pending"] --> R["Running"]
+    R --> SF["Succeeded / Failed"]
+    R --> CLB["CrashLoopBackOff<br/>容器反复崩溃"]
+    P --> U["Unknown<br/>节点通信失败"]
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│                         Pod 生命周期                             │
-│                                                                  │
-│  Pending ──► Running ──► Succeeded/Failed                       │
-│     │           │                                                │
-│     │           └──► CrashLoopBackOff（容器反复崩溃）             │
-│     │                                                            │
-│     └──► Unknown（节点通信失败）                                  │
-│                                                                  │
-│  状态说明：                                                       │
-│  - Pending: Pod 已创建，但容器还未启动                           │
-│  - Running: 至少一个容器正在运行                                  │
-│  - Succeeded: 所有容器成功终止                                    │
-│  - Failed: 至少一个容器以非零状态退出                             │
-│  - Unknown: 无法获取 Pod 状态                                     │
-└─────────────────────────────────────────────────────────────────┘
-```
+
+**状态说明：**
+- Pending: Pod 已创建，但容器还未启动
+- Running: 至少一个容器正在运行
+- Succeeded: 所有容器成功终止
+- Failed: 至少一个容器以非零状态退出
+- Unknown: 无法获取 Pod 状态
 
 ### Init 容器
 
@@ -168,22 +164,21 @@ spec:
 
 ### ReplicaSet 工作原理
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                        ReplicaSet                                │
-│                                                                  │
-│   期望副本数: 3                                                   │
-│                                                                  │
-│   当前状态:                                                       │
-│   ┌─────┐  ┌─────┐  ┌─────┐                                     │
-│   │ Pod │  │ Pod │  │ Pod │  = 3 个运行中                        │
-│   └─────┘  └─────┘  └─────┘                                     │
-│                                                                  │
-│   如果 Pod 被删除:                                                │
-│   ┌─────┐  ┌─────┐  ┌─────┐                                     │
-│   │ Pod │  │ Pod │  │ NEW │  ← 自动创建新 Pod                    │
-│   └─────┘  └─────┘  └─────┘                                     │
-└─────────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TD
+    RS["ReplicaSet<br/>期望副本数: 3"]
+    subgraph Current["当前状态: 3 个运行中"]
+        P1["Pod"]
+        P2["Pod"]
+        P3["Pod"]
+    end
+    subgraph After["Pod 被删除后"]
+        P4["Pod"]
+        P5["Pod"]
+        P6["NEW Pod<br/>自动创建"]
+    end
+    RS --> Current
+    Current -.-> After
 ```
 
 <Warning title="注意">

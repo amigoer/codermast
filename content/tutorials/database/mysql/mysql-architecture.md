@@ -7,22 +7,19 @@ title: "MySQL 高可用架构"
 
 ### 原理
 
-```
-┌─────────────┐                    ┌─────────────┐
-│   Master    │                    │    Slave    │
-│  ┌───────┐  │     ① binlog      │  ┌───────┐  │
-│  │ binlog│──┼────────────────→──┼──│IO线程 │  │
-│  └───────┘  │                    │  └───┬───┘  │
-└─────────────┘                    │      ↓      │
-                                   │  ┌───────┐  │
-                                   │  │relay  │  │
-                                   │  │ log   │  │
-                                   │  └───┬───┘  │
-                                   │      ↓      │
-                                   │  ┌───────┐  │
-                                   │  │SQL线程│  │
-                                   │  └───────┘  │
-                                   └─────────────┘
+```mermaid
+flowchart LR
+    subgraph Master["Master"]
+        BL["binlog"]
+    end
+    subgraph Slave["Slave"]
+        IO["IO线程"]
+        RL["relay log"]
+        SQL["SQL线程"]
+        IO --> RL
+        RL --> SQL
+    end
+    BL -->|"① binlog"| IO
 ```
 
 **三步流程：**
@@ -121,20 +118,12 @@ SET GLOBAL slave_parallel_workers = 8;
 
 ### 原理
 
-```
-                    ┌─────────────┐
-                    │   应用程序   │
-                    └──────┬──────┘
-                           │
-                    ┌──────┴──────┐
-                    │   中间件    │
-                    └──────┬──────┘
-              ┌────────────┼────────────┐
-              ↓            ↓            ↓
-        ┌─────────┐  ┌─────────┐  ┌─────────┐
-        │ Master  │  │ Slave1  │  │ Slave2  │
-        │  (写)   │  │  (读)   │  │  (读)   │
-        └─────────┘  └─────────┘  └─────────┘
+```mermaid
+flowchart TD
+    App["应用程序"] --> MW["中间件"]
+    MW --> Master["Master<br/>#40;写#41;"]
+    MW --> Slave1["Slave1<br/>#40;读#41;"]
+    MW --> Slave2["Slave2<br/>#40;读#41;"]
 ```
 
 ### 实现方式
@@ -311,15 +300,11 @@ spring:
 
 ### MHA（Master High Availability）
 
-```
-                 ┌─────────────┐
-                 │ MHA Manager │
-                 └──────┬──────┘
-          ┌─────────────┼─────────────┐
-          ↓             ↓             ↓
-    ┌─────────┐   ┌─────────┐   ┌─────────┐
-    │ Master  │   │ Slave1  │   │ Slave2  │
-    └─────────┘   └─────────┘   └─────────┘
+```mermaid
+flowchart TD
+    MHA["MHA Manager"] --> Master["Master"]
+    MHA --> Slave1["Slave1"]
+    MHA --> Slave2["Slave2"]
 ```
 
 **功能：**

@@ -212,8 +212,9 @@ redis.del(key);          // 第二次删除
 
 **Canal 监听 binlog：**
 
-```
-数据库 → binlog → Canal → 更新/删除缓存
+```mermaid
+flowchart LR
+    DB["数据库"] --> BL["binlog"] --> Canal["Canal"] --> Cache["更新/删除缓存"]
 ```
 
 ## 慢查询优化

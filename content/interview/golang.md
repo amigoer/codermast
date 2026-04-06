@@ -1076,12 +1076,10 @@ defer ticker.Stop()  // 必须停止！
 
 **Go 使用 TCMalloc 多级缓存：**
 
-```
-mcache（每个 P 一个，无锁）
-    ↓
-mcentral（每个 size class 一个，有锁）
-    ↓
-mheap（全局唯一，管理所有内存）
+```mermaid
+flowchart TD
+    A["mcache#40;每个 P 一个，无锁#41;"] --> B["mcentral#40;每个 size class 一个，有锁#41;"]
+    B --> C["mheap#40;全局唯一，管理所有内存#41;"]
 ```
 
 | 对象大小 | 分配方式 |
@@ -1328,8 +1326,9 @@ func (c *Context) Next() {
 ```
 
 **执行流程：**
-```
-请求 → Middleware1 → Middleware2 → Handler → Middleware2 → Middleware1 → 响应
+```mermaid
+flowchart LR
+    A["请求"] --> B["Middleware1"] --> C["Middleware2"] --> D["Handler"] --> E["Middleware2"] --> F["Middleware1"] --> G["响应"]
 ```
 
 ---
@@ -1490,9 +1489,10 @@ http.ListenAndServe(":8080", engine)
 
 **洋葱模型：**
 
-```
-请求 → M1(前) → M2(前) → M3(前) → Handler
-响应 ← M1(后) ← M2(后) ← M3(后) ←┘
+```mermaid
+flowchart LR
+    Req["请求"] --> M1A["M1#40;前#41;"] --> M2A["M2#40;前#41;"] --> M3A["M3#40;前#41;"] --> H["Handler"]
+    H --> M3B["M3#40;后#41;"] --> M2B["M2#40;后#41;"] --> M1B["M1#40;后#41;"] --> Resp["响应"]
 ```
 
 **执行流程：**
@@ -1574,15 +1574,16 @@ r.Use(gin.CustomRecovery(func(c *gin.Context, err interface{}) {
 
 ### Q72: HTTP 请求的生命周期
 
-```
-1. 请求进入 → net/http 接收
-2. Engine.ServeHTTP() → 从连接池获取 Context
-3. 路由匹配 → 基数树查找
-4. 执行中间件链 → handlers[0:n]
-5. 参数绑定 → Query/JSON/Form
-6. 业务处理 → Controller
-7. 响应写入 → c.JSON() / c.String()
-8. Context 回收 → 放回连接池
+```mermaid
+flowchart TD
+    A["1. 请求进入"] --> A2["net/http 接收"]
+    A2 --> B["2. Engine.ServeHTTP#40;#41;"] --> B2["从连接池获取 Context"]
+    B2 --> C["3. 路由匹配"] --> C2["基数树查找"]
+    C2 --> D["4. 执行中间件链"] --> D2["handlers[0:n]"]
+    D2 --> E["5. 参数绑定"] --> E2["Query/JSON/Form"]
+    E2 --> F["6. 业务处理"] --> F2["Controller"]
+    F2 --> G["7. 响应写入"] --> G2["c.JSON#40;#41; / c.String#40;#41;"]
+    G2 --> H["8. Context 回收"] --> H2["放回连接池"]
 ```
 
 ---

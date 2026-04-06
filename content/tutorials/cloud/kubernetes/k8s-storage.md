@@ -196,10 +196,12 @@ spec:
 
 ### PV 状态
 
-```
-Available ──► Bound ──► Released ──► Failed
-                              │
-                              └──► Available（回收后）
+```mermaid
+flowchart LR
+    A["Available"] --> B["Bound"]
+    B --> R["Released"]
+    R --> F["Failed"]
+    R --> A2["Available<br/>（回收后）"]
 ```
 
 - **Available**：可用，未绑定

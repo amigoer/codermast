@@ -3,26 +3,24 @@ title: "RocketMQ 核心概念"
 ---
 ## 架构概览
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                       NameServer Cluster                    │
-│  ┌─────────────┐                      ┌─────────────┐       │
-│  │ NameServer  │                      │ NameServer  │       │
-│  └─────────────┘                      └─────────────┘       │
-└─────────────────────────────────────────────────────────────┘
-              ↑                                  ↑
-              │ 注册                              │ 注册
-              │                                  │
-┌─────────────────────────────────────────────────────────────┐
-│                       Broker Cluster                        │
-│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐         │
-│  │ Broker-A    │  │ Broker-B    │  │ Broker-C    │         │
-│  │ Master      │  │ Master      │  │ Master      │         │
-│  │ Slave       │  │ Slave       │  │ Slave       │         │
-│  └─────────────┘  └─────────────┘  └─────────────┘         │
-└─────────────────────────────────────────────────────────────┘
-              ↑                                  ↓
-          Producer                          Consumer
+```mermaid
+flowchart TD
+    subgraph NS["NameServer Cluster"]
+        N1["NameServer"]
+        N2["NameServer"]
+    end
+    subgraph BC["Broker Cluster"]
+        BA["Broker-A<br/>Master / Slave"]
+        BB["Broker-B<br/>Master / Slave"]
+        BC1["Broker-C<br/>Master / Slave"]
+    end
+    Producer["Producer"]
+    Consumer["Consumer"]
+    BA -- "注册" --> NS
+    BB -- "注册" --> NS
+    BC1 -- "注册" --> NS
+    Producer --> BC
+    BC --> Consumer
 ```
 
 ## 核心组件
