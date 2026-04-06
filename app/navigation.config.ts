@@ -81,7 +81,7 @@ export const tabs: NavTab[] = [
   {
     name: 'Golang',
     prefix: '/golang',
-    icon: 'i-vscode-icons:file-type-go',
+    icon: 'i-lucide-boxes',
     groups: [
       {
         title: 'Go 核心基础',
@@ -188,7 +188,7 @@ export const tabs: NavTab[] = [
   },
   {
     name: 'Java & Spring',
-    icon: 'i-vscode-icons:file-type-java',
+    icon: 'i-lucide-layers',
     prefix: '/other',
     groups: [
       {
