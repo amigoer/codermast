@@ -44,6 +44,9 @@
       <!-- Main content -->
       <slot />
     </div>
+
+    <AppLightbox />
+    <AppToaster />
   </div>
 </template>
 

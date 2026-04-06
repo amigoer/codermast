@@ -53,11 +53,35 @@ const icon = computed(() => {
 const isMermaid = computed(() => {
   return /(^|\s)mermaid(\s|$)/.test(props.meta ?? '')
 })
+
+const toast = useAppToast()
+
+function onWrapperClick(e: MouseEvent) {
+  // UPre's copy button is the only <button> inside the Pre block.
+  const btn = (e.target as HTMLElement | null)?.closest('button')
+  if (!btn) return
+  // Fire a short toast — UPre itself briefly swaps its icon to a
+  // checkmark, so we just add a Sonner-style confirmation.
+  toast.success('已复制到剪贴板')
+}
 </script>
 
 <template>
   <Mermaid v-if="isMermaid" :code="code ?? ''" />
-  <UPre v-else v-bind="props" :icon="icon">
-    <slot />
-  </UPre>
+  <div v-else class="group/pre pre-hover-wrapper" @click.capture="onWrapperClick">
+    <UPre v-bind="props" :icon="icon">
+      <slot />
+    </UPre>
+  </div>
 </template>
+
+<style scoped>
+.pre-hover-wrapper :deep(button) {
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+.pre-hover-wrapper:hover :deep(button),
+.pre-hover-wrapper :deep(button:focus-visible) {
+  opacity: 1;
+}
+</style>
